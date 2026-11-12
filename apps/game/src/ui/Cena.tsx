@@ -14,7 +14,7 @@ import type { PontoDeTela } from "../arte/iso";
 import { avancar, type NaGrade, NOS, noDaSala, rota } from "../mundo/planta";
 
 /** Velocidade do avatar, em ladrilhos por segundo. */
-const VELOCIDADE = 13;
+const VELOCIDADE = 8;
 
 const pct = (valor: number, total: number) => `${(valor / total) * 100}%`;
 
@@ -58,7 +58,7 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
   const desenho = useMemo(() => {
     const cena = desenharCena();
     const objetos = cena.objetos.map((o) => `<g data-p="${o.p}">${o.svg}</g>`).join("");
-    const avatar = `<g data-avatar><g data-lado="direita">${desenharAvatar("direita")}</g><g data-lado="esquerda" display="none">${desenharAvatar("esquerda")}</g></g>`;
+    const avatar = `<g data-avatar><ellipse class="avatar-anel" cx="0" cy="1" rx="12" ry="6"/><g data-lado="direita">${desenharAvatar("direita")}</g><g data-lado="esquerda" display="none">${desenharAvatar("esquerda")}</g><path class="avatar-seta" d="M-6 -44 H6 L0 -35Z"/></g>`;
     return `${cena.fundo}<g data-objetos>${objetos}${avatar}</g>`;
   }, []);
   const salas = useMemo(() => conteudo.salas.map((s) => ({ ...s, lugar: lugarDaSala(s.id) })), []);

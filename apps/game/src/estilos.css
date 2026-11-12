@@ -1230,3 +1230,31 @@ ol {
   color: var(--texto-suave);
   text-align: center;
 }
+
+/* O avatar do jogador: anel no chão e seta sobre a cabeça, para não se confundir com os colegas. */
+.avatar-anel {
+  fill: rgb(247 198 60 / 35%);
+  stroke: var(--ouro);
+  stroke-width: 2;
+}
+
+.avatar-seta {
+  fill: var(--ouro);
+  stroke: var(--contorno);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+  animation: aponta 700ms ease-in-out infinite alternate;
+}
+
+@keyframes aponta {
+  to {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar-seta,
+  .placa-aviso {
+    animation: none;
+  }
+}

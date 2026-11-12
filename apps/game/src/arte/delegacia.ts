@@ -503,7 +503,8 @@ export function lugarDaSala(sala: string): LugarDaSala {
   // A placa fica no alto da parede do fundo da sala; a da recepção, sobre o saguão.
   const meio =
     sala === "recepcao"
-      ? iso.ponto(14.5, 20.5, 2.6)
+      ? // Do lado de fora da fachada, para não cobrir o caminho do avatar pelo saguão.
+        iso.ponto(12, 24.4, 0)
       : s.y0 === 0
         ? iso.ponto((s.x0 + s.x1) / 2, 0, PAREDE_ALTA + 0.5)
         : iso.ponto(0, (s.y0 + s.y1) / 2, PAREDE_ALTA + 0.5);
