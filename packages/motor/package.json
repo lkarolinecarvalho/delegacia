@@ -1,0 +1,19 @@
+{
+  "name": "@delegacia/motor",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "fast-check": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:"
+  }
+}

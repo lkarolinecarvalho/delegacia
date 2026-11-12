@@ -1,0 +1,20 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# Versões únicas para todo o monorepo (ADR-0001), as mesmas do cidade-contabil.
+catalog:
+  "@biomejs/biome": 2.6.6
+  "@fontsource-variable/nunito": ^5.3.0
+  "@types/node": ^24.0.0
+  "@types/react": ^19.3.0
+  "@types/react-dom": ^19.3.0
+  "@vitejs/plugin-react": ^6.3.0
+  fast-check: ^4.10.2
+  react: ^19.3.1
+  react-dom: ^19.3.1
+  typescript: ^7.0.2
+  vite: ^8.3.5
+  vitest: ^5.1.0
+  zod: ^4.6.7
+  zustand: ^5.0.16
