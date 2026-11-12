@@ -18,12 +18,15 @@ apps/game
   dependências de UI.
 - **content:** schemas zod, carregamento e validação de missões, afirmativas, teoria,
   conceitos, personagens e salas.
-- **game:** React desenha tudo. A delegacia é um SVG gerado em código (`arte/`), com as
-  primitivas isométricas herdadas do cidade-contabil. Não há Phaser (ADR-0001).
+- **game:** React desenha tudo. A planta da delegacia (`mundo/planta.ts`: salas,
+  paredes, caminhos e rotas) é pura; `arte/delegacia.ts` a desenha em SVG com as
+  primitivas isométricas herdadas do cidade-contabil. Cada objeto tem uma profundidade,
+  e o avatar entra na ordem de desenho por ela. Não há Phaser (ADR-0001).
 
 ## Fluxo de um caso
 
-1. O jogador toca na sala do próximo destino; o avatar vai até lá e o painel abre.
+1. O jogador toca na sala do próximo destino; o avatar anda até lá pelos caminhos da
+   planta e, ao chegar, o painel abre.
 2. Aulas (na primeira vez) e conversa.
 3. O orquestrador entrega o **fato** da missão a `motor.analisarFato(fato)`, que devolve
    a análise esperada, **sem gravar nada**.

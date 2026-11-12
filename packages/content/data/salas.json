@@ -2,37 +2,31 @@
   {
     "id": "recepcao",
     "nome": "Recepção",
-    "andar": "terreo",
     "descricao": "O balcão onde a população registra ocorrência."
   },
   {
     "id": "cartorio",
     "nome": "Cartório",
-    "andar": "terreo",
     "descricao": "A mesa do escrivão: autos, termos e os casos do plantão."
   },
   {
     "id": "carceragem",
     "nome": "Carceragem",
-    "andar": "terreo",
     "descricao": "Onde ficam os presos em flagrante. Abre com o capítulo do flagrante."
   },
   {
     "id": "gabinete",
     "nome": "Gabinete",
-    "andar": "primeiro",
     "descricao": "A sala da delegada titular."
   },
   {
     "id": "oitiva",
     "nome": "Sala de oitiva",
-    "andar": "primeiro",
     "descricao": "Onde se ouvem vítimas, testemunhas e conduzidos."
   },
   {
     "id": "biblioteca",
     "nome": "Biblioteca",
-    "andar": "primeiro",
     "descricao": "Teoria, Código, Revisão e Progresso."
   }
 ]

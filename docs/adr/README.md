@@ -13,12 +13,16 @@
 ## ADR-0001 — Stack: a do cidade-contabil, sem Phaser
 
 **Contexto.** O cidade-contabil usa Phaser para um mapa de cidade com câmera e
-caminhada livre. Aqui o cenário é um prédio só, visto em corte, com seis salas fixas.
+caminhada livre. Aqui o cenário é um prédio térreo com seis salas, o pátio e a rua, e
+cabe inteiro na tela.
 
 **Decisão.**
 - TypeScript em monorepo pnpm; Vite + React; Zustand; zod; Vitest (+ fast-check); Biome.
 - **Sem Phaser.** A delegacia é um SVG gerado em código com as primitivas isométricas do
-  cidade-contabil (`arte/iso.ts`); o avatar se move com transição de CSS.
+  cidade-contabil (`arte/iso.ts`). Como lá, o mundo é contínuo: o avatar anda pelos
+  caminhos da planta, passa pelas portas e fica atrás do que está à frente dele.
+- Uma primeira versão em corte, com dois andares separados e o avatar deslizando de um
+  para o outro, foi descartada: não parecia um lugar de verdade.
 - Capacitor e persistência ficam para o último marco.
 
 **Consequências.** Uma só árvore de UI, sem event bus. Se o jogo ganhar cenas com

@@ -1,5 +1,5 @@
 import { conteudo, type Missao } from "@delegacia/content";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { tocar } from "../som/sons";
 import { capituloAtual, proximaMissao } from "../state/jogo";
 import { type Painel, useStore } from "../state/store";
@@ -16,9 +16,6 @@ import {
   IconePasta,
 } from "./icones";
 import { PainelDaBiblioteca, PainelDeCasos, PainelDeConfig, PainelDeProgresso } from "./Paineis";
-
-/** Tempo da caminhada do avatar até a sala, igual à transição do CSS. */
-const CAMINHADA_MS = 650;
 
 const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva", "biblioteca", "carceragem"]);
 
@@ -64,7 +61,6 @@ export function App() {
   // A missão aberta fica guardada: ao ser concluída, a "próxima" já é outra.
   const [missaoAberta, setMissaoAberta] = useState<Missao | null>(null);
   const [aviso, setAviso] = useState<string | null>(null);
-  const caminhada = useRef<number | undefined>(undefined);
 
   const proxima = proximaMissao(jogo, conteudo);
   const capitulo = capituloAtual(jogo, conteudo);
@@ -76,29 +72,35 @@ export function App() {
     setMissaoAberta(null);
   }, [fecharPainel]);
 
-  useEffect(() => () => window.clearTimeout(caminhada.current), []);
-
-  const aoTocarNaSala = (id: string) => {
+  const aoTocarNaSala = () => {
     tocar("toque");
-    irPara(id);
     setAviso(null);
-    window.clearTimeout(caminhada.current);
-    caminhada.current = window.setTimeout(() => {
-      if (proxima && id === proxima.sala) {
-        setMissaoAberta(proxima);
-        abrir("missao");
-      } else if (id === "biblioteca") {
-        abrir("biblioteca");
-      } else {
-        const tocada = conteudo.salas.find((s) => s.id === id);
-        setAviso(tocada ? `${tocada.nome}: ${tocada.descricao}` : null);
-      }
-    }, CAMINHADA_MS);
+  };
+
+  /** O avatar chegou: abre a missão da sala, a Biblioteca ou só diz onde ele está. */
+  const aoChegarNaSala = (id: string) => {
+    irPara(id);
+    if (proxima && id === proxima.sala) {
+      setMissaoAberta(proxima);
+      abrir("missao");
+    } else if (id === "biblioteca") {
+      abrir("biblioteca");
+    } else {
+      const tocada = conteudo.salas.find((x) => x.id === id);
+      setAviso(tocada ? `${tocada.nome}: ${tocada.descricao}` : null);
+    }
   };
 
   return (
     <>
-      <Cena sala={sala} destino={proxima?.sala ?? null} aoTocar={aoTocarNaSala} />
+      <Cena
+        // Recomeçar o jogo remonta a cena, com o avatar de volta ao pátio.
+        key={aberturaVista ? "jogo" : "abertura"}
+        salaInicial={sala}
+        destino={proxima?.sala ?? null}
+        aoTocar={aoTocarNaSala}
+        aoChegar={aoChegarNaSala}
+      />
 
       <header className="hud">
         <div className="hud-linha">

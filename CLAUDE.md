@@ -42,7 +42,8 @@ Projeto irmão do `cidade-contabil` (mesma estrutura de ensino; ver ADR-0006).
 - O motor **não valora prova**: o fato chega como apurado. Caso fora das regras gera
   `ErroDeFato`, nunca um palpite.
 - Missões e afirmativas são **dados** (`packages/content/data`), validados por schema zod.
-- A delegacia é desenhada em SVG, em código, e a interface é toda React (ADR-0001).
+- A delegacia é um prédio térreo, desenhado em SVG, em código; o avatar anda pelos
+  caminhos da planta (`apps/game/src/mundo/planta.ts`). A interface é toda React (ADR-0001).
 
 ### Tom (ADR-0005)
 - Foco no raciocínio jurídico e no procedimento. Sem detalhe gráfico de violência.

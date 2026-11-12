@@ -1,9 +1,6 @@
 /* Tema da interface: a direção do cidade-contabil (papel creme, contorno marrom, cantos
    arredondados), com o azul-marinho da polícia no lugar do verde. */
 :root {
-  --ceu-alto: #26374d;
-  --ceu-baixo: #6f8fa8;
-  --chao: #4d5a5f;
   --papel: #fbf3de;
   --cartao: #fffaf0;
   --cartao-2: #f3e7c8;
@@ -100,30 +97,24 @@ ol {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    var(--ceu-alto) 0%,
-    var(--ceu-baixo) 62%,
-    var(--chao) 62%,
-    #3c474b 100%
-  );
+  background: #8fc26c;
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
     env(safe-area-inset-left);
 }
 
-/* A cena: a delegacia em corte, atrás do HUD. */
+/* A cena: a delegacia e o terreno em volta, no palco inteiro, por baixo do HUD. */
 .cena {
   position: absolute;
-  inset: 132px 0 76px;
+  inset: 0;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 }
 
 .cena-caixa {
   position: relative;
-  height: 100%;
-  max-width: 100%;
-  aspect-ratio: 390 / 590;
+  width: 100%;
+  aspect-ratio: 390 / 844;
 }
 
 .cena-desenho {
@@ -132,17 +123,6 @@ ol {
   width: 100%;
   height: 100%;
   overflow: visible;
-}
-
-.cena-andar {
-  position: absolute;
-  left: 2%;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(255 255 255 / 70%);
-  pointer-events: none;
 }
 
 .sala-area {
@@ -154,32 +134,28 @@ ol {
 
 .sala-area:hover,
 .sala-area:focus-visible {
-  background: rgb(255 255 255 / 16%);
+  background: rgb(255 255 255 / 22%);
   outline: none;
-}
-
-.avatar {
-  position: absolute;
-  height: auto;
-  pointer-events: none;
-  transition:
-    left 650ms ease-in-out,
-    top 650ms ease-in-out;
-  filter: drop-shadow(0 0 3px rgb(255 255 255 / 75%));
 }
 
 .placa {
   position: absolute;
   transform: translate(-50%, -100%);
-  padding: 2px 9px;
+  padding: 1px 7px;
   border: 2px solid var(--contorno);
   border-radius: 999px;
   background: var(--cartao);
   box-shadow: var(--sombra);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   white-space: nowrap;
   pointer-events: none;
+}
+
+.placa-fechada {
+  background: var(--cartao-2);
+  color: var(--texto-suave);
+  font-size: 10px;
 }
 
 .placa-destino {

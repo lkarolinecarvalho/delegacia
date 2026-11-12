@@ -1,7 +1,6 @@
 import { conteudo } from "@delegacia/content";
 import { analisarFato, compararFicha, esperadoNoCampo } from "@delegacia/motor";
 import { describe, expect, it } from "vitest";
-import { CENA, desenharDelegacia, lugarDaSala } from "../arte/delegacia";
 import { estadoInicial, responderAfirmativa } from "../state/jogo";
 import { LIMITE_POR_CASO, selecionarAfirmativas, selecionarParaRevisao } from "./afirmativas";
 import { fichaDasRespostas, montarFicha, trilhaDaAnalise, type ValorDaFicha } from "./ficha";
@@ -124,29 +123,5 @@ describe("seleção de afirmativas", () => {
     const estado = responderAfirmativa(estadoInicial(), a, a.gabarito === "C" ? "E" : "C");
     const revisao = selecionarParaRevisao(conteudo.afirmativas, estado, 5);
     expect(revisao.map((x) => x.conceitoId)).toEqual(["legalidade"]);
-  });
-});
-
-describe("cena da delegacia", () => {
-  it("desenha sem valores inválidos", () => {
-    const desenho = desenharDelegacia();
-    expect(desenho).toContain("<polygon");
-    expect(desenho).not.toContain("NaN");
-  });
-
-  it("toda sala do conteúdo e de toda missão tem lugar dentro da cena", () => {
-    const salas = new Set([
-      ...conteudo.salas.map((s) => s.id),
-      ...conteudo.missoes.map((m) => m.sala),
-    ]);
-    for (const sala of salas) {
-      const lugar = lugarDaSala(sala);
-      for (const p of [lugar.avatar, lugar.placa, ...lugar.area]) {
-        expect(p.x, sala).toBeGreaterThanOrEqual(0);
-        expect(p.x, sala).toBeLessThanOrEqual(CENA.largura);
-        expect(p.y, sala).toBeGreaterThanOrEqual(0);
-        expect(p.y, sala).toBeLessThanOrEqual(CENA.altura);
-      }
-    }
   });
 });

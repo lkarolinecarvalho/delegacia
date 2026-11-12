@@ -8,7 +8,6 @@ const gabarito = z.enum(["C", "E"]);
 export const salaSchema = z.strictObject({
   id,
   nome: texto,
-  andar: z.enum(["terreo", "primeiro"]),
   descricao: texto,
 });
 

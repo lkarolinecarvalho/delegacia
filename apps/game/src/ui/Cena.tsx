@@ -1,15 +1,19 @@
 import { conteudo } from "@delegacia/content";
-import { useMemo } from "react";
-import { desenharBoneco } from "../arte/bonecos";
+import { useEffect, useMemo, useRef } from "react";
 import {
   CENA,
-  desenharDelegacia,
-  LUGAR_DO_PATIO,
+  desenharAvatar,
+  desenharCena,
   lugarDaSala,
-  TAMANHO_DO_BONECO,
+  naTela,
+  PLACA_DO_FORUM,
+  profundidade,
 } from "../arte/delegacia";
 import type { PontoDeTela } from "../arte/iso";
-import { paraDataUrl } from "../arte/svg";
+import { avancar, type NaGrade, NOS, noDaSala, rota } from "../mundo/planta";
+
+/** Velocidade do avatar, em ladrilhos por segundo. */
+const VELOCIDADE = 13;
 
 const pct = (valor: number, total: number) => `${(valor / total) * 100}%`;
 
@@ -30,36 +34,138 @@ function recorte(area: readonly PontoDeTela[]) {
 }
 
 interface Props {
-  /** Sala em que o avatar está; `null` é o pátio. */
-  readonly sala: string | null;
+  /** Sala em que o avatar está ao montar a cena; `null` é o pátio. */
+  readonly salaInicial: string | null;
   /** Sala do próximo passo da campanha, marcada com o indicador. */
   readonly destino: string | null;
+  /** O jogador tocou numa sala: o avatar começa a andar até ela. */
   readonly aoTocar: (sala: string) => void;
+  /** O avatar chegou à sala tocada. */
+  readonly aoChegar: (sala: string) => void;
 }
 
-/** A delegacia em corte: o desenho, as salas tocáveis, as placas e o avatar. */
-export function Cena({ sala, destino, aoTocar }: Props) {
-  const arte = useMemo(() => desenharDelegacia(), []);
-  const avatar = useMemo(() => paraDataUrl(desenharBoneco("avatar", "esquerda")), []);
+/**
+ * A delegacia: o desenho, as salas tocáveis, as placas e o avatar, que anda pelos
+ * caminhos da planta até a sala tocada. O avatar entra na ordem de desenho pela
+ * profundidade: passa atrás do que está à frente dele.
+ */
+export function Cena({ salaInicial, destino, aoTocar, aoChegar }: Props) {
+  const desenho = useMemo(() => {
+    const cena = desenharCena();
+    const objetos = cena.objetos.map((o) => `<g data-p="${o.p}">${o.svg}</g>`).join("");
+    const avatar = `<g data-avatar><g data-lado="direita">${desenharAvatar("direita")}</g><g data-lado="esquerda" display="none">${desenharAvatar("esquerda")}</g></g>`;
+    return `${cena.fundo}<g data-objetos>${objetos}${avatar}</g>`;
+  }, []);
   const salas = useMemo(() => conteudo.salas.map((s) => ({ ...s, lugar: lugarDaSala(s.id) })), []);
-  const onde = sala ? lugarDaSala(sala).avatar : LUGAR_DO_PATIO;
+
+  const svg = useRef<SVGSVGElement>(null);
+  const aoChegarAtual = useRef(aoChegar);
+  aoChegarAtual.current = aoChegar;
+  /** Pede uma caminhada; preenchido pelo efeito que cuida da animação. */
+  const andarAte = useRef<(sala: string) => void>(() => {});
+  const inicio = useRef(salaInicial);
+
+  useEffect(() => {
+    const camada = svg.current?.querySelector<SVGGElement>("[data-objetos]");
+    const avatar = camada?.querySelector<SVGGElement>("[data-avatar]");
+    if (!camada || !avatar) return;
+    const objetos = [...camada.querySelectorAll<SVGGElement>(":scope > [data-p]")];
+    const profundidades = objetos.map((o) => Number(o.dataset.p));
+    const lados = {
+      direita: avatar.querySelector<SVGGElement>('[data-lado="direita"]'),
+      esquerda: avatar.querySelector<SVGGElement>('[data-lado="esquerda"]'),
+    };
+
+    let no = noDaSala(inicio.current);
+    let posicao: NaGrade = NOS[no] ?? [0, 0];
+    let caminho: readonly NaGrade[] = [];
+    let alvo: string | null = null;
+    let pendente: string | null = null;
+    let quadro = 0;
+    let anterior = 0;
+    let naFrenteDe = -1;
+
+    const desenhar = (balanco: number) => {
+      const tela = naTela(posicao);
+      avatar.setAttribute("transform", `translate(${tela.x} ${tela.y}) rotate(${balanco})`);
+      // O avatar fica logo atrás do primeiro objeto mais à frente que ele.
+      const p = profundidade(posicao);
+      let indice = profundidades.findIndex((outra) => outra > p);
+      if (indice < 0) indice = objetos.length;
+      if (indice !== naFrenteDe) {
+        naFrenteDe = indice;
+        camada.insertBefore(avatar, objetos[indice] ?? null);
+      }
+    };
+
+    const chegar = () => {
+      const sala = alvo;
+      alvo = null;
+      if (sala) no = noDaSala(sala);
+      desenhar(0);
+      if (pendente) {
+        const proxima = pendente;
+        pendente = null;
+        partir(proxima);
+      } else if (sala) {
+        aoChegarAtual.current(sala);
+      }
+    };
+
+    const andar = (agora: number) => {
+      const delta = Math.min(Math.max(agora - anterior, 0), 50) / 1000;
+      anterior = agora;
+      const de = naTela(posicao).x;
+      const passo = avancar(posicao, caminho, VELOCIDADE * delta);
+      posicao = passo.posicao;
+      caminho = passo.rota;
+      const dx = naTela(posicao).x - de;
+      if (Math.abs(dx) > 0.01) {
+        lados.direita?.setAttribute("display", dx > 0 ? "inline" : "none");
+        lados.esquerda?.setAttribute("display", dx > 0 ? "none" : "inline");
+      }
+      if (caminho.length === 0) {
+        chegar();
+        return;
+      }
+      desenhar(Math.sin(agora / 70) * 4);
+      quadro = requestAnimationFrame(andar);
+    };
+
+    function partir(sala: string) {
+      alvo = sala;
+      caminho = rota(no, noDaSala(sala));
+      if (caminho.length === 0) {
+        chegar();
+        return;
+      }
+      anterior = performance.now();
+      quadro = requestAnimationFrame(andar);
+    }
+
+    andarAte.current = (sala) => {
+      // No meio de uma caminhada, o novo destino espera a chegada.
+      if (alvo) pendente = sala;
+      else partir(sala);
+    };
+    desenhar(0);
+    return () => {
+      cancelAnimationFrame(quadro);
+      andarAte.current = () => {};
+    };
+  }, []);
 
   return (
     <div className="cena">
       <div className="cena-caixa">
         <svg
+          ref={svg}
           className="cena-desenho"
           viewBox={`0 0 ${CENA.largura} ${CENA.altura}`}
           aria-hidden="true"
           // O desenho é gerado em código pelo próprio projeto (arte/delegacia.ts).
-          dangerouslySetInnerHTML={{ __html: arte }}
+          dangerouslySetInnerHTML={{ __html: desenho }}
         />
-        <span className="cena-andar" style={{ top: pct(118, CENA.altura) }}>
-          1º andar
-        </span>
-        <span className="cena-andar" style={{ top: pct(368, CENA.altura) }}>
-          Térreo
-        </span>
         {salas.map((s) => (
           <button
             key={s.id}
@@ -67,19 +173,12 @@ export function Cena({ sala, destino, aoTocar }: Props) {
             className="sala-area"
             style={recorte(s.lugar.area)}
             aria-label={`Ir para: ${s.nome}`}
-            onClick={() => aoTocar(s.id)}
+            onClick={() => {
+              aoTocar(s.id);
+              andarAte.current(s.id);
+            }}
           />
         ))}
-        <img
-          className="avatar"
-          src={avatar}
-          alt=""
-          style={{
-            left: pct(onde.x - TAMANHO_DO_BONECO.ancoraX, CENA.largura),
-            top: pct(onde.y - TAMANHO_DO_BONECO.ancoraY, CENA.altura),
-            width: pct(TAMANHO_DO_BONECO.largura, CENA.largura),
-          }}
-        />
         {salas.map((s) => (
           <span
             key={s.id}
@@ -93,6 +192,15 @@ export function Cena({ sala, destino, aoTocar }: Props) {
             {s.nome}
           </span>
         ))}
+        <span
+          className="placa placa-fechada"
+          style={{
+            left: pct(PLACA_DO_FORUM.x, CENA.largura),
+            top: pct(PLACA_DO_FORUM.y, CENA.altura),
+          }}
+        >
+          Fórum · em breve
+        </span>
       </div>
     </div>
   );

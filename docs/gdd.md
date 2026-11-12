@@ -17,8 +17,9 @@ lei, e vê a consequência jurídica da decisão.
 
 ## 3. Plataforma
 
-- Celular, **tela em retrato**. A delegacia aparece em corte, em dois andares; tocar
-  numa sala leva o avatar até lá e abre o painel.
+- Celular, **tela em retrato**. A delegacia é um prédio térreo, visto de cima e em
+  corte, no meio do terreno, com o pátio das viaturas e a rua. Tocar numa sala faz o
+  avatar andar até lá, pelo saguão e pelas portas, e então o painel abre.
 - Roda no navegador durante o desenvolvimento; será empacotado com Capacitor.
 - Offline, com progresso local (persistência fica para o marco final).
 
@@ -48,17 +49,18 @@ lei, e vê a consequência jurídica da decisão.
 
 ## 6. A delegacia
 
-| Sala | Andar | Função no jogo |
+| Sala | Onde fica | Função no jogo |
 |---|---|---|
-| Recepção | térreo | Registro de ocorrência; quem chega pelo balcão |
-| Cartório | térreo | Seu Bento; casos do plantão, autos e termos |
-| Carceragem | térreo | Custódia; presos e prazos (a partir do capítulo do flagrante) |
-| Gabinete | 1º | Dra. Helena; conversas de teoria e decisões |
-| Sala de oitiva | 1º | Ouvir vítima, testemunha e conduzido |
-| Biblioteca | 1º | Estudo: Teoria, Código, Revisão e Progresso |
+| Recepção | Saguão, logo na entrada | Registro de ocorrência; quem chega pelo balcão |
+| Cartório | Lateral | Seu Bento; casos do plantão, autos e termos |
+| Sala de oitiva | Lateral, perto da entrada | Ouvir vítima, testemunha e conduzido |
+| Gabinete | Fundo | Dra. Helena; conversas de teoria e decisões |
+| Biblioteca | Fundo | Estudo: Teoria, Código, Revisão e Progresso |
+| Carceragem | Fundo | Custódia; presos e prazos (a partir do capítulo do flagrante) |
 
-Fora do prédio ficam o **pátio** (viatura) e, só na narrativa, o **Fórum**, o IML e o
-Ministério Público.
+O avatar chega pelo **pátio**, onde ficam as viaturas. Do outro lado da rua está o
+**Fórum**, por enquanto só cenário (Parte IV). O IML e o Ministério Público aparecem só
+na narrativa.
 
 ## 7. Ciclo de um caso
 
@@ -120,7 +122,8 @@ Revisão (bateria dos conceitos vencidos) e Progresso.
 
 - Topo: retrato, cargo, pontos e plantão; engrenagem (som e modo banca).
 - Abaixo, o aviso do próximo destino ("Vá ao Gabinete").
-- A delegacia em corte ocupa a tela; a sala do próximo passo tem um indicador.
+- A delegacia e o terreno ocupam a tela inteira, por baixo do HUD; a sala do próximo
+  passo tem um indicador.
 - Atalhos inferiores: Casos (a campanha por capítulo), Biblioteca e Progresso.
 
 ## 13. Ainda fora desta versão
