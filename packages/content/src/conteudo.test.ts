@@ -24,8 +24,8 @@ function problemasDe(bruto: Parameters<typeof carregarConteudo>[0]): readonly st
 
 describe("conteúdo do jogo", () => {
   it("todo o conteúdo valida", () => {
-    expect(conteudo.missoes.length).toBe(16);
-    expect(conteudo.afirmativas.length).toBeGreaterThanOrEqual(45);
+    expect(conteudo.missoes.length).toBe(44);
+    expect(conteudo.afirmativas.length).toBeGreaterThanOrEqual(110);
     expect(conteudo.salas).toHaveLength(6);
   });
 

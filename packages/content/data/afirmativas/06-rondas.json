@@ -1,0 +1,263 @@
+[
+  {
+    "id": "af-homicidio-01",
+    "conceitoId": "homicidio",
+    "nivelMin": 11,
+    "enunciado": "O homicídio praticado por motivo fútil é qualificado.",
+    "gabarito": "C",
+    "explicacao": "O motivo fútil é qualificadora do art. 121, § 2º, II, do Código Penal.",
+    "regras": ["R-PES-08"]
+  },
+  {
+    "id": "af-homicidio-02",
+    "conceitoId": "homicidio",
+    "nivelMin": 11,
+    "enunciado": "O homicídio qualificado é crime hediondo.",
+    "gabarito": "C",
+    "explicacao": "Está no art. 1º, I, da Lei 8.072/90.",
+    "regras": ["R-PES-08"]
+  },
+  {
+    "id": "af-homicidio-03",
+    "conceitoId": "homicidio",
+    "nivelMin": 11,
+    "enunciado": "O homicídio só é punido na forma dolosa.",
+    "gabarito": "E",
+    "explicacao": "Há homicídio culposo, previsto no § 3º do art. 121 do Código Penal.",
+    "regras": ["R-PES-07"]
+  },
+  {
+    "id": "af-homicidio-04",
+    "conceitoId": "homicidio",
+    "nivelMin": 11,
+    "enunciado": "Quem desfere facadas na vítima com intenção de matá-la, sem consegui-lo por ter sido desarmado, responde por lesão corporal.",
+    "gabarito": "E",
+    "explicacao": "Com intenção de matar e execução iniciada, o crime é de homicídio tentado.",
+    "regras": ["R-PES-07", "R-ITER-02"]
+  },
+  {
+    "id": "af-honra-01",
+    "conceitoId": "crimes-contra-a-honra",
+    "nivelMin": 11,
+    "enunciado": "Caluniar é imputar a alguém, falsamente, fato definido como crime.",
+    "gabarito": "C",
+    "explicacao": "É a definição do art. 138 do Código Penal.",
+    "regras": ["R-PES-04"]
+  },
+  {
+    "id": "af-honra-02",
+    "conceitoId": "crimes-contra-a-honra",
+    "nivelMin": 11,
+    "enunciado": "Chamar alguém de \"incompetente\", sem atribuir-lhe fato algum, configura difamação.",
+    "gabarito": "E",
+    "explicacao": "Sem imputação de fato, a ofensa à dignidade é injúria.",
+    "regras": ["R-PES-06", "R-PES-09"]
+  },
+  {
+    "id": "af-honra-03",
+    "conceitoId": "crimes-contra-a-honra",
+    "nivelMin": 11,
+    "enunciado": "A difamação consiste em imputar a alguém fato ofensivo à sua reputação.",
+    "gabarito": "C",
+    "explicacao": "É a definição do art. 139 do Código Penal.",
+    "regras": ["R-PES-05"]
+  },
+  {
+    "id": "af-honra-04",
+    "conceitoId": "crimes-contra-a-honra",
+    "nivelMin": 11,
+    "enunciado": "Nos crimes contra a honra, a ação penal é, em regra, pública incondicionada.",
+    "gabarito": "E",
+    "explicacao": "Em regra, somente se procede mediante queixa: ação privada (CP, art. 145).",
+    "regras": ["R-PES-09"]
+  },
+  {
+    "id": "af-furto-qualificado-01",
+    "conceitoId": "furto-qualificado",
+    "nivelMin": 12,
+    "enunciado": "O furto cometido com abuso de confiança é qualificado.",
+    "gabarito": "C",
+    "explicacao": "É qualificadora do art. 155, § 4º, II, do Código Penal.",
+    "regras": ["R-PAT-08"]
+  },
+  {
+    "id": "af-furto-qualificado-02",
+    "conceitoId": "furto-qualificado",
+    "nivelMin": 12,
+    "enunciado": "O furto praticado mediante concurso de duas ou mais pessoas é furto simples.",
+    "gabarito": "E",
+    "explicacao": "O concurso de duas ou mais pessoas qualifica o furto (CP, art. 155, § 4º, IV).",
+    "regras": ["R-PAT-08"]
+  },
+  {
+    "id": "af-furto-qualificado-03",
+    "conceitoId": "furto-qualificado",
+    "nivelMin": 12,
+    "enunciado": "No furto qualificado, punido com reclusão de dois a oito anos, o delegado não pode conceder fiança.",
+    "gabarito": "C",
+    "explicacao": "A pena máxima passa de quatro anos: a fiança cabe ao juiz.",
+    "regras": ["R-PAT-08", "R-FIANCA-01"]
+  },
+  {
+    "id": "af-furto-qualificado-04",
+    "conceitoId": "furto-qualificado",
+    "nivelMin": 12,
+    "enunciado": "O empregado que subtrai bem do patrão, sem ter a posse dele, valendo-se da confiança de que desfruta, comete apropriação indébita.",
+    "gabarito": "E",
+    "explicacao": "Sem posse prévia da coisa, há subtração: furto qualificado pelo abuso de confiança.",
+    "regras": ["R-PAT-08", "R-PAT-06"]
+  },
+  {
+    "id": "af-extorsao-01",
+    "conceitoId": "extorsao",
+    "nivelMin": 12,
+    "enunciado": "Segundo o STJ, o crime de extorsão consuma-se independentemente da obtenção da vantagem indevida.",
+    "gabarito": "C",
+    "explicacao": "É o enunciado da Súmula 96 do STJ.",
+    "regras": ["R-PAT-09"]
+  },
+  {
+    "id": "af-extorsao-02",
+    "conceitoId": "extorsao",
+    "nivelMin": 12,
+    "enunciado": "Na extorsão, o agente subtrai a coisa da vítima, sem depender de qualquer comportamento dela.",
+    "gabarito": "E",
+    "explicacao": "Isso descreve o roubo. Na extorsão, a vítima é constrangida a fazer, tolerar ou deixar de fazer algo.",
+    "regras": ["R-PAT-11"]
+  },
+  {
+    "id": "af-extorsao-03",
+    "conceitoId": "extorsao",
+    "nivelMin": 12,
+    "enunciado": "Constranger alguém, mediante grave ameaça, a fazer uma transferência bancária, com o intuito de obter indevida vantagem econômica, configura extorsão.",
+    "gabarito": "C",
+    "explicacao": "É a conduta do art. 158 do Código Penal.",
+    "regras": ["R-PAT-09"]
+  },
+  {
+    "id": "af-receptacao-01",
+    "conceitoId": "receptacao",
+    "nivelMin": 12,
+    "enunciado": "Comete receptação quem adquire, em proveito próprio, coisa que sabe ser produto de crime.",
+    "gabarito": "C",
+    "explicacao": "É a conduta do art. 180 do Código Penal.",
+    "regras": ["R-PAT-10"]
+  },
+  {
+    "id": "af-receptacao-02",
+    "conceitoId": "receptacao",
+    "nivelMin": 12,
+    "enunciado": "Quem compra de boa-fé, pelo preço de mercado, um bem que depois se descobre furtado comete receptação dolosa.",
+    "gabarito": "E",
+    "explicacao": "A receptação do caput exige que o agente saiba que a coisa é produto de crime.",
+    "regras": ["R-PAT-10"]
+  },
+  {
+    "id": "af-receptacao-03",
+    "conceitoId": "receptacao",
+    "nivelMin": 12,
+    "enunciado": "O receptador responde como partícipe do crime anterior do qual a coisa proveio.",
+    "gabarito": "E",
+    "explicacao": "A receptação é crime autônomo: o receptador não concorreu para o crime anterior.",
+    "regras": ["R-PAT-10", "R-CONC-01"]
+  },
+  {
+    "id": "af-peculato-01",
+    "conceitoId": "peculato",
+    "nivelMin": 13,
+    "enunciado": "Comete peculato o funcionário público que se apropria de bem móvel de que tem a posse em razão do cargo.",
+    "gabarito": "C",
+    "explicacao": "É a conduta do art. 312 do Código Penal.",
+    "regras": ["R-ADM-02"]
+  },
+  {
+    "id": "af-peculato-02",
+    "conceitoId": "peculato",
+    "nivelMin": 13,
+    "enunciado": "O peculato só se configura quando o bem apropriado é público.",
+    "gabarito": "E",
+    "explicacao": "O art. 312 alcança bem móvel público ou particular de que o funcionário tem a posse em razão do cargo.",
+    "regras": ["R-ADM-02"]
+  },
+  {
+    "id": "af-peculato-03",
+    "conceitoId": "peculato",
+    "nivelMin": 13,
+    "enunciado": "Considera-se funcionário público, para os efeitos penais, quem exerce função pública, ainda que transitoriamente ou sem remuneração.",
+    "gabarito": "C",
+    "explicacao": "É a definição do art. 327 do Código Penal.",
+    "regras": ["R-ADM-01"]
+  },
+  {
+    "id": "af-concussao-01",
+    "conceitoId": "concussao-e-corrupcao",
+    "nivelMin": 13,
+    "enunciado": "Na concussão, o funcionário público exige vantagem indevida em razão da função.",
+    "gabarito": "C",
+    "explicacao": "\"Exigir\" é o verbo do art. 316 do Código Penal.",
+    "regras": ["R-ADM-03"]
+  },
+  {
+    "id": "af-concussao-02",
+    "conceitoId": "concussao-e-corrupcao",
+    "nivelMin": 13,
+    "enunciado": "O funcionário público que solicita vantagem indevida para deixar de praticar ato de ofício comete concussão.",
+    "gabarito": "E",
+    "explicacao": "Solicitar é o verbo da corrupção passiva (CP, art. 317).",
+    "regras": ["R-ADM-04", "R-ADM-10"]
+  },
+  {
+    "id": "af-concussao-03",
+    "conceitoId": "concussao-e-corrupcao",
+    "nivelMin": 13,
+    "enunciado": "A concussão só se consuma quando o funcionário recebe a vantagem exigida.",
+    "gabarito": "E",
+    "explicacao": "O crime se consuma com a exigência; o recebimento é mero desfecho.",
+    "regras": ["R-ADM-03"]
+  },
+  {
+    "id": "af-concussao-04",
+    "conceitoId": "concussao-e-corrupcao",
+    "nivelMin": 13,
+    "enunciado": "Comete corrupção passiva o funcionário público que aceita promessa de vantagem indevida em razão da função.",
+    "gabarito": "C",
+    "explicacao": "Aceitar promessa de tal vantagem é uma das condutas do art. 317 do Código Penal.",
+    "regras": ["R-ADM-04"]
+  },
+  {
+    "id": "af-particular-01",
+    "conceitoId": "crimes-do-particular",
+    "nivelMin": 13,
+    "enunciado": "Oferecer vantagem indevida a funcionário público, para determiná-lo a omitir ato de ofício, configura corrupção ativa.",
+    "gabarito": "C",
+    "explicacao": "É a conduta do art. 333 do Código Penal.",
+    "regras": ["R-ADM-05"]
+  },
+  {
+    "id": "af-particular-02",
+    "conceitoId": "crimes-do-particular",
+    "nivelMin": 13,
+    "enunciado": "A corrupção ativa só se configura se o funcionário público aceitar a vantagem oferecida.",
+    "gabarito": "E",
+    "explicacao": "O crime se consuma com a oferta ou a promessa e não depende da aceitação.",
+    "regras": ["R-ADM-05"]
+  },
+  {
+    "id": "af-particular-03",
+    "conceitoId": "crimes-do-particular",
+    "nivelMin": 13,
+    "enunciado": "Opor-se à execução de ato legal, mediante violência ou ameaça a funcionário competente para executá-lo, configura desacato.",
+    "gabarito": "E",
+    "explicacao": "Essa é a conduta da resistência (CP, art. 329). Desacato é ofender o funcionário no exercício da função.",
+    "regras": ["R-ADM-07", "R-ADM-09"]
+  },
+  {
+    "id": "af-particular-04",
+    "conceitoId": "crimes-do-particular",
+    "nivelMin": 13,
+    "enunciado": "Desobedecer a ordem legal de funcionário público é crime.",
+    "gabarito": "C",
+    "explicacao": "É o crime de desobediência, do art. 330 do Código Penal.",
+    "regras": ["R-ADM-08"]
+  }
+]

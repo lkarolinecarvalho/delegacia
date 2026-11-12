@@ -1,0 +1,250 @@
+[
+  {
+    "id": "m701-pego-na-porta",
+    "titulo": "Pego na porta da loja",
+    "capitulo": 7,
+    "nivel": 7,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m604-notebook-da-biblioteca"],
+    "aulas": ["flagrante", "fianca"],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), o segurança da loja de eletrônicos segurou um rapaz na porta, com um relógio no bolso."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Seu primeiro conduzido de verdade. Duas perguntas novas: ele está em flagrante? E quem decide a fiança?"
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 083 — loja de eletrônicos",
+      "linhas": [
+        "Um homem de 25 anos pegou um relógio do mostruário e o guardou no bolso.",
+        "Passou pelo caixa sem pagar e cruzou a porta da loja com o relógio.",
+        "O segurança o segurou na calçada, segundos depois, e chamou a viatura.",
+        "Ele foi apresentado na delegacia em seguida."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 25,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "acabou_de_cometer",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "flagrante", "fianca"],
+      "informa": ["forma", "conclusao", "acao", "rito"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "roubo", "estelionato"],
+      "comentarios": {
+        "tipo": "Dra. Helena: Subtração de coisa alheia, sem violência nem ameaça.",
+        "flagrante": "Dra. Helena: Ele foi pego na calçada, segundos depois. Acabava de cometer o furto: flagrante próprio.",
+        "fianca": "Dra. Helena: A pena máxima do furto é de quatro anos. Até aí, quem arbitra a fiança é você."
+      },
+      "desfecho": "Auto de prisão em flagrante por furto. Você arbitra a fiança, o rapaz a paga e responde solto. O relógio volta para a loja."
+    },
+    "conceitos": ["flagrante", "fianca"],
+    "recompensa": {
+      "pontos": 130
+    }
+  },
+  {
+    "id": "m702-a-perseguicao",
+    "titulo": "A perseguição",
+    "capitulo": 7,
+    "nivel": 7,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m701-pego-na-porta"],
+    "aulas": ["depois-da-prisao"],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), assalto à farmácia. Ele saiu correndo e a gente foi atrás, sem perder de vista, por seis quarteirões."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "O advogado diz que não é flagrante, porque não pegamos o homem na farmácia."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 087 — Farmácia Central",
+      "linhas": [
+        "Um homem de 29 anos apontou um revólver para a balconista e levou o dinheiro do caixa.",
+        "Saiu correndo. A viatura, que passava, partiu atrás dele imediatamente.",
+        "A perseguição não foi interrompida. Ele foi alcançado seis quarteirões depois, com o dinheiro.",
+        "Foi apresentado na delegacia em seguida."
+      ],
+      "fato": {
+        "elementos": [
+          "subtracao",
+          "coisa_alheia_movel",
+          "inversao_da_posse",
+          "violencia_ou_grave_ameaca"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 29,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "perseguido_logo_apos",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "flagrante", "fianca"],
+      "informa": ["forma", "conclusao", "acao", "rito"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "roubo", "estelionato"],
+      "comentarios": {
+        "tipo": "Seu Bento: Subtração com grave ameaça, doutor(a).",
+        "flagrante": "Seu Bento: Perseguido logo após, sem interrupção, em situação que faz presumir ser ele o autor: é o flagrante impróprio.",
+        "fianca": "Seu Bento: A pena máxima do roubo é de dez anos. Passou de quatro, a fiança é com o juiz."
+      },
+      "desfecho": "Flagrante impróprio. Como a pena máxima do roubo passa de quatro anos, você não arbitra fiança: o homem fica preso e será apresentado ao juiz em até 24 horas."
+    },
+    "conceitos": ["flagrante", "fianca"],
+    "recompensa": {
+      "pontos": 130
+    }
+  },
+  {
+    "id": "m703-dois-dias-depois",
+    "titulo": "Dois dias depois",
+    "capitulo": 7,
+    "nivel": 7,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m702-a-perseguicao"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Doutor(a), a equipe identificou pelas câmeras o autor do roubo ao posto de gasolina, de anteontem."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Ele está em casa agora. É só ir lá e trazer preso em flagrante, não é?"
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 080 — posto de gasolina",
+      "linhas": [
+        "Há dois dias, um homem de 34 anos ameaçou o frentista com uma faca e levou R$ 600,00.",
+        "Ele fugiu e não foi perseguido. Ninguém o viu depois disso.",
+        "Hoje as câmeras permitiram identificá-lo. Ele está em casa, sem a faca e sem o dinheiro.",
+        "Não há mandado de prisão contra ele."
+      ],
+      "fato": {
+        "elementos": [
+          "subtracao",
+          "coisa_alheia_movel",
+          "inversao_da_posse",
+          "violencia_ou_grave_ameaca"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 34,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["flagrante", "fianca"],
+      "informa": ["conclusao", "acao", "rito"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "flagrante": "Dra. Helena: Dois dias depois, sem perseguição e sem nada com ele: nenhuma hipótese do art. 302. Prisão, agora, só com ordem do juiz.",
+        "fianca": "Dra. Helena: Sem auto de prisão em flagrante, não há fiança a discutir."
+      },
+      "desfecho": "Não há flagrante. Você segura o Agente Rocha, instaura o inquérito e, se for o caso, representa ao juiz pela prisão. Prender agora seria ilegal."
+    },
+    "conceitos": ["flagrante", "fianca"],
+    "recompensa": {
+      "pontos": 140
+    }
+  },
+  {
+    "id": "m704-mochila-na-rodoviaria",
+    "titulo": "A mochila na rodoviária",
+    "capitulo": 7,
+    "nivel": 7,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m703-dois-dias-depois"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), levaram a mochila de um turista na rodoviária. Vinte minutos depois, abordamos um homem no terminal ao lado."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Estava com a mochila, o passaporte e a câmera do turista. Ninguém o viu pegar, nem o perseguiu."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 091 — rodoviária",
+      "linhas": [
+        "Um turista cochilou no banco da rodoviária e, ao acordar, não achou a mochila.",
+        "Ninguém viu a subtração nem perseguiu quem a levou.",
+        "Vinte minutos depois, um homem de 41 anos foi abordado no terminal ao lado com a mochila, o passaporte e a câmera do turista.",
+        "Ele foi apresentado na delegacia em seguida."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 41,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "encontrado_logo_depois",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["flagrante", "fianca"],
+      "informa": ["conclusao", "acao", "rito"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "flagrante": "Dra. Helena: Não foi visto nem perseguido, mas foi encontrado logo depois com os objetos da vítima: flagrante presumido.",
+        "fianca": "Dra. Helena: É furto: pena máxima de quatro anos. A fiança é sua."
+      },
+      "desfecho": "Flagrante presumido. Você lavra o auto, arbitra a fiança e devolve o passaporte ao turista, que quase perde o ônibus."
+    },
+    "conceitos": ["flagrante", "fianca"],
+    "recompensa": {
+      "pontos": 140
+    }
+  }
+]

@@ -88,5 +88,107 @@
     "nome": "Estelionato",
     "nivel": 5,
     "definicao": "Obter vantagem ilícita, em prejuízo alheio, induzindo ou mantendo alguém em erro por meio fraudulento."
+  },
+  {
+    "id": "acao-penal",
+    "nome": "Ação penal",
+    "nivel": 6,
+    "definicao": "Pública incondicionada, em regra; condicionada à representação ou privada quando a lei assim dispõe."
+  },
+  {
+    "id": "representacao-e-decadencia",
+    "nome": "Representação e decadência",
+    "nivel": 6,
+    "definicao": "Sem a manifestação da vítima, a delegacia não instaura; a vítima tem seis meses, contados do conhecimento da autoria."
+  },
+  {
+    "id": "menor-potencial-ofensivo",
+    "nome": "Menor potencial ofensivo",
+    "nivel": 6,
+    "definicao": "Contravenções e crimes com pena máxima não superior a dois anos: termo circunstanciado, e não inquérito."
+  },
+  {
+    "id": "flagrante",
+    "nome": "Flagrante",
+    "nivel": 7,
+    "definicao": "Próprio (cometendo ou acabando de cometer), impróprio (perseguido logo após) e presumido (encontrado logo depois com objetos do crime)."
+  },
+  {
+    "id": "fianca",
+    "nome": "Fiança",
+    "nivel": 7,
+    "definicao": "O delegado a concede se a pena máxima não passa de quatro anos; acima disso, só o juiz; há crimes inafiançáveis."
+  },
+  {
+    "id": "maria-da-penha",
+    "nome": "Lei Maria da Penha",
+    "nivel": 8,
+    "definicao": "Na violência doméstica contra a mulher não se aplica a Lei 9.099/95, e a lesão corporal é de ação pública incondicionada."
+  },
+  {
+    "id": "erro-de-tipo",
+    "nome": "Erro de tipo",
+    "nivel": 9,
+    "definicao": "Engano sobre elemento do tipo: exclui o dolo; se inevitável, exclui também a culpa."
+  },
+  {
+    "id": "concurso-de-pessoas",
+    "nome": "Concurso de pessoas",
+    "nivel": 9,
+    "definicao": "Quem, de qualquer modo, concorre para o crime responde por ele, na medida de sua culpabilidade."
+  },
+  {
+    "id": "inquerito-policial",
+    "nome": "Inquérito policial",
+    "nivel": 10,
+    "definicao": "Dez dias com o indiciado preso, trinta com ele solto; termina com relatório, e o delegado não pode arquivá-lo."
+  },
+  {
+    "id": "homicidio",
+    "nome": "Homicídio",
+    "nivel": 11,
+    "definicao": "Matar alguém. É qualificado, entre outras hipóteses, pelo motivo torpe ou fútil e pelo meio cruel; o qualificado é hediondo."
+  },
+  {
+    "id": "crimes-contra-a-honra",
+    "nome": "Crimes contra a honra",
+    "nivel": 11,
+    "definicao": "Calúnia (fato falso definido como crime), difamação (fato ofensivo à reputação) e injúria (ofensa à dignidade)."
+  },
+  {
+    "id": "furto-qualificado",
+    "nome": "Furto qualificado",
+    "nivel": 12,
+    "definicao": "Furto com rompimento de obstáculo, abuso de confiança, fraude, escalada, destreza, chave falsa ou concurso de pessoas."
+  },
+  {
+    "id": "extorsao",
+    "nome": "Extorsão",
+    "nivel": 12,
+    "definicao": "Constranger alguém, com violência ou grave ameaça, a fazer, tolerar ou deixar de fazer algo, para obter vantagem econômica indevida."
+  },
+  {
+    "id": "receptacao",
+    "nome": "Receptação",
+    "nivel": 12,
+    "definicao": "Adquirir, receber, transportar, conduzir ou ocultar coisa que se sabe ser produto de crime."
+  },
+  {
+    "id": "peculato",
+    "nome": "Peculato",
+    "nivel": 13,
+    "definicao": "Apropriação ou desvio, pelo funcionário público, de bem de que tem a posse em razão do cargo."
+  },
+  {
+    "id": "concussao-e-corrupcao",
+    "nome": "Concussão × corrupção passiva",
+    "nivel": 13,
+    "definicao": "Na concussão o funcionário exige a vantagem indevida; na corrupção passiva, solicita, recebe ou aceita promessa."
+  },
+  {
+    "id": "crimes-do-particular",
+    "nome": "Crimes do particular contra a administração",
+    "nivel": 13,
+    "definicao": "Corrupção ativa, resistência, desobediência e desacato."
   }
 ]

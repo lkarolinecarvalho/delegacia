@@ -334,5 +334,382 @@
         "explicacao": "A fraude que leva a vítima ao erro é o meio de execução do estelionato (CP, art. 171)."
       }
     ]
+  },
+  {
+    "id": "acao-penal",
+    "titulo": "Quem move a ação penal?",
+    "resumo": "Antes de agir, descubra de quem é a iniciativa.",
+    "pontos": [
+      "A regra é a ação penal pública incondicionada: o Estado age por conta própria, com ou sem a vontade da vítima.",
+      "Em alguns crimes a lei exige a representação da vítima: é a ação pública condicionada.",
+      "Em outros, a lei entrega a ação à própria vítima, que a move por queixa: é a ação privada.",
+      "Quem diz qual é a ação é a lei, crime por crime. No silêncio, é pública incondicionada."
+    ],
+    "exemplo": "Furto: incondicionada. Ameaça: condicionada à representação. Injúria: privada.",
+    "fonte": "CP, art. 100",
+    "perguntas": [
+      {
+        "enunciado": "No silêncio da lei, a ação penal é pública incondicionada.",
+        "gabarito": "C",
+        "explicacao": "É a regra do art. 100 do Código Penal: a ação só é condicionada ou privada quando a lei diz."
+      }
+    ]
+  },
+  {
+    "id": "termo-circunstanciado",
+    "titulo": "Termo circunstanciado",
+    "resumo": "Nem tudo vira inquérito.",
+    "pontos": [
+      "Infração de menor potencial ofensivo é a contravenção penal e o crime com pena máxima não superior a dois anos.",
+      "Nesses casos a delegacia não instaura inquérito: lavra um termo circunstanciado e o envia ao Juizado Especial Criminal.",
+      "Ao autor que se compromete a comparecer ao Juizado não se impõe prisão em flagrante nem se exige fiança."
+    ],
+    "exemplo": "A ameaça tem pena máxima de seis meses: termo circunstanciado. O furto tem pena máxima de quatro anos: inquérito.",
+    "fonte": "Lei 9.099/95, arts. 61 e 69",
+    "perguntas": [
+      {
+        "enunciado": "São de menor potencial ofensivo os crimes com pena máxima não superior a quatro anos.",
+        "gabarito": "E",
+        "explicacao": "O limite da Lei 9.099/95 é de dois anos. Quatro anos é o limite da fiança concedida pelo delegado."
+      }
+    ]
+  },
+  {
+    "id": "acao-privada",
+    "titulo": "Sem a vítima, a delegacia espera",
+    "resumo": "Representação e requerimento.",
+    "pontos": [
+      "Na ação pública condicionada, o inquérito não pode ser iniciado sem a representação da vítima.",
+      "Na ação privada, a autoridade policial só instaura inquérito a requerimento de quem pode mover a ação.",
+      "A representação não exige fórmula: basta a vítima deixar claro que quer ver o autor processado."
+    ],
+    "exemplo": "A senhora xingada na fila conta o caso, mas não quer requerer nada. Na injúria, sem o requerimento dela, a delegacia não instaura procedimento.",
+    "fonte": "CPP, art. 5º, §§ 4º e 5º",
+    "perguntas": []
+  },
+  {
+    "id": "decadencia",
+    "titulo": "Decadência",
+    "resumo": "O direito da vítima tem prazo.",
+    "pontos": [
+      "A vítima tem seis meses para representar ou oferecer queixa.",
+      "O prazo conta do dia em que ela vem a saber quem é o autor do crime.",
+      "Passado o prazo, ocorre a decadência, que extingue a punibilidade.",
+      "A decadência só existe na ação privada e na pública condicionada."
+    ],
+    "exemplo": "A vítima de uma lesão leve soube no mesmo dia quem a agrediu e só apareceu sete meses depois: decaiu do direito de representar.",
+    "fonte": "CPP, art. 38; CP, arts. 103 e 107, IV",
+    "perguntas": [
+      {
+        "enunciado": "O prazo de decadência conta da data do crime, ainda que a vítima não saiba quem é o autor.",
+        "gabarito": "E",
+        "explicacao": "Conta do dia em que o ofendido vem a saber quem é o autor do crime."
+      }
+    ]
+  },
+  {
+    "id": "flagrante",
+    "titulo": "Flagrante",
+    "resumo": "Quatro situações, três nomes.",
+    "pontos": [
+      "Próprio: o agente está cometendo a infração ou acaba de cometê-la.",
+      "Impróprio: é perseguido, logo após, em situação que faça presumir ser ele o autor.",
+      "Presumido: é encontrado, logo depois, com instrumentos, armas, objetos ou papéis que façam presumir ser ele o autor.",
+      "Fora dessas hipóteses não há flagrante: a prisão só é possível por ordem escrita e fundamentada do juiz."
+    ],
+    "exemplo": "Seguro na porta da loja com o relógio: próprio. Perseguido sem interrupção por seis quarteirões: impróprio. Achado vinte minutos depois com a mochila da vítima: presumido.",
+    "fonte": "CPP, art. 302; CF, art. 5º, LXI",
+    "perguntas": [
+      {
+        "enunciado": "Considera-se em flagrante quem é encontrado, logo depois, com objetos que façam presumir ser ele o autor da infração.",
+        "gabarito": "C",
+        "explicacao": "É o flagrante presumido, do art. 302, IV, do CPP."
+      }
+    ]
+  },
+  {
+    "id": "fianca",
+    "titulo": "Fiança",
+    "resumo": "Quem pode conceder?",
+    "pontos": [
+      "A autoridade policial só concede fiança nas infrações com pena privativa de liberdade máxima não superior a quatro anos.",
+      "Acima disso, a fiança é requerida ao juiz, que decide em 48 horas.",
+      "Alguns crimes são inafiançáveis: racismo, tortura, tráfico de drogas, terrorismo, crimes hediondos e ação de grupos armados contra a ordem constitucional."
+    ],
+    "exemplo": "Furto (até quatro anos): o delegado arbitra. Roubo (até dez anos): só o juiz. Homicídio qualificado (hediondo): inafiançável.",
+    "fonte": "CPP, arts. 322 e 323; CF, art. 5º, XLII a XLIV",
+    "perguntas": [
+      {
+        "enunciado": "O delegado pode conceder fiança no crime de roubo.",
+        "gabarito": "E",
+        "explicacao": "A pena máxima do roubo é de dez anos. O delegado só concede fiança até quatro anos."
+      }
+    ]
+  },
+  {
+    "id": "depois-da-prisao",
+    "titulo": "Depois da prisão em flagrante",
+    "resumo": "O relógio começa a correr.",
+    "pontos": [
+      "A prisão é comunicada imediatamente ao juiz, ao Ministério Público e à família do preso ou à pessoa por ele indicada.",
+      "Em até 24 horas, o auto de prisão em flagrante vai ao juiz, e o preso recebe a nota de culpa.",
+      "Também em até 24 horas se faz a audiência de custódia, em que o juiz decide o que acontece com a prisão.",
+      "Se a prisão for ilegal, o juiz a relaxa."
+    ],
+    "exemplo": "Preso às 15h de segunda, o autor do roubo tem de receber a nota de culpa e ser apresentado ao juiz até as 15h de terça.",
+    "fonte": "CPP, arts. 306 e 310",
+    "perguntas": []
+  },
+  {
+    "id": "maria-da-penha",
+    "titulo": "Lei Maria da Penha",
+    "resumo": "Quatro mudanças que caem em toda prova.",
+    "pontos": [
+      "Aos crimes praticados com violência doméstica e familiar contra a mulher não se aplica a Lei 9.099/95, qualquer que seja a pena: não há termo circunstanciado.",
+      "Segundo o STJ, a ação penal na lesão corporal resultante de violência doméstica contra a mulher é pública incondicionada.",
+      "A lesão praticada contra a mulher por razões da condição do sexo feminino tem pena própria, mais alta que a da lesão leve.",
+      "A autoridade policial remete ao juiz, em 48 horas, o pedido da ofendida de medidas protetivas de urgência."
+    ],
+    "exemplo": "O marido agride a esposa em casa e ela não quer representar. Mesmo assim, você lavra o flagrante e instaura inquérito.",
+    "fonte": "Lei 11.340/06, arts. 12 e 41; Súmula 542 do STJ; CP, art. 129, § 13",
+    "perguntas": [
+      {
+        "enunciado": "Segundo o STJ, a ação penal na lesão corporal leve resultante de violência doméstica contra a mulher depende de representação.",
+        "gabarito": "E",
+        "explicacao": "Pela Súmula 542 do STJ, a ação é pública incondicionada."
+      }
+    ]
+  },
+  {
+    "id": "erro-de-tipo",
+    "titulo": "Erro de tipo",
+    "resumo": "Quando o agente se engana sobre o próprio fato.",
+    "pontos": [
+      "Erro de tipo é o engano sobre um elemento do tipo penal: o agente não sabe que faz o que a lei descreve.",
+      "O erro sempre exclui o dolo.",
+      "Se era inevitável, exclui também a culpa: o fato é atípico.",
+      "Se era evitável, o agente responde por crime culposo, desde que a lei preveja a forma culposa."
+    ],
+    "exemplo": "Quem leva a mala idêntica à sua, sem etiqueta, não sabe que a coisa é alheia: erro inevitável, fato atípico. Quem atira num vulto sem acender a lanterna que tinha no bolso erra por descuido: lesão culposa.",
+    "fonte": "CP, art. 20",
+    "perguntas": [
+      {
+        "enunciado": "O erro sobre elemento constitutivo do tipo exclui o dolo, mas permite a punição por crime culposo, se previsto em lei.",
+        "gabarito": "C",
+        "explicacao": "É a redação do art. 20 do Código Penal."
+      }
+    ]
+  },
+  {
+    "id": "concurso-de-pessoas",
+    "titulo": "Concurso de pessoas",
+    "resumo": "Quem ajuda, responde.",
+    "pontos": [
+      "Quem, de qualquer modo, concorre para o crime incide nas penas a este cominadas, na medida de sua culpabilidade.",
+      "O crime é um só para todos os que concorrem para ele: quem dá fuga ao assaltante responde por roubo.",
+      "Receptação é outra coisa: quem só compra a coisa depois, sem ter combinado nada antes, não concorreu para o crime anterior."
+    ],
+    "exemplo": "Dois combinam o roubo: um entra armado, o outro espera no carro. Os dois respondem por roubo.",
+    "fonte": "CP, art. 29",
+    "perguntas": []
+  },
+  {
+    "id": "prazo-do-inquerito",
+    "titulo": "O prazo do inquérito",
+    "resumo": "Dez ou trinta.",
+    "pontos": [
+      "O inquérito deve terminar em dez dias, se o indiciado estiver preso.",
+      "E em trinta dias, se estiver solto.",
+      "Com o indiciado preso, o excesso de prazo torna a prisão ilegal.",
+      "Leis especiais têm prazos próprios, que você verá nas operações."
+    ],
+    "exemplo": "O autor do roubo, preso em flagrante sem fiança: dez dias. O estelionatário que nem foi localizado: trinta dias.",
+    "fonte": "CPP, art. 10",
+    "perguntas": [
+      {
+        "enunciado": "O inquérito policial deve terminar em trinta dias quando o indiciado estiver preso.",
+        "gabarito": "E",
+        "explicacao": "Com o indiciado preso, o prazo é de dez dias; trinta dias é o prazo do indiciado solto."
+      }
+    ]
+  },
+  {
+    "id": "indiciamento-e-relatorio",
+    "titulo": "Indiciar e relatar",
+    "resumo": "Como o inquérito termina.",
+    "pontos": [
+      "O indiciamento é ato privativo do delegado de polícia e se faz por ato fundamentado.",
+      "Concluída a apuração, a autoridade faz um minucioso relatório do que foi apurado e envia os autos ao juiz.",
+      "O delegado não julga nem arquiva: a autoridade policial não pode mandar arquivar autos de inquérito."
+    ],
+    "exemplo": "Você conclui que o pedreiro se apropriou da betoneira: indicia, relata e remete. O que acontece depois é com o Ministério Público e com o juiz.",
+    "fonte": "Lei 12.830/2013, art. 2º, § 6º; CPP, arts. 10, § 1º, e 17",
+    "perguntas": []
+  },
+  {
+    "id": "o-codigo-aberto",
+    "titulo": "O Código aberto",
+    "resumo": "Como tipificar sem ajuda.",
+    "pontos": [
+      "Nas rondas, ninguém sugere o crime: a ficha traz o Código inteiro, por título, com uma busca.",
+      "Comece pelo verbo: o que o agente fez? Depois confira cada elemento do tipo.",
+      "Em seguida, veja se alguma circunstância do fato qualifica o crime: a qualificadora muda os limites da pena.",
+      "Basta uma qualificadora para o crime ser qualificado."
+    ],
+    "exemplo": "Matou por causa de uma fechada no trânsito: o verbo é matar, e o motivo fútil qualifica o homicídio.",
+    "fonte": "Doutrina",
+    "perguntas": []
+  },
+  {
+    "id": "homicidio",
+    "titulo": "Homicídio",
+    "resumo": "O tipo mais curto do Código.",
+    "pontos": [
+      "Homicídio é matar alguém.",
+      "Entre outras hipóteses, é qualificado pelo motivo torpe ou fútil, pelo meio cruel e pelo recurso que dificulte a defesa da vítima.",
+      "O homicídio qualificado é crime hediondo e, por isso, inafiançável.",
+      "O que separa a tentativa de homicídio da lesão corporal é a intenção de matar."
+    ],
+    "exemplo": "Três facadas no peito, depois de gritar \"hoje eu te mato\": se a vítima sobrevive, é tentativa de homicídio, não lesão corporal.",
+    "fonte": "CP, art. 121; Lei 8.072/90, art. 1º, I",
+    "perguntas": [
+      {
+        "enunciado": "Quem fere outra pessoa com intenção de matá-la, sem conseguir, responde por lesão corporal consumada.",
+        "gabarito": "E",
+        "explicacao": "Havendo intenção de matar e início de execução, o crime é de homicídio tentado."
+      }
+    ]
+  },
+  {
+    "id": "crimes-contra-a-honra",
+    "titulo": "Calúnia, difamação e injúria",
+    "resumo": "Três crimes que as bancas adoram trocar.",
+    "pontos": [
+      "Calúnia: imputar a alguém, falsamente, fato definido como crime.",
+      "Difamação: imputar a alguém fato ofensivo à sua reputação, ainda que verdadeiro.",
+      "Injúria: ofender a dignidade ou o decoro de alguém. Não há fato: há xingamento.",
+      "Calúnia e difamação consumam-se quando terceiro toma conhecimento; a injúria, quando a própria vítima toma.",
+      "Em regra, a ação penal é privada."
+    ],
+    "exemplo": "\"Ele desviou o dinheiro do condomínio\" (falso): calúnia. \"Ele vive bêbado no serviço\": difamação. \"Você é um incompetente\": injúria.",
+    "fonte": "CP, arts. 138 a 140 e 145",
+    "perguntas": [
+      {
+        "enunciado": "Chamar alguém de \"ladrão\", sem atribuir a ele nenhum fato determinado, configura calúnia.",
+        "gabarito": "E",
+        "explicacao": "Sem a imputação de um fato determinado definido como crime, não há calúnia: a ofensa genérica é injúria."
+      }
+    ]
+  },
+  {
+    "id": "furto-qualificado",
+    "titulo": "Furto qualificado",
+    "resumo": "As circunstâncias que dobram a pena.",
+    "pontos": [
+      "O furto é qualificado quando cometido com destruição ou rompimento de obstáculo, com abuso de confiança, mediante fraude, escalada ou destreza, com emprego de chave falsa ou mediante concurso de duas ou mais pessoas.",
+      "A pena passa a ser de reclusão de dois a oito anos.",
+      "Como a pena máxima passa de quatro anos, o delegado já não pode conceder fiança.",
+      "Abuso de confiança não é apropriação indébita: no furto, o agente não tem a posse da coisa."
+    ],
+    "exemplo": "A caseira tem a chave da casa, mas não a posse das joias. Ao tirá-las do cofre, comete furto qualificado pelo abuso de confiança.",
+    "fonte": "CP, art. 155, § 4º",
+    "perguntas": [
+      {
+        "enunciado": "O furto praticado mediante escalada é qualificado.",
+        "gabarito": "C",
+        "explicacao": "A escalada é uma das qualificadoras do art. 155, § 4º, II, do Código Penal."
+      }
+    ]
+  },
+  {
+    "id": "extorsao",
+    "titulo": "Extorsão",
+    "resumo": "Parece roubo, mas a vítima é quem age.",
+    "pontos": [
+      "Extorsão é constranger alguém, mediante violência ou grave ameaça, com o intuito de obter indevida vantagem econômica, a fazer, tolerar que se faça ou deixar de fazer alguma coisa.",
+      "No roubo, o agente subtrai. Na extorsão, ele depende de um comportamento da vítima.",
+      "Segundo o STJ, a extorsão consuma-se independentemente da obtenção da vantagem indevida."
+    ],
+    "exemplo": "\"Transfira o dinheiro ou divulgo suas fotos.\" A vítima transfere e o banco bloqueia a operação: extorsão consumada.",
+    "fonte": "CP, art. 158; Súmula 96 do STJ",
+    "perguntas": [
+      {
+        "enunciado": "Segundo o STJ, a extorsão só se consuma quando o agente obtém a vantagem indevida.",
+        "gabarito": "E",
+        "explicacao": "Pela Súmula 96 do STJ, a extorsão consuma-se independentemente da obtenção da vantagem."
+      }
+    ]
+  },
+  {
+    "id": "receptacao",
+    "titulo": "Receptação",
+    "resumo": "O crime de quem compra o produto do crime.",
+    "pontos": [
+      "Receptação é adquirir, receber, transportar, conduzir ou ocultar, em proveito próprio ou alheio, coisa que sabe ser produto de crime.",
+      "O receptador não participou do crime anterior: age depois.",
+      "Se ele tivesse combinado antes a compra do que seria roubado, responderia pelo roubo, em concurso de pessoas."
+    ],
+    "exemplo": "Comprar na feira, por um quinto do preço, um celular que o vendedor avisa ser \"de assalto\": receptação.",
+    "fonte": "CP, art. 180",
+    "perguntas": []
+  },
+  {
+    "id": "funcionario-e-peculato",
+    "titulo": "Funcionário público e peculato",
+    "resumo": "Quando o autor é da casa.",
+    "pontos": [
+      "Para os efeitos penais, funcionário público é quem exerce cargo, emprego ou função pública, ainda que transitoriamente ou sem remuneração.",
+      "Peculato é apropriar-se o funcionário público de dinheiro, valor ou outro bem móvel, público ou particular, de que tem a posse em razão do cargo, ou desviá-lo.",
+      "É a \"apropriação indébita\" do funcionário público, com pena muito maior."
+    ],
+    "exemplo": "O servidor que vende o notebook que a repartição lhe entregou para trabalhar comete peculato.",
+    "fonte": "CP, arts. 312 e 327",
+    "perguntas": [
+      {
+        "enunciado": "Para os efeitos penais, só é funcionário público quem exerce cargo efetivo e remunerado.",
+        "gabarito": "E",
+        "explicacao": "Também é funcionário público quem exerce cargo, emprego ou função pública transitoriamente ou sem remuneração (CP, art. 327)."
+      }
+    ]
+  },
+  {
+    "id": "concussao-e-corrupcao",
+    "titulo": "Concussão e corrupção passiva",
+    "resumo": "A diferença está no verbo.",
+    "pontos": [
+      "Concussão: o funcionário público exige vantagem indevida, em razão da função.",
+      "Corrupção passiva: o funcionário público solicita ou recebe vantagem indevida, ou aceita promessa dela.",
+      "Exigir é impor, intimidando com o cargo. Solicitar é pedir.",
+      "Os dois crimes se consumam com a exigência ou com a solicitação: não dependem do pagamento."
+    ],
+    "exemplo": "\"Ou você me dá o dinheiro, ou eu interdito a padaria\": concussão. \"Se o senhor me ajudar, eu não multo\": corrupção passiva.",
+    "fonte": "CP, arts. 316 e 317",
+    "perguntas": [
+      {
+        "enunciado": "O funcionário público que exige vantagem indevida, em razão da função, comete corrupção passiva.",
+        "gabarito": "E",
+        "explicacao": "Exigir é o verbo da concussão. Na corrupção passiva, o funcionário solicita, recebe ou aceita promessa."
+      }
+    ]
+  },
+  {
+    "id": "crimes-do-particular",
+    "titulo": "O particular contra a administração",
+    "resumo": "Quatro crimes de quem está do lado de fora do balcão.",
+    "pontos": [
+      "Corrupção ativa: oferecer ou prometer vantagem indevida a funcionário público, para que pratique, omita ou retarde ato de ofício. Consuma-se com a oferta.",
+      "Resistência: opor-se à execução de ato legal, mediante violência ou ameaça ao funcionário.",
+      "Desobediência: desobedecer a ordem legal de funcionário público.",
+      "Desacato: desacatar funcionário público no exercício da função ou em razão dela."
+    ],
+    "exemplo": "Oferecer dinheiro ao agente para escapar da multa: corrupção ativa, ainda que ele recuse. Xingar o agente em serviço: desacato.",
+    "fonte": "CP, arts. 329, 330, 331 e 333",
+    "perguntas": [
+      {
+        "enunciado": "Há corrupção ativa ainda que o funcionário público recuse a vantagem oferecida.",
+        "gabarito": "C",
+        "explicacao": "A corrupção ativa consuma-se com a oferta ou a promessa, e não depende da aceitação."
+      }
+    ]
   }
 ]

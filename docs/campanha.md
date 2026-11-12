@@ -37,11 +37,11 @@ do princípio de que o jogador **não sabe nada** de Direito Penal (ADR-0003).
 | 3 | Nem todo fato é crime | Ilicitude; legítima defesa; estado de necessidade | Há excludente? | ✅ |
 | 4 | Quem responde | Culpabilidade; menoridade (ato infracional); embriaguez | O agente é culpável? | ✅ |
 | 5 | Dando nome ao crime | O núcleo do tipo; furto × roubo × apropriação indébita × estelionato | Qual é o crime? (sugerido) | ✅ |
-| 6 | O balcão | Ação penal pública e privada; representação; decadência; termo circunstanciado (Lei 9.099/95) | Ação penal e procedimento | — |
-| 7 | O flagrante | Espécies de flagrante; auto de prisão; nota de culpa; fiança; audiência de custódia | Flagrante e fiança | — |
-| 8 | Dentro de casa | Lei Maria da Penha: medidas protetivas; afastamento da Lei 9.099 | — | — |
-| 9 | Em grupo e em série | Concurso de pessoas; concurso de crimes; erro de tipo e de proibição | Quem responde por quê | — |
-| 10 | Fechando o mês | Inquérito: prazos, indiciamento, relatório; o que o delegado não pode fazer | Relatório final | — |
+| 6 | O balcão | Ação penal pública e privada; representação; decadência; termo circunstanciado (Lei 9.099/95) | Ação penal, instauração e rito | ✅ |
+| 7 | O flagrante | Espécies de flagrante; auto de prisão; nota de culpa; fiança; audiência de custódia | Flagrante e fiança | ✅ |
+| 8 | Dentro de casa | Lei Maria da Penha: afastamento da Lei 9.099; ação incondicionada na lesão; medidas protetivas (teoria) | — | ✅ |
+| 9 | Enganos e parcerias | Erro de tipo (inevitável e evitável); concurso de pessoas | — | ✅ (concurso de crimes e erro de proibição ficam para depois) |
+| 10 | Fechando o mês | Inquérito: prazos, indiciamento, relatório; o que o delegado não pode fazer | Prazo do inquérito | ✅ |
 
 ### Parte II — As rondas (Parte Especial)
 
@@ -49,14 +49,21 @@ Cada ronda abre um título do Código Penal na Biblioteca e traz uma sequência 
 em que o jogador **diz qual é o crime**, primeiro entre os tipos da ronda, depois entre
 todos os já desbloqueados. Qualificadoras, privilégios e causas de aumento entram aqui.
 
-| Ronda | Título do Código Penal |
-|---|---|
-| 1 | Crimes contra a pessoa: vida, lesões, periclitação, honra, liberdade individual |
-| 2 | Crimes contra o patrimônio (completo): qualificadoras do furto, extorsão, receptação |
-| 3 | Crimes contra a dignidade sexual |
-| 4 | Crimes contra a fé pública |
-| 5 | Crimes contra a administração pública: por funcionário, por particular, contra a justiça |
-| 6 | Crimes contra a incolumidade e a paz públicas |
+| Ronda | Título do Código Penal | Nesta versão |
+|---|---|---|
+| 1 | Crimes contra a pessoa | ✅ homicídio (simples e qualificado), ameaça, calúnia, difamação, injúria |
+| 2 | Crimes contra o patrimônio | ✅ furto qualificado, extorsão, receptação |
+| 3 | Crimes contra a administração pública | ✅ peculato, concussão, corrupção passiva e ativa, prevaricação, resistência, desobediência, desacato |
+| 4 | Crimes contra a dignidade sexual | — |
+| 5 | Crimes contra a fé pública | — |
+| 6 | Crimes contra a incolumidade e a paz públicas | — |
+
+Faltam ainda, nos títulos já abertos: lesões graves, periclitação da vida e da saúde,
+crimes contra a liberdade individual, roubo majorado, latrocínio, dano qualificado, e os
+crimes contra a administração da justiça.
+
+O **plantão livre** já existe: sorteia um caso concluído e o devolve sem ajuda, com a
+ficha inteira e o Código aberto.
 
 ### Parte III — As operações (leis especiais)
 
@@ -69,7 +76,12 @@ de dinheiro, Lei de Contravenções Penais, Juizados Especiais Criminais.
 Epílogos dos casos da campanha: penas, dosimetria trifásica, regime inicial,
 substituição, sursis e prescrição, calculados pelo motor.
 
-## Parte I nesta versão: 16 missões
+## Missões nesta versão: 44
+
+Os capítulos 6 a 10 e as três rondas somam 28 casos; a lista, com a resposta esperada
+de cada um, está em [casos-dourados.md](casos-dourados.md).
+
+### Capítulos 1 a 5: 16 missões
 
 | Nº | Missão | Sala | Tipo | O jogador decide |
 |---|---|---|---|---|

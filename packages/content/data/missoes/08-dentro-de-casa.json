@@ -1,0 +1,127 @@
+[
+  {
+    "id": "m801-a-vizinha-ligou",
+    "titulo": "A vizinha ligou",
+    "capitulo": 8,
+    "nivel": 8,
+    "sala": "oitiva",
+    "npc": "helena-delegada",
+    "requisitos": ["m704-mochila-na-rodoviaria"],
+    "aulas": ["maria-da-penha"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "Este é dos casos que mais chegam a uma delegacia, e dos que mais se erram. Sente-se."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "A vizinha chamou a polícia. A vítima está na outra sala e diz que não quer \"prejudicar\" o marido. Isso muda alguma coisa?"
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 096 — Rua das Palmeiras",
+      "linhas": [
+        "Em casa, durante uma discussão, um homem de 42 anos agrediu a esposa, que ficou com hematomas no braço.",
+        "A vizinha ouviu e chamou a polícia. A viatura chegou minutos depois e o encontrou ainda no local.",
+        "A vítima confirma a agressão, mas diz que não quer representar contra o marido.",
+        "Ele foi apresentado na delegacia em seguida."
+      ],
+      "fato": {
+        "elementos": [
+          "ofensa_a_integridade_corporal",
+          "lesao_produzida",
+          "contexto_domestico_contra_mulher"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 42,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "acabou_de_cometer",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["acao", "instauracao", "rito", "fianca"],
+      "informa": ["conclusao", "flagrante"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "acao": "Dra. Helena: Na lesão corporal em violência doméstica contra a mulher, a ação é pública incondicionada: Súmula 542 do STJ.",
+        "instauracao": "Dra. Helena: Sendo incondicionada, a vontade da vítima não impede a sua atuação. Você age.",
+        "rito": "Dra. Helena: A Lei Maria da Penha afasta a Lei 9.099, qualquer que seja a pena. Não existe termo circunstanciado aqui.",
+        "fianca": "Dra. Helena: A pena máxima dessa lesão passa de quatro anos. A fiança não é sua: é do juiz."
+      },
+      "desfecho": "Auto de prisão em flagrante e inquérito, mesmo sem a representação. Você ouve a vítima com calma, explica as medidas protetivas de urgência e encaminha o pedido dela ao juiz."
+    },
+    "conceitos": ["maria-da-penha", "acao-penal"],
+    "recompensa": {
+      "pontos": 150
+    }
+  },
+  {
+    "id": "m802-a-briga-do-estacionamento",
+    "titulo": "A briga do estacionamento",
+    "capitulo": 8,
+    "nivel": 8,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m801-a-vizinha-ligou"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Para comparar, doutor(a): chegou outra lesão leve, quase igual à de ontem no papel."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Só que foi entre dois motoristas, no estacionamento do mercado. Veja o que muda."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 098 — Mercado Bom Preço",
+      "linhas": [
+        "Por causa de uma vaga, um homem de 36 anos deu um empurrão em outro motorista, que caiu e ralou o cotovelo.",
+        "O segurança separou os dois e chamou a viatura, que os trouxe em seguida.",
+        "A vítima disse na delegacia que quer representar contra o agressor.",
+        "Os dois não se conheciam."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 36,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "acabou_de_cometer",
+        "vitimaManifestou": true,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["acao", "rito", "fianca"],
+      "informa": ["conclusao", "instauracao", "flagrante"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "acao": "Seu Bento: Fora da violência doméstica, a lesão leve depende de representação.",
+        "rito": "Seu Bento: Pena máxima de um ano: menor potencial ofensivo. Termo circunstanciado.",
+        "fianca": "Seu Bento: No termo circunstanciado, quem se compromete a comparecer ao Juizado não é preso em flagrante nem paga fiança."
+      },
+      "desfecho": "Termo circunstanciado. O agressor assina o compromisso de comparecer ao Juizado e vai para casa. Mesma lesão, outro contexto, outra resposta da lei."
+    },
+    "conceitos": ["maria-da-penha", "menor-potencial-ofensivo"],
+    "recompensa": {
+      "pontos": 150
+    }
+  }
+]

@@ -37,3 +37,40 @@ Cobertos em `packages/motor/src/analise.test.ts`:
 | Estado de necessidade de quem tinha o dever legal de enfrentar o perigo | excludente afastada, crime | R-EN-02 |
 | Embriaguez completa por caso fortuito | isento de pena | R-CULP-04 |
 | Execução interrompida por vontade própria | `ErroDeFato` (fora do escopo) | R-ITER-06 |
+
+## Fase policial e rondas (capítulos 6 a 10 e Parte II)
+
+A fonte desta tabela é `packages/content/src/dourados-da-fase-policial.json`, conferido
+contra o motor em `campanha.test.ts`. As colunas da fase policial ficam em branco nos
+casos sem contexto processual. TC = termo circunstanciado.
+
+| Missão | Crime | Forma | Conclusão | Ação penal | Instauração | Rito | Flagrante | Fiança | Prazo |
+|---|---|---|---|---|---|---|---|---|---|
+| m601-ameaca-do-ex-socio | ameaca | consumado | crime | condicionada | pode agir | TC | não há | — | — |
+| m602-xingamento-na-fila | injuria | consumado | crime | privada | aguarda a vítima | TC | não há | — | — |
+| m603-sete-meses-depois | lesao corporal | consumado | crime | condicionada | decadência | TC | não há | — | — |
+| m604-notebook-da-biblioteca | furto | consumado | crime | incondicionada | pode agir | inquérito | não há | — | 30 dias |
+| m701-pego-na-porta | furto | consumado | crime | incondicionada | pode agir | inquérito | próprio | delegado | 30 dias |
+| m702-a-perseguicao | roubo | consumado | crime | incondicionada | pode agir | inquérito | impróprio | juiz | 10 dias |
+| m703-dois-dias-depois | roubo | consumado | crime | incondicionada | pode agir | inquérito | não há | — | 30 dias |
+| m704-mochila-na-rodoviaria | furto | consumado | crime | incondicionada | pode agir | inquérito | presumido | delegado | 30 dias |
+| m801-a-vizinha-ligou | lesao domestica | consumado | crime | incondicionada | pode agir | inquérito | próprio | juiz | 10 dias |
+| m802-a-briga-do-estacionamento | lesao corporal | consumado | crime | condicionada | pode agir | TC | próprio | — | — |
+| m901-a-mala-trocada | furto | — | fato atipico |  |  |  |  |  |  |
+| m902-o-vulto-na-cerca | lesao corporal | consumado | crime |  |  |  |  |  |  |
+| m903-o-motorista-da-fuga | roubo | consumado | crime |  |  |  |  |  |  |
+| m1001-dez-dias | roubo | consumado | crime | incondicionada | pode agir | inquérito | próprio | juiz | 10 dias |
+| m1002-trinta-dias | estelionato | consumado | crime | condicionada | pode agir | inquérito | não há | — | 30 dias |
+| m1003-a-ficha-inteira | apropriacao indebita | consumado | crime | incondicionada | pode agir | inquérito | não há | — | 30 dias |
+| r1101-a-fechada | homicidio qualificado | consumado | crime | incondicionada | pode agir | inquérito | próprio | inafiançável | 10 dias |
+| r1102-a-facada | homicidio | tentado | crime |  |  |  |  |  |  |
+| r1103-o-grupo-do-condominio | calunia | consumado | crime | privada | pode agir | TC | não há | — | — |
+| r1104-a-reuniao | injuria | consumado | crime | privada | aguarda a vítima | TC | não há | — | — |
+| r1201-a-janela-do-segundo-andar | furto qualificado | consumado | crime | incondicionada | pode agir | inquérito | presumido | juiz | 10 dias |
+| r1202-a-caseira | furto qualificado | consumado | crime |  |  |  |  |  |  |
+| r1203-as-fotos | extorsao | consumado | crime |  |  |  |  |  |  |
+| r1204-o-celular-barato | receptacao | consumado | crime |  |  |  |  |  |  |
+| r1301-o-notebook-da-reparticao | peculato | consumado | crime |  |  |  |  |  |  |
+| r1302-ou-paga-ou-multa | concussao | consumado | crime |  |  |  |  |  |  |
+| r1303-o-cafezinho | corrupcao ativa | consumado | crime |  |  |  |  |  |  |
+| r1304-quem-voce-pensa-que-e | desacato | consumado | crime | incondicionada | pode agir | TC | próprio | — | — |

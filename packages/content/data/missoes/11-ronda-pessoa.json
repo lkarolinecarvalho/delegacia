@@ -1,0 +1,239 @@
+[
+  {
+    "id": "r1101-a-fechada",
+    "titulo": "A fechada",
+    "capitulo": 11,
+    "nivel": 11,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m1003-a-ficha-inteira"],
+    "aulas": ["o-codigo-aberto", "homicidio"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "Começam as rondas. Daqui em diante ninguém sugere o crime: você busca no Código."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), o primeiro é pesado. Briga de trânsito, na avenida. Um morto."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 201 — Avenida Brasil",
+      "linhas": [
+        "Depois de levar uma fechada no trânsito, um motorista de 37 anos desceu do carro com um revólver.",
+        "Disse \"você vai aprender a dirigir\" e atirou no outro motorista, com intenção de matar.",
+        "A vítima morreu no local. O motivo foi só a fechada.",
+        "Ele foi preso por populares ali mesmo, instantes depois, e apresentado na delegacia."
+      ],
+      "fato": {
+        "elementos": ["matar_alguem", "morte"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 37,
+          "embriaguez": "nenhuma"
+        },
+        "circunstancias": ["motivo_futil"]
+      },
+      "contexto": {
+        "situacao": "acabou_de_cometer",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "figura", "forma", "fianca"],
+      "informa": ["conclusao", "flagrante"],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: Ele quis matar e matou. O verbo é \"matar\".",
+        "figura": "Dra. Helena: Matar por causa de uma fechada é motivo fútil, e o motivo fútil qualifica o homicídio.",
+        "fianca": "Dra. Helena: Homicídio qualificado é crime hediondo. Hediondo é inafiançável."
+      },
+      "desfecho": "Homicídio qualificado pelo motivo fútil, crime hediondo e inafiançável. O autor fica preso, e o inquérito tem dez dias."
+    },
+    "conceitos": ["homicidio", "fianca"],
+    "recompensa": {
+      "pontos": 180
+    }
+  },
+  {
+    "id": "r1102-a-facada",
+    "titulo": "A facada",
+    "capitulo": 11,
+    "nivel": 11,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["r1101-a-fechada"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), briga entre dois cunhados. Um deles está no hospital, fora de perigo."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "O outro diz que foi \"só uma lesão\". Leia o que ele gritou antes."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 204 — Vila Nova",
+      "linhas": [
+        "Durante uma briga por causa de herança, um homem de 45 anos pegou uma faca de cozinha.",
+        "Gritou \"hoje eu te mato\" e desferiu três golpes no peito do cunhado.",
+        "Os vizinhos o desarmaram e socorreram a vítima, que sobreviveu graças ao atendimento rápido.",
+        "O motivo e o modo da agressão não se enquadram em nenhuma qualificadora."
+      ],
+      "fato": {
+        "elementos": ["matar_alguem"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true,
+          "interrompidaPor": "circunstancias_alheias"
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 45,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": null,
+      "pede": ["tipo", "figura", "forma"],
+      "informa": ["conclusao"],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: O que separa a lesão do homicídio tentado é a intenção. Ele quis matar: disse e agiu para isso.",
+        "forma": "Dra. Helena: Ele só não matou porque foi desarmado e a vítima foi socorrida: tentativa."
+      },
+      "desfecho": "Tentativa de homicídio, não lesão corporal: o que decide é a intenção de matar. A vítima se recupera."
+    },
+    "conceitos": ["homicidio", "consumacao-e-tentativa"],
+    "recompensa": {
+      "pontos": 180
+    }
+  },
+  {
+    "id": "r1103-o-grupo-do-condominio",
+    "titulo": "O grupo do condomínio",
+    "capitulo": 11,
+    "nivel": 11,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["r1102-a-facada"],
+    "aulas": ["crimes-contra-a-honra"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), o síndico do Edifício Aurora está no balcão com o celular na mão, indignado."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Um morador escreveu no grupo do prédio que ele desviou o dinheiro do fundo de reserva."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 207 — balcão",
+      "linhas": [
+        "Um morador de 52 anos escreveu no grupo de mensagens do condomínio: \"O síndico desviou R$ 20.000,00 do fundo de reserva\".",
+        "Ele sabia que era mentira: as contas tinham sido aprovadas em assembleia, com a presença dele.",
+        "Dezenas de moradores leram a mensagem.",
+        "O síndico soube do autor no mesmo dia e, uma semana depois, requereu providências na delegacia."
+      ],
+      "fato": {
+        "elementos": ["imputacao_falsa_de_crime", "terceiro_tomou_conhecimento"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 52,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": true,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "forma", "acao"],
+      "informa": ["conclusao", "rito"],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: Ele atribuiu ao síndico um fato determinado, falso e definido como crime: desviar dinheiro.",
+        "forma": "Dra. Helena: A calúnia atinge a reputação: consuma-se quando terceiro toma conhecimento. Dezenas leram.",
+        "acao": "Dra. Helena: Crimes contra a honra, em regra, procedem-se mediante queixa: ação privada."
+      },
+      "desfecho": "Calúnia: imputação falsa de fato definido como crime. Como a pena máxima é de dois anos, o caso segue por termo circunstanciado, e a ação é do síndico."
+    },
+    "conceitos": ["crimes-contra-a-honra", "acao-penal"],
+    "recompensa": {
+      "pontos": 180
+    }
+  },
+  {
+    "id": "r1104-a-reuniao",
+    "titulo": "A reunião",
+    "capitulo": 11,
+    "nivel": 11,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["r1103-o-grupo-do-condominio"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), agora é uma professora. Foi ofendida por uma mãe de aluno na sala da diretoria."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Ela diz que foi calúnia. A senhora da diretoria diz que foi difamação. Eu não sei mais nada."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 210 — balcão",
+      "linhas": [
+        "Numa conversa a sós, na sala da diretoria, a mãe de um aluno, de 40 anos, disse à professora: \"Você é uma incompetente e uma preguiçosa\".",
+        "Ninguém mais estava na sala nem ouviu a conversa.",
+        "A mãe não atribuiu à professora nenhum fato: só a xingou.",
+        "A professora contou o caso no balcão, mas ainda não decidiu se quer requerer alguma providência."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_dignidade", "vitima_tomou_conhecimento"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 40,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "forma", "instauracao"],
+      "informa": ["conclusao", "acao", "rito"],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: Não há fato atribuído, só qualidades negativas: ofensa à dignidade. É injúria.",
+        "forma": "Dra. Helena: A injúria atinge o que a pessoa pensa de si: consuma-se quando a própria vítima toma conhecimento.",
+        "instauracao": "Dra. Helena: A ação é privada, e ela ainda não requereu nada. A delegacia aguarda."
+      },
+      "desfecho": "Injúria: ofensa à dignidade, sem imputação de fato. Não é calúnia nem difamação. A professora tem seis meses para decidir."
+    },
+    "conceitos": ["crimes-contra-a-honra", "representacao-e-decadencia"],
+    "recompensa": {
+      "pontos": 180
+    }
+  }
+]

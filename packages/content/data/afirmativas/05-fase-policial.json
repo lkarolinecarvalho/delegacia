@@ -1,0 +1,317 @@
+[
+  {
+    "id": "af-acao-penal-01",
+    "conceitoId": "acao-penal",
+    "nivelMin": 6,
+    "enunciado": "A ação penal é pública, salvo quando a lei expressamente a declara privativa do ofendido.",
+    "gabarito": "C",
+    "explicacao": "É a regra do art. 100 do Código Penal.",
+    "regras": ["R-ACAO-01"]
+  },
+  {
+    "id": "af-acao-penal-02",
+    "conceitoId": "acao-penal",
+    "nivelMin": 6,
+    "enunciado": "No crime de furto, o delegado só pode instaurar inquérito se a vítima representar.",
+    "gabarito": "E",
+    "explicacao": "O furto é de ação pública incondicionada: a autoridade policial age de ofício.",
+    "regras": ["R-ACAO-01", "R-PAT-01"]
+  },
+  {
+    "id": "af-acao-penal-03",
+    "conceitoId": "acao-penal",
+    "nivelMin": 6,
+    "enunciado": "No crime de ameaça, em regra, a ação penal depende de representação da vítima.",
+    "gabarito": "C",
+    "explicacao": "No crime de ameaça, em regra, somente se procede mediante representação (CP, art. 147).",
+    "regras": ["R-ACAO-02", "R-PES-03"]
+  },
+  {
+    "id": "af-acao-penal-04",
+    "conceitoId": "acao-penal",
+    "nivelMin": 6,
+    "enunciado": "Nos crimes de ação privada, a autoridade policial pode instaurar inquérito de ofício.",
+    "gabarito": "E",
+    "explicacao": "Só pode instaurá-lo a requerimento de quem tenha qualidade para intentar a ação (CPP, art. 5º, § 5º).",
+    "regras": ["R-ACAO-03"]
+  },
+  {
+    "id": "af-representacao-01",
+    "conceitoId": "representacao-e-decadencia",
+    "nivelMin": 6,
+    "enunciado": "Nos crimes em que a ação pública depende de representação, o inquérito não pode ser iniciado sem ela.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 5º, § 4º, do CPP.",
+    "regras": ["R-ACAO-02"]
+  },
+  {
+    "id": "af-representacao-02",
+    "conceitoId": "representacao-e-decadencia",
+    "nivelMin": 6,
+    "enunciado": "O ofendido decai do direito de representação se não o exerce em seis meses, contados do dia em que vem a saber quem é o autor do crime.",
+    "gabarito": "C",
+    "explicacao": "É a regra do art. 38 do CPP e do art. 103 do Código Penal.",
+    "regras": ["R-ACAO-04"]
+  },
+  {
+    "id": "af-representacao-03",
+    "conceitoId": "representacao-e-decadencia",
+    "nivelMin": 6,
+    "enunciado": "O prazo decadencial de seis meses é contado da data do fato, independentemente de a vítima conhecer o autor.",
+    "gabarito": "E",
+    "explicacao": "O prazo conta do dia em que o ofendido vem a saber quem é o autor do crime.",
+    "regras": ["R-ACAO-04"]
+  },
+  {
+    "id": "af-representacao-04",
+    "conceitoId": "representacao-e-decadencia",
+    "nivelMin": 6,
+    "enunciado": "A decadência é causa de extinção da punibilidade.",
+    "gabarito": "C",
+    "explicacao": "Está no art. 107, IV, do Código Penal.",
+    "regras": ["R-ACAO-04"]
+  },
+  {
+    "id": "af-jecrim-01",
+    "conceitoId": "menor-potencial-ofensivo",
+    "nivelMin": 6,
+    "enunciado": "Consideram-se infrações de menor potencial ofensivo as contravenções penais e os crimes a que a lei comine pena máxima não superior a dois anos, cumulada ou não com multa.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 61 da Lei 9.099/95.",
+    "regras": ["R-JECRIM-01"]
+  },
+  {
+    "id": "af-jecrim-02",
+    "conceitoId": "menor-potencial-ofensivo",
+    "nivelMin": 6,
+    "enunciado": "Nas infrações de menor potencial ofensivo, a autoridade policial instaura inquérito policial.",
+    "gabarito": "E",
+    "explicacao": "A autoridade lavra termo circunstanciado e o encaminha ao Juizado (Lei 9.099/95, art. 69).",
+    "regras": ["R-JECRIM-02"]
+  },
+  {
+    "id": "af-jecrim-03",
+    "conceitoId": "menor-potencial-ofensivo",
+    "nivelMin": 6,
+    "enunciado": "Ao autor de infração de menor potencial ofensivo que assume o compromisso de comparecer ao Juizado não se impõe prisão em flagrante nem se exige fiança.",
+    "gabarito": "C",
+    "explicacao": "É o parágrafo único do art. 69 da Lei 9.099/95.",
+    "regras": ["R-JECRIM-02"]
+  },
+  {
+    "id": "af-jecrim-04",
+    "conceitoId": "menor-potencial-ofensivo",
+    "nivelMin": 6,
+    "enunciado": "O crime de furto simples, punido com reclusão de um a quatro anos, é infração de menor potencial ofensivo.",
+    "gabarito": "E",
+    "explicacao": "A pena máxima passa de dois anos: o furto segue por inquérito.",
+    "regras": ["R-JECRIM-01", "R-PAT-01"]
+  },
+  {
+    "id": "af-flagrante-01",
+    "conceitoId": "flagrante",
+    "nivelMin": 7,
+    "enunciado": "Considera-se em flagrante delito quem é perseguido, logo após, pela autoridade, pelo ofendido ou por qualquer pessoa, em situação que faça presumir ser autor da infração.",
+    "gabarito": "C",
+    "explicacao": "É o flagrante impróprio, do art. 302, III, do CPP.",
+    "regras": ["R-FLAG-02"]
+  },
+  {
+    "id": "af-flagrante-02",
+    "conceitoId": "flagrante",
+    "nivelMin": 7,
+    "enunciado": "Está em flagrante delito quem é identificado como autor do crime dois dias depois do fato, sem perseguição, e localizado em casa.",
+    "gabarito": "E",
+    "explicacao": "Nenhuma hipótese do art. 302 do CPP se configura: a prisão depende de ordem judicial.",
+    "regras": ["R-FLAG-04"]
+  },
+  {
+    "id": "af-flagrante-03",
+    "conceitoId": "flagrante",
+    "nivelMin": 7,
+    "enunciado": "Segundo o STF, não há crime quando a preparação do flagrante pela polícia torna impossível a sua consumação.",
+    "gabarito": "C",
+    "explicacao": "É o enunciado da Súmula 145 do STF.",
+    "regras": ["R-FLAG-05"]
+  },
+  {
+    "id": "af-flagrante-04",
+    "conceitoId": "flagrante",
+    "nivelMin": 7,
+    "enunciado": "O flagrante próprio alcança quem está cometendo a infração penal e quem acaba de cometê-la.",
+    "gabarito": "C",
+    "explicacao": "São os incisos I e II do art. 302 do CPP.",
+    "regras": ["R-FLAG-01"]
+  },
+  {
+    "id": "af-flagrante-05",
+    "conceitoId": "flagrante",
+    "nivelMin": 7,
+    "enunciado": "A prisão ilegal deve ser relaxada pela autoridade judiciária.",
+    "gabarito": "C",
+    "explicacao": "É o art. 5º, LXV, da Constituição; no mesmo sentido, o art. 310, I, do CPP.",
+    "regras": ["R-FLAG-04"]
+  },
+  {
+    "id": "af-fianca-01",
+    "conceitoId": "fianca",
+    "nivelMin": 7,
+    "enunciado": "A autoridade policial somente pode conceder fiança nos casos de infração cuja pena privativa de liberdade máxima não seja superior a quatro anos.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 322 do CPP.",
+    "regras": ["R-FIANCA-01"]
+  },
+  {
+    "id": "af-fianca-02",
+    "conceitoId": "fianca",
+    "nivelMin": 7,
+    "enunciado": "No crime de roubo, punido com reclusão de quatro a dez anos, o delegado pode arbitrar a fiança.",
+    "gabarito": "E",
+    "explicacao": "A pena máxima passa de quatro anos: a fiança é requerida ao juiz, que decide em 48 horas.",
+    "regras": ["R-FIANCA-01", "R-FIANCA-02"]
+  },
+  {
+    "id": "af-fianca-03",
+    "conceitoId": "fianca",
+    "nivelMin": 7,
+    "enunciado": "Os crimes hediondos são inafiançáveis.",
+    "gabarito": "C",
+    "explicacao": "Está no art. 5º, XLIII, da Constituição e no art. 323 do CPP.",
+    "regras": ["R-FIANCA-03"]
+  },
+  {
+    "id": "af-fianca-04",
+    "conceitoId": "fianca",
+    "nivelMin": 7,
+    "enunciado": "Em até 24 horas após a prisão em flagrante, o preso deve receber a nota de culpa.",
+    "gabarito": "C",
+    "explicacao": "É o art. 306, § 2º, do CPP.",
+    "regras": ["R-FLAG-06"]
+  },
+  {
+    "id": "af-maria-da-penha-01",
+    "conceitoId": "maria-da-penha",
+    "nivelMin": 8,
+    "enunciado": "Aos crimes praticados com violência doméstica e familiar contra a mulher, independentemente da pena prevista, não se aplica a Lei 9.099/95.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 41 da Lei 11.340/06.",
+    "regras": ["R-MP-01"]
+  },
+  {
+    "id": "af-maria-da-penha-02",
+    "conceitoId": "maria-da-penha",
+    "nivelMin": 8,
+    "enunciado": "Segundo o STJ, a ação penal relativa ao crime de lesão corporal resultante de violência doméstica contra a mulher é pública incondicionada.",
+    "gabarito": "C",
+    "explicacao": "É o enunciado da Súmula 542 do STJ.",
+    "regras": ["R-MP-02"]
+  },
+  {
+    "id": "af-maria-da-penha-03",
+    "conceitoId": "maria-da-penha",
+    "nivelMin": 8,
+    "enunciado": "Na lesão corporal leve praticada pelo marido contra a esposa, a autoridade policial lavra termo circunstanciado.",
+    "gabarito": "E",
+    "explicacao": "A Lei Maria da Penha afasta a Lei 9.099/95: o caso segue por inquérito.",
+    "regras": ["R-MP-01"]
+  },
+  {
+    "id": "af-maria-da-penha-04",
+    "conceitoId": "maria-da-penha",
+    "nivelMin": 8,
+    "enunciado": "Se a mulher agredida pelo companheiro declarar que não deseja representar, o delegado fica impedido de instaurar inquérito pela lesão corporal.",
+    "gabarito": "E",
+    "explicacao": "A ação é pública incondicionada (Súmula 542 do STJ): a autoridade age de ofício.",
+    "regras": ["R-MP-02"]
+  },
+  {
+    "id": "af-erro-de-tipo-01",
+    "conceitoId": "erro-de-tipo",
+    "nivelMin": 9,
+    "enunciado": "O erro sobre elemento constitutivo do tipo legal de crime exclui o dolo, mas permite a punição por crime culposo, se previsto em lei.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 20 do Código Penal.",
+    "regras": ["R-ERRO-02"]
+  },
+  {
+    "id": "af-erro-de-tipo-02",
+    "conceitoId": "erro-de-tipo",
+    "nivelMin": 9,
+    "enunciado": "Para a doutrina, o erro de tipo inevitável exclui o dolo, mas não a culpa.",
+    "gabarito": "E",
+    "explicacao": "O erro inevitável exclui o dolo e a culpa: o fato é atípico.",
+    "regras": ["R-ERRO-01"]
+  },
+  {
+    "id": "af-erro-de-tipo-03",
+    "conceitoId": "erro-de-tipo",
+    "nivelMin": 9,
+    "enunciado": "Quem leva consigo, por engano inevitável, coisa alheia que acreditava ser sua não comete furto.",
+    "gabarito": "C",
+    "explicacao": "Falta o dolo de subtrair coisa alheia, e o furto não tem forma culposa.",
+    "regras": ["R-ERRO-01", "R-PAT-01"]
+  },
+  {
+    "id": "af-concurso-01",
+    "conceitoId": "concurso-de-pessoas",
+    "nivelMin": 9,
+    "enunciado": "Quem, de qualquer modo, concorre para o crime incide nas penas a este cominadas, na medida de sua culpabilidade.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 29 do Código Penal.",
+    "regras": ["R-CONC-01"]
+  },
+  {
+    "id": "af-concurso-02",
+    "conceitoId": "concurso-de-pessoas",
+    "nivelMin": 9,
+    "enunciado": "Quem apenas aguarda no carro para dar fuga ao comparsa, conforme combinado, não responde pelo roubo praticado por este.",
+    "gabarito": "E",
+    "explicacao": "Ele concorreu para o crime e responde por ele, na medida de sua culpabilidade.",
+    "regras": ["R-CONC-01", "R-PAT-02"]
+  },
+  {
+    "id": "af-concurso-03",
+    "conceitoId": "concurso-de-pessoas",
+    "nivelMin": 9,
+    "enunciado": "Quem compra a coisa roubada depois do crime, sem ter combinado nada com os autores, responde por roubo em concurso de pessoas.",
+    "gabarito": "E",
+    "explicacao": "Ele não concorreu para o roubo: se sabia da origem, responde por receptação.",
+    "regras": ["R-CONC-01", "R-PAT-10"]
+  },
+  {
+    "id": "af-inquerito-01",
+    "conceitoId": "inquerito-policial",
+    "nivelMin": 10,
+    "enunciado": "O inquérito deverá terminar no prazo de dez dias, se o indiciado tiver sido preso em flagrante ou estiver preso preventivamente, e no prazo de trinta dias, quando estiver solto.",
+    "gabarito": "C",
+    "explicacao": "É a regra do art. 10 do CPP.",
+    "regras": ["R-IP-01"]
+  },
+  {
+    "id": "af-inquerito-02",
+    "conceitoId": "inquerito-policial",
+    "nivelMin": 10,
+    "enunciado": "O indiciamento é ato privativo do delegado de polícia e se dá por ato fundamentado.",
+    "gabarito": "C",
+    "explicacao": "É o art. 2º, § 6º, da Lei 12.830/2013.",
+    "regras": ["R-IP-02"]
+  },
+  {
+    "id": "af-inquerito-03",
+    "conceitoId": "inquerito-policial",
+    "nivelMin": 10,
+    "enunciado": "Concluído o inquérito sem prova da autoria, a autoridade policial pode determinar o seu arquivamento.",
+    "gabarito": "E",
+    "explicacao": "A autoridade policial não pode mandar arquivar autos de inquérito (CPP, art. 17).",
+    "regras": ["R-PJ-02"]
+  },
+  {
+    "id": "af-inquerito-04",
+    "conceitoId": "inquerito-policial",
+    "nivelMin": 10,
+    "enunciado": "Concluído o inquérito, a autoridade faz minucioso relatório do que tiver sido apurado e envia os autos ao juiz competente.",
+    "gabarito": "C",
+    "explicacao": "É o art. 10, § 1º, do CPP.",
+    "regras": ["R-IP-03"]
+  }
+]

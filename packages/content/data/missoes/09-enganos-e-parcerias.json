@@ -1,0 +1,174 @@
+[
+  {
+    "id": "m901-a-mala-trocada",
+    "titulo": "A mala trocada",
+    "capitulo": 9,
+    "nivel": 9,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["m802-a-briga-do-estacionamento"],
+    "aulas": ["erro-de-tipo"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), trouxeram da rodoviária um senhor acusado de levar a mala de outro passageiro."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Ele está branco de susto. Jura que a mala é igualzinha à dele."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 102 — rodoviária",
+      "linhas": [
+        "Seu Olavo, de 61 anos, pegou no bagageiro do ônibus uma mala preta e foi para o ponto de táxi.",
+        "A mala era de outro passageiro. A de Seu Olavo, da mesma marca, cor e tamanho, ficou no bagageiro.",
+        "As duas malas não tinham etiqueta. Qualquer pessoa as confundiria.",
+        "Ao ser avisado, ele devolveu a mala na hora."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 61,
+          "embriaguez": "nenhuma"
+        },
+        "erroDeTipo": "inevitavel"
+      },
+      "contexto": null,
+      "pede": ["tipico", "conclusao"],
+      "informa": [],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipico": "Dra. Helena: Ele achava que a mala era dele. Errou sobre a coisa ser \"alheia\", e qualquer um erraria. Sem dolo e sem culpa, não há fato típico.",
+        "conclusao": "Dra. Helena: Erro de tipo inevitável: fato atípico."
+      },
+      "desfecho": "Seu Olavo errou sobre um elemento do tipo, e o erro era inevitável. Não há crime. As malas são destrocadas, e ele promete comprar uma etiqueta."
+    },
+    "conceitos": ["erro-de-tipo", "dolo-e-culpa"],
+    "recompensa": {
+      "pontos": 150
+    }
+  },
+  {
+    "id": "m902-o-vulto-na-cerca",
+    "titulo": "O vulto na cerca",
+    "capitulo": 9,
+    "nivel": 9,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m901-a-mala-trocada"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), caso do sítio do Seu Nilo. Ele acertou o vizinho com a espingarda de pressão."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Diz que achou que era o cachorro-do-mato que anda matando as galinhas."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 105 — zona rural",
+      "linhas": [
+        "À noite, Seu Nilo, de 57 anos, viu um vulto atrás da cerca do galinheiro e atirou com a espingarda de pressão.",
+        "Ele acreditava que era o animal que vinha atacando as galinhas. Era o vizinho, que consertava a cerca.",
+        "O vizinho sofreu um ferimento leve na perna.",
+        "Seu Nilo tinha uma lanterna no bolso. Bastava acendê-la para ver que era uma pessoa."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 57,
+          "embriaguez": "nenhuma"
+        },
+        "erroDeTipo": "evitavel"
+      },
+      "contexto": null,
+      "pede": ["tipico", "conclusao"],
+      "informa": ["forma"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipico": "Dra. Helena: O erro exclui o dolo, mas ele podia ter evitado: foi descuido. E a lesão corporal tem forma culposa.",
+        "conclusao": "Dra. Helena: Erro de tipo evitável, com forma culposa prevista: há crime, culposo."
+      },
+      "desfecho": "O erro de Seu Nilo era evitável. Ele não responde por lesão dolosa, mas responde por lesão corporal culposa. O vizinho passa bem."
+    },
+    "conceitos": ["erro-de-tipo", "dolo-e-culpa"],
+    "recompensa": {
+      "pontos": 150
+    }
+  },
+  {
+    "id": "m903-o-motorista-da-fuga",
+    "titulo": "O motorista da fuga",
+    "capitulo": 9,
+    "nivel": 9,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m902-o-vulto-na-cerca"],
+    "aulas": ["concurso-de-pessoas"],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Doutor(a), roubo à lotérica, ontem. Um entrou armado e outro ficou no carro, com o motor ligado."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "O do carro diz que não roubou ninguém, que só dirigiu. É com o(a) senhor(a)."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 108 — lotérica",
+      "linhas": [
+        "Dois homens combinaram roubar a lotérica e dividir o dinheiro.",
+        "Um deles entrou, ameaçou a atendente com um revólver e levou o dinheiro do caixa.",
+        "O outro, de 31 anos, esperou no carro com o motor ligado e deu fuga ao comparsa.",
+        "A análise abaixo é sobre o motorista."
+      ],
+      "fato": {
+        "elementos": [
+          "subtracao",
+          "coisa_alheia_movel",
+          "inversao_da_posse",
+          "violencia_ou_grave_ameaca"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 31,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": null,
+      "pede": ["tipo", "conclusao"],
+      "informa": ["forma"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "roubo", "receptacao"],
+      "comentarios": {
+        "tipo": "Seu Bento: Quem concorre para o crime responde por ele, doutor(a). O crime dos dois é o mesmo: roubo.",
+        "conclusao": "Seu Bento: Ele não apontou a arma, mas concorreu para o roubo. É crime."
+      },
+      "desfecho": "O motorista concorreu para o roubo e responde por ele, na medida da sua culpabilidade. \"Só dirigi\" não é defesa."
+    },
+    "conceitos": ["concurso-de-pessoas", "furto-e-roubo"],
+    "recompensa": {
+      "pontos": 150
+    }
+  }
+]

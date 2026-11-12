@@ -85,9 +85,18 @@ na narrativa.
 | Culpabilidade | O agente é culpável? | Cap. 4 |
 | Tipo penal | Qual é o crime? | Cap. 5 |
 | Conclusão | Crime, fato atípico, fato lícito, ato infracional, isenção de pena | desde o cap. 1 |
+| Ação penal | Incondicionada, condicionada ou privada? | Cap. 6 |
+| Instauração | A delegacia pode agir agora? | Cap. 6 |
+| Rito | Termo circunstanciado ou inquérito? | Cap. 6 |
+| Flagrante | Há flagrante? De que espécie? | Cap. 7 |
+| Fiança | Quem pode conceder? | Cap. 7 |
+| Prazo | Dez ou trinta dias para concluir o inquérito? | Cap. 10 |
+| Figura | Simples ou qualificado? | Ronda 1 |
 
 A ficha do jogador é comparada com a análise do motor e nunca é gravada (ADR-0002).
 Ao errar, o jogador vê a etapa errada, a regra e o comentário do mentor, e tenta de novo.
+Nas etapas da fase policial aparece também a **prévia do erro**: o que aconteceria se a
+decisão errada fosse tomada (prisão ilegal relaxada, inquérito nulo, fiança inválida).
 
 ## 9. Progressão e níveis de ajuda
 
@@ -108,8 +117,12 @@ a Parte Especial do Código Penal e as leis especiais entram como **rondas temá
 - Calendário em **plantões** (dias). Nesta versão, cada caso concluído encerra o
   plantão (parâmetro provisório de balanceamento).
 - A repetição espaçada usa esse calendário.
-- Os prazos processuais (nota de culpa, custódia, inquérito) entram com o capítulo do
-  flagrante e passam a correr no quadro da carceragem.
+- A **carceragem** abre o quadro da delegacia: os presos do dia (que ficam até a
+  audiência de custódia, no plantão seguinte, e aparecem na cela) e os inquéritos, com o
+  prazo de dez ou de trinta dias correndo. Relatar no prazo vale pontos; a placa da
+  carceragem avisa quando um prazo está no fim.
+- Depois do primeiro caso, o **plantão livre** (em Casos) sorteia um caso do arquivo
+  para ser refeito sem ajuda.
 
 ## 11. Estudo
 

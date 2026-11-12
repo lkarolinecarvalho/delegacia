@@ -38,6 +38,7 @@ motor (ADR-0002).
       "justificante": null,                      // ou legítima defesa / estado de necessidade, com os requisitos
       "agente": { "idade": 31, "embriaguez": "nenhuma" }
     },
+    "contexto": null,                            // a fase policial; ver abaixo
     "pede": ["forma", "conclusao"],              // etapas que o jogador responde
     "informa": ["tipico"],                       // etapas que o mentor entrega preenchidas
     "tipoInformado": true,                       // o mentor diz qual é o crime
@@ -49,6 +50,22 @@ motor (ADR-0002).
   "recompensa": { "pontos": 60 }
 }
 ```
+
+**Fase policial.** A partir do capítulo 6, o caso pode trazer o `contexto`:
+
+```jsonc
+"contexto": {
+  "situacao": "perseguido_logo_apos",  // cometendo | acabou_de_cometer | perseguido_logo_apos | encontrado_logo_depois | nenhuma
+  "vitimaManifestou": false,           // a vítima representou ou requereu
+  "mesesDesdeAAutoria": 0              // meses desde que a vítima soube quem é o autor
+}
+```
+
+Com ele, a ficha pode pedir `acao`, `instauracao`, `rito`, `flagrante`, `fianca` e
+`prazo`. Só casos em que há crime podem ter contexto. O fato aceita ainda
+`circunstancias` (as que qualificam o crime) e `erroDeTipo` (`inevitavel` ou `evitavel`),
+e a ficha pode pedir `figura` (simples ou qualificado). Com `tipo` em `pede` e
+`opcoesDeTipo` vazio, a escolha é livre: o Código inteiro, com busca.
 
 **Missão de conversa:** sem `caso`, com `aulas` obrigatório e `conceitos` vazio.
 

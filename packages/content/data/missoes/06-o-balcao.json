@@ -1,0 +1,241 @@
+[
+  {
+    "id": "m601-ameaca-do-ex-socio",
+    "titulo": "A ameaça do ex-sócio",
+    "capitulo": 6,
+    "nivel": 6,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["m503-saida-do-mercado"],
+    "aulas": ["acao-penal", "termo-circunstanciado"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), o Seu Edmar recebeu um áudio do ex-sócio dizendo que vai acabar com ele. Está apavorado."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Até aqui você decidiu se havia crime. Agora vem a pergunta seguinte: o que a delegacia pode fazer com ele?"
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 071 — balcão",
+      "linhas": [
+        "O ex-sócio de Edmar, de 48 anos, mandou um áudio: \"Você me paga. Sei onde você mora e vou te pegar\".",
+        "Edmar ouviu o áudio ontem e sabe quem o enviou.",
+        "Hoje ele veio à delegacia e disse, por escrito, que quer ver o ex-sócio processado.",
+        "O ex-sócio não foi encontrado: não há ninguém conduzido."
+      ],
+      "fato": {
+        "elementos": ["ameaca_de_mal_injusto_e_grave", "vitima_tomou_conhecimento"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 48,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": true,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["acao", "instauracao", "rito"],
+      "informa": ["forma", "conclusao"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "acao": "Dra. Helena: Na ameaça, a lei diz que só se procede mediante representação. É pública, mas condicionada.",
+        "instauracao": "Dra. Helena: Ele veio e pediu, por escrito, que o ex-sócio seja processado. Isso é a representação: você pode agir.",
+        "rito": "Dra. Helena: Olhe a pena máxima da ameaça: seis meses. Não passa de dois anos, então é termo circunstanciado."
+      },
+      "desfecho": "Com a representação de Edmar, você lavra o termo circunstanciado e o envia ao Juizado Especial Criminal. O áudio vai junto."
+    },
+    "conceitos": ["acao-penal", "menor-potencial-ofensivo"],
+    "recompensa": {
+      "pontos": 110
+    }
+  },
+  {
+    "id": "m602-xingamento-na-fila",
+    "titulo": "O xingamento na fila",
+    "capitulo": 6,
+    "nivel": 6,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["m601-ameaca-do-ex-socio"],
+    "aulas": ["acao-privada"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), a Dona Ivone foi xingada na fila do banco e quer que a polícia \"dê um jeito\" na mulher."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Só que ela não quer assinar nada. Diz que isso é serviço nosso."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 074 — balcão",
+      "linhas": [
+        "Na fila do banco, uma mulher de 39 anos chamou Dona Ivone, na cara dela, de \"velha burra e imprestável\".",
+        "Dona Ivone ouviu tudo e sabe quem é a mulher.",
+        "Ela contou o caso no balcão, mas se recusou a requerer a abertura de qualquer procedimento.",
+        "Não há ninguém conduzido."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_dignidade", "vitima_tomou_conhecimento"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 39,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["acao", "instauracao"],
+      "informa": ["forma", "conclusao", "rito"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "acao": "Dra. Helena: Na injúria, em regra, só se procede mediante queixa. A ação é privada: quem move é a própria vítima.",
+        "instauracao": "Dra. Helena: Em crime de ação privada, você só instaura a requerimento de quem pode mover a ação. Ela não requereu."
+      },
+      "desfecho": "Você explica à Dona Ivone que, na injúria, a iniciativa é dela, e que ela tem seis meses para decidir. Ela promete pensar."
+    },
+    "conceitos": ["acao-penal", "representacao-e-decadencia"],
+    "recompensa": {
+      "pontos": 110
+    }
+  },
+  {
+    "id": "m603-sete-meses-depois",
+    "titulo": "Sete meses depois",
+    "capitulo": 6,
+    "nivel": 6,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m602-xingamento-na-fila"],
+    "aulas": ["decadencia"],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Doutor(a), lembra da briga no bar do Tonho? Não a do Raul, outra, mais antiga. A vítima apareceu hoje."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Disse que agora quer representar. Antes de eu pegar o papel, olhe a data do fato."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 009 — Bar do Tonho",
+      "linhas": [
+        "Há sete meses, Lauro, de 33 anos, deu um soco em outro freguês e lhe causou um corte leve no lábio.",
+        "A vítima soube no mesmo dia quem era Lauro.",
+        "Nesses sete meses, a vítima não procurou a delegacia nem o fórum.",
+        "Hoje ela quer representar contra Lauro."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 33,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 7
+      },
+      "pede": ["acao", "instauracao"],
+      "informa": ["forma", "conclusao", "rito"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "acao": "Seu Bento: Lesão corporal leve depende de representação, doutor(a). Está na Lei 9.099.",
+        "instauracao": "Seu Bento: Seis meses, contados do dia em que ela soube quem foi. Já se passaram sete: decaiu."
+      },
+      "desfecho": "O direito de representar se perdeu pela decadência, e a punibilidade de Lauro está extinta. O Seu Bento guarda a caneta."
+    },
+    "conceitos": ["representacao-e-decadencia", "acao-penal"],
+    "recompensa": {
+      "pontos": 120
+    }
+  },
+  {
+    "id": "m604-notebook-da-biblioteca",
+    "titulo": "O notebook da biblioteca",
+    "capitulo": 6,
+    "nivel": 6,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m603-sete-meses-depois"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Para fechar o balcão, um caso em que a vítima nem veio, doutor(a). Mandou só um e-mail."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Será que a gente precisa dela para começar?"
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 078 — biblioteca municipal",
+      "linhas": [
+        "Um homem de 27 anos pegou o notebook de um estudante, deixado sobre a mesa da biblioteca, e saiu com ele.",
+        "As câmeras gravaram tudo. O homem foi identificado, mas não localizado.",
+        "O estudante avisou a delegacia por e-mail e disse que não tem tempo para comparecer.",
+        "O fato ocorreu ontem."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 27,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "acao", "instauracao", "rito"],
+      "informa": ["forma", "conclusao"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "roubo", "apropriacao_indebita"],
+      "comentarios": {
+        "tipo": "Seu Bento: Ele tirou o notebook de quem o tinha, sem violência e sem ameaça.",
+        "acao": "Seu Bento: A regra é a ação pública incondicionada. O furto segue a regra.",
+        "instauracao": "Seu Bento: Sendo incondicionada, a delegacia age de ofício, com ou sem a vítima.",
+        "rito": "Seu Bento: A pena máxima do furto é de quatro anos. Passou de dois, é inquérito."
+      },
+      "desfecho": "Furto: ação pública incondicionada. Você instaura o inquérito de ofício, e as imagens das câmeras vão para os autos."
+    },
+    "conceitos": ["acao-penal", "menor-potencial-ofensivo", "furto-e-roubo"],
+    "recompensa": {
+      "pontos": 130
+    }
+  }
+]

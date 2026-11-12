@@ -1,0 +1,234 @@
+[
+  {
+    "id": "r1201-a-janela-do-segundo-andar",
+    "titulo": "A janela do segundo andar",
+    "capitulo": 12,
+    "nivel": 12,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["r1104-a-reuniao"],
+    "aulas": ["furto-qualificado"],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), furto num sobrado. O homem subiu pela calha até a janela do segundo andar."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Achamos ele na rua de trás, meia hora depois, com as joias da moradora no bolso."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 214 — sobrado da Rua Sete",
+      "linhas": [
+        "Um homem de 30 anos escalou a calha de um sobrado até a janela do segundo andar e entrou no quarto.",
+        "Não havia ninguém em casa. Ele pegou as joias da moradora e saiu pelo mesmo caminho.",
+        "Meia hora depois, foi abordado na rua de trás com as joias no bolso.",
+        "Ninguém o viu entrar nem o perseguiu."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 30,
+          "embriaguez": "nenhuma"
+        },
+        "circunstancias": ["escalada"]
+      },
+      "contexto": {
+        "situacao": "encontrado_logo_depois",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "figura", "flagrante", "fianca"],
+      "informa": ["forma", "conclusao"],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Seu Bento: Sem ninguém em casa, não houve violência nem ameaça a pessoa. É subtração simples no verbo.",
+        "figura": "Seu Bento: Subir pela calha até o segundo andar é escalada, doutor(a). E a escalada qualifica o furto.",
+        "flagrante": "Seu Bento: Ninguém viu nem perseguiu, mas ele foi achado logo depois com as joias: presumido.",
+        "fianca": "Seu Bento: No furto qualificado a pena máxima é de oito anos. Aí a fiança já não é do(a) senhor(a)."
+      },
+      "desfecho": "Furto qualificado pela escalada, em flagrante presumido. A qualificadora dobra a pena máxima e tira a fiança das suas mãos."
+    },
+    "conceitos": ["furto-qualificado", "flagrante"],
+    "recompensa": {
+      "pontos": 190
+    }
+  },
+  {
+    "id": "r1202-a-caseira",
+    "titulo": "A caseira",
+    "capitulo": 12,
+    "nivel": 12,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["r1201-a-janela-do-segundo-andar"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Doutor(a), a Dona Amélia confiava na caseira havia quinze anos. Deixava a chave da casa com ela."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "O advogado da patroa fala em apropriação indébita. Leia com atenção onde estavam as joias."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 217 — chácara Santa Rita",
+      "linhas": [
+        "A caseira, de 49 anos, tinha a chave da casa e a confiança da patroa, mas não cuidava das joias nem as tinha consigo.",
+        "Durante uma viagem da patroa, ela abriu o cofre do quarto, que estava destrancado, e levou um colar.",
+        "Vendeu o colar numa joalheria da cidade vizinha.",
+        "Só ela entrava na casa. Não houve arrombamento."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 49,
+          "embriaguez": "nenhuma"
+        },
+        "circunstancias": ["abuso_de_confianca"]
+      },
+      "contexto": null,
+      "pede": ["tipo", "figura"],
+      "informa": ["forma", "conclusao"],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Seu Bento: Ela tinha a chave da casa, não a posse do colar. Para pegá-lo, teve de tirá-lo do cofre: subtraiu.",
+        "figura": "Seu Bento: Ela se aproveitou da confiança que a patroa tinha nela: abuso de confiança qualifica o furto."
+      },
+      "desfecho": "Furto qualificado pelo abuso de confiança, e não apropriação indébita: a caseira nunca teve a posse do colar."
+    },
+    "conceitos": ["furto-qualificado", "apropriacao-indebita"],
+    "recompensa": {
+      "pontos": 190
+    }
+  },
+  {
+    "id": "r1203-as-fotos",
+    "titulo": "As fotos",
+    "capitulo": 12,
+    "nivel": 12,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["r1202-a-caseira"],
+    "aulas": ["extorsao"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), o rapaz que está no balcão quase não consegue falar de vergonha."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Um ex-colega tem fotos íntimas dele e exigiu dinheiro para não espalhar."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 220 — balcão",
+      "linhas": [
+        "Um homem de 28 anos mandou mensagem à vítima: \"Ou você me transfere R$ 3.000,00 hoje, ou mando suas fotos para a sua família\".",
+        "Com medo, a vítima fez a transferência.",
+        "O banco desconfiou da operação e a bloqueou: o dinheiro não chegou ao autor.",
+        "A vítima guardou as mensagens."
+      ],
+      "fato": {
+        "elementos": [
+          "constrangimento_mediante_violencia_ou_ameaca",
+          "busca_de_vantagem_economica",
+          "vitima_cedeu"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 28,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": null,
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": [],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: Ele não tirou nada da vítima: constrangeu-a, com grave ameaça, a fazer uma transferência. Isso é extorsão.",
+        "forma": "Dra. Helena: A vítima cedeu e fez a transferência. Pela Súmula 96 do STJ, a extorsão se consuma mesmo sem a vantagem chegar ao autor."
+      },
+      "desfecho": "Extorsão consumada: a vítima fez o que o autor exigia, e o crime não depende de o dinheiro ter chegado. Você orienta o rapaz e pede a preservação das mensagens."
+    },
+    "conceitos": ["extorsao", "furto-e-roubo"],
+    "recompensa": {
+      "pontos": 190
+    }
+  },
+  {
+    "id": "r1204-o-celular-barato",
+    "titulo": "O celular barato",
+    "capitulo": 12,
+    "nivel": 12,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["r1203-as-fotos"],
+    "aulas": ["receptacao"],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), lembra do celular roubado na saída do mercado? Achamos o aparelho."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Está com um rapaz que o comprou por um quinto do preço. Ele não roubou ninguém, mas..."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 223 — feira do rolo",
+      "linhas": [
+        "Um homem de 23 anos comprou, na feira do rolo, um celular novo por R$ 300,00. O aparelho vale R$ 1.500,00.",
+        "O vendedor avisou: \"É de assalto, não liga ele perto da delegacia\".",
+        "O comprador ficou com o aparelho e passou a usá-lo.",
+        "O celular era o roubado na saída do mercado."
+      ],
+      "fato": {
+        "elementos": ["recebe_coisa_produto_de_crime", "sabe_da_origem_criminosa"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 23,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": null,
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": [],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Seu Bento: Ele não subtraiu nada nem ajudou no roubo. Comprou coisa que sabia ser produto de crime.",
+        "forma": "Seu Bento: Comprou e ficou com o aparelho: consumado."
+      },
+      "desfecho": "Receptação: adquirir coisa que se sabe ser produto de crime. O celular, enfim, volta para a dona."
+    },
+    "conceitos": ["receptacao", "concurso-de-pessoas"],
+    "recompensa": {
+      "pontos": 190
+    }
+  }
+]

@@ -1,0 +1,202 @@
+[
+  {
+    "id": "m1001-dez-dias",
+    "titulo": "Dez dias",
+    "capitulo": 10,
+    "nivel": 10,
+    "sala": "gabinete",
+    "npc": "helena-delegada",
+    "requisitos": ["m903-o-motorista-da-fuga"],
+    "aulas": ["prazo-do-inquerito"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "O mês está acabando, e todo inquérito tem prazo. Vá à carceragem depois e olhe o quadro: ele não mente."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Comece por este. O autor está lá embaixo, preso."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 112 — ponto de táxi",
+      "linhas": [
+        "Um homem de 26 anos encostou uma faca num taxista e exigiu o dinheiro das corridas.",
+        "Os colegas do taxista o seguraram ainda no ponto, com o dinheiro na mão, até a viatura chegar.",
+        "Ele foi apresentado na delegacia em seguida.",
+        "Não tem residência fixa nem quem pague fiança."
+      ],
+      "fato": {
+        "elementos": [
+          "subtracao",
+          "coisa_alheia_movel",
+          "inversao_da_posse",
+          "violencia_ou_grave_ameaca"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 26,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "cometendo",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["flagrante", "fianca", "prazo"],
+      "informa": ["conclusao", "acao", "rito"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "flagrante": "Dra. Helena: Foi seguro no ato, com o dinheiro na mão: flagrante próprio.",
+        "fianca": "Dra. Helena: Roubo: pena máxima de dez anos. A fiança é do juiz.",
+        "prazo": "Dra. Helena: Ele fica preso. Com o indiciado preso, o inquérito termina em dez dias."
+      },
+      "desfecho": "Flagrante próprio, sem fiança na delegacia. O inquérito entra no quadro com dez dias de prazo: com o indiciado preso, não há folga."
+    },
+    "conceitos": ["inquerito-policial", "flagrante"],
+    "recompensa": {
+      "pontos": 160
+    }
+  },
+  {
+    "id": "m1002-trinta-dias",
+    "titulo": "Trinta dias",
+    "capitulo": 10,
+    "nivel": 10,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m1001-dez-dias"],
+    "aulas": ["indiciamento-e-relatorio"],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Agora um sem preso, doutor(a). A vítima veio hoje e já assinou a representação."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Falta o(a) senhor(a) dar nome ao crime e me dizer quanto tempo eu tenho."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 115 — anúncio falso",
+      "linhas": [
+        "Um homem de 38 anos anunciou na internet um carro que não existia e convenceu a vítima a pagar um sinal de R$ 5.000,00.",
+        "Recebido o dinheiro, apagou o anúncio e sumiu.",
+        "A vítima o identificou pelo comprovante da transferência, há uma semana, e hoje representou contra ele.",
+        "Ele não foi localizado."
+      ],
+      "fato": {
+        "elementos": ["fraude", "busca_de_vantagem_ilicita", "vitima_em_erro", "vantagem_obtida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 38,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": true,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "acao", "instauracao", "rito", "prazo"],
+      "informa": ["forma", "conclusao"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "apropriacao_indebita", "estelionato"],
+      "comentarios": {
+        "tipo": "Seu Bento: A vítima entregou o dinheiro porque foi enganada.",
+        "acao": "Seu Bento: Desde 2019, o estelionato, em regra, depende de representação.",
+        "instauracao": "Seu Bento: Ela representou hoje, dentro dos seis meses. Pode instaurar.",
+        "rito": "Seu Bento: Pena máxima de cinco anos: inquérito.",
+        "prazo": "Seu Bento: Ninguém preso: trinta dias."
+      },
+      "desfecho": "Estelionato, com representação. O inquérito entra no quadro com trinta dias de prazo. Ao final, você relata o que apurou e remete os autos."
+    },
+    "conceitos": ["inquerito-policial", "estelionato", "representacao-e-decadencia"],
+    "recompensa": {
+      "pontos": 160
+    }
+  },
+  {
+    "id": "m1003-a-ficha-inteira",
+    "titulo": "A ficha inteira",
+    "capitulo": 10,
+    "nivel": 10,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m1002-trinta-dias"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Último caso do mês, doutor(a). A Dra. Helena pediu que eu não ajudasse em nada."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Do fato típico ao prazo, a ficha é toda sua. Mostre o que aprendeu neste mês."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 119 — locadora de ferramentas",
+      "linhas": [
+        "Um pedreiro de 44 anos alugou uma betoneira por uma semana, com contrato assinado, pretendendo devolvê-la.",
+        "Terminada a obra, resolveu ficar com a máquina e a vendeu a um conhecido.",
+        "A locadora descobriu ontem e avisou a delegacia. Ninguém foi conduzido.",
+        "O pedreiro não nega: diz que \"precisava do dinheiro\"."
+      ],
+      "fato": {
+        "elementos": ["coisa_alheia_movel", "posse_previa_licita", "apropriacao"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 44,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "nenhuma",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": [
+        "tipo",
+        "forma",
+        "conclusao",
+        "acao",
+        "instauracao",
+        "rito",
+        "flagrante",
+        "fianca",
+        "prazo"
+      ],
+      "informa": [],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "apropriacao_indebita", "estelionato", "roubo"],
+      "comentarios": {
+        "tipo": "Dra. Helena: Ele já tinha a betoneira, de forma lícita, e depois passou a agir como dono.",
+        "acao": "Dra. Helena: A apropriação indébita segue a regra: pública incondicionada.",
+        "rito": "Dra. Helena: Pena máxima de quatro anos: inquérito.",
+        "flagrante": "Dra. Helena: Descoberto depois, sem ninguém conduzido: não há flagrante.",
+        "fianca": "Dra. Helena: Sem flagrante, não há fiança a discutir.",
+        "prazo": "Dra. Helena: Indiciado solto: trinta dias."
+      },
+      "desfecho": "Apropriação indébita, inquérito de ofício, trinta dias. A Dra. Helena assina embaixo e avisa: no mês que vem começam as rondas, com o Código inteiro aberto."
+    },
+    "conceitos": ["inquerito-policial", "apropriacao-indebita", "flagrante"],
+    "recompensa": {
+      "pontos": 200
+    }
+  }
+]

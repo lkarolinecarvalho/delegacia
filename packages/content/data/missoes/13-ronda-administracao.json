@@ -1,0 +1,227 @@
+[
+  {
+    "id": "r1301-o-notebook-da-reparticao",
+    "titulo": "O notebook da repartição",
+    "capitulo": 13,
+    "nivel": 13,
+    "sala": "gabinete",
+    "npc": "helena-delegada",
+    "requisitos": ["r1204-o-celular-barato"],
+    "aulas": ["funcionario-e-peculato"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "A última ronda é a que mais cai em prova de carreira policial: crimes contra a administração."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "O primeiro veio da prefeitura. Leia e me diga: é furto, é apropriação indébita ou é outra coisa?"
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 228 — Secretaria de Obras",
+      "linhas": [
+        "Um servidor da prefeitura, de 46 anos, recebeu da Secretaria um notebook para usar no trabalho.",
+        "Ele tinha a posse do equipamento em razão do cargo.",
+        "Meses depois, levou o notebook para casa em definitivo e o vendeu.",
+        "O sumiço foi descoberto no inventário anual."
+      ],
+      "fato": {
+        "elementos": ["funcionario_publico", "apropria_bem_em_razao_do_cargo"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 46,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": null,
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": [],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: Parece apropriação indébita, mas o autor é funcionário público e tinha a posse em razão do cargo. Aí o crime muda de nome.",
+        "forma": "Dra. Helena: Ele passou a agir como dono e vendeu: consumado."
+      },
+      "desfecho": "Peculato: o funcionário público que se apropria de bem de que tem a posse em razão do cargo. A pena é bem mais alta que a da apropriação indébita."
+    },
+    "conceitos": ["peculato", "apropriacao-indebita"],
+    "recompensa": {
+      "pontos": 200
+    }
+  },
+  {
+    "id": "r1302-ou-paga-ou-multa",
+    "titulo": "Ou paga, ou multa",
+    "capitulo": 13,
+    "nivel": 13,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["r1301-o-notebook-da-reparticao"],
+    "aulas": ["concussao-e-corrupcao"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), o dono da padaria veio denunciar um fiscal da prefeitura."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Ele gravou a conversa. E não pagou nada: veio direto para cá."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 231 — balcão",
+      "linhas": [
+        "Um fiscal da vigilância sanitária, de 51 anos, vistoriou a padaria e não encontrou irregularidade.",
+        "Mesmo assim, disse ao dono: \"Ou você me dá R$ 2.000,00, ou eu interdito a casa\".",
+        "O dono recusou, gravou a conversa e procurou a delegacia.",
+        "O fiscal não recebeu nada."
+      ],
+      "fato": {
+        "elementos": ["funcionario_publico", "exige_vantagem_indevida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 51,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": null,
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": [],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: Olhe o verbo: ele não pediu, exigiu, e usou o cargo para intimidar. Funcionário que exige vantagem indevida comete concussão.",
+        "forma": "Dra. Helena: A concussão se consuma com a exigência. Receber o dinheiro é só o desfecho, e nem aconteceu."
+      },
+      "desfecho": "Concussão consumada com a simples exigência, ainda que nada tenha sido pago. Se ele tivesse apenas pedido, seria corrupção passiva."
+    },
+    "conceitos": ["concussao-e-corrupcao", "consumacao-e-tentativa"],
+    "recompensa": {
+      "pontos": 200
+    }
+  },
+  {
+    "id": "r1303-o-cafezinho",
+    "titulo": "O cafezinho",
+    "capitulo": 13,
+    "nivel": 13,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["r1302-ou-paga-ou-multa"],
+    "aulas": ["crimes-do-particular"],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), este aconteceu comigo, na blitz de ontem."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "O motorista estava sem habilitação e quis resolver \"de outro jeito\". Eu não aceitei, é claro."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 234 — blitz da Avenida Brasil",
+      "linhas": [
+        "Parado numa blitz sem habilitação, um motorista de 35 anos estendeu duas notas de R$ 100,00 ao Agente Rocha.",
+        "Disse: \"Um cafezinho para o senhor esquecer essa multa\".",
+        "O agente recusou e deu voz de prisão.",
+        "O motorista não é funcionário público."
+      ],
+      "fato": {
+        "elementos": ["oferece_vantagem_indevida_a_funcionario"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 35,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": null,
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": [],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Dra. Helena: Quem ofereceu foi o particular, para o funcionário deixar de praticar um ato de ofício. É a corrupção do lado de fora do balcão.",
+        "forma": "Dra. Helena: A corrupção ativa se consuma com a oferta. Não importa que o Rocha tenha recusado."
+      },
+      "desfecho": "Corrupção ativa, consumada com a oferta. Como o Agente Rocha recusou, não há corrupção passiva: um crime não depende do outro."
+    },
+    "conceitos": ["crimes-do-particular", "concussao-e-corrupcao"],
+    "recompensa": {
+      "pontos": 200
+    }
+  },
+  {
+    "id": "r1304-quem-voce-pensa-que-e",
+    "titulo": "Quem você pensa que é?",
+    "capitulo": 13,
+    "nivel": 13,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["r1303-o-cafezinho"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Para encerrar as rondas, doutor(a), um clássico de plantão de sexta-feira."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Foi com o Rocha de novo. Esse homem atrai."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 237 — Praça da Matriz",
+      "linhas": [
+        "O Agente Rocha, fardado e em serviço, pediu a um homem de 43 anos que abaixasse o som do carro.",
+        "O homem respondeu, aos gritos e diante de todos: \"Quem você pensa que é, seu policialzinho de quinta?\".",
+        "Depois de ofender o agente, abaixou o som e não resistiu à abordagem.",
+        "Foi conduzido à delegacia em seguida."
+      ],
+      "fato": {
+        "elementos": ["desacata_funcionario_no_exercicio_da_funcao"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 43,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "contexto": {
+        "situacao": "acabou_de_cometer",
+        "vitimaManifestou": false,
+        "mesesDesdeAAutoria": 0
+      },
+      "pede": ["tipo", "rito", "fianca"],
+      "informa": ["forma", "conclusao", "flagrante"],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipo": "Seu Bento: Ele não resistiu nem desobedeceu: abaixou o som. O que fez foi humilhar o funcionário em serviço: desacato.",
+        "rito": "Seu Bento: A pena máxima do desacato é de dois anos. Não passa de dois: termo circunstanciado.",
+        "fianca": "Seu Bento: No termo circunstanciado, com o compromisso de comparecer, não há prisão em flagrante nem fiança."
+      },
+      "desfecho": "Desacato, por termo circunstanciado. O Rocha respira fundo, o homem assina o compromisso, e as rondas terminam. O Código está aberto: agora é plantão livre."
+    },
+    "conceitos": ["crimes-do-particular", "menor-potencial-ofensivo"],
+    "recompensa": {
+      "pontos": 220
+    }
+  }
+]

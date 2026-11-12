@@ -1,0 +1,324 @@
+{
+  "m601-ameaca-do-ex-socio": {
+    "tipo": "ameaca",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_condicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "termo_circunstanciado",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "nao_se_aplica"
+    }
+  },
+  "m602-xingamento-na-fila": {
+    "tipo": "injuria",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "privada",
+      "instauracao": "aguarda_a_vitima",
+      "rito": "termo_circunstanciado",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "nao_se_aplica"
+    }
+  },
+  "m603-sete-meses-depois": {
+    "tipo": "lesao_corporal",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_condicionada",
+      "instauracao": "decadencia",
+      "rito": "termo_circunstanciado",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "nao_se_aplica"
+    }
+  },
+  "m604-notebook-da-biblioteca": {
+    "tipo": "furto",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "30_dias"
+    }
+  },
+  "m701-pego-na-porta": {
+    "tipo": "furto",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "proprio",
+      "fianca": "delegado",
+      "prazo": "30_dias"
+    }
+  },
+  "m702-a-perseguicao": {
+    "tipo": "roubo",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "improprio",
+      "fianca": "juiz",
+      "prazo": "10_dias"
+    }
+  },
+  "m703-dois-dias-depois": {
+    "tipo": "roubo",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "30_dias"
+    }
+  },
+  "m704-mochila-na-rodoviaria": {
+    "tipo": "furto",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "presumido",
+      "fianca": "delegado",
+      "prazo": "30_dias"
+    }
+  },
+  "m801-a-vizinha-ligou": {
+    "tipo": "lesao_domestica",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "proprio",
+      "fianca": "juiz",
+      "prazo": "10_dias"
+    }
+  },
+  "m802-a-briga-do-estacionamento": {
+    "tipo": "lesao_corporal",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_condicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "termo_circunstanciado",
+      "flagrante": "proprio",
+      "fianca": "nao_se_aplica",
+      "prazo": "nao_se_aplica"
+    }
+  },
+  "m901-a-mala-trocada": {
+    "tipo": "furto",
+    "figura": null,
+    "forma": null,
+    "conclusao": "fato_atipico",
+    "procedimento": null
+  },
+  "m902-o-vulto-na-cerca": {
+    "tipo": "lesao_corporal",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "m903-o-motorista-da-fuga": {
+    "tipo": "roubo",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "m1001-dez-dias": {
+    "tipo": "roubo",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "proprio",
+      "fianca": "juiz",
+      "prazo": "10_dias"
+    }
+  },
+  "m1002-trinta-dias": {
+    "tipo": "estelionato",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_condicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "30_dias"
+    }
+  },
+  "m1003-a-ficha-inteira": {
+    "tipo": "apropriacao_indebita",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "30_dias"
+    }
+  },
+  "r1101-a-fechada": {
+    "tipo": "homicidio",
+    "figura": "qualificado",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "proprio",
+      "fianca": "inafiancavel",
+      "prazo": "10_dias"
+    }
+  },
+  "r1102-a-facada": {
+    "tipo": "homicidio",
+    "figura": "simples",
+    "forma": "tentado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "r1103-o-grupo-do-condominio": {
+    "tipo": "calunia",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "privada",
+      "instauracao": "pode_instaurar",
+      "rito": "termo_circunstanciado",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "nao_se_aplica"
+    }
+  },
+  "r1104-a-reuniao": {
+    "tipo": "injuria",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "privada",
+      "instauracao": "aguarda_a_vitima",
+      "rito": "termo_circunstanciado",
+      "flagrante": "nao_ha",
+      "fianca": "nao_se_aplica",
+      "prazo": "nao_se_aplica"
+    }
+  },
+  "r1201-a-janela-do-segundo-andar": {
+    "tipo": "furto",
+    "figura": "qualificado",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "inquerito",
+      "flagrante": "presumido",
+      "fianca": "juiz",
+      "prazo": "10_dias"
+    }
+  },
+  "r1202-a-caseira": {
+    "tipo": "furto",
+    "figura": "qualificado",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "r1203-as-fotos": {
+    "tipo": "extorsao",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "r1204-o-celular-barato": {
+    "tipo": "receptacao",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "r1301-o-notebook-da-reparticao": {
+    "tipo": "peculato",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "r1302-ou-paga-ou-multa": {
+    "tipo": "concussao",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "r1303-o-cafezinho": {
+    "tipo": "corrupcao_ativa",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": null
+  },
+  "r1304-quem-voce-pensa-que-e": {
+    "tipo": "desacato",
+    "figura": "simples",
+    "forma": "consumado",
+    "conclusao": "crime",
+    "procedimento": {
+      "acao": "publica_incondicionada",
+      "instauracao": "pode_instaurar",
+      "rito": "termo_circunstanciado",
+      "flagrante": "proprio",
+      "fianca": "nao_se_aplica",
+      "prazo": "nao_se_aplica"
+    }
+  }
+}

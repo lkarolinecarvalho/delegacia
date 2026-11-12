@@ -23,6 +23,12 @@ revisão jurídica. Ainda sem persistência: recarregar a página recomeça.
 
 ## Fatia 2 — Fase policial (capítulos 6 a 10)
 
+**Estado:** entregue, aguardando validação. Motor: ação penal, instauração, rito,
+flagrante, fiança e prazo do inquérito; erro de tipo. Jogo: 16 casos, a prévia do erro,
+o quadro da delegacia (presos do dia e inquéritos com prazo) e o preso na cela. Ficaram
+de fora: concurso de crimes, erro de proibição, medidas protetivas como mecânica e
+prazos de leis especiais.
+
 - Motor: ação penal, representação, decadência, menor potencial ofensivo e TCO,
   flagrante, fiança, prazos do inquérito.
 - Calendário com prazos correndo; carceragem funcional; quadro de inquéritos.
@@ -30,6 +36,12 @@ revisão jurídica. Ainda sem persistência: recarregar a página recomeça.
   nulidade, inquérito trancado).
 
 ## Fatia 3 — As rondas (Parte Especial)
+
+**Estado:** primeira parte entregue, aguardando validação. Três rondas (pessoa,
+patrimônio e administração pública), 22 tipos penais no motor, furto e homicídio
+qualificados, busca no Código inteiro e plantão livre (sorteio entre os casos já
+concluídos). Faltam os outros três títulos, as causas de aumento e de diminuição e casos
+inéditos para o plantão livre.
 
 - Catálogo do Código por título; busca livre do tipo penal; qualificadoras, privilégios
   e causas de aumento no motor.

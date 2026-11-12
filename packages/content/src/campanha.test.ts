@@ -61,7 +61,8 @@ const DOURADOS: Readonly<Record<string, Esperado>> = {
   "m503-saida-do-mercado": caso(true, "roubo", "consumado", "nenhuma", "culpavel", "crime"),
 };
 
-const casos = conteudo.missoes.filter((m) => m.caso);
+// Parte I, capítulos 1 a 5. Os demais casos estão em fase-policial.test.ts.
+const casos = conteudo.missoes.filter((m) => m.caso && m.capitulo <= 5);
 
 it("todo caso da campanha está na tabela dourada, e só eles", () => {
   expect(casos.map((m) => m.id).sort()).toEqual(Object.keys(DOURADOS).sort());
