@@ -6,6 +6,9 @@ e os testes e o typecheck estão verdes. Não há "MVP": o jogo é a campanha in
 
 ## Fatia 1 — Parte I, capítulos 1 a 5 (primeira versão jogável)
 
+**Estado:** M0 a M5 entregues na primeira versão, aguardando validação de jogo e
+revisão jurídica. Ainda sem persistência: recarregar a página recomeça.
+
 - **M0 — Fundação.** Monorepo pnpm, TypeScript strict, Vitest, Biome, CI, docs e ADRs.
 - **M1 — Motor penal.** Tipos penais básicos, análise do fato (teoria do crime),
   comparação da ficha, índice das regras.
