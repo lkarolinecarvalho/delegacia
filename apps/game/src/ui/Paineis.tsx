@@ -1,30 +1,46 @@
 import { conteudo, type Tema } from "@delegacia/content";
-import { existeRegra, regra, TIPOS_PENAIS } from "@delegacia/motor";
+import { existeRegra, NOMES_DOS_TITULOS, regra, TIPOS_PENAIS, TITULOS } from "@delegacia/motor";
 import { useState } from "react";
 import { selecionarParaRevisao } from "../orquestrador/afirmativas";
+import { casosDoArquivo } from "../orquestrador/plantaoLivre";
 import { definirSom } from "../som/sons";
 import { CAIXA_MAXIMA, diasAteARevisao } from "../state/estudo";
 import { capituloAtual, missaoDisponivel } from "../state/jogo";
 import { useStore } from "../state/store";
 import { Afirmativas } from "./Afirmativas";
 import { Aula } from "./Aula";
-import { RegraCitada } from "./comum";
+import { nomeDoCapitulo, RegraCitada } from "./comum";
 import { Trilha } from "./FluxoDaMissao";
 
-/** A campanha por capítulo: o que foi feito, o que vem agora e o que ainda não existe. */
-export function PainelDeCasos() {
+/** A campanha por parte e capítulo, com o plantão livre no alto. */
+export function PainelDeCasos({ aoPlantaoLivre }: { aoPlantaoLivre: () => void }) {
   const jogo = useStore((s) => s.jogo);
   const [aberto, setAberto] = useState<string | null>(null);
+  const noArquivo = casosDoArquivo(jogo, conteudo).length;
   return (
     <div className="casos">
-      {conteudo.capitulos.map((capitulo) => {
+      <section className="plantao-livre">
+        <h3>Plantão livre</h3>
+        <p className="suave">
+          Um caso sorteado do arquivo, sem ajuda: a ficha inteira, com o Código todo aberto.
+          {jogo.plantoesLivres > 0 && ` Você já resolveu ${jogo.plantoesLivres}.`}
+        </p>
+        <button
+          type="button"
+          className="botao botao-principal"
+          disabled={noArquivo === 0}
+          onClick={aoPlantaoLivre}
+        >
+          {noArquivo === 0 ? "Conclua um caso para abrir" : "Sortear um caso"}
+        </button>
+      </section>
+      {conteudo.capitulos.map((capitulo, i) => {
         const missoes = conteudo.missoes.filter((m) => m.capitulo === capitulo.numero);
+        const novaParte = conteudo.capitulos[i - 1]?.parte !== capitulo.parte;
         return (
           <section key={capitulo.numero} className="capitulo">
-            <h3>
-              <span className="capitulo-numero">{capitulo.numero}</span>
-              {capitulo.titulo}
-            </h3>
+            {novaParte && <p className="parte">{capitulo.parte}</p>}
+            <h3>{nomeDoCapitulo(capitulo.numero)}</h3>
             <p className="suave">{capitulo.resumo}</p>
             {missoes.length === 0 && <p className="em-breve">Em breve</p>}
             <ul>
@@ -43,7 +59,9 @@ export function PainelDeCasos() {
                       {missao.titulo}
                       {!missao.caso && <span className="suave"> · conversa</span>}
                     </button>
-                    {registro && aberto === missao.id && <Trilha analise={registro.analise} />}
+                    {registro && aberto === missao.id && (
+                      <Trilha analise={registro.analise} procedimento={registro.procedimento} />
+                    )}
                   </li>
                 );
               })}
@@ -94,16 +112,23 @@ function Codigo() {
     <>
       <h4>Tipos penais já vistos</h4>
       {tipos.length === 0 && <p className="vazio">Nenhum ainda.</p>}
-      <ul className="lista lista-fixa">
-        {tipos.map((t) => (
-          <li key={t.id}>
-            <strong>
-              {t.nome} <span className="suave">· {t.artigo}</span>
-            </strong>
-            <span>{t.texto}</span>
-          </li>
-        ))}
-      </ul>
+      {TITULOS.filter((titulo) => tipos.some((t) => t.titulo === titulo)).map((titulo) => (
+        <div key={titulo}>
+          <p className="etiqueta">{NOMES_DOS_TITULOS[titulo]}</p>
+          <ul className="lista lista-fixa">
+            {tipos
+              .filter((t) => t.titulo === titulo)
+              .map((t) => (
+                <li key={t.id}>
+                  <strong>
+                    {t.nome} <span className="suave">· {t.artigo}</span>
+                  </strong>
+                  <span>{t.texto}</span>
+                </li>
+              ))}
+          </ul>
+        </div>
+      ))}
       <h4>Regras já aplicadas</h4>
       <div className="regras">
         {regras.map((id) => (

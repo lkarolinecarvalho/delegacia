@@ -105,3 +105,12 @@ export function Fala({ npc, children }: { npc: string; children: ReactNode }) {
     </div>
   );
 }
+
+/** "Capítulo 3: Nem todo fato é crime" ou "Ronda 1: Crimes contra a pessoa". */
+export function nomeDoCapitulo(numero: number): string {
+  const capitulo = conteudo.capitulos.find((c) => c.numero === numero);
+  if (!capitulo) return `Capítulo ${numero}`;
+  // A numeração recomeça em cada parte da campanha.
+  const naParte = conteudo.capitulos.filter((c) => c.parte === capitulo.parte);
+  return `${capitulo.rotulo} ${naParte.indexOf(capitulo) + 1}: ${capitulo.titulo}`;
+}

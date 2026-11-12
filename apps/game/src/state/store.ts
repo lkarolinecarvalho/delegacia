@@ -1,15 +1,17 @@
 import type { Afirmativa, Missao } from "@delegacia/content";
-import type { Analise } from "@delegacia/motor";
+import type { Analise, Procedimento } from "@delegacia/motor";
 import { create } from "zustand";
 import {
   concluirMissao,
+  concluirPlantaoLivre,
   type EstadoDoJogo,
   estadoInicial,
   marcarTemaVisto,
+  relatarInquerito,
   responderAfirmativa,
 } from "./jogo";
 
-export type Painel = "missao" | "casos" | "biblioteca" | "progresso" | "config";
+export type Painel = "missao" | "casos" | "biblioteca" | "progresso" | "config" | "quadro";
 
 interface Store {
   readonly jogo: EstadoDoJogo;
@@ -24,7 +26,14 @@ interface Store {
   verAbertura(): void;
   verTema(tema: string): void;
   responder(afirmativa: Afirmativa, resposta: "C" | "E" | "branco"): void;
-  concluir(missao: Missao, analise: Analise | null, tentativasErradas: number): void;
+  concluir(
+    missao: Missao,
+    analise: Analise | null,
+    tentativasErradas: number,
+    procedimento: Procedimento | null,
+  ): void;
+  concluirLivre(): void;
+  relatar(missao: string): void;
   definirModoBanca(ligado: boolean): void;
   definirSom(ligado: boolean): void;
   reiniciar(): void;
@@ -44,8 +53,12 @@ export const useStore = create<Store>((set) => ({
   verTema: (tema) => set((s) => ({ jogo: marcarTemaVisto(s.jogo, tema) })),
   responder: (afirmativa, resposta) =>
     set((s) => ({ jogo: responderAfirmativa(s.jogo, afirmativa, resposta) })),
-  concluir: (missao, analise, tentativasErradas) =>
-    set((s) => ({ jogo: concluirMissao(s.jogo, missao, analise, tentativasErradas) })),
+  concluir: (missao, analise, tentativasErradas, procedimento) =>
+    set((s) => ({
+      jogo: concluirMissao(s.jogo, missao, analise, tentativasErradas, procedimento),
+    })),
+  concluirLivre: () => set((s) => ({ jogo: concluirPlantaoLivre(s.jogo) })),
+  relatar: (missao) => set((s) => ({ jogo: relatarInquerito(s.jogo, missao) })),
   definirModoBanca: (ligado) => set((s) => ({ jogo: { ...s.jogo, modoBanca: ligado } })),
   definirSom: (ligado) => set({ som: ligado }),
   reiniciar: () => set({ jogo: estadoInicial(), sala: null, painel: null, aberturaVista: false }),

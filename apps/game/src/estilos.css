@@ -781,7 +781,7 @@ ol {
   font-size: 13px;
 }
 
-.trilha li:last-child {
+.trilha .trilha-final {
   background: var(--marinho);
   color: #fff;
 }
@@ -1068,4 +1068,100 @@ ol {
 .abertura-lema {
   font-weight: 800;
   color: var(--marinho);
+}
+
+/* Ficha: busca no Código, grupos por título e a prévia do erro. */
+.busca {
+  width: 100%;
+  padding: 9px 12px;
+  border: 2px solid var(--contorno);
+  border-radius: 12px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+}
+
+.opcoes-do-codigo {
+  max-height: 46vh;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.opcoes-grupo {
+  display: grid;
+  gap: 6px;
+}
+
+.opcoes-grupo .etiqueta {
+  margin-top: 4px;
+}
+
+.previa {
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px dashed var(--vermelho);
+}
+
+/* Casos: partes e plantão livre. */
+.plantao-livre {
+  padding: 10px;
+  border: 2px solid var(--marinho);
+  border-radius: 14px;
+  background: var(--marinho-claro);
+}
+
+.plantao-livre h3 {
+  font-size: 15px;
+}
+
+.plantao-livre .botao {
+  margin-top: 8px;
+}
+
+.parte {
+  margin-bottom: 8px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  background: var(--marinho);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Quadro da delegacia. */
+.quadro h4 {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--marinho);
+}
+
+.quadro h4:first-child {
+  margin-top: 0;
+}
+
+.quadro .relatado {
+  opacity: 0.7;
+}
+
+.selo {
+  justify-self: start;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--ouro);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.selo-feito {
+  background: var(--verde-claro);
+  color: #24512d;
+}
+
+.selo-vencido {
+  background: var(--vermelho-claro);
+  color: #7c231c;
 }

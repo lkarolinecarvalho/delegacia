@@ -57,6 +57,7 @@ const APARENCIAS: Readonly<Record<string, Aparencia>> = {
     calca: "#2b2f36",
     bone: "#1f2937",
   },
+  preso: { pele: "#e2b28a", cabelo: "#3a2a22", roupa: "#d9d2c0", calca: "#8a8f96" },
   "cida-recepcao": {
     pele: "#e9b98f",
     cabelo: "#8a4b2f",

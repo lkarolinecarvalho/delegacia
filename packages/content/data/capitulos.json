@@ -2,61 +2,92 @@
   {
     "numero": 1,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "Posse",
     "resumo": "O que é Direito Penal, o que é crime e o que a delegacia faz."
   },
   {
     "numero": 2,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "Primeiro plantão",
     "resumo": "Fato típico, dolo e culpa, consumação e tentativa."
   },
   {
     "numero": 3,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "Nem todo fato é crime",
     "resumo": "Ilicitude: legítima defesa e estado de necessidade."
   },
   {
     "numero": 4,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "Quem responde",
     "resumo": "Culpabilidade: menoridade e embriaguez."
   },
   {
     "numero": 5,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "Dando nome ao crime",
     "resumo": "Furto, roubo, apropriação indébita e estelionato: agora é você quem diz."
   },
   {
     "numero": 6,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "O balcão",
     "resumo": "Ação penal, representação e termo circunstanciado."
   },
   {
     "numero": 7,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "O flagrante",
     "resumo": "Flagrante, fiança e audiência de custódia."
   },
   {
     "numero": 8,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "Dentro de casa",
     "resumo": "Lei Maria da Penha."
   },
   {
     "numero": 9,
     "parte": "Parte I — O primeiro mês",
-    "titulo": "Em grupo e em série",
-    "resumo": "Concurso de pessoas e de crimes; erro."
+    "rotulo": "Capítulo",
+    "titulo": "Enganos e parcerias",
+    "resumo": "Erro de tipo e concurso de pessoas."
   },
   {
     "numero": 10,
     "parte": "Parte I — O primeiro mês",
+    "rotulo": "Capítulo",
     "titulo": "Fechando o mês",
     "resumo": "O inquérito: prazos, indiciamento e relatório."
+  },
+  {
+    "numero": 11,
+    "parte": "Parte II — As rondas",
+    "rotulo": "Ronda",
+    "titulo": "Crimes contra a pessoa",
+    "resumo": "Homicídio, ameaça e os crimes contra a honra. Agora o Código está aberto."
+  },
+  {
+    "numero": 12,
+    "parte": "Parte II — As rondas",
+    "rotulo": "Ronda",
+    "titulo": "Crimes contra o patrimônio",
+    "resumo": "Furto qualificado, extorsão e receptação."
+  },
+  {
+    "numero": 13,
+    "parte": "Parte II — As rondas",
+    "rotulo": "Ronda",
+    "titulo": "Crimes contra a administração pública",
+    "resumo": "Peculato, concussão, corrupção e os crimes do particular contra a administração."
   }
 ]

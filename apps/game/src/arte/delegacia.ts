@@ -356,6 +356,11 @@ function moveis(): Objeto[] {
       iso.caixa(15.1, 0.5, 0.7, 3.4, 1.5, 0.25, "#d9d2c0"),
     ),
 
+    // O preso da vez: só aparece quando há alguém na carceragem (ui/Cena.tsx).
+    (({ p, svg }) => ({ p, svg: `<g data-preso display="none">${svg}</g>` }))(
+      pessoa("preso", 16.4, 4.6, "esquerda"),
+    ),
+
     // Cartório: arquivos, o Seu Bento e a mesa comprida.
     bloco(4.6, 10.75, 1.3, 1, 3, COR.metal),
     bloco(6.1, 10.75, 1.3, 1, 3, COR.metal),

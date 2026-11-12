@@ -1,4 +1,11 @@
-import { analisarFato, ErroDeFato, esperadoNoCampo, existeRegra } from "@delegacia/motor";
+import {
+  analisarFato,
+  analisarProcedimento,
+  ErroDeFato,
+  esperadoNoCampo,
+  existeRegra,
+  type Procedimento,
+} from "@delegacia/motor";
 import { z } from "zod";
 import {
   type Afirmativa,
@@ -77,8 +84,16 @@ function conferirCaso(missao: Missao, problemas: string[]): void {
     problemas.push(`${onde}: o motor recusa o fato (${erro.codigo}: ${erro.message})`);
     return;
   }
+  let procedimento: Procedimento | null = null;
+  if (caso.contexto) {
+    if (analise.conclusao !== "crime") {
+      problemas.push(`${onde}: tem contexto da fase policial, mas a conclusão não é crime`);
+      return;
+    }
+    procedimento = analisarProcedimento(analise, caso.contexto);
+  }
   for (const campo of [...caso.pede, ...caso.informa]) {
-    if (esperadoNoCampo(analise, campo) === null) {
+    if (esperadoNoCampo(analise, campo, procedimento) === null) {
       problemas.push(`${onde}: a etapa "${campo}" não chega a ser analisada neste fato`);
     }
   }

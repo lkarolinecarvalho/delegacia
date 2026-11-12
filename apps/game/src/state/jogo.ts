@@ -1,9 +1,15 @@
 import type { Afirmativa, Conteudo, Missao } from "@delegacia/content";
-import type { Analise } from "@delegacia/motor";
+import { type Analise, diasDoPrazo, type Procedimento } from "@delegacia/motor";
 import { atualizarEstudo, type Estudo, type Resultado } from "./estudo";
 
 /** Pontos por afirmativa certa fora do modo banca (parâmetro de balanceamento). */
 export const PONTOS_POR_AFIRMATIVA = 10;
+/** Pontos por inquérito relatado dentro do prazo. */
+export const PONTOS_POR_RELATORIO = 20;
+/** Pontos por caso do plantão livre. */
+export const PONTOS_DO_PLANTAO_LIVRE = 40;
+/** Plantões que o preso em flagrante passa na carceragem, até a audiência de custódia. */
+const PLANTOES_NA_CARCERAGEM = 1;
 
 /** O que fica gravado de um caso concluído: sempre a análise do motor (ADR-0002). */
 export interface RegistroDoCaso {
@@ -11,6 +17,8 @@ export interface RegistroDoCaso {
   /** Plantão em que o caso foi concluído. */
   readonly dia: number;
   readonly analise: Analise;
+  /** A fase policial, nos casos que a têm. */
+  readonly procedimento: Procedimento | null;
   /** Quantas vezes o jogador conferiu a ficha com erro antes de acertar. */
   readonly tentativasErradas: number;
 }
@@ -21,6 +29,10 @@ export interface EstadoDoJogo {
   readonly pontos: number;
   readonly concluidas: readonly string[];
   readonly registro: readonly RegistroDoCaso[];
+  /** Missões cujo inquérito já foi relatado e remetido. */
+  readonly relatados: readonly string[];
+  /** Casos resolvidos no plantão livre. */
+  readonly plantoesLivres: number;
   readonly estudo: Estudo;
   /** Quantas vezes cada afirmativa já apareceu. */
   readonly afirmativasVistas: Readonly<Record<string, number>>;
@@ -36,6 +48,8 @@ export function estadoInicial(): EstadoDoJogo {
     pontos: 0,
     concluidas: [],
     registro: [],
+    relatados: [],
+    plantoesLivres: 0,
     estudo: {},
     afirmativasVistas: {},
     temasVistos: [],
@@ -75,6 +89,7 @@ export function concluirMissao(
   missao: Missao,
   analise: Analise | null,
   tentativasErradas = 0,
+  procedimento: Procedimento | null = null,
 ): EstadoDoJogo {
   if (!missaoDisponivel(estado, missao)) {
     throw new Error(`A missão ${missao.id} não está disponível.`);
@@ -87,10 +102,23 @@ export function concluirMissao(
     pontos: estado.pontos + missao.recompensa.pontos,
     concluidas: [...estado.concluidas, missao.id],
     registro: analise
-      ? [...estado.registro, { missao: missao.id, dia: estado.dia, analise, tentativasErradas }]
+      ? [
+          ...estado.registro,
+          { missao: missao.id, dia: estado.dia, analise, procedimento, tentativasErradas },
+        ]
       : estado.registro,
     // Parâmetro provisório: cada caso concluído encerra o plantão (GDD, seção 10).
     dia: analise ? estado.dia + 1 : estado.dia,
+  };
+}
+
+/** Um caso do plantão livre: dá pontos e encerra o plantão, sem mexer na campanha. */
+export function concluirPlantaoLivre(estado: EstadoDoJogo): EstadoDoJogo {
+  return {
+    ...estado,
+    pontos: estado.pontos + PONTOS_DO_PLANTAO_LIVRE,
+    plantoesLivres: estado.plantoesLivres + 1,
+    dia: estado.dia + 1,
   };
 }
 
@@ -133,4 +161,57 @@ export function capituloAtual(estado: EstadoDoJogo, conteudo: Conteudo): number 
   const proxima = proximaMissao(estado, conteudo);
   if (proxima) return proxima.capitulo;
   return Math.max(1, ...conteudo.missoes.map((m) => m.capitulo));
+}
+
+/** Quem está na carceragem hoje: presos em flagrante à espera da audiência de custódia. */
+export function presosHoje(estado: EstadoDoJogo): readonly RegistroDoCaso[] {
+  return estado.registro.filter(
+    (r) => r.procedimento?.preso && estado.dia - r.dia <= PLANTOES_NA_CARCERAGEM,
+  );
+}
+
+export interface InqueritoNoQuadro {
+  readonly missao: string;
+  /** Plantão em que o inquérito foi instaurado. */
+  readonly aberto: number;
+  /** Último plantão do prazo (CPP, art. 10). */
+  readonly vence: number;
+  /** Plantões que faltam; negativo quando o prazo já passou. */
+  readonly restam: number;
+  readonly indiciadoPreso: boolean;
+  readonly relatado: boolean;
+}
+
+/** Os inquéritos da delegacia, com o prazo de cada um. Os mais urgentes vêm primeiro. */
+export function inqueritos(estado: EstadoDoJogo): InqueritoNoQuadro[] {
+  return estado.registro
+    .flatMap((r) => {
+      const dias = r.procedimento ? diasDoPrazo(r.procedimento.prazo) : null;
+      if (!r.procedimento || dias === null) return [];
+      const vence = r.dia + dias;
+      return [
+        {
+          missao: r.missao,
+          aberto: r.dia,
+          vence,
+          restam: vence - estado.dia,
+          indiciadoPreso: r.procedimento.preso,
+          relatado: estado.relatados.includes(r.missao),
+        },
+      ];
+    })
+    .sort((a, b) => Number(a.relatado) - Number(b.relatado) || a.vence - b.vence);
+}
+
+/** Relata e remete o inquérito. Dentro do prazo, vale pontos. */
+export function relatarInquerito(estado: EstadoDoJogo, missao: string): EstadoDoJogo {
+  const inquerito = inqueritos(estado).find((i) => i.missao === missao);
+  if (!inquerito || inquerito.relatado) {
+    throw new Error(`Não há inquérito em andamento para ${missao}.`);
+  }
+  return {
+    ...estado,
+    relatados: [...estado.relatados, missao],
+    pontos: estado.pontos + (inquerito.restam >= 0 ? PONTOS_POR_RELATORIO : 0),
+  };
 }

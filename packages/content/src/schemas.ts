@@ -1,4 +1,11 @@
-import { CAMPOS_DA_FICHA, ELEMENTOS, type Fato, TIPOS_PENAIS_IDS } from "@delegacia/motor";
+import {
+  CAMPOS_DA_FICHA,
+  CIRCUNSTANCIAS,
+  type Contexto,
+  ELEMENTOS,
+  type Fato,
+  TIPOS_PENAIS_IDS,
+} from "@delegacia/motor";
 import { z } from "zod";
 
 const id = z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, "id em minúsculas, com hífens");
@@ -16,6 +23,8 @@ export const npcSchema = z.strictObject({ id, nome: texto, papel: texto });
 export const capituloSchema = z.strictObject({
   numero: z.int().positive(),
   parte: texto,
+  /** Como o capítulo é chamado: "Capítulo" na Parte I, "Ronda" na Parte II. */
+  rotulo: texto,
   titulo: texto,
   resumo: texto,
 });
@@ -84,6 +93,21 @@ export const fatoSchema = z.strictObject({
     idade: z.int().min(0).max(120),
     embriaguez: z.enum(["nenhuma", "voluntaria", "culposa", "fortuita_completa"]),
   }),
+  circunstancias: z.array(z.enum(CIRCUNSTANCIAS)).optional(),
+  erroDeTipo: z.enum(["inevitavel", "evitavel"]).optional(),
+});
+
+/** O que ficou apurado sobre a fase policial do caso (capítulos 6 em diante). */
+export const contextoSchema = z.strictObject({
+  situacao: z.enum([
+    "cometendo",
+    "acabou_de_cometer",
+    "perseguido_logo_apos",
+    "encontrado_logo_depois",
+    "nenhuma",
+  ]),
+  vitimaManifestou: z.boolean(),
+  mesesDesdeAAutoria: z.int().min(0),
 });
 
 const campo = z.enum(CAMPOS_DA_FICHA);
@@ -93,6 +117,8 @@ export const casoSchema = z.strictObject({
   /** O que ficou apurado, em frases curtas. */
   linhas: z.array(texto).min(1).max(6),
   fato: fatoSchema,
+  /** A fase policial do caso. Sem ele, a ficha só tem as etapas da teoria do crime. */
+  contexto: contextoSchema.nullable().default(null),
   /** Etapas da ficha que o jogador responde. */
   pede: z.array(campo).min(1),
   /** Etapas que o mentor entrega preenchidas. */
@@ -137,3 +163,6 @@ export type Missao = z.infer<typeof missaoSchema>;
 // O fato validado pelo schema precisa servir de entrada para o motor.
 const _fatoDoSchemaServeAoMotor = (fato: z.infer<typeof fatoSchema>): Fato => fato;
 void _fatoDoSchemaServeAoMotor;
+const _contextoDoSchemaServeAoMotor = (contexto: z.infer<typeof contextoSchema>): Contexto =>
+  contexto;
+void _contextoDoSchemaServeAoMotor;

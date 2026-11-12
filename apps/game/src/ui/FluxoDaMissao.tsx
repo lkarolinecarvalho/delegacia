@@ -1,5 +1,10 @@
 import { type Caso, conteudo, type Missao } from "@delegacia/content";
-import { type Analise, analisarFato } from "@delegacia/motor";
+import {
+  type Analise,
+  analisarFato,
+  analisarProcedimento,
+  type Procedimento,
+} from "@delegacia/motor";
 import { useMemo, useState } from "react";
 import { selecionarAfirmativas } from "../orquestrador/afirmativas";
 import { trilhaDaAnalise } from "../orquestrador/ficha";
@@ -38,11 +43,17 @@ export function CartaoDoFato({ caso }: { caso: Caso }) {
 }
 
 /** A análise do motor, etapa por etapa: é o que fica registrado do caso. */
-export function Trilha({ analise }: { analise: Analise }) {
+export function Trilha({
+  analise,
+  procedimento = null,
+}: {
+  analise: Analise;
+  procedimento?: Procedimento | null;
+}) {
   return (
     <ol className="trilha">
-      {trilhaDaAnalise(analise).map((linha) => (
-        <li key={linha.etapa}>
+      {trilhaDaAnalise(analise, procedimento).map((linha) => (
+        <li key={linha.etapa} className={linha.final ? "trilha-final" : undefined}>
           <span className="trilha-etapa">{linha.etapa}</span>
           <span className="trilha-texto">{linha.texto}</span>
         </li>
@@ -53,6 +64,8 @@ export function Trilha({ analise }: { analise: Analise }) {
 
 interface Props {
   readonly missao: Missao;
+  /** Caso do plantão livre: dá pontos e encerra o plantão, sem avançar a campanha. */
+  readonly livre?: boolean;
   readonly aoFechar: () => void;
 }
 
@@ -61,9 +74,10 @@ interface Props {
  * desfecho. A missão é concluída ao chegar ao desfecho; fechar antes disso a deixa
  * para depois.
  */
-export function FluxoDaMissao({ missao, aoFechar }: Props) {
+export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   const verTema = useStore((s) => s.verTema);
   const concluir = useStore((s) => s.concluir);
+  const concluirLivre = useStore((s) => s.concluirLivre);
   // Fotografia do estado ao abrir a missão: as aulas e as afirmativas não mudam no meio.
   const [aulas] = useState(() =>
     aulasPendentes(useStore.getState().jogo, missao).flatMap(
@@ -74,6 +88,11 @@ export function FluxoDaMissao({ missao, aoFechar }: Props) {
     selecionarAfirmativas(missao, conteudo.afirmativas, useStore.getState().jogo),
   );
   const analise = useMemo(() => (missao.caso ? analisarFato(missao.caso.fato) : null), [missao]);
+  const procedimento = useMemo(
+    () =>
+      analise && missao.caso?.contexto ? analisarProcedimento(analise, missao.caso.contexto) : null,
+    [analise, missao],
+  );
 
   const passos = useMemo<Passo[]>(
     () => [
@@ -94,7 +113,8 @@ export function FluxoDaMissao({ missao, aoFechar }: Props) {
   const avancar = (erros = errosNaFicha) => {
     const proximo = passos[indice + 1];
     if (proximo === "desfecho") {
-      concluir(missao, analise, erros);
+      if (livre) concluirLivre();
+      else concluir(missao, analise, erros, procedimento);
       tocar("missao");
     } else {
       tocar("avanca");
@@ -177,6 +197,7 @@ export function FluxoDaMissao({ missao, aoFechar }: Props) {
           <FichaDeAnalise
             caso={missao.caso}
             analise={analise}
+            procedimento={procedimento}
             capitulo={missao.capitulo}
             aoAcertar={(erros) => {
               setErrosNaFicha(erros);
@@ -199,8 +220,18 @@ export function FluxoDaMissao({ missao, aoFechar }: Props) {
           {missao.caso && analise ? (
             <>
               <span className="etiqueta">Registrado no plantão</span>
-              <Trilha analise={analise} />
+              <Trilha analise={analise} procedimento={procedimento} />
               <p className="desfecho-texto">{missao.caso.desfecho}</p>
+              {procedimento?.preso && (
+                <p className="dica">
+                  O autor fica na carceragem até a audiência de custódia, em até 24 horas.
+                </p>
+              )}
+              {procedimento && procedimento.prazo !== "nao_se_aplica" && !livre && (
+                <p className="dica">
+                  O inquérito entrou no quadro da delegacia, com o prazo correndo.
+                </p>
+              )}
               <details className="rever-o-fato">
                 <summary>Regras aplicadas</summary>
                 <Regras ids={analise.regras} />

@@ -1,10 +1,11 @@
 import { conteudo, type Missao } from "@delegacia/content";
 import { useCallback, useState } from "react";
+import { missaoDoPlantaoLivre } from "../orquestrador/plantaoLivre";
 import { tocar } from "../som/sons";
-import { capituloAtual, proximaMissao } from "../state/jogo";
+import { capituloAtual, presosHoje, proximaMissao } from "../state/jogo";
 import { type Painel, useStore } from "../state/store";
 import { Cena } from "./Cena";
-import { Folha, Retrato } from "./comum";
+import { Folha, nomeDoCapitulo, Retrato } from "./comum";
 import { FluxoDaMissao } from "./FluxoDaMissao";
 import {
   IconeAlvo,
@@ -16,6 +17,7 @@ import {
   IconePasta,
 } from "./icones";
 import { PainelDaBiblioteca, PainelDeCasos, PainelDeConfig, PainelDeProgresso } from "./Paineis";
+import { PainelDoQuadro } from "./Quadro";
 
 const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva", "biblioteca", "carceragem"]);
 
@@ -24,6 +26,7 @@ const TITULOS: Readonly<Record<Exclude<Painel, "missao">, string>> = {
   biblioteca: "Biblioteca",
   progresso: "Progresso",
   config: "Configurações",
+  quadro: "Quadro da delegacia",
 };
 
 function Abertura({ aoComecar }: { aoComecar: () => void }) {
@@ -60,16 +63,17 @@ export function App() {
 
   // A missão aberta fica guardada: ao ser concluída, a "próxima" já é outra.
   const [missaoAberta, setMissaoAberta] = useState<Missao | null>(null);
+  const [livre, setLivre] = useState(false);
   const [aviso, setAviso] = useState<string | null>(null);
 
   const proxima = proximaMissao(jogo, conteudo);
   const capitulo = capituloAtual(jogo, conteudo);
-  const tituloDoCapitulo = conteudo.capitulos.find((c) => c.numero === capitulo)?.titulo;
   const salaDoDestino = conteudo.salas.find((s) => s.id === proxima?.sala);
 
   const fechar = useCallback(() => {
     fecharPainel();
     setMissaoAberta(null);
+    setLivre(false);
   }, [fecharPainel]);
 
   const aoTocarNaSala = () => {
@@ -85,10 +89,21 @@ export function App() {
       abrir("missao");
     } else if (id === "biblioteca") {
       abrir("biblioteca");
+    } else if (id === "carceragem") {
+      abrir("quadro");
     } else {
       const tocada = conteudo.salas.find((x) => x.id === id);
       setAviso(tocada ? `${tocada.nome}: ${tocada.descricao}` : null);
     }
+  };
+
+  /** Sorteia um caso do arquivo e o abre sem ajuda. */
+  const iniciarPlantaoLivre = () => {
+    const sorteado = missaoDoPlantaoLivre(jogo, conteudo, Math.random());
+    if (!sorteado) return;
+    setMissaoAberta(sorteado);
+    setLivre(true);
+    abrir("missao");
   };
 
   return (
@@ -98,6 +113,7 @@ export function App() {
         key={aberturaVista ? "jogo" : "abertura"}
         salaInicial={sala}
         destino={proxima?.sala ?? null}
+        presos={presosHoje(jogo).length}
         aoTocar={aoTocarNaSala}
         aoChegar={aoChegarNaSala}
       />
@@ -109,7 +125,7 @@ export function App() {
             <span className="hud-textos">
               <strong>Delegado(a) de Vila Serena</strong>
               <span>
-                Plantão {jogo.dia} · Cap. {capitulo}: {tituloDoCapitulo}
+                Plantão {jogo.dia} · {nomeDoCapitulo(capitulo)}
               </span>
             </span>
             <span className="hud-pontos">
@@ -135,7 +151,7 @@ export function App() {
             </span>
           ) : (
             <span>
-              Você concluiu tudo o que há nesta versão. Revise na <strong>Biblioteca</strong>.
+              Campanha em dia. Abra <strong>Casos</strong> e sorteie um plantão livre.
             </span>
           )}
         </div>
@@ -158,13 +174,23 @@ export function App() {
       </nav>
 
       {painel === "missao" && missaoAberta && (
-        <Folha titulo={missaoAberta.titulo} icone={<IconeDistintivo />} aoFechar={fechar}>
-          <FluxoDaMissao key={missaoAberta.id} missao={missaoAberta} aoFechar={fechar} />
+        <Folha
+          titulo={livre ? `Plantão livre: ${missaoAberta.titulo}` : missaoAberta.titulo}
+          icone={<IconeDistintivo />}
+          aoFechar={fechar}
+        >
+          <FluxoDaMissao
+            key={missaoAberta.id}
+            missao={missaoAberta}
+            livre={livre}
+            aoFechar={fechar}
+          />
         </Folha>
       )}
       {painel && painel !== "missao" && (
         <Folha titulo={TITULOS[painel]} aoFechar={fechar}>
-          {painel === "casos" && <PainelDeCasos />}
+          {painel === "casos" && <PainelDeCasos aoPlantaoLivre={iniciarPlantaoLivre} />}
+          {painel === "quadro" && <PainelDoQuadro />}
           {painel === "biblioteca" && <PainelDaBiblioteca />}
           {painel === "progresso" && <PainelDeProgresso />}
           {painel === "config" && <PainelDeConfig />}

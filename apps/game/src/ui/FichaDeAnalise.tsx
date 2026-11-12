@@ -4,11 +4,19 @@ import {
   type CampoDaFicha,
   compararFicha,
   esperadoNoCampo,
+  type Procedimento,
   type ResultadoDaFicha,
   tipoPenal,
 } from "@delegacia/motor";
 import { useMemo, useState } from "react";
-import { fichaDasRespostas, montarFicha, type ValorDaFicha } from "../orquestrador/ficha";
+import {
+  type EtapaDaFicha,
+  fichaDasRespostas,
+  montarFicha,
+  type Opcao,
+  previaDoErro,
+  type ValorDaFicha,
+} from "../orquestrador/ficha";
 import { tocar } from "../som/sons";
 import { Regras } from "./comum";
 
@@ -17,9 +25,70 @@ const TENTATIVAS_ATE_A_AJUDA = 2;
 
 type Respostas = Partial<Record<CampoDaFicha, ValorDaFicha>>;
 
+const semAcento = (texto: string) => texto.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+
+interface PropsDasOpcoes {
+  readonly etapa: EtapaDaFicha;
+  readonly marcada: ValorDaFicha | undefined;
+  readonly aoEscolher: (valor: ValorDaFicha) => void;
+}
+
+/** As opções de uma etapa. Na lista longa (o Código inteiro), com busca e por título. */
+function Opcoes({ etapa, marcada, aoEscolher }: PropsDasOpcoes) {
+  const [busca, setBusca] = useState("");
+  const termo = semAcento(busca.trim());
+  const visiveis = etapa.comBusca
+    ? etapa.opcoes.filter(
+        (o) =>
+          o.valor === marcada ||
+          termo === "" ||
+          semAcento(`${o.rotulo} ${o.detalhe ?? ""}`).includes(termo),
+      )
+    : etapa.opcoes;
+  const grupos = [...new Set(visiveis.map((o) => o.grupo))];
+  const botao = (opcao: Opcao) => {
+    const escolhida = marcada === opcao.valor;
+    return (
+      <button
+        key={String(opcao.valor)}
+        type="button"
+        className={escolhida ? "opcao opcao-marcada" : "opcao"}
+        aria-pressed={escolhida}
+        onClick={() => aoEscolher(opcao.valor)}
+      >
+        <strong>{opcao.rotulo}</strong>
+        {opcao.detalhe && <span>{opcao.detalhe}</span>}
+      </button>
+    );
+  };
+  return (
+    <div className={etapa.comBusca ? "opcoes opcoes-do-codigo" : "opcoes"}>
+      {etapa.comBusca && (
+        <input
+          type="search"
+          className="busca"
+          placeholder="Buscar no Código: nome, artigo ou verbo"
+          aria-label="Buscar no Código"
+          value={busca}
+          onChange={(e) => setBusca(e.target.value)}
+        />
+      )}
+      {grupos.map((grupo) => (
+        <div key={grupo ?? "sem-grupo"} className="opcoes-grupo">
+          {grupo && <span className="etiqueta">{grupo}</span>}
+          {visiveis.filter((o) => o.grupo === grupo).map(botao)}
+        </div>
+      ))}
+      {visiveis.length === 0 && <p className="suave">Nada encontrado no Código.</p>}
+    </div>
+  );
+}
+
 interface Props {
   readonly caso: Caso;
   readonly analise: Analise;
+  /** A fase policial do caso, quando ele a tem. */
+  readonly procedimento: Procedimento | null;
   readonly capitulo: number;
   /** A ficha bateu com a análise do motor. Recebe quantas conferências erraram antes. */
   readonly aoAcertar: (tentativasErradas: number) => void;
@@ -30,8 +99,11 @@ interface Props {
  * que a missão pede; a ficha é comparada com a análise do motor e nunca é gravada
  * (ADR-0002).
  */
-export function FichaDeAnalise({ caso, analise, capitulo, aoAcertar }: Props) {
-  const etapas = useMemo(() => montarFicha(caso, analise, capitulo), [caso, analise, capitulo]);
+export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcertar }: Props) {
+  const etapas = useMemo(
+    () => montarFicha(caso, analise, capitulo, procedimento),
+    [caso, analise, capitulo, procedimento],
+  );
   const [respostas, setRespostas] = useState<Respostas>({});
   const [resultado, setResultado] = useState<ResultadoDaFicha | null>(null);
   const [erros, setErros] = useState(0);
@@ -50,7 +122,7 @@ export function FichaDeAnalise({ caso, analise, capitulo, aoAcertar }: Props) {
   };
 
   const conferir = () => {
-    const comparacao = compararFicha(analise, fichaDasRespostas(respostas));
+    const comparacao = compararFicha(analise, fichaDasRespostas(respostas), procedimento);
     if (comparacao.correta) {
       tocar("acerto");
       aoAcertar(erros);
@@ -64,7 +136,7 @@ export function FichaDeAnalise({ caso, analise, capitulo, aoAcertar }: Props) {
   const mostrarResposta = () => {
     const certas: Respostas = {};
     for (const etapa of perguntas) {
-      const esperado = esperadoNoCampo(analise, etapa.campo);
+      const esperado = esperadoNoCampo(analise, etapa.campo, procedimento);
       if (typeof esperado === "string" || typeof esperado === "boolean") {
         certas[etapa.campo] = esperado;
       }
@@ -97,29 +169,26 @@ export function FichaDeAnalise({ caso, analise, capitulo, aoAcertar }: Props) {
           }
           const retorno = resultado?.campos.find((c) => c.campo === etapa.campo);
           const errada = retorno !== undefined && !retorno.correto;
+          const previa = errada
+            ? previaDoErro(etapa.campo, respostas[etapa.campo], procedimento)
+            : null;
           return (
             <li key={etapa.campo} className={errada ? "etapa etapa-errada" : "etapa"}>
               <span className="etapa-titulo">{etapa.titulo}</span>
               <p className="etapa-pergunta">{etapa.pergunta}</p>
-              <div className="opcoes">
-                {etapa.opcoes.map((opcao) => {
-                  const marcada = respostas[etapa.campo] === opcao.valor;
-                  return (
-                    <button
-                      key={String(opcao.valor)}
-                      type="button"
-                      className={marcada ? "opcao opcao-marcada" : "opcao"}
-                      aria-pressed={marcada}
-                      onClick={() => escolher(etapa.campo, opcao.valor)}
-                    >
-                      <strong>{opcao.rotulo}</strong>
-                      {opcao.detalhe && <span>{opcao.detalhe}</span>}
-                    </button>
-                  );
-                })}
-              </div>
+              <Opcoes
+                etapa={etapa}
+                marcada={respostas[etapa.campo]}
+                aoEscolher={(valor) => escolher(etapa.campo, valor)}
+              />
               {errada && (
                 <div className="retorno retorno-erro">
+                  {previa && (
+                    <p className="previa">
+                      <strong>Se fosse assim: </strong>
+                      {previa}
+                    </p>
+                  )}
                   <p>{caso.comentarios[etapa.campo] ?? "Releia o fato e a regra desta etapa."}</p>
                   <Regras ids={retorno.regras} />
                 </div>
