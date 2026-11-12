@@ -75,4 +75,3 @@ export function tocar(som: Som): void {
     oscilador.stop(agora + n.inicio + n.duracao + 0.02);
   }
 }
-
