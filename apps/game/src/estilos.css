@@ -1258,3 +1258,69 @@ ol {
     animation: none;
   }
 }
+
+/* Aula em balões: uma ideia por vez. */
+.aula-em-baloes {
+  display: grid;
+  gap: 10px;
+}
+
+.aula-titulo {
+  display: grid;
+  gap: 4px;
+}
+
+.aula-titulo h3 {
+  font-size: 17px;
+}
+
+.aula-progresso {
+  display: flex;
+  gap: 4px;
+}
+
+.aula-progresso li {
+  flex: 1;
+  max-width: 34px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--cartao-2);
+  border: 1px solid var(--borda);
+}
+
+.aula-progresso .feito {
+  background: var(--verde);
+  border-color: var(--verde);
+}
+
+.aula-progresso .atual {
+  background: var(--marinho);
+  border-color: var(--marinho);
+}
+
+.aula-em-baloes .balao p {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.balao-etiqueta {
+  margin-bottom: 2px;
+  color: #9a6a00;
+}
+
+.aula-em-baloes .fala {
+  animation: surge 220ms ease-out;
+}
+
+@keyframes surge {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aula-em-baloes .fala {
+    animation: none;
+  }
+}

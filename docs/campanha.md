@@ -7,7 +7,7 @@ do princípio de que o jogador **não sabe nada** de Direito Penal (ADR-0003).
 ## Princípios da progressão
 
 1. **Cada conceito novo tem uma aula** da Dra. Helena antes do caso que o usa.
-   Sequência de toda missão: contexto → explicação → exemplo → caso → ficha → desfecho.
+   Sequência de toda missão: contexto → aula em balões → fixação → caso → ficha → desfecho.
 2. **A ficha cresce com o jogador.** Cada capítulo da Parte I acrescenta uma etapa da
    análise. As etapas ainda não ensinadas não aparecem; as já ensinadas e fora do foco
    do caso vêm preenchidas.

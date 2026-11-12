@@ -7,21 +7,23 @@ import {
 } from "@delegacia/motor";
 import { useMemo, useState } from "react";
 import { selecionarAfirmativas } from "../orquestrador/afirmativas";
+import { perguntasDeFixacao } from "../orquestrador/aula";
 import { trilhaDaAnalise } from "../orquestrador/ficha";
 import { tocar } from "../som/sons";
 import { aulasPendentes } from "../state/jogo";
 import { useStore } from "../state/store";
 import { Afirmativas } from "./Afirmativas";
-import { Aula } from "./Aula";
+import { AulaEmBaloes, Fixacao } from "./AulaEmBaloes";
 import { Fala, Regras } from "./comum";
 import { FichaDeAnalise } from "./FichaDeAnalise";
 import { IconeEstrela } from "./icones";
 
-type Passo = "conversa" | "aulas" | "fato" | "ficha" | "afirmativas" | "desfecho";
+type Passo = "conversa" | "aulas" | "fixacao" | "fato" | "ficha" | "afirmativas" | "desfecho";
 
 const NOMES_DOS_PASSOS: Readonly<Record<Passo, string>> = {
   conversa: "Conversa",
   aulas: "Aula",
+  fixacao: "Fixação",
   fato: "O fato",
   ficha: "Análise",
   afirmativas: "Afirmativas",
@@ -87,6 +89,7 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   const [afirmativas] = useState(() =>
     selecionarAfirmativas(missao, conteudo.afirmativas, useStore.getState().jogo),
   );
+  const fixacao = useMemo(() => perguntasDeFixacao(aulas), [aulas]);
   const analise = useMemo(() => (missao.caso ? analisarFato(missao.caso.fato) : null), [missao]);
   const procedimento = useMemo(
     () =>
@@ -98,15 +101,15 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
     () => [
       "conversa",
       ...(aulas.length > 0 ? (["aulas"] as const) : []),
+      ...(fixacao.length > 0 ? (["fixacao"] as const) : []),
       ...(missao.caso ? (["fato", "ficha"] as const) : []),
       ...(missao.caso && afirmativas.length > 0 ? (["afirmativas"] as const) : []),
       "desfecho",
     ],
-    [aulas, afirmativas, missao],
+    [aulas, fixacao, afirmativas, missao],
   );
   const [indice, setIndice] = useState(0);
   const [fala, setFala] = useState(0);
-  const [aula, setAula] = useState(0);
   const [errosNaFicha, setErrosNaFicha] = useState(0);
   const passo = passos[indice] ?? "desfecho";
 
@@ -123,7 +126,6 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   };
 
   const falaAtual = missao.dialogo[fala];
-  const aulaAtual = aulas[aula];
 
   return (
     <div className="fluxo">
@@ -159,22 +161,11 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
         </>
       )}
 
-      {passo === "aulas" && aulaAtual && (
-        <Aula
-          key={aulaAtual.id}
-          tema={aulaAtual}
-          rotulo={aula + 1 < aulas.length ? "Próxima aula" : "Entendi"}
-          aoContinuar={() => {
-            verTema(aulaAtual.id);
-            if (aula + 1 < aulas.length) {
-              tocar("avanca");
-              setAula(aula + 1);
-            } else {
-              avancar();
-            }
-          }}
-        />
+      {passo === "aulas" && (
+        <AulaEmBaloes temas={aulas} aoVerTema={verTema} aoTerminar={() => avancar()} />
       )}
+
+      {passo === "fixacao" && <Fixacao perguntas={fixacao} aoTerminar={() => avancar()} />}
 
       {passo === "fato" && missao.caso && (
         <>

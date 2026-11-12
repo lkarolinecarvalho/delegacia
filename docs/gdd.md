@@ -70,7 +70,9 @@ da sala, com a missão que espera ali (se houver) e o botão para voltar ao mapa
 
 1. **Ir até a sala** indicada pelo aviso de próximo destino. A tela mostra a sala por
    dentro, e o cartão dela traz o botão para começar.
-2. **Aula** (só na primeira vez de um conceito): cartões curtos da Dra. Helena.
+2. **Aula** (só na primeira vez de um conceito): a Dra. Helena fala em balões, uma ideia
+   por vez, e o jogador vai passando. Sem texto corrido.
+   Em seguida vem a **fixação**: as perguntas de Certo ou Errado da aula, uma por vez.
 3. **Ouvir:** até três falas curtas.
 4. **O fato apurado:** o cartão do caso, com o que ficou provado.
 5. **A ficha de análise:** o jogador responde só as etapas já ensinadas; as demais vêm
