@@ -6,6 +6,7 @@ import type {
   Culpabilidade,
   Excludente,
   Fato,
+  Figura,
   Forma,
   Justificante,
   MotivoDaAtipicidade,
@@ -99,6 +100,7 @@ function atipico(
       tipico: false,
       tipo: tipo?.id ?? null,
       motivoDaAtipicidade: motivo,
+      figura: null,
       forma: null,
       excludente: null,
       culpabilidade: null,
@@ -128,19 +130,36 @@ export function analisarFato(fato: Fato): Analise {
   if (fato.elementoSubjetivo === "nenhum") {
     return atipico("sem_dolo_nem_culpa", tipo, ["R-CULPA-03"]);
   }
-  const culposo = fato.elementoSubjetivo === "culpa";
+  // R-ERRO-01: o erro de tipo inevitável exclui o dolo e a culpa.
+  if (fato.erroDeTipo === "inevitavel") return atipico("erro_de_tipo", tipo, ["R-ERRO-01"]);
+  // R-ERRO-02: o evitável exclui o dolo, mas permite a punição por culpa, se prevista.
+  const porErroEvitavel = fato.erroDeTipo === "evitavel";
+  const culposo = fato.elementoSubjetivo === "culpa" || porErroEvitavel;
   // R-CULPA-02: forma culposa só quando a lei prevê.
   if (culposo && !tipo.admiteCulpa) {
-    return atipico("culpa_sem_previsao", tipo, ["R-CULPA-01", "R-CULPA-02", tipo.regra]);
+    return atipico("culpa_sem_previsao", tipo, [
+      ...(porErroEvitavel ? ["R-ERRO-02"] : []),
+      "R-CULPA-01",
+      "R-CULPA-02",
+      tipo.regra,
+    ]);
   }
 
   // R-ITER-03: sem início de execução, só há cogitação ou atos preparatórios.
   if (!fato.execucao.iniciada) return atipico("atos_preparatorios", tipo, ["R-ITER-03"]);
 
+  // R-QUAL-01: basta uma circunstância qualificadora; a forma culposa não se qualifica.
+  const qualificadoras = tipo.qualificado?.circunstancias ?? [];
+  const qualificado =
+    !culposo && (fato.circunstancias ?? []).some((c) => qualificadoras.includes(c));
+  const figura: Figura = qualificado ? "qualificado" : "simples";
+
   const regrasDaTipicidade = [
     "R-TIP-01",
     tipo.regra,
+    ...(qualificado && tipo.qualificado ? ["R-QUAL-01", tipo.qualificado.regra] : []),
     ...(porEspecialidade ? ["R-TIP-02"] : []),
+    ...(porErroEvitavel ? ["R-ERRO-02"] : []),
     culposo ? "R-CULPA-01" : "R-DOLO-01",
   ];
 
@@ -172,7 +191,7 @@ export function analisarFato(fato: Fato): Analise {
     { etapa: "tipicidade", resultado: tipo.id, regras: regrasDaTipicidade },
     { etapa: "forma", resultado: forma, regras: regrasDaForma },
   ];
-  const base = { tipico: true, tipo: tipo.id, motivoDaAtipicidade: null, forma } as const;
+  const base = { tipico: true, tipo: tipo.id, motivoDaAtipicidade: null, figura, forma } as const;
 
   // 3. Ilicitude --------------------------------------------------------------------
   let excludente: Excludente = "nenhuma";
