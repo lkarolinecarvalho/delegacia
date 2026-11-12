@@ -117,6 +117,18 @@ ol {
   aspect-ratio: 390 / 844;
 }
 
+.cena-caixa {
+  transform-origin: 0 0;
+  transition: transform 520ms ease-in-out;
+}
+
+/* De dentro da sala, somem as placas e as salas deixam de ser tocáveis. */
+.cena-de-dentro .placa,
+.cena-de-dentro .sala-area {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .cena-desenho {
   position: absolute;
   inset: 0;
@@ -140,6 +152,7 @@ ol {
 
 .placa {
   position: absolute;
+  transition: opacity 250ms;
   transform: translate(-50%, -100%);
   padding: 1px 7px;
   border: 2px solid var(--contorno);
@@ -1177,4 +1190,43 @@ ol {
   background: var(--vermelho);
   color: #fff;
   font-size: 10px;
+}
+
+/* O cartão da sala, na visão de dentro. */
+.cartao-da-sala {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  right: 8px;
+  bottom: calc(76px + env(safe-area-inset-bottom));
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border: 3px solid var(--contorno);
+  border-radius: 18px;
+  background: var(--papel);
+  box-shadow: 0 5px 0 rgb(20 28 40 / 30%);
+}
+
+.cartao-da-sala h2 {
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--marinho-escuro);
+}
+
+.cartao-da-sala p {
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.cartao-da-sala .botao {
+  margin-top: 2px;
+}
+
+.cartao-da-sala-nada {
+  padding: 8px 10px;
+  border: 2px dashed var(--borda);
+  border-radius: 12px;
+  color: var(--texto-suave);
+  text-align: center;
 }

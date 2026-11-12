@@ -224,7 +224,7 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
               <p className="desfecho-texto">{missao.caso.desfecho}</p>
               {procedimento?.preso && (
                 <p className="dica">
-                  O autor fica na carceragem até a audiência de custódia, em até 24 horas.
+                  O autor fica preso até a audiência de custódia, em até 24 horas.
                 </p>
               )}
               {procedimento && procedimento.prazo !== "nao_se_aplica" && !livre && (

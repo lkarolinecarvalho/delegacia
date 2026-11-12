@@ -7,12 +7,7 @@
   {
     "id": "cartorio",
     "nome": "Cartório",
-    "descricao": "A mesa do escrivão: autos, termos e os casos do plantão."
-  },
-  {
-    "id": "carceragem",
-    "nome": "Carceragem",
-    "descricao": "Onde ficam os presos em flagrante. Abre com o capítulo do flagrante."
+    "descricao": "A mesa do escrivão: autos, termos e o quadro de presos e de prazos."
   },
   {
     "id": "gabinete",
@@ -23,10 +18,5 @@
     "id": "oitiva",
     "nome": "Sala de oitiva",
     "descricao": "Onde se ouvem vítimas, testemunhas e conduzidos."
-  },
-  {
-    "id": "biblioteca",
-    "nome": "Biblioteca",
-    "descricao": "Teoria, Código, Revisão e Progresso."
   }
 ]

@@ -2,7 +2,7 @@ import { conteudo, type Missao } from "@delegacia/content";
 import { useCallback, useState } from "react";
 import { missaoDoPlantaoLivre } from "../orquestrador/plantaoLivre";
 import { tocar } from "../som/sons";
-import { capituloAtual, inqueritos, presosHoje, proximaMissao } from "../state/jogo";
+import { capituloAtual, inqueritos, proximaMissao } from "../state/jogo";
 import { type Painel, useStore } from "../state/store";
 import { Cena } from "./Cena";
 import { Folha, nomeDoCapitulo, Retrato } from "./comum";
@@ -19,10 +19,12 @@ import {
 import { PainelDaBiblioteca, PainelDeCasos, PainelDeConfig, PainelDeProgresso } from "./Paineis";
 import { PainelDoQuadro } from "./Quadro";
 
-/** Com este tanto de plantões ou menos, o inquérito vira aviso na placa da carceragem. */
+/** Com este tanto de plantões ou menos, o inquérito vira aviso na placa do cartório. */
 const PRAZO_CURTO = 3;
 
-const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva", "biblioteca", "carceragem"]);
+const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva"]);
+/** A sala em que fica o quadro de presos e de prazos. */
+const SALA_DO_QUADRO = "cartorio";
 
 const TITULOS: Readonly<Record<Exclude<Painel, "missao">, string>> = {
   casos: "Casos",
@@ -67,7 +69,8 @@ export function App() {
   // A missão aberta fica guardada: ao ser concluída, a "próxima" já é outra.
   const [missaoAberta, setMissaoAberta] = useState<Missao | null>(null);
   const [livre, setLivre] = useState(false);
-  const [aviso, setAviso] = useState<string | null>(null);
+  // Sala vista de dentro. Sem ela, a tela mostra o mapa da delegacia.
+  const [dentro, setDentro] = useState<string | null>(null);
 
   const proxima = proximaMissao(jogo, conteudo);
   const capitulo = capituloAtual(jogo, conteudo);
@@ -79,25 +82,24 @@ export function App() {
     setLivre(false);
   }, [fecharPainel]);
 
-  const aoTocarNaSala = () => {
-    tocar("toque");
-    setAviso(null);
-  };
+  const prazosCurtos = inqueritos(jogo).filter(
+    (i) => !i.relatado && i.restam <= PRAZO_CURTO,
+  ).length;
+  // Recomeçar o jogo volta ao mapa.
+  const foco = aberturaVista ? dentro : null;
+  const salaEmFoco = conteudo.salas.find((x) => x.id === foco);
+  const missaoDaSala = proxima && proxima.sala === foco ? proxima : null;
 
-  /** O avatar chegou: abre a missão da sala, a Biblioteca ou só diz onde ele está. */
+  /** O avatar chegou: a tela passa a mostrar a sala por dentro. */
   const aoChegarNaSala = (id: string) => {
     irPara(id);
-    if (proxima && id === proxima.sala) {
-      setMissaoAberta(proxima);
-      abrir("missao");
-    } else if (id === "biblioteca") {
-      abrir("biblioteca");
-    } else if (id === "carceragem") {
-      abrir("quadro");
-    } else {
-      const tocada = conteudo.salas.find((x) => x.id === id);
-      setAviso(tocada ? `${tocada.nome}: ${tocada.descricao}` : null);
-    }
+    setDentro(id);
+  };
+
+  const comecarMissao = (missao: Missao) => {
+    tocar("avanca");
+    setMissaoAberta(missao);
+    abrir("missao");
   };
 
   /** Sorteia um caso do arquivo e o abre sem ajuda. */
@@ -116,9 +118,9 @@ export function App() {
         key={aberturaVista ? "jogo" : "abertura"}
         salaInicial={sala}
         destino={proxima?.sala ?? null}
-        presos={presosHoje(jogo).length}
-        prazosCurtos={inqueritos(jogo).filter((i) => !i.relatado && i.restam <= PRAZO_CURTO).length}
-        aoTocar={aoTocarNaSala}
+        foco={foco}
+        prazosCurtos={prazosCurtos}
+        aoTocar={() => tocar("toque")}
         aoChegar={aoChegarNaSala}
       />
 
@@ -157,8 +159,41 @@ export function App() {
             </span>
           )}
         </div>
-        {aviso && <p className="aviso">{aviso}</p>}
       </header>
+
+      {salaEmFoco && !painel && (
+        <section className="cartao-da-sala" aria-label={salaEmFoco.nome}>
+          <h2>{salaEmFoco.nome}</h2>
+          <p className="suave">{salaEmFoco.descricao}</p>
+          {missaoDaSala ? (
+            <button
+              type="button"
+              className="botao botao-principal"
+              onClick={() => comecarMissao(missaoDaSala)}
+            >
+              {missaoDaSala.caso ? "Atender" : "Conversar"}: {missaoDaSala.titulo}
+            </button>
+          ) : (
+            <p className="cartao-da-sala-nada">Nada à sua espera aqui agora.</p>
+          )}
+          {salaEmFoco.id === SALA_DO_QUADRO && (
+            <button type="button" className="botao botao-discreto" onClick={() => abrir("quadro")}>
+              Quadro de presos e prazos
+              {prazosCurtos > 0 && <span className="placa-conta">{prazosCurtos}</span>}
+            </button>
+          )}
+          <button
+            type="button"
+            className="botao botao-discreto"
+            onClick={() => {
+              tocar("toque");
+              setDentro(null);
+            }}
+          >
+            Voltar ao mapa
+          </button>
+        </section>
+      )}
 
       <nav className="atalhos" aria-label="Atalhos">
         <button type="button" onClick={() => abrir("casos")}>

@@ -13,7 +13,7 @@
 ## ADR-0001 — Stack: a do cidade-contabil, sem Phaser
 
 **Contexto.** O cidade-contabil usa Phaser para um mapa de cidade com câmera e
-caminhada livre. Aqui o cenário é um prédio térreo com seis salas, o pátio e a rua, e
+caminhada livre. Aqui o cenário é um prédio térreo com quatro salas, o pátio e a rua, e
 cabe inteiro na tela.
 
 **Decisão.**

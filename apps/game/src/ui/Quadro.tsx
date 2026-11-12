@@ -9,7 +9,7 @@ const tituloDaMissao = (id: string) => conteudo.missoes.find((m) => m.id === id)
 const plantoes = (n: number) => `${n} ${n === 1 ? "plantão" : "plantões"}`;
 
 /**
- * O quadro da delegacia, na carceragem: quem está preso hoje e os inquéritos em
+ * O quadro da delegacia, no cartório: quem está preso hoje e os inquéritos em
  * andamento, com o prazo de cada um (CPP, art. 10). No jogo, um plantão vale um dia.
  */
 export function PainelDoQuadro() {
@@ -24,7 +24,7 @@ export function PainelDoQuadro() {
 
   return (
     <div className="quadro">
-      <h4>Carceragem</h4>
+      <h4>Presos hoje</h4>
       {presos.length === 0 ? (
         <p className="vazio">Ninguém preso hoje.</p>
       ) : (

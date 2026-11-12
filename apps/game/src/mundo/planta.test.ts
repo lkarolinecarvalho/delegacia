@@ -1,6 +1,6 @@
 import { conteudo } from "@delegacia/content";
 import { describe, expect, it } from "vitest";
-import { CENA, desenharCena, lugarDaSala, naTela } from "../arte/delegacia";
+import { CENA, desenharCena, focoDaSala, lugarDaSala, naTela } from "../arte/delegacia";
 import {
   avancar,
   type NaGrade,
@@ -63,12 +63,17 @@ describe("planta da delegacia", () => {
     }
   });
 
-  it("o avatar para dentro da sala (a carceragem é vista de fora da grade)", () => {
+  it("o avatar para dentro da sala", () => {
     for (const id of salas) {
       const no = NOS[noDaSala(id)];
       if (!no) throw new Error(id);
-      expect(salaNoPonto(no)).toBe(id === "carceragem" ? null : id);
+      expect(salaNoPonto(no)).toBe(id);
     }
+  });
+
+  it("o mapa tem as quatro salas, e só elas", () => {
+    expect(Object.keys(SALAS).sort()).toEqual(["cartorio", "gabinete", "oitiva", "recepcao"]);
+    expect(conteudo.salas.map((x) => x.id).sort()).toEqual(Object.keys(SALAS).sort());
   });
 });
 
@@ -88,7 +93,6 @@ describe("rotas", () => {
       NOS.entrada,
       NOS.balcao,
       NOS.saguao,
-      NOS["frente-do-cartorio"],
       NOS.corredor,
       NOS["frente-do-gabinete"],
       NOS.gabinete,
@@ -131,6 +135,21 @@ describe("cena", () => {
       expect(p.x).toBeLessThanOrEqual(CENA.largura);
       expect(p.y).toBeGreaterThan(140);
       expect(p.y).toBeLessThan(CENA.altura - 90);
+    }
+  });
+});
+
+describe("visão de dentro da sala", () => {
+  it("aproxima cada sala sem passar da largura da tela", () => {
+    for (const id of salas) {
+      const { centro, escala } = focoDaSala(id);
+      expect(escala, id).toBeGreaterThan(1.3);
+      expect(escala, id).toBeLessThanOrEqual(2.4);
+      // O ponto em que o avatar para fica dentro da tela depois da aproximação.
+      const avatar = naTela(NOS[noDaSala(id)] ?? [0, 0]);
+      const x = CENA.largura / 2 + (avatar.x - centro.x) * escala;
+      expect(x, id).toBeGreaterThan(20);
+      expect(x, id).toBeLessThan(CENA.largura - 20);
     }
   });
 });

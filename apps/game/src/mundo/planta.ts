@@ -22,26 +22,23 @@ export interface SalaNaPlanta {
 
 /** O retângulo de cada sala, pelo id de `packages/content/data/salas.json`. */
 export const SALAS: Readonly<Record<string, SalaNaPlanta>> = {
-  gabinete: { x0: 0, y0: 0, x1: 8, y1: 8.5, no: "gabinete" },
-  biblioteca: { x0: 8, y0: 0, x1: 14.5, y1: 8.5, no: "biblioteca" },
-  carceragem: { x0: 14.5, y0: 0, x1: 19, y1: 8.5, no: "carceragem" },
-  cartorio: { x0: 0, y0: 10.5, x1: 8, y1: 16.25, no: "cartorio" },
-  oitiva: { x0: 0, y0: 16.25, x1: 8, y1: 22, no: "oitiva" },
-  recepcao: { x0: 8, y0: 10.5, x1: 19, y1: 22, no: "recepcao" },
+  gabinete: { x0: 0, y0: 0, x1: 10, y1: 9, no: "gabinete" },
+  cartorio: { x0: 10, y0: 0, x1: 19, y1: 9, no: "cartorio" },
+  oitiva: { x0: 0, y0: 11, x1: 8, y1: 22, no: "oitiva" },
+  recepcao: { x0: 8, y0: 11, x1: 19, y1: 22, no: "recepcao" },
 };
 
-/** Faixa de circulação entre as salas do fundo e as da lateral: faz parte do saguão. */
-export const CORREDOR = { x0: 0, y0: 8.5, x1: 19, y1: 10.5 } as const;
+/** Faixa de circulação entre as salas do fundo e as da frente: faz parte do saguão. */
+export const CORREDOR = { x0: 0, y0: 9, x1: 19, y1: 11 } as const;
 
 /** Eixos por onde o avatar anda. */
-const EIXO_DO_CORREDOR = 9.5;
+const EIXO_DO_CORREDOR = 10;
 const EIXO_DO_SAGUAO = 9.5;
 const EIXO_DA_ENTRADA = 17.5;
 export const PORTAS = {
-  gabinete: 4,
-  biblioteca: 11.2,
-  cartorio: 13.4,
-  oitiva: 19.4,
+  gabinete: 5,
+  cartorio: 14.5,
+  oitiva: EIXO_DA_ENTRADA,
   entrada: EIXO_DA_ENTRADA,
 } as const;
 /** Meia largura do vão de uma porta. */
@@ -55,18 +52,14 @@ export const NOS: Readonly<Record<string, NaGrade>> = {
   patio: [24, EIXO_DA_ENTRADA],
   entrada: [18.4, EIXO_DA_ENTRADA],
   balcao: [15.6, EIXO_DA_ENTRADA],
-  recepcao: [15.6, 13.6],
+  recepcao: [15.6, 14.2],
   saguao: [EIXO_DO_SAGUAO, EIXO_DA_ENTRADA],
-  "frente-da-oitiva": [EIXO_DO_SAGUAO, PORTAS.oitiva],
   oitiva: [5.4, PORTAS.oitiva],
-  "frente-do-cartorio": [EIXO_DO_SAGUAO, PORTAS.cartorio],
-  cartorio: [5.4, PORTAS.cartorio],
   corredor: [EIXO_DO_SAGUAO, EIXO_DO_CORREDOR],
   "frente-do-gabinete": [PORTAS.gabinete, EIXO_DO_CORREDOR],
-  gabinete: [PORTAS.gabinete, 6.2],
-  "frente-da-biblioteca": [PORTAS.biblioteca, EIXO_DO_CORREDOR],
-  biblioteca: [PORTAS.biblioteca, 6.2],
-  carceragem: [16.7, EIXO_DO_CORREDOR],
+  gabinete: [PORTAS.gabinete, 6.9],
+  "frente-do-cartorio": [PORTAS.cartorio, EIXO_DO_CORREDOR],
+  cartorio: [PORTAS.cartorio, 6.9],
 };
 
 const TRECHOS: readonly (readonly [string, string])[] = [
@@ -74,16 +67,12 @@ const TRECHOS: readonly (readonly [string, string])[] = [
   ["entrada", "balcao"],
   ["balcao", "recepcao"],
   ["balcao", "saguao"],
-  ["saguao", "frente-da-oitiva"],
-  ["frente-da-oitiva", "oitiva"],
-  ["saguao", "frente-do-cartorio"],
-  ["frente-do-cartorio", "cartorio"],
-  ["frente-do-cartorio", "corredor"],
+  ["saguao", "oitiva"],
+  ["saguao", "corredor"],
   ["corredor", "frente-do-gabinete"],
   ["frente-do-gabinete", "gabinete"],
-  ["corredor", "frente-da-biblioteca"],
-  ["frente-da-biblioteca", "biblioteca"],
-  ["frente-da-biblioteca", "carceragem"],
+  ["corredor", "frente-do-cartorio"],
+  ["frente-do-cartorio", "cartorio"],
 ];
 
 export const TRECHOS_NA_GRADE: readonly (readonly [NaGrade, NaGrade])[] = TRECHOS.map(([a, b]) => [
@@ -180,21 +169,18 @@ const p = (eixo: "x" | "y", em: number, de: number, ate: number, altura = BAIXA)
 
 /**
  * Paredes baixas (o prédio é visto em corte), já com os vãos das portas. As duas
- * paredes altas do fundo e a grade da carceragem são desenhadas à parte.
+ * paredes altas do fundo são desenhadas à parte.
  */
 export const PAREDES: readonly Parede[] = [
-  // Entre as salas do fundo.
-  p("x", 8, 0, 8.5),
-  p("x", 14.5, 0, 8.5, 1.6),
-  // Frente das salas do fundo, com as portas do gabinete e da biblioteca.
-  p("y", 8.5, 0, PORTAS.gabinete - MEIO_VAO),
-  p("y", 8.5, PORTAS.gabinete + MEIO_VAO, PORTAS.biblioteca - MEIO_VAO),
-  p("y", 8.5, PORTAS.biblioteca + MEIO_VAO, 14.5),
-  // Cartório e sala de oitiva.
-  p("y", 10.5, 0, 8),
-  p("y", 16.25, 0, 8),
-  p("x", 8, 10.5, PORTAS.cartorio - MEIO_VAO),
-  p("x", 8, PORTAS.cartorio + MEIO_VAO, PORTAS.oitiva - MEIO_VAO),
+  // Entre o gabinete e o cartório.
+  p("x", 10, 0, 9),
+  // Frente das salas do fundo, com as duas portas.
+  p("y", 9, 0, PORTAS.gabinete - MEIO_VAO),
+  p("y", 9, PORTAS.gabinete + MEIO_VAO, PORTAS.cartorio - MEIO_VAO),
+  p("y", 9, PORTAS.cartorio + MEIO_VAO, 19),
+  // Sala de oitiva.
+  p("y", 11, 0, 8),
+  p("x", 8, 11, PORTAS.oitiva - MEIO_VAO),
   p("x", 8, PORTAS.oitiva + MEIO_VAO, 22),
   // Fachadas da frente, com a entrada para o pátio.
   p("y", 22, 0, 19, DE_FORA),

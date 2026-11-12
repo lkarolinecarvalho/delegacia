@@ -25,7 +25,7 @@ revisão jurídica. Ainda sem persistência: recarregar a página recomeça.
 
 **Estado:** entregue, aguardando validação. Motor: ação penal, instauração, rito,
 flagrante, fiança e prazo do inquérito; erro de tipo. Jogo: 16 casos, a prévia do erro,
-o quadro da delegacia (presos do dia e inquéritos com prazo) e o preso na cela. Ficaram
+e o quadro da delegacia (presos do dia e inquéritos com prazo), no cartório. Ficaram
 de fora: concurso de crimes, erro de proibição, medidas protetivas como mecânica e
 prazos de leis especiais.
 

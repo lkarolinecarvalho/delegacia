@@ -26,7 +26,7 @@ describe("conteúdo do jogo", () => {
   it("todo o conteúdo valida", () => {
     expect(conteudo.missoes.length).toBe(44);
     expect(conteudo.afirmativas.length).toBeGreaterThanOrEqual(110);
-    expect(conteudo.salas).toHaveLength(6);
+    expect(conteudo.salas).toHaveLength(4);
   });
 
   it("toda missão tem todos os requisitos antes dela e a campanha é uma fila única", () => {

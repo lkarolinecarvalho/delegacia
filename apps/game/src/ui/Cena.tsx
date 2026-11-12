@@ -4,6 +4,7 @@ import {
   CENA,
   desenharAvatar,
   desenharCena,
+  focoDaSala,
   lugarDaSala,
   naTela,
   PLACA_DO_FORUM,
@@ -38,9 +39,9 @@ interface Props {
   readonly salaInicial: string | null;
   /** Sala do próximo passo da campanha, marcada com o indicador. */
   readonly destino: string | null;
-  /** Quantos presos há na carceragem hoje: com algum, a cela aparece ocupada. */
-  readonly presos: number;
-  /** Inquéritos com o prazo no fim: viram um aviso na placa da carceragem. */
+  /** Sala vista de dentro: a cena se aproxima dela. `null` mostra o mapa inteiro. */
+  readonly foco: string | null;
+  /** Inquéritos com o prazo no fim: viram um aviso na placa do cartório. */
   readonly prazosCurtos: number;
   /** O jogador tocou numa sala: o avatar começa a andar até ela. */
   readonly aoTocar: (sala: string) => void;
@@ -53,7 +54,7 @@ interface Props {
  * caminhos da planta até a sala tocada. O avatar entra na ordem de desenho pela
  * profundidade: passa atrás do que está à frente dele.
  */
-export function Cena({ salaInicial, destino, presos, prazosCurtos, aoTocar, aoChegar }: Props) {
+export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoChegar }: Props) {
   const desenho = useMemo(() => {
     const cena = desenharCena();
     const objetos = cena.objetos.map((o) => `<g data-p="${o.p}">${o.svg}</g>`).join("");
@@ -159,15 +160,19 @@ export function Cena({ salaInicial, destino, presos, prazosCurtos, aoTocar, aoCh
     };
   }, []);
 
-  useEffect(() => {
-    svg.current
-      ?.querySelector("[data-preso]")
-      ?.setAttribute("display", presos > 0 ? "inline" : "none");
-  }, [presos]);
+  // De dentro da sala: aproxima a cena até a sala ocupar a largura da tela, um pouco
+  // acima do meio, para sobrar espaço para o cartão da sala.
+  const aproximacao = useMemo(() => {
+    if (!foco) return undefined;
+    const { centro, escala } = focoDaSala(foco);
+    const x = (0.5 - (escala * centro.x) / CENA.largura) * 100;
+    const y = (0.4 - (escala * centro.y) / CENA.altura) * 100;
+    return { transform: `translate(${x}%, ${y}%) scale(${escala})` };
+  }, [foco]);
 
   return (
     <div className="cena">
-      <div className="cena-caixa">
+      <div className={foco ? "cena-caixa cena-de-dentro" : "cena-caixa"} style={aproximacao}>
         <svg
           ref={svg}
           className="cena-desenho"
@@ -200,7 +205,7 @@ export function Cena({ salaInicial, destino, presos, prazosCurtos, aoTocar, aoCh
           >
             {s.id === destino && <span className="placa-aviso">!</span>}
             {s.nome}
-            {s.id === "carceragem" && prazosCurtos > 0 && (
+            {s.id === "cartorio" && prazosCurtos > 0 && (
               <span className="placa-conta">{prazosCurtos}</span>
             )}
           </span>

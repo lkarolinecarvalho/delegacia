@@ -60,10 +60,8 @@ const COR = {
 const PISOS: Readonly<Record<string, string>> = {
   recepcao: "#e3d6b8",
   cartorio: "#c9b48c",
-  carceragem: "#aab0b8",
   gabinete: "#b98f6a",
   oitiva: "#bfc9b4",
-  biblioteca: "#c7a986",
 };
 
 export interface Objeto {
@@ -284,6 +282,8 @@ function desenharPredio(): string {
   for (const [id, s] of Object.entries(SALAS)) {
     partes.push(retangulo(s.x0, s.y0, s.x1, s.y1, PISOS[id] ?? COR.piso));
   }
+  // Tapete do gabinete, sob a mesa e as cadeiras de quem é atendido.
+  partes.push(retangulo(2, 2.4, 8, 8.2, "#34495f"), retangulo(2.3, 2.7, 7.7, 7.9, "#3f5873"));
   // Tapete do saguão, da entrada ao meio da sala.
   partes.push(retangulo(9, PORTAS.entrada - 1, 18.6, PORTAS.entrada + 1, "#9c5a4a"));
   partes.push(retangulo(9.3, PORTAS.entrada - 0.7, 18.3, PORTAS.entrada + 0.7, "#b76e5c"));
@@ -299,14 +299,17 @@ function desenharPredio(): string {
     iso.faceY(Y, -0.4, 0, 0.4, h, COR.parede),
     iso.faceY(0, 0, 0, X, 0.35, COR.rodape),
     iso.faceX(0, 0, 0, Y, 0.35, COR.rodape),
-    // Gabinete: janela. Carceragem: fresta gradeada.
-    iso.faceX(0, 2.6, 2, 3.4, 2.2, COR.vidro),
-    iso.faceY(0, 15.6, 3.6, 2.4, 0.7, "#5b6470"),
-    // Cartório: quadro de avisos. Sala de oitiva: janela.
-    iso.faceX(0, 11.6, 2, 3.4, 2, "#b98f5a"),
-    iso.faceX(0, 12, 2.4, 0.9, 1.1, COR.papel),
-    iso.faceX(0, 13.3, 2.6, 0.9, 1.1, "#f1d98a"),
-    iso.faceX(0, 17.6, 2, 3, 2.2, COR.vidro),
+    // Gabinete: janela e quadros. Cartório: relógio e quadro de avisos.
+    iso.faceX(0, 3, 2, 3.4, 2.2, COR.vidro),
+    iso.faceY(0, 7.3, 2.6, 1.1, 1.4, "#8a5a3c"),
+    iso.faceY(0, 7.45, 2.75, 0.8, 1.1, "#d8cfa8"),
+    iso.faceY(0, 16.3, 2.4, 2.2, 1.8, "#b98f5a"),
+    iso.faceY(0, 16.5, 2.9, 0.7, 1, COR.papel),
+    iso.faceY(0, 17.5, 2.7, 0.7, 1, "#f1d98a"),
+    // Sala de oitiva: janela e quadro.
+    iso.faceX(0, 13.6, 2, 3.4, 2.2, COR.vidro),
+    iso.faceX(0, 19.2, 2.2, 1.8, 1.5, "#8a5a3c"),
+    iso.faceX(0, 19.4, 2.4, 1.4, 1.1, "#c9d6de"),
   );
   return partes.join("");
 }
@@ -327,76 +330,83 @@ function fundos(): Objeto[] {
 function moveis(): Objeto[] {
   const papeis = (x: number, y: number, cor: string = COR.papel) =>
     iso.caixa(x, y, 1.65, 0.9, 0.7, 0.25, cor);
-  const objetos: Objeto[] = [
-    // Gabinete: estante, bandeira, a Dra. Helena e a mesa dela.
-    estante(0.5, 2.9, COR.madeiraEscura),
-    {
-      p: 7.3,
-      svg:
-        iso.caixa(6.6, 0.5, 0, 0.25, 0.25, 4.6, COR.metal) +
-        iso.faceY(0.62, 5.2, 3, 1.4, 1.4, "#3f8f55"),
-    },
-    pessoa("helena-delegada", 4, 1.8, "esquerda"),
-    mesa(2.1, 2.7, 3.8, 1.7, COR.madeiraEscura, papeis(3, 3.1)),
-    planta(0.5, 6.6),
-
-    // Biblioteca: estantes e a mesa de leitura.
-    estante(8.5, 2.6, COR.madeira),
-    estante(11.4, 2.6, COR.madeira),
-    mesa(12.5, 3.6, 1.6, 3, COR.madeiraEscura, papeis(12.8, 4.6, "#c8553f")),
-
-    // Carceragem: o catre, atrás da grade.
+  /** Computador sobre a mesa: base, monitor e a tela acesa. */
+  const computador = (x: number, y: number) =>
+    iso.caixa(x, y, 1.65, 0.9, 0.6, 0.15, "#cfc8b8") +
+    iso.caixa(x + 0.05, y + 0.1, 1.8, 0.8, 0.3, 0.9, "#3a3a40") +
+    iso.faceY(y + 0.4, x + 0.12, 1.92, 0.66, 0.66, "#7fd0e8");
+  const arquivo = (x: number, y: number) =>
     bloco(
-      15.1,
-      0.5,
-      3.4,
-      1.5,
-      0.7,
+      x,
+      y,
+      1.3,
+      1,
+      3,
       COR.metal,
-      iso.caixa(15.1, 0.5, 0.7, 3.4, 1.5, 0.25, "#d9d2c0"),
-    ),
-
-    // O preso da vez: só aparece quando há alguém na carceragem (ui/Cena.tsx).
-    (({ p, svg }) => ({ p, svg: `<g data-preso display="none">${svg}</g>` }))(
-      pessoa("preso", 16.4, 4.6, "esquerda"),
-    ),
-
-    // Cartório: arquivos, o Seu Bento e a mesa comprida.
-    bloco(4.6, 10.75, 1.3, 1, 3, COR.metal),
-    bloco(6.1, 10.75, 1.3, 1, 3, COR.metal),
-    pessoa("bento-escrivao", 1.1, PORTAS.cartorio, "direita"),
-    mesa(2, 11.5, 1.7, 3.8, COR.madeira, papeis(2.4, 12, COR.papel) + papeis(2.4, 14, "#e7c97a")),
-
-    // Sala de oitiva: a mesa, duas cadeiras e o Agente Rocha.
-    pessoa("rocha-agente", 1.3, 17.3, "direita"),
-    cadeira(0.9, 18.9, COR.marinho),
-    mesa(2.3, 18, 1.7, 2.8, COR.madeira),
-    cadeira(4.2, 20.2, COR.marinho),
-
-    // Recepção: a Dona Cida atrás do balcão, o banco de espera e uma planta.
-    pessoa("cida-recepcao", 12.1, 13.6, "direita"),
+      [0.5, 1.4, 2.3].map((z) => iso.faceY(y + 1, x + 0.35, z, 0.6, 0.15, "#5b6470")).join(""),
+    );
+  return [
+    // Gabinete: estantes, bandeira, a Dra. Helena à mesa e as cadeiras de quem é atendido.
+    estante(0.5, 2.9, COR.madeiraEscura),
+    estante(3.7, 2.9, COR.madeiraEscura),
     {
-      p: 13.7 + 13.55,
+      p: 9.3,
       svg:
-        iso.caixa(13.2, 11.3, 0, 1, 4.6, 1.9, COR.marinho) +
-        iso.caixa(13.05, 11.15, 1.9, 1.3, 4.9, 0.25, COR.madeira) +
-        iso.caixa(13.3, 12.2, 2.15, 0.7, 0.9, 0.2, COR.papel),
+        iso.caixa(8.7, 0.5, 0, 0.25, 0.25, 4.6, COR.metal) +
+        iso.faceY(0.62, 7.3, 3, 1.4, 1.4, "#3f8f55") +
+        iso.faceY(0.62, 7.7, 3.4, 0.6, 0.6, "#f2c531"),
+    },
+    pessoa("helena-delegada", 5, 2.2, "esquerda"),
+    mesa(3, 3.1, 4, 1.8, COR.madeiraEscura, papeis(3.5, 3.6) + computador(5.6, 3.4)),
+    cadeira(3.1, 5.5, "#8a5a3c"),
+    cadeira(6.3, 5.5, "#8a5a3c"),
+    planta(0.5, 7.4),
+
+    // Cartório: arquivos, estante de autos, o Seu Bento e a mesa dele.
+    arquivo(10.5, 0.2),
+    arquivo(11.9, 0.2),
+    estante(13.6, 2.8, COR.madeira),
+    arquivo(16.9, 0.2),
+    pessoa("bento-escrivao", 14.5, 2.2, "esquerda"),
+    mesa(
+      12.6,
+      3.1,
+      3.8,
+      1.8,
+      COR.madeira,
+      papeis(13, 3.6) + papeis(14.1, 3.5, "#e7c97a") + computador(15.2, 3.4),
+    ),
+    cadeira(13.9, 5.5, COR.marinho),
+    // Pilha de caixas de autos, no canto.
+    bloco(17.2, 6.6, 1.3, 1.3, 1, "#c9a56a", iso.caixa(17.3, 6.7, 1, 1.1, 1.1, 0.9, "#d9b97c")),
+
+    // Sala de oitiva: o Agente Rocha, a mesa com o gravador e as cadeiras.
+    arquivo(6.3, 11.3),
+    pessoa("rocha-agente", 1.3, 13.4, "direita"),
+    cadeira(0.9, 17, COR.marinho),
+    mesa(
+      2.4,
+      15.8,
+      1.8,
+      3.4,
+      COR.madeira,
+      iso.caixa(3, 17.1, 1.65, 0.5, 0.45, 0.2, "#2a2a2e") + papeis(2.8, 16.2),
+    ),
+    planta(0.5, 20.4),
+
+    // Recepção: a Dona Cida atrás do balcão, o banco de espera e as plantas.
+    pessoa("cida-recepcao", 12.1, 14.2, "direita"),
+    {
+      p: 13.7 + 14.2,
+      svg:
+        iso.caixa(13.2, 11.9, 0, 1, 4.6, 1.9, COR.marinho) +
+        iso.caixa(13.05, 11.75, 1.9, 1.3, 4.9, 0.25, COR.madeira) +
+        iso.caixa(13.3, 12.8, 2.15, 0.7, 0.9, 0.2, COR.papel),
     },
     bloco(10.6, 20.6, 4.6, 1, 0.9, COR.madeira),
-    planta(17.4, 11),
+    planta(17.4, 11.6),
     planta(17.4, 20.4),
   ];
-
-  // A grade da carceragem, na frente da cela.
-  const ferro = "#5b6470";
-  for (let x = 14.7; x < 19; x += 0.55) {
-    objetos.push(bloco(x, 8.42, 0.14, 0.14, 3.6, ferro));
-  }
-  objetos.push({
-    p: 16.75 + 8.6,
-    svg: iso.caixa(14.5, 8.4, 3.6, 4.5, 0.2, 0.2, ferro),
-  });
-  return objetos;
 }
 
 function terrenoDaFrente(): Objeto[] {
@@ -406,12 +416,12 @@ function terrenoDaFrente(): Objeto[] {
     viatura(23.2, 26.5),
     // Mastro com a bandeira, ao lado da entrada.
     {
-      p: 27 + 21.5,
+      p: 31 + 14,
       svg:
-        iso.caixa(26.7, 21.2, 0, 0.9, 0.9, 0.4, "#b9b3a6") +
-        iso.caixa(27, 21.5, 0.4, 0.25, 0.25, 7.5, COR.metal) +
-        iso.faceY(21.62, 27.25, 6.1, 2.2, 1.6, "#3f8f55") +
-        iso.faceY(21.62, 27.9, 6.5, 0.9, 0.8, "#f2c531"),
+        iso.caixa(30.7, 13.7, 0, 0.9, 0.9, 0.4, "#b9b3a6") +
+        iso.caixa(31, 14, 0.4, 0.25, 0.25, 7.5, COR.metal) +
+        iso.faceY(14.12, 31.25, 6.1, 2.2, 1.6, "#3f8f55") +
+        iso.faceY(14.12, 31.9, 6.5, 0.9, 0.8, "#f2c531"),
     },
     arvore(2, 29, 1.1),
     arvore(13, 30),
@@ -493,7 +503,7 @@ export function lugarDaSala(sala: string): LugarDaSala {
   // A placa fica no alto da parede do fundo da sala; a da recepção, sobre o saguão.
   const meio =
     sala === "recepcao"
-      ? iso.ponto(14.5, 20, 2.6)
+      ? iso.ponto(14.5, 20.5, 2.6)
       : s.y0 === 0
         ? iso.ponto((s.x0 + s.x1) / 2, 0, PAREDE_ALTA + 0.5)
         : iso.ponto(0, (s.y0 + s.y1) / 2, PAREDE_ALTA + 0.5);
@@ -508,6 +518,37 @@ export function lugarDaSala(sala: string): LugarDaSala {
       iso.ponto(s.x1, s.y1, 0),
       iso.ponto(s.x0, s.y1, 0),
     ],
+  };
+}
+
+export interface FocoDaSala {
+  /** Meio da sala, na cena. */
+  readonly centro: PontoDeTela;
+  /** Quanto aproximar para a sala ocupar a largura da tela. */
+  readonly escala: number;
+}
+
+/** Enquadramento da visão de dentro da sala: o piso e as paredes altas dela. */
+export function focoDaSala(sala: string): FocoDaSala {
+  const s = SALAS[sala];
+  if (!s) throw new Error(`Sala fora da planta: ${sala}`);
+  const cantos = [
+    iso.ponto(s.x0, s.y0, PAREDE_ALTA),
+    iso.ponto(s.x1, s.y0, PAREDE_ALTA),
+    iso.ponto(s.x0, s.y1, PAREDE_ALTA),
+    iso.ponto(s.x1, s.y0, 0),
+    iso.ponto(s.x0, s.y1, 0),
+    iso.ponto(s.x1, s.y1, 0),
+  ];
+  const xs = cantos.map((c) => c.x);
+  const ys = cantos.map((c) => c.y);
+  const largura = Math.max(...xs) - Math.min(...xs);
+  return {
+    centro: {
+      x: (Math.max(...xs) + Math.min(...xs)) / 2,
+      y: (Math.max(...ys) + Math.min(...ys)) / 2,
+    },
+    escala: Math.min(2.4, (CENA.largura * 0.96) / largura),
   };
 }
 

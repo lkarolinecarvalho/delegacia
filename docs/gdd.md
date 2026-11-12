@@ -52,19 +52,24 @@ lei, e vê a consequência jurídica da decisão.
 | Sala | Onde fica | Função no jogo |
 |---|---|---|
 | Recepção | Saguão, logo na entrada | Registro de ocorrência; quem chega pelo balcão |
-| Cartório | Lateral | Seu Bento; casos do plantão, autos e termos |
-| Sala de oitiva | Lateral, perto da entrada | Ouvir vítima, testemunha e conduzido |
+| Sala de oitiva | Ao lado do saguão | Ouvir vítima, testemunha e conduzido |
 | Gabinete | Fundo | Dra. Helena; conversas de teoria e decisões |
-| Biblioteca | Fundo | Estudo: Teoria, Código, Revisão e Progresso |
-| Carceragem | Fundo | Custódia; presos e prazos (a partir do capítulo do flagrante) |
+| Cartório | Fundo | Seu Bento; casos do plantão e o quadro de presos e de prazos |
+
+São só essas quatro salas no mapa. A Biblioteca é um atalho da barra de baixo, e não há
+carceragem: os presos do dia aparecem no quadro do cartório.
 
 O avatar chega pelo **pátio**, onde ficam as viaturas. Do outro lado da rua está o
 **Fórum**, por enquanto só cenário (Parte IV). O IML e o Ministério Público aparecem só
 na narrativa.
 
+**De dentro da sala.** Ao chegar a uma sala, a tela se aproxima dela e mostra o cartão
+da sala, com a missão que espera ali (se houver) e o botão para voltar ao mapa.
+
 ## 7. Ciclo de um caso
 
-1. **Ir até a sala** indicada pelo aviso de próximo destino.
+1. **Ir até a sala** indicada pelo aviso de próximo destino. A tela mostra a sala por
+   dentro, e o cartão dela traz o botão para começar.
 2. **Aula** (só na primeira vez de um conceito): cartões curtos da Dra. Helena.
 3. **Ouvir:** até três falas curtas.
 4. **O fato apurado:** o cartão do caso, com o que ficou provado.
@@ -117,10 +122,10 @@ a Parte Especial do Código Penal e as leis especiais entram como **rondas temá
 - Calendário em **plantões** (dias). Nesta versão, cada caso concluído encerra o
   plantão (parâmetro provisório de balanceamento).
 - A repetição espaçada usa esse calendário.
-- A **carceragem** abre o quadro da delegacia: os presos do dia (que ficam até a
-  audiência de custódia, no plantão seguinte, e aparecem na cela) e os inquéritos, com o
-  prazo de dez ou de trinta dias correndo. Relatar no prazo vale pontos; a placa da
-  carceragem avisa quando um prazo está no fim.
+- O **cartório** guarda o quadro da delegacia: os presos do dia (que ficam até a
+  audiência de custódia, no plantão seguinte) e os inquéritos, com o prazo de dez ou de
+  trinta dias correndo. Relatar no prazo vale pontos; a placa do cartório avisa quando
+  um prazo está no fim.
 - Depois do primeiro caso, o **plantão livre** (em Casos) sorteia um caso do arquivo
   para ser refeito sem ajuda.
 
