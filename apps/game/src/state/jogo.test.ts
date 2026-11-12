@@ -1,16 +1,22 @@
 import { conteudo } from "@delegacia/content";
-import { analisarFato } from "@delegacia/motor";
+import { analisarFato, analisarProcedimento } from "@delegacia/motor";
 import { describe, expect, it } from "vitest";
 import { atualizarEstudo, conceitoVencido } from "./estudo";
 import {
   aulasPendentes,
   capituloAtual,
   concluirMissao,
+  concluirPlantaoLivre,
   type EstadoDoJogo,
   estadoInicial,
+  inqueritos,
   marcarTemaVisto,
+  PONTOS_DO_PLANTAO_LIVRE,
   PONTOS_POR_AFIRMATIVA,
+  PONTOS_POR_RELATORIO,
+  presosHoje,
   proximaMissao,
+  relatarInquerito,
   responderAfirmativa,
 } from "./jogo";
 
@@ -24,7 +30,10 @@ function afirmativa(id: string) {
 function jogarProxima(estado: EstadoDoJogo): EstadoDoJogo {
   const missao = proximaMissao(estado, conteudo);
   if (!missao) throw new Error("Não há próxima missão");
-  return concluirMissao(estado, missao, missao.caso ? analisarFato(missao.caso.fato) : null);
+  const analise = missao.caso ? analisarFato(missao.caso.fato) : null;
+  const procedimento =
+    analise && missao.caso?.contexto ? analisarProcedimento(analise, missao.caso.contexto) : null;
+  return concluirMissao(estado, missao, analise, 0, procedimento);
 }
 
 describe("campanha", () => {
@@ -50,7 +59,7 @@ describe("campanha", () => {
     // Cada caso encerra um plantão; conversa não.
     expect(estado.dia).toBe(1 + casos.length);
     expect(estado.pontos).toBe(conteudo.missoes.reduce((t, m) => t + m.recompensa.pontos, 0));
-    expect(capituloAtual(estado, conteudo)).toBe(5);
+    expect(capituloAtual(estado, conteudo)).toBe(13);
   });
 
   it("o registro guarda a análise do motor, nunca a ficha do jogador (ADR-0002)", () => {
@@ -136,5 +145,63 @@ describe("repetição espaçada", () => {
     const estudo = atualizarEstudo(undefined, "acerto", 3, false);
     expect(conceitoVencido(estudo, 3)).toBe(false);
     expect(conceitoVencido(estudo, 4)).toBe(true);
+  });
+});
+
+describe("quadro da delegacia", () => {
+  /** Joga a campanha até concluir a missão indicada. */
+  function jogarAte(id: string): EstadoDoJogo {
+    let estado = estadoInicial();
+    while (!estado.concluidas.includes(id)) estado = jogarProxima(estado);
+    return estado;
+  }
+
+  it("o preso em flagrante sem fiança fica na carceragem até o plantão seguinte", () => {
+    const estado = jogarAte("m702-a-perseguicao");
+    expect(presosHoje(estado).map((p) => p.missao)).toEqual(["m702-a-perseguicao"]);
+    // Quem pagou a fiança arbitrada pelo delegado não fica preso.
+    expect(presosHoje(jogarAte("m701-pego-na-porta"))).toEqual([]);
+    // Dois plantões depois, o preso já foi apresentado ao juiz.
+    const depois = jogarProxima(jogarProxima(estado));
+    expect(presosHoje(depois).map((p) => p.missao)).not.toContain("m702-a-perseguicao");
+  });
+
+  it("os inquéritos entram no quadro com o prazo de dez ou de trinta dias", () => {
+    const estado = jogarAte("m702-a-perseguicao");
+    const quadro = inqueritos(estado);
+    const preso = quadro.find((i) => i.missao === "m702-a-perseguicao");
+    const solto = quadro.find((i) => i.missao === "m701-pego-na-porta");
+    expect(preso).toMatchObject({ indiciadoPreso: true, restam: 9, relatado: false });
+    expect(solto).toMatchObject({ indiciadoPreso: false, restam: 28 });
+    expect(preso && solto && preso.vence - preso.aberto).toBe(10);
+    // Termo circunstanciado e casos sem crime não geram inquérito.
+    expect(quadro.map((i) => i.missao)).not.toContain("m601-ameaca-do-ex-socio");
+    // O mais urgente vem primeiro.
+    expect(quadro[0]?.missao).toBe("m702-a-perseguicao");
+  });
+
+  it("relatar no prazo dá pontos; fora do prazo, não; e só se relata uma vez", () => {
+    const estado = jogarAte("m702-a-perseguicao");
+    const relatado = relatarInquerito(estado, "m702-a-perseguicao");
+    expect(relatado.pontos).toBe(estado.pontos + PONTOS_POR_RELATORIO);
+    expect(inqueritos(relatado).find((i) => i.missao === "m702-a-perseguicao")?.relatado).toBe(
+      true,
+    );
+    expect(() => relatarInquerito(relatado, "m702-a-perseguicao")).toThrow(/Não há inquérito/);
+    expect(() => relatarInquerito(estado, "m601-ameaca-do-ex-socio")).toThrow(/Não há inquérito/);
+    const atrasado = { ...estado, dia: estado.dia + 30 };
+    expect(inqueritos(atrasado)[0]?.restam).toBeLessThan(0);
+    expect(relatarInquerito(atrasado, "m702-a-perseguicao").pontos).toBe(estado.pontos);
+  });
+
+  it("o plantão livre dá pontos e encerra o plantão, sem avançar a campanha", () => {
+    const estado = jogarAte("m104-divida-do-vizinho");
+    const depois = concluirPlantaoLivre(estado);
+    expect(depois).toMatchObject({
+      pontos: estado.pontos + PONTOS_DO_PLANTAO_LIVRE,
+      dia: estado.dia + 1,
+      plantoesLivres: 1,
+    });
+    expect(depois.concluidas).toEqual(estado.concluidas);
   });
 });

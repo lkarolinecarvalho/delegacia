@@ -1,9 +1,21 @@
 import { conteudo } from "@delegacia/content";
-import { analisarFato, compararFicha, esperadoNoCampo } from "@delegacia/motor";
+import {
+  analisarFato,
+  analisarProcedimento,
+  compararFicha,
+  esperadoNoCampo,
+} from "@delegacia/motor";
 import { describe, expect, it } from "vitest";
-import { estadoInicial, responderAfirmativa } from "../state/jogo";
+import { concluirMissao, estadoInicial, responderAfirmativa } from "../state/jogo";
 import { LIMITE_POR_CASO, selecionarAfirmativas, selecionarParaRevisao } from "./afirmativas";
-import { fichaDasRespostas, montarFicha, trilhaDaAnalise, type ValorDaFicha } from "./ficha";
+import {
+  fichaDasRespostas,
+  montarFicha,
+  previaDoErro,
+  trilhaDaAnalise,
+  type ValorDaFicha,
+} from "./ficha";
+import { casosDoArquivo, missaoDoPlantaoLivre } from "./plantaoLivre";
 
 const casos = conteudo.missoes.flatMap((m) => (m.caso ? [{ missao: m, caso: m.caso }] : []));
 
@@ -18,19 +30,23 @@ describe("ficha de análise", () => {
     "%s: a resposta certa está entre as opções e a ficha certa confere",
     (_, { missao: m, caso }) => {
       const analise = analisarFato(caso.fato);
-      const etapas = montarFicha(caso, analise, m.capitulo);
+      const procedimento = caso.contexto ? analisarProcedimento(analise, caso.contexto) : null;
+      const etapas = montarFicha(caso, analise, m.capitulo, procedimento);
       expect(etapas.map((e) => e.campo).sort()).toEqual([...caso.pede, ...caso.informa].sort());
 
       const respostas: Partial<Record<string, ValorDaFicha>> = {};
       for (const etapa of etapas) {
-        const esperado = esperadoNoCampo(analise, etapa.campo);
+        const esperado = esperadoNoCampo(analise, etapa.campo, procedimento);
         const opcao = etapa.opcoes.find((o) => o.valor === esperado);
         expect(opcao, `${m.id}: ${etapa.campo}`).toBeDefined();
         if (etapa.modo === "informada") expect(etapa.informado).toBe(opcao);
         else if (opcao) respostas[etapa.campo] = opcao.valor;
       }
       expect(Object.keys(respostas).sort()).toEqual([...caso.pede].sort());
-      expect(compararFicha(analise, fichaDasRespostas(respostas)).correta).toBe(true);
+      expect(compararFicha(analise, fichaDasRespostas(respostas), procedimento).correta).toBe(true);
+      // No Código aberto, a ficha traz busca e todos os tipos, por título.
+      const tipo = etapas.find((e) => e.campo === "tipo" && e.modo === "pergunta");
+      if (tipo) expect(tipo.comBusca).toBe(m.capitulo >= 11);
     },
   );
 
@@ -123,5 +139,84 @@ describe("seleção de afirmativas", () => {
     const estado = responderAfirmativa(estadoInicial(), a, a.gabarito === "C" ? "E" : "C");
     const revisao = selecionarParaRevisao(conteudo.afirmativas, estado, 5);
     expect(revisao.map((x) => x.conceitoId)).toEqual(["legalidade"]);
+  });
+});
+
+describe("fase policial na ficha", () => {
+  const caso = (id: string) => {
+    const { missao: m, caso: c } = missao(id);
+    const analise = analisarFato(c.fato);
+    const procedimento = c.contexto ? analisarProcedimento(analise, c.contexto) : null;
+    return { m, c, analise, procedimento };
+  };
+
+  it("a prévia do erro diz o que aconteceria com a decisão errada", () => {
+    const { procedimento } = caso("m703-dois-dias-depois");
+    expect(previaDoErro("flagrante", "proprio", procedimento)).toMatch(/prisão seria ilegal/);
+    expect(previaDoErro("fianca", "juiz", procedimento)).toMatch(/auto de prisão em flagrante/);
+    const penha = caso("m801-a-vizinha-ligou").procedimento;
+    expect(previaDoErro("rito", "termo_circunstanciado", penha)).toMatch(
+      /Lei 9\.099 não se aplica/,
+    );
+    expect(previaDoErro("fianca", "delegado", penha)).toMatch(/ato nulo/);
+    // Só há prévia para a fase policial.
+    expect(previaDoErro("forma", "tentado", penha)).toBeNull();
+    expect(previaDoErro("flagrante", "proprio", null)).toBeNull();
+  });
+
+  it("a trilha registra a fase policial depois da conclusão", () => {
+    const { analise, procedimento } = caso("r1101-a-fechada");
+    const linhas = trilhaDaAnalise(analise, procedimento).map((l) => `${l.etapa}: ${l.texto}`);
+    expect(linhas).toEqual([
+      "Fato típico: Típico: Homicídio qualificado (CP, art. 121, § 2º)",
+      "Forma: Consumado",
+      "Ilicitude: Sem excludente: fato ilícito",
+      "Culpabilidade: Agente culpável",
+      "Conclusão: Crime",
+      "Ação penal: Pública incondicionada",
+      "Rito: Inquérito policial",
+      "Flagrante: Próprio",
+      "Fiança: Ninguém: é inafiançável — fica preso",
+      "Prazo: Inquérito em 10 dias",
+    ]);
+  });
+});
+
+describe("plantão livre", () => {
+  it("não sorteia nada antes do primeiro caso concluído", () => {
+    expect(casosDoArquivo(estadoInicial(), conteudo)).toEqual([]);
+    expect(missaoDoPlantaoLivre(estadoInicial(), conteudo, 0.5)).toBeNull();
+  });
+
+  it("devolve um caso do arquivo com a ficha inteira e o Código aberto", () => {
+    let estado = estadoInicial();
+    for (const m of conteudo.missoes) {
+      const analise = m.caso ? analisarFato(m.caso.fato) : null;
+      estado = concluirMissao(estado, m, analise);
+    }
+    const arquivo = casosDoArquivo(estado, conteudo);
+    expect(arquivo).toHaveLength(conteudo.missoes.filter((m) => m.caso).length);
+    for (let i = 0; i < arquivo.length; i += 1) {
+      const livre = missaoDoPlantaoLivre(estado, conteudo, i / arquivo.length);
+      const original = arquivo[i];
+      if (!livre?.caso || !original?.caso) throw new Error("caso do plantão livre");
+      expect(livre.id).toBe(`livre-${original.id}`);
+      expect(livre.caso).toMatchObject({ informa: [], tipoInformado: false, opcoesDeTipo: [] });
+      expect(livre.caso.pede).toContain("tipo");
+      expect(livre.caso.pede).toContain("conclusao");
+      // A ficha do plantão livre é sempre respondível: toda etapa pedida tem resposta.
+      const analise = analisarFato(livre.caso.fato);
+      const procedimento = livre.caso.contexto
+        ? analisarProcedimento(analise, livre.caso.contexto)
+        : null;
+      for (const etapa of montarFicha(livre.caso, analise, livre.capitulo, procedimento)) {
+        expect(etapa.modo).toBe("pergunta");
+        const esperado = esperadoNoCampo(analise, etapa.campo, procedimento);
+        expect(
+          etapa.opcoes.some((o) => o.valor === esperado),
+          `${livre.id}: ${etapa.campo}`,
+        ).toBe(true);
+      }
+    }
   });
 });

@@ -485,7 +485,7 @@ export interface LugarDaSala {
 }
 
 /** Margem para a placa não sair pela lateral da tela. */
-const MARGEM_DA_PLACA = 46;
+const MARGEM_DA_PLACA = 58;
 
 export function lugarDaSala(sala: string): LugarDaSala {
   const s = SALAS[sala];

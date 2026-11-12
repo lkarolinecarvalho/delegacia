@@ -2,7 +2,7 @@ import { conteudo, type Missao } from "@delegacia/content";
 import { useCallback, useState } from "react";
 import { missaoDoPlantaoLivre } from "../orquestrador/plantaoLivre";
 import { tocar } from "../som/sons";
-import { capituloAtual, presosHoje, proximaMissao } from "../state/jogo";
+import { capituloAtual, inqueritos, presosHoje, proximaMissao } from "../state/jogo";
 import { type Painel, useStore } from "../state/store";
 import { Cena } from "./Cena";
 import { Folha, nomeDoCapitulo, Retrato } from "./comum";
@@ -18,6 +18,9 @@ import {
 } from "./icones";
 import { PainelDaBiblioteca, PainelDeCasos, PainelDeConfig, PainelDeProgresso } from "./Paineis";
 import { PainelDoQuadro } from "./Quadro";
+
+/** Com este tanto de plantões ou menos, o inquérito vira aviso na placa da carceragem. */
+const PRAZO_CURTO = 3;
 
 const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva", "biblioteca", "carceragem"]);
 
@@ -114,6 +117,7 @@ export function App() {
         salaInicial={sala}
         destino={proxima?.sala ?? null}
         presos={presosHoje(jogo).length}
+        prazosCurtos={inqueritos(jogo).filter((i) => !i.relatado && i.restam <= PRAZO_CURTO).length}
         aoTocar={aoTocarNaSala}
         aoChegar={aoChegarNaSala}
       />
@@ -123,10 +127,8 @@ export function App() {
           <div className="hud-resumo">
             <Retrato id="avatar" />
             <span className="hud-textos">
-              <strong>Delegado(a) de Vila Serena</strong>
-              <span>
-                Plantão {jogo.dia} · {nomeDoCapitulo(capitulo)}
-              </span>
+              <strong>Plantão {jogo.dia} · Vila Serena</strong>
+              <span>{nomeDoCapitulo(capitulo)}</span>
             </span>
             <span className="hud-pontos">
               <IconeEstrela />

@@ -40,6 +40,8 @@ interface Props {
   readonly destino: string | null;
   /** Quantos presos há na carceragem hoje: com algum, a cela aparece ocupada. */
   readonly presos: number;
+  /** Inquéritos com o prazo no fim: viram um aviso na placa da carceragem. */
+  readonly prazosCurtos: number;
   /** O jogador tocou numa sala: o avatar começa a andar até ela. */
   readonly aoTocar: (sala: string) => void;
   /** O avatar chegou à sala tocada. */
@@ -51,7 +53,7 @@ interface Props {
  * caminhos da planta até a sala tocada. O avatar entra na ordem de desenho pela
  * profundidade: passa atrás do que está à frente dele.
  */
-export function Cena({ salaInicial, destino, presos, aoTocar, aoChegar }: Props) {
+export function Cena({ salaInicial, destino, presos, prazosCurtos, aoTocar, aoChegar }: Props) {
   const desenho = useMemo(() => {
     const cena = desenharCena();
     const objetos = cena.objetos.map((o) => `<g data-p="${o.p}">${o.svg}</g>`).join("");
@@ -198,6 +200,9 @@ export function Cena({ salaInicial, destino, presos, aoTocar, aoChegar }: Props)
           >
             {s.id === destino && <span className="placa-aviso">!</span>}
             {s.nome}
+            {s.id === "carceragem" && prazosCurtos > 0 && (
+              <span className="placa-conta">{prazosCurtos}</span>
+            )}
           </span>
         ))}
         <span

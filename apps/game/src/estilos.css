@@ -1165,3 +1165,16 @@ ol {
   background: var(--vermelho-claro);
   color: #7c231c;
 }
+
+.placa-conta {
+  display: inline-grid;
+  place-items: center;
+  min-width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--vermelho);
+  color: #fff;
+  font-size: 10px;
+}
