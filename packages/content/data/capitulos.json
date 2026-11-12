@@ -1,0 +1,62 @@
+[
+  {
+    "numero": 1,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Posse",
+    "resumo": "O que é Direito Penal, o que é crime e o que a delegacia faz."
+  },
+  {
+    "numero": 2,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Primeiro plantão",
+    "resumo": "Fato típico, dolo e culpa, consumação e tentativa."
+  },
+  {
+    "numero": 3,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Nem todo fato é crime",
+    "resumo": "Ilicitude: legítima defesa e estado de necessidade."
+  },
+  {
+    "numero": 4,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Quem responde",
+    "resumo": "Culpabilidade: menoridade e embriaguez."
+  },
+  {
+    "numero": 5,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Dando nome ao crime",
+    "resumo": "Furto, roubo, apropriação indébita e estelionato: agora é você quem diz."
+  },
+  {
+    "numero": 6,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "O balcão",
+    "resumo": "Ação penal, representação e termo circunstanciado."
+  },
+  {
+    "numero": 7,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "O flagrante",
+    "resumo": "Flagrante, fiança e audiência de custódia."
+  },
+  {
+    "numero": 8,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Dentro de casa",
+    "resumo": "Lei Maria da Penha."
+  },
+  {
+    "numero": 9,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Em grupo e em série",
+    "resumo": "Concurso de pessoas e de crimes; erro."
+  },
+  {
+    "numero": 10,
+    "parte": "Parte I — O primeiro mês",
+    "titulo": "Fechando o mês",
+    "resumo": "O inquérito: prazos, indiciamento e relatório."
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "af-apropriacao-01",
+    "conceitoId": "apropriacao-indebita",
+    "nivelMin": 5,
+    "enunciado": "Comete apropriação indébita quem se apropria de coisa alheia móvel de que tem a posse ou a detenção.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 168 do Código Penal.",
+    "regras": ["R-PAT-04"]
+  },
+  {
+    "id": "af-apropriacao-02",
+    "conceitoId": "apropriacao-indebita",
+    "nivelMin": 5,
+    "enunciado": "Quem recebe um objeto emprestado, de boa-fé, e depois resolve vendê-lo como se fosse seu comete furto.",
+    "gabarito": "E",
+    "explicacao": "Ele não subtraiu a coisa: já tinha a posse lícita e depois passou a agir como dono. É apropriação indébita.",
+    "regras": ["R-PAT-04", "R-PAT-06"]
+  },
+  {
+    "id": "af-apropriacao-03",
+    "conceitoId": "apropriacao-indebita",
+    "nivelMin": 5,
+    "enunciado": "Na apropriação indébita, o agente tira a coisa de quem a tem, sem o consentimento da vítima.",
+    "gabarito": "E",
+    "explicacao": "Isso descreve o furto. Na apropriação indébita, a coisa já estava com o agente, de forma lícita.",
+    "regras": ["R-PAT-06"]
+  },
+  {
+    "id": "af-estelionato-01",
+    "conceitoId": "estelionato",
+    "nivelMin": 5,
+    "enunciado": "No estelionato, o agente obtém vantagem ilícita, em prejuízo alheio, induzindo ou mantendo alguém em erro mediante meio fraudulento.",
+    "gabarito": "C",
+    "explicacao": "É o que descreve o art. 171 do Código Penal.",
+    "regras": ["R-PAT-05"]
+  },
+  {
+    "id": "af-estelionato-02",
+    "conceitoId": "estelionato",
+    "nivelMin": 5,
+    "enunciado": "Quando a vítima, enganada pelo agente, entrega a ele o próprio dinheiro, o crime é de furto.",
+    "gabarito": "E",
+    "explicacao": "Se a vítima entrega a vantagem porque foi induzida em erro por fraude, o crime é estelionato.",
+    "regras": ["R-PAT-05", "R-PAT-07"]
+  },
+  {
+    "id": "af-estelionato-03",
+    "conceitoId": "estelionato",
+    "nivelMin": 5,
+    "enunciado": "O estelionato exige o emprego de violência ou de grave ameaça contra a vítima.",
+    "gabarito": "E",
+    "explicacao": "O meio do estelionato é a fraude. Violência ou grave ameaça são próprias de outros crimes, como o roubo.",
+    "regras": ["R-PAT-05", "R-PAT-02"]
+  }
+]

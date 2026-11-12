@@ -1,0 +1,155 @@
+[
+  {
+    "id": "af-fato-tipico-01",
+    "conceitoId": "fato-tipico",
+    "nivelMin": 2,
+    "enunciado": "O fato é típico quando a conduta se ajusta a todos os elementos descritos no tipo penal.",
+    "gabarito": "C",
+    "explicacao": "A falta de qualquer elemento do tipo torna o fato atípico.",
+    "regras": ["R-TIP-01"]
+  },
+  {
+    "id": "af-fato-tipico-02",
+    "conceitoId": "fato-tipico",
+    "nivelMin": 2,
+    "enunciado": "Quem leva para casa, por engano, coisa que é sua, pensando ser de outra pessoa, comete furto.",
+    "gabarito": "E",
+    "explicacao": "O furto exige coisa alheia. Se a coisa é do próprio agente, falta um elemento do tipo e o fato é atípico.",
+    "regras": ["R-TIP-01", "R-PAT-01"]
+  },
+  {
+    "id": "af-fato-tipico-03",
+    "conceitoId": "fato-tipico",
+    "nivelMin": 2,
+    "enunciado": "Para a doutrina, são elementos do fato típico a conduta, o resultado, o nexo causal e a tipicidade.",
+    "gabarito": "C",
+    "explicacao": "São os quatro elementos apontados pela doutrina para o fato típico.",
+    "regras": ["R-TIP-01"]
+  },
+  {
+    "id": "af-dolo-e-culpa-01",
+    "conceitoId": "dolo-e-culpa",
+    "nivelMin": 2,
+    "enunciado": "Salvo os casos expressos em lei, ninguém pode ser punido por fato previsto como crime senão quando o pratica dolosamente.",
+    "gabarito": "C",
+    "explicacao": "É o parágrafo único do art. 18 do Código Penal: a punição a título de culpa é exceção.",
+    "regras": ["R-CULPA-02"]
+  },
+  {
+    "id": "af-dolo-e-culpa-02",
+    "conceitoId": "dolo-e-culpa",
+    "nivelMin": 2,
+    "enunciado": "Quem destrói coisa alheia por imprudência, sem querer o resultado, comete o crime de dano na forma culposa.",
+    "gabarito": "E",
+    "explicacao": "O Código Penal não prevê dano culposo. Sem previsão expressa, a conduta culposa é atípica.",
+    "regras": ["R-CULPA-02", "R-PAT-03"]
+  },
+  {
+    "id": "af-dolo-e-culpa-03",
+    "conceitoId": "dolo-e-culpa",
+    "nivelMin": 2,
+    "enunciado": "O crime é doloso quando o agente quis o resultado ou assumiu o risco de produzi-lo.",
+    "gabarito": "C",
+    "explicacao": "É a definição do art. 18, I, do Código Penal.",
+    "regras": ["R-DOLO-01"]
+  },
+  {
+    "id": "af-dolo-e-culpa-04",
+    "conceitoId": "dolo-e-culpa",
+    "nivelMin": 2,
+    "enunciado": "O crime é culposo quando o agente dá causa ao resultado por imprudência, negligência ou imperícia.",
+    "gabarito": "C",
+    "explicacao": "É a definição do art. 18, II, do Código Penal.",
+    "regras": ["R-CULPA-01"]
+  },
+  {
+    "id": "af-tentativa-01",
+    "conceitoId": "consumacao-e-tentativa",
+    "nivelMin": 2,
+    "enunciado": "O crime é tentado quando, iniciada a execução, não se consuma por circunstâncias alheias à vontade do agente.",
+    "gabarito": "C",
+    "explicacao": "É a definição do art. 14, II, do Código Penal.",
+    "regras": ["R-ITER-02"]
+  },
+  {
+    "id": "af-tentativa-02",
+    "conceitoId": "consumacao-e-tentativa",
+    "nivelMin": 2,
+    "enunciado": "Em regra, o crime tentado é punido com a mesma pena do crime consumado, sem qualquer diminuição.",
+    "gabarito": "E",
+    "explicacao": "Salvo disposição em contrário, a pena da tentativa é a do crime consumado, diminuída de um a dois terços.",
+    "regras": ["R-ITER-02"]
+  },
+  {
+    "id": "af-tentativa-03",
+    "conceitoId": "consumacao-e-tentativa",
+    "nivelMin": 2,
+    "enunciado": "O crime é consumado quando nele se reúnem todos os elementos de sua definição legal.",
+    "gabarito": "C",
+    "explicacao": "É a definição do art. 14, I, do Código Penal.",
+    "regras": ["R-ITER-01"]
+  },
+  {
+    "id": "af-tentativa-04",
+    "conceitoId": "consumacao-e-tentativa",
+    "nivelMin": 2,
+    "enunciado": "Há tentativa punível quando o agente apenas planeja o crime, sem chegar a iniciar a execução.",
+    "gabarito": "E",
+    "explicacao": "A tentativa exige início de execução. Cogitação e atos preparatórios, em regra, não são puníveis.",
+    "regras": ["R-ITER-02", "R-ITER-03"]
+  },
+  {
+    "id": "af-consumacao-roubo-01",
+    "conceitoId": "consumacao-do-furto-e-do-roubo",
+    "nivelMin": 2,
+    "enunciado": "Segundo o STJ, consuma-se o roubo com a inversão da posse do bem, ainda que por breve tempo e em seguida à perseguição imediata do agente.",
+    "gabarito": "C",
+    "explicacao": "É o enunciado da Súmula 582 do STJ.",
+    "regras": ["R-ITER-05"]
+  },
+  {
+    "id": "af-consumacao-roubo-02",
+    "conceitoId": "consumacao-do-furto-e-do-roubo",
+    "nivelMin": 2,
+    "enunciado": "De acordo com a Súmula 582 do STJ, a posse mansa e pacífica do bem é indispensável para a consumação do roubo.",
+    "gabarito": "E",
+    "explicacao": "A súmula diz o contrário: a posse mansa e pacífica ou desvigiada é prescindível.",
+    "regras": ["R-ITER-05"]
+  },
+  {
+    "id": "af-consumacao-roubo-03",
+    "conceitoId": "consumacao-do-furto-e-do-roubo",
+    "nivelMin": 2,
+    "enunciado": "Segundo o STJ, se a coisa roubada é recuperada logo após a perseguição do agente, o roubo é apenas tentado.",
+    "gabarito": "E",
+    "explicacao": "Invertida a posse, o roubo está consumado, mesmo com a recuperação da coisa em seguida (Súmula 582 do STJ).",
+    "regras": ["R-ITER-05"]
+  },
+  {
+    "id": "af-furto-e-roubo-01",
+    "conceitoId": "furto-e-roubo",
+    "nivelMin": 2,
+    "enunciado": "O que distingue o roubo do furto é o emprego de grave ameaça ou de violência contra a pessoa.",
+    "gabarito": "C",
+    "explicacao": "Os dois são subtração de coisa alheia móvel; o roubo acrescenta a violência ou a grave ameaça à pessoa.",
+    "regras": ["R-PAT-01", "R-PAT-02", "R-TIP-02"]
+  },
+  {
+    "id": "af-furto-e-roubo-02",
+    "conceitoId": "furto-e-roubo",
+    "nivelMin": 2,
+    "enunciado": "Quem subtrai a carteira da vítima ameaçando-a com uma faca comete furto.",
+    "gabarito": "E",
+    "explicacao": "Subtração mediante grave ameaça é roubo (CP, art. 157).",
+    "regras": ["R-PAT-02", "R-TIP-02"]
+  },
+  {
+    "id": "af-furto-e-roubo-03",
+    "conceitoId": "furto-e-roubo",
+    "nivelMin": 2,
+    "enunciado": "Furto é subtrair, para si ou para outrem, coisa alheia móvel.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 155 do Código Penal.",
+    "regras": ["R-PAT-01"]
+  }
+]

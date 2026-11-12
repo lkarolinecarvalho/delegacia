@@ -1,0 +1,6 @@
+[
+  { "id": "helena-delegada", "nome": "Dra. Helena", "papel": "Delegada titular" },
+  { "id": "bento-escrivao", "nome": "Seu Bento", "papel": "Escrivão" },
+  { "id": "rocha-agente", "nome": "Agente Rocha", "papel": "Agente de polícia" },
+  { "id": "cida-recepcao", "nome": "Dona Cida", "papel": "Recepção" }
+]

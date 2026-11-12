@@ -1,0 +1,137 @@
+[
+  {
+    "id": "af-legitima-defesa-01",
+    "conceitoId": "legitima-defesa",
+    "nivelMin": 3,
+    "enunciado": "Entende-se em legítima defesa quem, usando moderadamente dos meios necessários, repele injusta agressão, atual ou iminente, a direito seu ou de outrem.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 25 do Código Penal.",
+    "regras": ["R-LD-01"]
+  },
+  {
+    "id": "af-legitima-defesa-02",
+    "conceitoId": "legitima-defesa",
+    "nivelMin": 3,
+    "enunciado": "Age em legítima defesa quem, horas depois de ser agredido, procura o agressor e o fere para revidar.",
+    "gabarito": "E",
+    "explicacao": "A agressão precisa ser atual ou iminente. Depois que ela cessa, a reação é vingança, e o fato é ilícito.",
+    "regras": ["R-LD-02"]
+  },
+  {
+    "id": "af-legitima-defesa-03",
+    "conceitoId": "legitima-defesa",
+    "nivelMin": 3,
+    "enunciado": "A legítima defesa só pode ser invocada para proteger direito do próprio agente, nunca de terceiro.",
+    "gabarito": "E",
+    "explicacao": "O art. 25 fala em direito \"seu ou de outrem\": existe a legítima defesa de terceiro.",
+    "regras": ["R-LD-01"]
+  },
+  {
+    "id": "af-legitima-defesa-04",
+    "conceitoId": "legitima-defesa",
+    "nivelMin": 3,
+    "enunciado": "A legítima defesa exclui a culpabilidade do agente.",
+    "gabarito": "E",
+    "explicacao": "A legítima defesa exclui a ilicitude do fato (CP, art. 23, II), não a culpabilidade.",
+    "regras": ["R-ILI-01"]
+  },
+  {
+    "id": "af-estado-de-necessidade-01",
+    "conceitoId": "estado-de-necessidade",
+    "nivelMin": 3,
+    "enunciado": "Não pode alegar estado de necessidade quem tinha o dever legal de enfrentar o perigo.",
+    "gabarito": "C",
+    "explicacao": "É o § 1º do art. 24 do Código Penal.",
+    "regras": ["R-EN-02"]
+  },
+  {
+    "id": "af-estado-de-necessidade-02",
+    "conceitoId": "estado-de-necessidade",
+    "nivelMin": 3,
+    "enunciado": "Pode alegar estado de necessidade quem provocou o perigo por sua própria vontade.",
+    "gabarito": "E",
+    "explicacao": "O art. 24 exige que o agente não tenha provocado o perigo por sua vontade.",
+    "regras": ["R-EN-01"]
+  },
+  {
+    "id": "af-estado-de-necessidade-03",
+    "conceitoId": "estado-de-necessidade",
+    "nivelMin": 3,
+    "enunciado": "Quem quebra o vidro de um carro alheio, por não haver outro meio de salvar uma criança em perigo atual, pratica fato típico, mas lícito.",
+    "gabarito": "C",
+    "explicacao": "A conduta se ajusta ao tipo do dano, mas o estado de necessidade exclui a ilicitude.",
+    "regras": ["R-EN-01", "R-ILI-01"]
+  },
+  {
+    "id": "af-estado-de-necessidade-04",
+    "conceitoId": "estado-de-necessidade",
+    "nivelMin": 3,
+    "enunciado": "O estado de necessidade pode ser reconhecido ainda que o agente pudesse evitar o perigo de outro modo.",
+    "gabarito": "E",
+    "explicacao": "O art. 24 exige que o perigo não pudesse ser evitado de outro modo.",
+    "regras": ["R-EN-01"]
+  },
+  {
+    "id": "af-menoridade-01",
+    "conceitoId": "menoridade-penal",
+    "nivelMin": 4,
+    "enunciado": "Os menores de 18 anos são penalmente inimputáveis, ficando sujeitos às normas estabelecidas na legislação especial.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 27 do Código Penal; no mesmo sentido, o art. 228 da Constituição.",
+    "regras": ["R-CULP-01"]
+  },
+  {
+    "id": "af-menoridade-02",
+    "conceitoId": "menoridade-penal",
+    "nivelMin": 4,
+    "enunciado": "O adolescente que pratica conduta descrita como crime responde pelo Código Penal, com a pena reduzida pela metade.",
+    "gabarito": "E",
+    "explicacao": "O adolescente pratica ato infracional e fica sujeito às medidas do ECA, não às penas do Código Penal.",
+    "regras": ["R-CULP-01", "R-CULP-02"]
+  },
+  {
+    "id": "af-menoridade-03",
+    "conceitoId": "menoridade-penal",
+    "nivelMin": 4,
+    "enunciado": "Considera-se ato infracional a conduta descrita como crime ou contravenção penal.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 103 do Estatuto da Criança e do Adolescente.",
+    "regras": ["R-CULP-02"]
+  },
+  {
+    "id": "af-menoridade-04",
+    "conceitoId": "menoridade-penal",
+    "nivelMin": 4,
+    "enunciado": "Para saber se o agente é inimputável pela menoridade, considera-se a idade dele na data do julgamento.",
+    "gabarito": "E",
+    "explicacao": "Considera-se a idade do adolescente na data do fato (ECA, art. 104, parágrafo único).",
+    "regras": ["R-CULP-01"]
+  },
+  {
+    "id": "af-embriaguez-01",
+    "conceitoId": "embriaguez",
+    "nivelMin": 4,
+    "enunciado": "A embriaguez voluntária ou culposa, pelo álcool ou substância de efeitos análogos, não exclui a imputabilidade penal.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 28, II, do Código Penal.",
+    "regras": ["R-CULP-03"]
+  },
+  {
+    "id": "af-embriaguez-02",
+    "conceitoId": "embriaguez",
+    "nivelMin": 4,
+    "enunciado": "É isento de pena o agente que, por embriaguez completa e voluntária, era inteiramente incapaz de entender o caráter ilícito do fato.",
+    "gabarito": "E",
+    "explicacao": "A isenção exige embriaguez completa proveniente de caso fortuito ou força maior (CP, art. 28, § 1º), não a voluntária.",
+    "regras": ["R-CULP-03", "R-CULP-04"]
+  },
+  {
+    "id": "af-embriaguez-03",
+    "conceitoId": "embriaguez",
+    "nivelMin": 4,
+    "enunciado": "A emoção e a paixão não excluem a imputabilidade penal.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 28, I, do Código Penal.",
+    "regras": ["R-CULP-03"]
+  }
+]

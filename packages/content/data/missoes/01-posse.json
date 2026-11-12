@@ -1,0 +1,120 @@
+[
+  {
+    "id": "m101-bem-vindo",
+    "titulo": "Bem-vindo(a) à delegacia",
+    "capitulo": 1,
+    "nivel": 1,
+    "sala": "gabinete",
+    "npc": "helena-delegada",
+    "requisitos": [],
+    "aulas": ["o-direito-penal", "legalidade"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "Então você é o reforço que eu pedi! Sou a Helena, delegada titular. Bem-vindo(a) a Vila Serena."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Passar no concurso foi a primeira parte. Agora vem o plantão, e eu vou com você."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Vamos do começo, sem pressa. Primeiro: para que serve o Direito Penal?"
+      }
+    ],
+    "caso": null,
+    "conceitos": [],
+    "recompensa": { "pontos": 30 }
+  },
+  {
+    "id": "m102-o-que-e-crime",
+    "titulo": "O que é crime",
+    "capitulo": 1,
+    "nivel": 1,
+    "sala": "gabinete",
+    "npc": "helena-delegada",
+    "requisitos": ["m101-bem-vindo"],
+    "aulas": ["o-que-e-crime"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "Todo caso que chega aqui passa por três perguntas, sempre na mesma ordem."
+      },
+      { "npc": "helena-delegada", "texto": "Guarde as três. Você vai usá-las até se aposentar." }
+    ],
+    "caso": null,
+    "conceitos": [],
+    "recompensa": { "pontos": 30 }
+  },
+  {
+    "id": "m103-a-delegacia",
+    "titulo": "O que a delegacia faz",
+    "capitulo": 1,
+    "nivel": 1,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m102-o-que-e-crime"],
+    "aulas": ["a-delegacia"],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Doutor(a)! Bento, escrivão, trinta anos de cartório. Tudo o que acontece nesta casa passa por esta mesa."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "A Dra. Helena cuida da teoria. Eu mostro como a casa funciona."
+      }
+    ],
+    "caso": null,
+    "conceitos": [],
+    "recompensa": { "pontos": 30 }
+  },
+  {
+    "id": "m104-divida-do-vizinho",
+    "titulo": "A dívida do vizinho",
+    "capitulo": 1,
+    "nivel": 1,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["m103-a-delegacia"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), o seu primeiro atendimento! O Seu Anselmo quer registrar ocorrência contra o vizinho."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Ele emprestou dinheiro, o vizinho não pagou, e ele quer que a polícia prenda o homem."
+      },
+      { "npc": "cida-recepcao", "texto": "O que eu digo a ele? Tem crime aí?" }
+    ],
+    "caso": {
+      "titulo": "Atendimento 001 — balcão",
+      "linhas": [
+        "Seu Anselmo emprestou R$ 800,00 ao vizinho, com um recibo assinado.",
+        "O vizinho prometeu pagar em 30 dias. Passaram-se três meses e ele não pagou.",
+        "O vizinho não enganou ninguém para conseguir o empréstimo: simplesmente ficou sem dinheiro.",
+        "Não houve ameaça nem violência de nenhum dos lados."
+      ],
+      "fato": {
+        "elementos": [],
+        "elementoSubjetivo": "nenhum",
+        "execucao": { "iniciada": false },
+        "justificante": null,
+        "agente": { "idade": 52, "embriaguez": "nenhuma" }
+      },
+      "pede": ["tipico", "conclusao"],
+      "informa": [],
+      "tipoInformado": false,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipico": "Dra. Helena: Procure a lei que define isso como crime. Não vai achar. Não pagar dívida é ilícito civil.",
+        "conclusao": "Dra. Helena: Sem tipo penal, a análise para na primeira pergunta: o fato é atípico."
+      },
+      "desfecho": "Você explica ao Seu Anselmo que a polícia não cobra dívida e que ninguém vai preso por isso. Com o recibo, ele pode cobrar o vizinho no Juizado Especial Cível. Ele sai contrariado, mas orientado."
+    },
+    "conceitos": ["legalidade", "ilicito-civil-e-penal", "policia-judiciaria"],
+    "recompensa": { "pontos": 60 }
+  }
+]

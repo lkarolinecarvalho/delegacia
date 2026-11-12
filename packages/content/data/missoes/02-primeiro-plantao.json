@@ -1,0 +1,200 @@
+[
+  {
+    "id": "m201-bicicleta",
+    "titulo": "A bicicleta",
+    "capitulo": 2,
+    "nivel": 2,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m104-divida-do-vizinho"],
+    "aulas": ["fato-tipico", "furto"],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Primeiro plantão, doutor(a)! Chegou um caso simples, bom para começar."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Por enquanto eu digo qual é o crime. O seu trabalho é conferir se o fato se ajusta a ele."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 011 — Rua das Acácias",
+      "linhas": [
+        "Um homem de 24 anos viu uma bicicleta encostada na calçada, sem cadeado.",
+        "A bicicleta era de uma moradora, que tinha entrado na padaria.",
+        "Ele montou na bicicleta e foi embora com ela, para ficar com ela.",
+        "No dia seguinte, a bicicleta foi encontrada na casa dele."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 24, "embriaguez": "nenhuma" }
+      },
+      "pede": ["tipico", "forma", "conclusao"],
+      "informa": [],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipico": "Seu Bento: Confira os elementos do furto: ele subtraiu? A coisa é móvel? É alheia? Tudo presente.",
+        "forma": "Seu Bento: Ele levou a bicicleta para casa. Todos os elementos do furto se reuniram: consumado.",
+        "conclusao": "Seu Bento: Fato típico, e nada no caso afasta a ilicitude ou a culpabilidade. É crime."
+      },
+      "desfecho": "O Seu Bento registra a ocorrência de furto. A bicicleta é apreendida e devolvida à dona, e o caso segue para apuração."
+    },
+    "conceitos": ["fato-tipico", "conceito-de-crime", "consumacao-e-tentativa"],
+    "recompensa": { "pontos": 70 }
+  },
+  {
+    "id": "m202-mao-na-bolsa",
+    "titulo": "A mão na bolsa",
+    "capitulo": 2,
+    "nivel": 2,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m201-bicicleta"],
+    "aulas": ["consumacao-e-tentativa"],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), trouxe um conduzido do ponto de ônibus. Os próprios passageiros seguraram o homem."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "O Seu Bento já adiantou: o tipo é furto. Falta dizer se chegou ao fim ou não."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 012 — ponto de ônibus",
+      "linhas": [
+        "Um homem de 31 anos se aproximou de uma passageira no ponto de ônibus.",
+        "Ele abriu o zíper da bolsa dela e enfiou a mão para pegar a carteira, que estava lá dentro.",
+        "Outro passageiro percebeu e segurou o braço dele antes que tirasse a carteira.",
+        "A carteira não chegou a sair da bolsa."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true, "interrompidaPor": "circunstancias_alheias" },
+        "justificante": null,
+        "agente": { "idade": 31, "embriaguez": "nenhuma" }
+      },
+      "pede": ["forma", "conclusao"],
+      "informa": ["tipico"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "forma": "Dra. Helena: Ele começou a executar, mas a carteira nunca saiu da bolsa. E só não saiu porque o seguraram: tentativa.",
+        "conclusao": "Dra. Helena: Crime tentado também é crime. A tentativa só diminui a pena."
+      },
+      "desfecho": "Furto tentado. A passageira agradece ao rapaz que segurou o braço do homem, e o caso segue para o cartório."
+    },
+    "conceitos": ["consumacao-e-tentativa", "fato-tipico"],
+    "recompensa": { "pontos": 70 }
+  },
+  {
+    "id": "m203-vaso-da-vizinha",
+    "titulo": "O vaso da vizinha",
+    "capitulo": 2,
+    "nivel": 2,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["m202-mao-na-bolsa"],
+    "aulas": ["dolo-e-culpa"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), a Dona Marlene está no balcão, uma fera. O vizinho quebrou o vaso de estimação dela."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Ela quer registrar o crime de dano. O Seu Bento pediu para o(a) senhor(a) olhar com calma."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 014 — balcão",
+      "linhas": [
+        "O vizinho da Dona Marlene, de 45 anos, manobrava o carro para sair da garagem.",
+        "Distraído com o celular, encostou o para-choque no muro baixo que divide as casas.",
+        "Um vaso de cerâmica da Dona Marlene, que ficava sobre o muro, caiu e se quebrou.",
+        "Ele não queria quebrar o vaso: foi descuido. Pediu desculpas na hora."
+      ],
+      "fato": {
+        "elementos": ["dano_a_coisa_alheia", "coisa_danificada"],
+        "elementoSubjetivo": "culpa",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 45, "embriaguez": "nenhuma" }
+      },
+      "pede": ["tipico", "conclusao"],
+      "informa": [],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "tipico": "Dra. Helena: Ele quis quebrar o vaso? Não: foi culpa. E o crime de dano não tem forma culposa.",
+        "conclusao": "Dra. Helena: Sem dolo, e sem previsão de dano culposo, o fato é atípico. O prejuízo se cobra na esfera cível."
+      },
+      "desfecho": "Você explica à Dona Marlene que não há crime, porque o dano só é punido quando praticado de propósito. Ela pode pedir a indenização do vaso ao vizinho, que já se ofereceu para pagar."
+    },
+    "conceitos": ["dolo-e-culpa", "fato-tipico", "ilicito-civil-e-penal"],
+    "recompensa": { "pontos": 80 }
+  },
+  {
+    "id": "m204-bolsa-na-praca",
+    "titulo": "A bolsa na praça",
+    "capitulo": 2,
+    "nivel": 2,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m203-vaso-da-vizinha"],
+    "aulas": ["roubo-e-consumacao"],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), assalto na praça. Pegamos o sujeito duas quadras depois, ainda com a bolsa da vítima."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "O advogado dele já está dizendo que foi só tentativa, porque ele não chegou a aproveitar nada."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Como teve ameaça, o tipo é roubo, doutor(a). A dúvida do advogado é com o(a) senhor(a)."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 019 — Praça da Matriz",
+      "linhas": [
+        "Um homem de 22 anos abordou uma mulher na praça e mostrou uma faca.",
+        "Disse: \"Passa a bolsa ou vai ser pior\". Ela entregou a bolsa.",
+        "Ele correu com a bolsa. A vítima gritou, e a viatura que passava saiu atrás dele.",
+        "Foi alcançado duas quadras depois, com a bolsa. Nada foi perdido."
+      ],
+      "fato": {
+        "elementos": [
+          "subtracao",
+          "coisa_alheia_movel",
+          "violencia_ou_grave_ameaca",
+          "inversao_da_posse"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 22, "embriaguez": "nenhuma" }
+      },
+      "pede": ["forma", "conclusao"],
+      "informa": ["tipico"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "forma": "Dra. Helena: A bolsa saiu da vítima e ficou com ele, ainda que por duas quadras. Para o STJ, isso basta: Súmula 582.",
+        "conclusao": "Dra. Helena: Roubo consumado, adulto, sem nada que justifique. É crime."
+      },
+      "desfecho": "Roubo consumado. A vítima recebe a bolsa de volta com tudo dentro, e o advogado sai resmungando contra a Súmula 582."
+    },
+    "conceitos": ["consumacao-do-furto-e-do-roubo", "furto-e-roubo", "consumacao-e-tentativa"],
+    "recompensa": { "pontos": 80 }
+  }
+]

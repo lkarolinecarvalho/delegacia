@@ -1,0 +1,92 @@
+[
+  {
+    "id": "legalidade",
+    "nome": "Princípio da legalidade",
+    "nivel": 1,
+    "definicao": "Não há crime sem lei anterior que o defina, nem pena sem prévia cominação legal."
+  },
+  {
+    "id": "conceito-de-crime",
+    "nome": "Conceito analítico de crime",
+    "nivel": 1,
+    "definicao": "Para a teoria tripartida, crime é o fato típico, ilícito e culpável."
+  },
+  {
+    "id": "policia-judiciaria",
+    "nome": "Polícia judiciária",
+    "nivel": 1,
+    "definicao": "Função de apurar as infrações penais e a sua autoria, exercida pelas polícias civis e pela Polícia Federal."
+  },
+  {
+    "id": "ilicito-civil-e-penal",
+    "nome": "Ilícito civil × ilícito penal",
+    "nivel": 1,
+    "definicao": "Nem tudo que é contrário ao direito é crime: o descumprimento de uma obrigação civil se resolve na esfera cível."
+  },
+  {
+    "id": "fato-tipico",
+    "nome": "Fato típico",
+    "nivel": 2,
+    "definicao": "Conduta que se ajusta a um tipo penal. Elementos: conduta, resultado, nexo causal e tipicidade."
+  },
+  {
+    "id": "dolo-e-culpa",
+    "nome": "Dolo e culpa",
+    "nivel": 2,
+    "definicao": "Dolo: querer o resultado ou assumir o risco. Culpa: imprudência, negligência ou imperícia. A forma culposa só é punida quando a lei prevê."
+  },
+  {
+    "id": "consumacao-e-tentativa",
+    "nome": "Consumação e tentativa",
+    "nivel": 2,
+    "definicao": "Consumado: reúne todos os elementos do tipo. Tentado: iniciada a execução, não se consuma por circunstâncias alheias à vontade do agente."
+  },
+  {
+    "id": "consumacao-do-furto-e-do-roubo",
+    "nome": "Consumação do furto e do roubo",
+    "nivel": 2,
+    "definicao": "Para o STJ, basta a inversão da posse do bem, ainda que por pouco tempo."
+  },
+  {
+    "id": "furto-e-roubo",
+    "nome": "Furto × roubo",
+    "nivel": 2,
+    "definicao": "Os dois são subtração de coisa alheia móvel; o roubo exige violência ou grave ameaça à pessoa."
+  },
+  {
+    "id": "legitima-defesa",
+    "nome": "Legítima defesa",
+    "nivel": 3,
+    "definicao": "Repelir injusta agressão, atual ou iminente, a direito próprio ou alheio, usando moderadamente dos meios necessários."
+  },
+  {
+    "id": "estado-de-necessidade",
+    "nome": "Estado de necessidade",
+    "nivel": 3,
+    "definicao": "Praticar o fato para salvar de perigo atual, não provocado por vontade própria e inevitável de outro modo, direito cujo sacrifício não era razoável exigir."
+  },
+  {
+    "id": "menoridade-penal",
+    "nome": "Menoridade penal",
+    "nivel": 4,
+    "definicao": "Menores de 18 anos são penalmente inimputáveis: respondem por ato infracional, conforme o ECA."
+  },
+  {
+    "id": "embriaguez",
+    "nome": "Embriaguez",
+    "nivel": 4,
+    "definicao": "A voluntária ou culposa não exclui a imputabilidade. Só isenta de pena a completa, vinda de caso fortuito ou força maior."
+  },
+  {
+    "id": "apropriacao-indebita",
+    "nome": "Apropriação indébita",
+    "nivel": 5,
+    "definicao": "Apropriar-se de coisa alheia móvel de que já se tinha a posse ou a detenção."
+  },
+  {
+    "id": "estelionato",
+    "nome": "Estelionato",
+    "nivel": 5,
+    "definicao": "Obter vantagem ilícita, em prejuízo alheio, induzindo ou mantendo alguém em erro por meio fraudulento."
+  }
+]

@@ -1,0 +1,338 @@
+[
+  {
+    "id": "o-direito-penal",
+    "titulo": "O que é Direito Penal?",
+    "resumo": "Começando do zero: para que ele serve.",
+    "pontos": [
+      "Direito Penal é o conjunto de leis que diz quais condutas são crimes e quais penas cabem a quem as pratica.",
+      "Ele protege os bens mais importantes da vida em sociedade: a vida, a integridade física, a liberdade, o patrimônio.",
+      "É a resposta mais dura do Estado. Por isso só entra em cena quando os outros ramos do direito não bastam."
+    ],
+    "exemplo": "Quem bate o carro por descuido e amassa o portão do vizinho resolve o prejuízo na esfera cível. Quem ameaça o vizinho com uma faca para levar o carro responde na esfera penal.",
+    "perguntas": [
+      {
+        "enunciado": "Toda conduta contrária ao direito é crime.",
+        "gabarito": "E",
+        "explicacao": "Só é crime o que a lei penal define como crime. Muitas condutas ilícitas se resolvem em outros ramos, como o direito civil."
+      }
+    ]
+  },
+  {
+    "id": "legalidade",
+    "titulo": "Não há crime sem lei",
+    "resumo": "O princípio da legalidade: a primeira regra do Direito Penal.",
+    "pontos": [
+      "Não há crime sem lei anterior que o defina. Não há pena sem prévia cominação legal.",
+      "A lei precisa existir antes do fato. Ninguém responde por algo que só virou crime depois.",
+      "Se o fato não se ajusta a nenhuma lei penal, ele é atípico, por mais errado que pareça.",
+      "Exemplo clássico: deixar de pagar uma dívida. É ilícito civil, não crime."
+    ],
+    "exemplo": "Um senhor chega à delegacia querendo a prisão do vizinho que não pagou um empréstimo. Não existe lei que defina isso como crime: a cobrança é feita na Justiça cível.",
+    "fonte": "CP, art. 1º; CF, art. 5º, XXXIX e LXVII",
+    "perguntas": [
+      {
+        "enunciado": "Uma conduta muito reprovável pode ser punida como crime mesmo sem lei que a defina.",
+        "gabarito": "E",
+        "explicacao": "Sem lei anterior que defina o fato como crime, não há crime: é o princípio da legalidade."
+      }
+    ]
+  },
+  {
+    "id": "o-que-e-crime",
+    "titulo": "O que é crime?",
+    "resumo": "As três perguntas que você vai fazer em todo caso.",
+    "pontos": [
+      "Para a doutrina majoritária, crime é o fato típico, ilícito e culpável. É a teoria tripartida.",
+      "Fato típico: a conduta se ajusta ao que uma lei penal descreve.",
+      "Ilícito: a conduta é contrária ao direito. Não é, por exemplo, quando praticada em legítima defesa.",
+      "Culpável: o agente pode ser censurado pelo que fez. Um menor de 18 anos, por exemplo, não responde por crime.",
+      "A ordem importa: só se passa à pergunta seguinte se a anterior teve resposta positiva."
+    ],
+    "exemplo": "Alguém leva a bicicleta de outra pessoa. O fato se ajusta ao furto (típico), não havia nada que o autorizasse (ilícito) e o autor é adulto e capaz (culpável). É crime.",
+    "fonte": "Doutrina majoritária (teoria tripartida)",
+    "perguntas": [
+      {
+        "enunciado": "Para a teoria tripartida, crime é o fato típico, ilícito e culpável.",
+        "gabarito": "C",
+        "explicacao": "São os três elementos do conceito analítico de crime na teoria tripartida, adotada pela maioria da doutrina."
+      }
+    ]
+  },
+  {
+    "id": "a-delegacia",
+    "titulo": "O que a delegacia faz?",
+    "resumo": "Polícia judiciária e inquérito, em poucas palavras.",
+    "pontos": [
+      "A Polícia Civil, dirigida por delegados de carreira, exerce a polícia judiciária: apura as infrações penais e descobre quem as praticou.",
+      "Essa apuração é feita no inquérito policial, presidido pelo delegado.",
+      "O delegado não julga nem condena. Ele reúne os elementos e os envia ao Ministério Público e ao juiz.",
+      "O delegado também não pode mandar arquivar o inquérito."
+    ],
+    "exemplo": "Chega a notícia de um furto. A delegacia registra a ocorrência, ouve as pessoas, junta as provas e relata o que apurou. Quem acusa é o Ministério Público; quem julga é o juiz.",
+    "fonte": "CF, art. 144, § 4º; CPP, arts. 4º e 17",
+    "perguntas": [
+      {
+        "enunciado": "Concluída a apuração, o delegado pode arquivar o inquérito se entender que não houve crime.",
+        "gabarito": "E",
+        "explicacao": "A autoridade policial não pode mandar arquivar autos de inquérito (CPP, art. 17)."
+      }
+    ]
+  },
+  {
+    "id": "fato-tipico",
+    "titulo": "O fato típico",
+    "resumo": "A primeira pergunta: a conduta se ajusta a algum tipo penal?",
+    "pontos": [
+      "Tipo penal é a descrição que a lei faz da conduta proibida. O do furto é: subtrair, para si ou para outrem, coisa alheia móvel.",
+      "O fato é típico quando a conduta se ajusta a todos os elementos do tipo.",
+      "O fato típico tem quatro elementos: conduta, resultado, nexo causal entre os dois e tipicidade.",
+      "Faltou um elemento do tipo, o fato é atípico e a análise para aí."
+    ],
+    "exemplo": "Levar a bicicleta do vizinho: houve subtração, a coisa é móvel e é alheia. Todos os elementos do furto estão presentes. Levar a própria bicicleta, pensando que era de outro: falta a coisa alheia, não há furto.",
+    "fonte": "CP, art. 155",
+    "perguntas": [
+      {
+        "enunciado": "Se faltar um dos elementos descritos no tipo penal, o fato é atípico.",
+        "gabarito": "C",
+        "explicacao": "A tipicidade exige que a conduta se ajuste a todos os elementos do tipo."
+      }
+    ]
+  },
+  {
+    "id": "furto",
+    "titulo": "O primeiro crime: furto",
+    "resumo": "Por enquanto, quem dá nome ao crime é o Seu Bento. Você só precisa entender por quê.",
+    "pontos": [
+      "Furto é subtrair, para si ou para outrem, coisa alheia móvel.",
+      "Subtrair é tirar a coisa de quem a tem, sem o consentimento dele.",
+      "No furto não há violência nem grave ameaça contra a pessoa. Se houver, o crime é outro."
+    ],
+    "exemplo": "Pegar a bicicleta encostada na calçada e ir embora com ela é furto. A pena é de reclusão, de um a quatro anos, e multa.",
+    "fonte": "CP, art. 155",
+    "perguntas": []
+  },
+  {
+    "id": "consumacao-e-tentativa",
+    "titulo": "Consumado ou tentado?",
+    "resumo": "O caminho do crime e onde ele parou.",
+    "pontos": [
+      "O crime é consumado quando nele se reúnem todos os elementos de sua definição legal.",
+      "É tentado quando, iniciada a execução, não se consuma por circunstâncias alheias à vontade do agente.",
+      "Em regra, a tentativa é punida com a pena do crime consumado, diminuída de um a dois terços.",
+      "Pensar no crime e se preparar para ele, em regra, não é punido: é preciso começar a executar."
+    ],
+    "exemplo": "O homem enfia a mão na bolsa da passageira para pegar a carteira, mas é segurado antes de tirá-la. Ele começou a executar o furto e só não terminou porque foi impedido: furto tentado.",
+    "fonte": "CP, art. 14",
+    "perguntas": [
+      {
+        "enunciado": "Há tentativa quando o agente, por vontade própria, decide não começar a execução do crime.",
+        "gabarito": "E",
+        "explicacao": "A tentativa exige início de execução e não consumação por circunstâncias alheias à vontade do agente."
+      }
+    ]
+  },
+  {
+    "id": "dolo-e-culpa",
+    "titulo": "Dolo e culpa",
+    "resumo": "Querer é diferente de descuidar. E a lei trata diferente.",
+    "pontos": [
+      "Crime doloso: o agente quis o resultado ou assumiu o risco de produzi-lo.",
+      "Crime culposo: o agente deu causa ao resultado por imprudência, negligência ou imperícia.",
+      "A regra é o dolo. Só há crime culposo quando a lei prevê expressamente a forma culposa.",
+      "O dano, por exemplo, só existe na forma dolosa. Quebrar algo por descuido não é crime: resolve-se com indenização."
+    ],
+    "exemplo": "Quem quebra o vaso da vizinha de propósito comete dano. Quem o derruba sem querer, ao manobrar o carro, não comete crime: a lei não prevê dano culposo. Já a lesão corporal tem forma culposa.",
+    "fonte": "CP, art. 18",
+    "perguntas": [
+      {
+        "enunciado": "Todo crime previsto no Código Penal pode ser punido também na forma culposa.",
+        "gabarito": "E",
+        "explicacao": "Salvo os casos expressos em lei, só se pune quem pratica o fato dolosamente (CP, art. 18, parágrafo único)."
+      }
+    ]
+  },
+  {
+    "id": "roubo-e-consumacao",
+    "titulo": "Roubo, e quando ele se consuma",
+    "resumo": "Subtração com violência ou grave ameaça. E a Súmula 582 do STJ.",
+    "pontos": [
+      "Roubo é subtrair coisa móvel alheia mediante grave ameaça ou violência a pessoa.",
+      "É o furto somado à violência ou à grave ameaça. Quando elas existem, o crime é roubo, não furto.",
+      "Para o STJ, furto e roubo consumam-se com a inversão da posse: o bem sai da vítima e passa ao agente, ainda que por pouco tempo.",
+      "Não é preciso posse tranquila. Mesmo perseguido e preso logo depois, com a coisa recuperada, o crime está consumado."
+    ],
+    "exemplo": "O assaltante toma a bolsa com ameaça, corre e é preso duas quadras adiante, com a bolsa. O roubo está consumado: a posse se inverteu.",
+    "fonte": "CP, art. 157; Súmula 582 do STJ",
+    "perguntas": [
+      {
+        "enunciado": "Segundo o STJ, o roubo só se consuma quando o agente tem a posse tranquila do bem, fora da vigilância da vítima.",
+        "gabarito": "E",
+        "explicacao": "Pela Súmula 582 do STJ, basta a inversão da posse, ainda que por breve tempo; a posse mansa e pacífica é dispensável."
+      }
+    ]
+  },
+  {
+    "id": "ilicitude",
+    "titulo": "Ilicitude",
+    "resumo": "A segunda pergunta: havia algo que autorizasse a conduta?",
+    "pontos": [
+      "Fato típico é, em regra, ilícito. A exceção são as excludentes de ilicitude.",
+      "São quatro no Código Penal: estado de necessidade, legítima defesa, estrito cumprimento de dever legal e exercício regular de direito.",
+      "Com a excludente, o fato continua típico, mas não é crime: a lei diz que \"não há crime\".",
+      "Quem se excede responde pelo excesso, doloso ou culposo."
+    ],
+    "exemplo": "Ferir alguém é fato típico: lesão corporal. Se foi para se defender de uma agressão injusta, o fato é lícito.",
+    "fonte": "CP, art. 23",
+    "perguntas": [
+      {
+        "enunciado": "A legítima defesa exclui a ilicitude do fato.",
+        "gabarito": "C",
+        "explicacao": "É uma das excludentes de ilicitude do art. 23 do Código Penal."
+      }
+    ]
+  },
+  {
+    "id": "legitima-defesa",
+    "titulo": "Legítima defesa",
+    "resumo": "Os requisitos, um por um.",
+    "pontos": [
+      "Agressão injusta: um ataque contrário ao direito.",
+      "Atual ou iminente: está acontecendo ou prestes a acontecer. Agressão que já acabou não autoriza defesa.",
+      "A direito seu ou de outrem: vale defender a si mesmo ou a um terceiro.",
+      "Meios necessários, usados moderadamente: o suficiente para fazer a agressão parar."
+    ],
+    "exemplo": "O feirante atacado a socos empurra o agressor para se livrar: legítima defesa. Se ele vai atrás do agressor uma hora depois, já em casa, é vingança.",
+    "fonte": "CP, art. 25",
+    "perguntas": [
+      {
+        "enunciado": "Age em legítima defesa quem reage a uma agressão que já terminou.",
+        "gabarito": "E",
+        "explicacao": "A agressão precisa ser atual ou iminente. Depois que ela cessa, a reação é vingança."
+      }
+    ]
+  },
+  {
+    "id": "estado-de-necessidade",
+    "titulo": "Estado de necessidade",
+    "resumo": "Quando há um perigo, e não uma agressão.",
+    "pontos": [
+      "Perigo atual, que o agente não provocou por sua vontade.",
+      "O perigo não podia ser evitado de outro modo.",
+      "Para salvar direito próprio ou alheio, cujo sacrifício não era razoável exigir.",
+      "Quem tem o dever legal de enfrentar o perigo não pode alegar estado de necessidade."
+    ],
+    "exemplo": "Uma pessoa quebra o vidro de um carro para tirar um bebê trancado sob sol forte. Destruir coisa alheia é dano, mas o fato é lícito: ela agiu em estado de necessidade.",
+    "fonte": "CP, art. 24",
+    "perguntas": [
+      {
+        "enunciado": "Na legítima defesa reage-se a uma agressão injusta; no estado de necessidade, afasta-se um perigo.",
+        "gabarito": "C",
+        "explicacao": "É a diferença central entre as duas excludentes (CP, arts. 24 e 25)."
+      }
+    ]
+  },
+  {
+    "id": "culpabilidade",
+    "titulo": "Culpabilidade",
+    "resumo": "A terceira pergunta: o agente pode ser censurado pelo que fez?",
+    "pontos": [
+      "Fato típico e ilícito ainda não basta. É preciso que o agente seja culpável.",
+      "Um dos elementos da culpabilidade é a imputabilidade: a capacidade de entender o caráter ilícito do fato e de agir de acordo com esse entendimento.",
+      "Os menores de 18 anos são penalmente inimputáveis.",
+      "Vale a idade na data do fato."
+    ],
+    "exemplo": "Um adolescente de 17 anos que subtrai um fone de ouvido praticou fato típico e ilícito, mas não é culpável.",
+    "fonte": "CP, art. 27; CF, art. 228",
+    "perguntas": []
+  },
+  {
+    "id": "menoridade",
+    "titulo": "Menor de 18 anos: ato infracional",
+    "resumo": "O adolescente não comete crime nem recebe pena.",
+    "pontos": [
+      "A conduta descrita como crime ou contravenção, praticada por criança ou adolescente, chama-se ato infracional.",
+      "O adolescente não responde pelo Código Penal: fica sujeito ao Estatuto da Criança e do Adolescente.",
+      "Em vez de pena, o ECA prevê medidas socioeducativas para o adolescente."
+    ],
+    "exemplo": "O adolescente de 17 anos que leva o fone do mercado praticou ato infracional análogo ao furto.",
+    "fonte": "ECA, arts. 103 e 104",
+    "perguntas": [
+      {
+        "enunciado": "O adolescente de 17 anos que subtrai coisa alheia comete crime de furto, mas com pena reduzida.",
+        "gabarito": "E",
+        "explicacao": "Menor de 18 anos é inimputável: pratica ato infracional e fica sujeito ao ECA, não às penas do Código Penal."
+      }
+    ]
+  },
+  {
+    "id": "embriaguez",
+    "titulo": "Embriaguez",
+    "resumo": "Beber por conta própria não livra ninguém.",
+    "pontos": [
+      "A embriaguez voluntária ou culposa, pelo álcool ou por substância de efeitos análogos, não exclui a imputabilidade.",
+      "A emoção e a paixão também não excluem.",
+      "Só isenta de pena a embriaguez completa que vem de caso fortuito ou força maior, quando o agente fica inteiramente incapaz de entender o que faz."
+    ],
+    "exemplo": "Quem bebe a noite toda no bar e fere outro freguês responde pelo crime. Quem tem a bebida adulterada sem saber e perde por completo a consciência pode ficar isento de pena.",
+    "fonte": "CP, art. 28",
+    "perguntas": [
+      {
+        "enunciado": "A embriaguez voluntária completa exclui a imputabilidade penal.",
+        "gabarito": "E",
+        "explicacao": "A embriaguez voluntária ou culposa não exclui a imputabilidade, ainda que completa (CP, art. 28, II)."
+      }
+    ]
+  },
+  {
+    "id": "dar-nome-ao-crime",
+    "titulo": "Dando nome ao crime",
+    "resumo": "Agora é com você. Comece pelo verbo.",
+    "pontos": [
+      "Todo tipo penal tem um núcleo: o verbo. Subtrair, apropriar-se, obter, destruir, ofender.",
+      "Para tipificar, pergunte: o que o agente fez com a coisa ou com a pessoa? Depois confira os demais elementos.",
+      "Se o fato cabe em mais de um tipo, vale o mais específico.",
+      "A sua classificação na delegacia é provisória: o Ministério Público e o juiz podem dar outra."
+    ],
+    "exemplo": "Tirou a coisa de quem a tinha: subtrair. Já tinha a coisa e resolveu ficar com ela: apropriar-se. Enganou a vítima para que ela entregasse: obter vantagem mediante fraude.",
+    "perguntas": []
+  },
+  {
+    "id": "apropriacao-indebita",
+    "titulo": "Apropriação indébita",
+    "resumo": "A coisa já estava com o agente.",
+    "pontos": [
+      "Apropriação indébita é apropriar-se de coisa alheia móvel de que se tem a posse ou a detenção.",
+      "A coisa chegou às mãos do agente de forma lícita: emprestada, alugada, confiada.",
+      "O crime surge depois, quando ele passa a agir como dono: vende, recusa-se a devolver.",
+      "No furto é diferente: o agente tira a coisa de quem a tem."
+    ],
+    "exemplo": "O amigo recebe o celular emprestado por uma semana. Depois, resolve ficar com ele e o vende. Ele não subtraiu nada: apropriou-se do que já estava em suas mãos.",
+    "fonte": "CP, art. 168",
+    "perguntas": [
+      {
+        "enunciado": "Na apropriação indébita, o agente já tinha a posse ou a detenção da coisa antes de se apropriar dela.",
+        "gabarito": "C",
+        "explicacao": "É o que a distingue do furto, em que o agente tira a coisa de quem a tem (CP, art. 168)."
+      }
+    ]
+  },
+  {
+    "id": "estelionato",
+    "titulo": "Estelionato",
+    "resumo": "A vítima entrega porque foi enganada.",
+    "pontos": [
+      "Estelionato é obter vantagem ilícita, em prejuízo alheio, induzindo ou mantendo alguém em erro, mediante artifício, ardil ou outro meio fraudulento.",
+      "A marca do estelionato é a fraude: a vítima, enganada, entrega a vantagem por conta própria.",
+      "No furto, a coisa é tirada sem que a vítima a entregue."
+    ],
+    "exemplo": "No golpe do bilhete premiado, o golpista convence a vítima a lhe dar dinheiro em troca de um bilhete sem valor. Ela mesma entrega o dinheiro, porque foi enganada: estelionato.",
+    "fonte": "CP, art. 171",
+    "perguntas": [
+      {
+        "enunciado": "No estelionato, a vítima é induzida ou mantida em erro e, por isso, entrega a vantagem ao agente.",
+        "gabarito": "C",
+        "explicacao": "A fraude que leva a vítima ao erro é o meio de execução do estelionato (CP, art. 171)."
+      }
+    ]
+  }
+]

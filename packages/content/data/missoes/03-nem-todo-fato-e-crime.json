@@ -1,0 +1,165 @@
+[
+  {
+    "id": "m301-briga-na-feira",
+    "titulo": "A briga na feira",
+    "capitulo": 3,
+    "nivel": 3,
+    "sala": "oitiva",
+    "npc": "helena-delegada",
+    "requisitos": ["m204-bolsa-na-praca"],
+    "aulas": ["ilicitude", "legitima-defesa"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "Você já sabe ver se o fato é típico. Agora vem a segunda pergunta: ele é ilícito?"
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Trouxeram dois homens da feira, um deles com o braço enfaixado. Ouça o que ficou apurado."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 027 — feira livre",
+      "linhas": [
+        "Um freguês, irritado com o preço, partiu para cima do feirante Jonas, de 38 anos, a socos.",
+        "Jonas não tinha provocado o freguês nem tinha como sair de trás da banca.",
+        "Enquanto apanhava, Jonas empurrou o agressor com as mãos, uma vez, para afastá-lo.",
+        "O agressor caiu sobre os caixotes e sofreu um corte no braço. Jonas parou assim que ele caiu."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": {
+          "tipo": "legitima_defesa",
+          "agressaoInjusta": true,
+          "atualOuIminente": true,
+          "direitoProprioOuAlheio": true,
+          "meiosNecessarios": true,
+          "usoModerado": true
+        },
+        "agente": { "idade": 38, "embriaguez": "nenhuma" }
+      },
+      "pede": ["excludente", "conclusao"],
+      "informa": ["tipico", "forma"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "excludente": "Dra. Helena: Confira os requisitos: agressão injusta, acontecendo naquele momento, e um empurrão só para se livrar. É legítima defesa.",
+        "conclusao": "Dra. Helena: O fato é típico, mas a lei diz que não há crime quando há legítima defesa: fato lícito."
+      },
+      "desfecho": "A conduta de Jonas é lesão corporal, mas praticada em legítima defesa: não há crime. O freguês é quem vai responder pela agressão que começou."
+    },
+    "conceitos": ["legitima-defesa", "conceito-de-crime"],
+    "recompensa": { "pontos": 90 }
+  },
+  {
+    "id": "m302-carro-no-sol",
+    "titulo": "O carro no sol",
+    "capitulo": 3,
+    "nivel": 3,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["m301-briga-na-feira"],
+    "aulas": ["estado-de-necessidade"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), tem um senhor no balcão querendo registrar que quebraram o vidro do carro dele."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "E a moça que quebrou veio junto! Disse que quebrou mesmo, e que quebraria de novo."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 031 — estacionamento do mercado",
+      "linhas": [
+        "Ao meio-dia, sob sol forte, Lívia, de 29 anos, viu um bebê trancado num carro fechado, chorando e muito vermelho.",
+        "Ela e o segurança procuraram o dono do carro pelo estacionamento e pelo som do mercado, sem resposta.",
+        "As portas estavam travadas. Lívia quebrou o vidro traseiro com uma pedra, longe do bebê, e o tirou do carro.",
+        "O pai apareceu vinte minutos depois. O bebê foi atendido e passa bem."
+      ],
+      "fato": {
+        "elementos": ["dano_a_coisa_alheia", "coisa_danificada"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": {
+          "tipo": "estado_de_necessidade",
+          "perigoAtual": true,
+          "naoProvocadoPorVontade": true,
+          "inevitavelDeOutroModo": true,
+          "direitoProprioOuAlheio": true,
+          "sacrificioInexigivel": true,
+          "deverLegalDeEnfrentar": false
+        },
+        "agente": { "idade": 29, "embriaguez": "nenhuma" }
+      },
+      "pede": ["excludente", "conclusao"],
+      "informa": ["tipico", "forma"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "excludente": "Dra. Helena: Ninguém agrediu a Lívia: havia um perigo. Perigo atual, que ela não criou e não podia afastar de outro jeito. É estado de necessidade.",
+        "conclusao": "Dra. Helena: Quebrar o vidro é dano, fato típico. Mas, em estado de necessidade, não há crime."
+      },
+      "desfecho": "Lívia quebrou o vidro de propósito, e isso é o tipo do dano. Mas agiu em estado de necessidade, para salvar a vida do bebê: fato lícito. Quem vai ter de se explicar é o pai."
+    },
+    "conceitos": ["estado-de-necessidade", "legitima-defesa"],
+    "recompensa": { "pontos": 90 }
+  },
+  {
+    "id": "m303-revanche",
+    "titulo": "A revanche",
+    "capitulo": 3,
+    "nivel": 3,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m302-carro-no-sol"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Doutor(a), lembra da briga na feira? Tem outra, mas esta é diferente."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "O conduzido jura que foi legítima defesa, porque quem bateu primeiro foi o outro. Veja a hora de cada coisa."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 034 — Vila Nova",
+      "linhas": [
+        "Às 18h, num bar, Caio, de 27 anos, levou um soco de um conhecido. Foram separados e cada um foi para sua casa.",
+        "Às 19h, Caio foi até a casa do conhecido, que jantava com a família.",
+        "Caio o chamou ao portão e o atingiu com um pedaço de madeira, ferindo o ombro dele.",
+        "No portão, o conhecido não fez nem ameaçou fazer nada contra Caio."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": {
+          "tipo": "legitima_defesa",
+          "agressaoInjusta": true,
+          "atualOuIminente": false,
+          "direitoProprioOuAlheio": true,
+          "meiosNecessarios": false,
+          "usoModerado": false
+        },
+        "agente": { "idade": 27, "embriaguez": "nenhuma" }
+      },
+      "pede": ["excludente", "conclusao"],
+      "informa": ["tipico", "forma"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "excludente": "Seu Bento: O soco foi às 18h, doutor(a). Às 19h não havia agressão nenhuma para repelir. Isso é vingança.",
+        "conclusao": "Seu Bento: Sem excludente, o fato típico é também ilícito. Caio é adulto: é crime."
+      },
+      "desfecho": "A agressão que Caio sofreu já tinha acabado. Sem agressão atual ou iminente não há legítima defesa: ele responde por lesão corporal. O conhecido também responde pelo soco das 18h."
+    },
+    "conceitos": ["legitima-defesa", "estado-de-necessidade"],
+    "recompensa": { "pontos": 100 }
+  }
+]

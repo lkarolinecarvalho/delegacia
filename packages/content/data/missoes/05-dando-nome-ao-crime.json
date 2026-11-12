@@ -1,0 +1,151 @@
+[
+  {
+    "id": "m501-celular-emprestado",
+    "titulo": "O celular emprestado",
+    "capitulo": 5,
+    "nivel": 5,
+    "sala": "recepcao",
+    "npc": "helena-delegada",
+    "requisitos": ["m402-noite-do-bar"],
+    "aulas": ["dar-nome-ao-crime", "apropriacao-indebita"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "Você já faz a análise inteira. Chegou a hora de dar nome ao crime por conta própria."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "O Seu Bento não vai mais adiantar o tipo. Leia o fato, ache o verbo e escolha."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 052 — balcão",
+      "linhas": [
+        "Paula emprestou o celular ao colega Igor, de 26 anos, por uma semana, enquanto o dele estava no conserto.",
+        "Igor recebeu o aparelho de boa-fé, pretendendo devolvê-lo.",
+        "Dias depois, sem dinheiro, Igor resolveu ficar com o celular e o vendeu numa loja de usados.",
+        "Quando Paula pediu o aparelho de volta, ele disse que não devolveria."
+      ],
+      "fato": {
+        "elementos": ["coisa_alheia_movel", "posse_previa_licita", "apropriacao"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 26, "embriaguez": "nenhuma" }
+      },
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": ["excludente", "culpabilidade"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "apropriacao_indebita", "estelionato"],
+      "comentarios": {
+        "tipo": "Dra. Helena: Igor tirou o celular da Paula? Não: ela entregou, e sem ser enganada. Ele já tinha a posse e depois agiu como dono.",
+        "forma": "Dra. Helena: Ao vender o aparelho como se fosse seu, ele se apropriou: consumado.",
+        "conclusao": "Dra. Helena: Típico, ilícito e culpável."
+      },
+      "desfecho": "Apropriação indébita. Igor recebeu o celular de forma lícita e só depois resolveu agir como dono. O aparelho é localizado na loja de usados."
+    },
+    "conceitos": ["apropriacao-indebita", "furto-e-roubo"],
+    "recompensa": { "pontos": 120 }
+  },
+  {
+    "id": "m502-bilhete-premiado",
+    "titulo": "O bilhete premiado",
+    "capitulo": 5,
+    "nivel": 5,
+    "sala": "recepcao",
+    "npc": "cida-recepcao",
+    "requisitos": ["m501-celular-emprestado"],
+    "aulas": ["estelionato"],
+    "dialogo": [
+      {
+        "npc": "cida-recepcao",
+        "texto": "Doutor(a), a Dona Olga está no balcão, muito envergonhada. Caiu num golpe na porta do banco."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Ela diz que foi furtada. Mas foi ela mesma quem entregou o dinheiro..."
+      }
+    ],
+    "caso": {
+      "titulo": "Atendimento 057 — balcão",
+      "linhas": [
+        "Um homem de 44 anos abordou Dona Olga na porta do banco com um bilhete de loteria que dizia estar premiado.",
+        "Disse que não podia sacar o prêmio e que venderia o bilhete por R$ 2.000,00. Um comparsa fingiu confirmar o prêmio.",
+        "Convencida, Dona Olga sacou R$ 2.000,00 e entregou ao homem, em troca do bilhete.",
+        "O bilhete não valia nada. O homem sumiu com o dinheiro."
+      ],
+      "fato": {
+        "elementos": ["fraude", "busca_de_vantagem_ilicita", "vitima_em_erro", "vantagem_obtida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 44, "embriaguez": "nenhuma" }
+      },
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": ["excludente", "culpabilidade"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "apropriacao_indebita", "estelionato"],
+      "comentarios": {
+        "tipo": "Dra. Helena: Ninguém tirou o dinheiro da Dona Olga: ela entregou, porque foi enganada. Vantagem obtida mediante fraude é estelionato.",
+        "forma": "Dra. Helena: Ele obteve a vantagem e ela ficou no prejuízo: consumado.",
+        "conclusao": "Dra. Helena: Típico, ilícito e culpável."
+      },
+      "desfecho": "Estelionato. Você tranquiliza a Dona Olga: esse golpe é antigo e engana muita gente. As câmeras do banco vão ajudar a identificar a dupla."
+    },
+    "conceitos": ["estelionato", "apropriacao-indebita"],
+    "recompensa": { "pontos": 120 }
+  },
+  {
+    "id": "m503-saida-do-mercado",
+    "titulo": "A saída do mercado",
+    "capitulo": 5,
+    "nivel": 5,
+    "sala": "oitiva",
+    "npc": "rocha-agente",
+    "requisitos": ["m502-bilhete-premiado"],
+    "aulas": [],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), mais um. A vítima está abalada, mas inteira. Levaram o celular dela na saída do mercado."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "O Seu Bento mandou dizer que desta vez não fala nada. Só que as opções aumentaram."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 061 — Mercado Bom Preço",
+      "linhas": [
+        "Na saída do mercado, um homem de 30 anos parou na frente de uma cliente e mostrou uma faca.",
+        "Disse: \"O celular. Agora\". Com medo, ela entregou o aparelho.",
+        "Ele guardou o celular e foi embora de moto.",
+        "Foi identificado no dia seguinte, pelas câmeras, já sem o aparelho."
+      ],
+      "fato": {
+        "elementos": [
+          "subtracao",
+          "coisa_alheia_movel",
+          "violencia_ou_grave_ameaca",
+          "inversao_da_posse"
+        ],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 30, "embriaguez": "nenhuma" }
+      },
+      "pede": ["tipo", "forma", "conclusao"],
+      "informa": ["excludente", "culpabilidade"],
+      "tipoInformado": false,
+      "opcoesDeTipo": ["furto", "roubo", "apropriacao_indebita", "estelionato"],
+      "comentarios": {
+        "tipo": "Seu Bento: Ela entregou, mas não porque foi enganada: entregou por medo da faca. Subtração com grave ameaça é roubo.",
+        "forma": "Seu Bento: O celular passou para ele e ele foi embora. Posse invertida: consumado.",
+        "conclusao": "Seu Bento: Típico, ilícito e culpável."
+      },
+      "desfecho": "Roubo consumado. Você fecha o capítulo dando nome ao crime sem ajuda. A Dra. Helena avisa: na próxima etapa, o Código inteiro vai estar aberto."
+    },
+    "conceitos": ["furto-e-roubo", "estelionato", "consumacao-do-furto-e-do-roubo"],
+    "recompensa": { "pontos": 140 }
+  }
+]

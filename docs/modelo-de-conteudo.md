@@ -6,7 +6,7 @@ zod em `packages/content/src`. Conteúdo inválido quebra os testes e o CI.
 | Arquivo | O que tem |
 |---|---|
 | `capitulos.json` | Número, parte e título de cada capítulo |
-| `missoes/*.json` | Uma missão por arquivo; o número na frente guarda a ordem |
+| `missoes/*.json` | Um arquivo por capítulo, com as missões em ordem; o número na frente guarda a ordem |
 | `afirmativas/*.json` | Afirmativas de Certo/Errado, por assunto |
 | `conceitos.json` | Conceitos, com nível e definição curta |
 | `teoria.json` | Temas das aulas: pontos curtos, um exemplo e perguntas |

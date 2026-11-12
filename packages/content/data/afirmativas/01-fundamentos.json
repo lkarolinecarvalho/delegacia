@@ -1,0 +1,110 @@
+[
+  {
+    "id": "af-legalidade-01",
+    "conceitoId": "legalidade",
+    "nivelMin": 1,
+    "enunciado": "Não há crime sem lei anterior que o defina, nem pena sem prévia cominação legal.",
+    "gabarito": "C",
+    "explicacao": "É o texto do art. 1º do Código Penal, repetido no art. 5º, XXXIX, da Constituição.",
+    "regras": ["R-LEG-01"]
+  },
+  {
+    "id": "af-legalidade-02",
+    "conceitoId": "legalidade",
+    "nivelMin": 1,
+    "enunciado": "Se uma conduta for considerada imoral pela maioria da sociedade, o delegado pode tratá-la como crime, ainda que nenhuma lei a defina assim.",
+    "gabarito": "E",
+    "explicacao": "Só a lei define crimes. Fato que não se ajusta a nenhum tipo penal é atípico.",
+    "regras": ["R-LEG-01"]
+  },
+  {
+    "id": "af-legalidade-03",
+    "conceitoId": "legalidade",
+    "nivelMin": 1,
+    "enunciado": "Pelo princípio da legalidade, a lei que define o crime precisa ser anterior ao fato.",
+    "gabarito": "C",
+    "explicacao": "A lei tem de existir antes da conduta: é a exigência de lei anterior, do art. 1º do Código Penal.",
+    "regras": ["R-LEG-01"]
+  },
+  {
+    "id": "af-ilicito-civil-01",
+    "conceitoId": "ilicito-civil-e-penal",
+    "nivelMin": 1,
+    "enunciado": "Deixar de pagar um empréstimo no prazo combinado, sem ter enganado o credor, é crime.",
+    "gabarito": "E",
+    "explicacao": "É descumprimento de obrigação civil. A cobrança é feita na Justiça cível.",
+    "regras": ["R-LEG-02"]
+  },
+  {
+    "id": "af-ilicito-civil-02",
+    "conceitoId": "ilicito-civil-e-penal",
+    "nivelMin": 1,
+    "enunciado": "A Constituição proíbe a prisão civil por dívida, mas ressalva a do devedor de pensão alimentícia.",
+    "gabarito": "C",
+    "explicacao": "É o art. 5º, LXVII, da Constituição: a exceção é o inadimplemento voluntário e inescusável de obrigação alimentícia.",
+    "regras": ["R-LEG-02"]
+  },
+  {
+    "id": "af-ilicito-civil-03",
+    "conceitoId": "ilicito-civil-e-penal",
+    "nivelMin": 1,
+    "enunciado": "Toda conduta ilícita é também um ilícito penal.",
+    "gabarito": "E",
+    "explicacao": "Há ilícitos que são apenas civis ou administrativos. Só é ilícito penal o que a lei penal define como infração.",
+    "regras": ["R-LEG-01", "R-LEG-02"]
+  },
+  {
+    "id": "af-conceito-de-crime-01",
+    "conceitoId": "conceito-de-crime",
+    "nivelMin": 1,
+    "enunciado": "Para a teoria tripartida, majoritária na doutrina, crime é o fato típico, ilícito e culpável.",
+    "gabarito": "C",
+    "explicacao": "São os três elementos do conceito analítico de crime na teoria tripartida.",
+    "regras": ["R-CRIME-01"]
+  },
+  {
+    "id": "af-conceito-de-crime-02",
+    "conceitoId": "conceito-de-crime",
+    "nivelMin": 1,
+    "enunciado": "Na análise do crime, examina-se primeiro a culpabilidade do agente e só depois se o fato é típico.",
+    "gabarito": "E",
+    "explicacao": "A ordem é fato típico, ilicitude e culpabilidade. Uma etapa só é examinada se a anterior foi superada.",
+    "regras": ["R-GER-03", "R-CRIME-01"]
+  },
+  {
+    "id": "af-conceito-de-crime-03",
+    "conceitoId": "conceito-de-crime",
+    "nivelMin": 3,
+    "enunciado": "Para a teoria tripartida, um fato típico praticado em legítima defesa não é crime, porque lhe falta a ilicitude.",
+    "gabarito": "C",
+    "explicacao": "A legítima defesa exclui a ilicitude. Sem um dos três elementos, não há crime.",
+    "regras": ["R-CRIME-01", "R-ILI-01"]
+  },
+  {
+    "id": "af-policia-judiciaria-01",
+    "conceitoId": "policia-judiciaria",
+    "nivelMin": 1,
+    "enunciado": "Às polícias civis, dirigidas por delegados de polícia de carreira, cabem as funções de polícia judiciária e a apuração de infrações penais, exceto as militares.",
+    "gabarito": "C",
+    "explicacao": "É o que diz o art. 144, § 4º, da Constituição, ressalvada a competência da União.",
+    "regras": ["R-PJ-01"]
+  },
+  {
+    "id": "af-policia-judiciaria-02",
+    "conceitoId": "policia-judiciaria",
+    "nivelMin": 1,
+    "enunciado": "A autoridade policial pode mandar arquivar o inquérito quando concluir que o fato não é crime.",
+    "gabarito": "E",
+    "explicacao": "A autoridade policial não pode mandar arquivar autos de inquérito (CPP, art. 17).",
+    "regras": ["R-PJ-02"]
+  },
+  {
+    "id": "af-policia-judiciaria-03",
+    "conceitoId": "policia-judiciaria",
+    "nivelMin": 1,
+    "enunciado": "A polícia judiciária tem por fim a apuração das infrações penais e da sua autoria.",
+    "gabarito": "C",
+    "explicacao": "É a redação do art. 4º do Código de Processo Penal.",
+    "regras": ["R-PJ-01"]
+  }
+]

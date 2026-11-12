@@ -1,0 +1,96 @@
+[
+  {
+    "id": "m401-garoto-do-mercado",
+    "titulo": "O garoto do mercado",
+    "capitulo": 4,
+    "nivel": 4,
+    "sala": "oitiva",
+    "npc": "helena-delegada",
+    "requisitos": ["m303-revanche"],
+    "aulas": ["culpabilidade", "menoridade"],
+    "dialogo": [
+      {
+        "npc": "helena-delegada",
+        "texto": "Fato típico, ilícito... falta a terceira pergunta: o agente é culpável?"
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "O segurança do mercado trouxe um rapaz. Antes de qualquer coisa, olhe o documento dele."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 041 — Mercado Bom Preço",
+      "linhas": [
+        "Davi, de 17 anos, colocou um fone de ouvido de R$ 120,00 no bolso do casaco.",
+        "Passou pelo caixa sem pagar e saiu do mercado com o fone.",
+        "O segurança o alcançou no estacionamento, com o fone no bolso.",
+        "A certidão de nascimento confirma: ele faz 18 anos daqui a quatro meses."
+      ],
+      "fato": {
+        "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 17, "embriaguez": "nenhuma" }
+      },
+      "pede": ["culpabilidade", "conclusao"],
+      "informa": ["tipico", "forma", "excludente"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "culpabilidade": "Dra. Helena: Dezessete anos na data do fato. Não importa que falte pouco: menor de 18 é inimputável.",
+        "conclusao": "Dra. Helena: Adolescente não comete crime: a conduta descrita como crime, praticada por ele, é ato infracional."
+      },
+      "desfecho": "Davi praticou ato infracional análogo ao furto. Ele não é autuado em flagrante como um adulto: o caso segue o Estatuto da Criança e do Adolescente, e os pais são chamados à delegacia."
+    },
+    "conceitos": ["menoridade-penal", "conceito-de-crime"],
+    "recompensa": { "pontos": 100 }
+  },
+  {
+    "id": "m402-noite-do-bar",
+    "titulo": "A noite do bar",
+    "capitulo": 4,
+    "nivel": 4,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m401-garoto-do-mercado"],
+    "aulas": ["embriaguez"],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Doutor(a), o conduzido de ontem à noite acordou. Diz que não lembra de nada, de tão bêbado que estava."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "E que, se não lembra, não pode responder. O que o(a) senhor(a) acha?"
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 046 — Bar do Tonho",
+      "linhas": [
+        "Raul, de 35 anos, passou a noite bebendo cerveja e cachaça, por vontade própria.",
+        "Já muito embriagado, discutiu com outro freguês por causa do futebol.",
+        "Raul o atingiu com uma garrafa, causando um corte no supercílio.",
+        "O outro freguês não tinha agredido nem ameaçado Raul."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": { "iniciada": true },
+        "justificante": null,
+        "agente": { "idade": 35, "embriaguez": "voluntaria" }
+      },
+      "pede": ["culpabilidade", "conclusao"],
+      "informa": ["tipico", "forma", "excludente"],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "comentarios": {
+        "culpabilidade": "Seu Bento: Ele bebeu porque quis, doutor(a). Embriaguez voluntária não exclui a imputabilidade, nem quando é completa.",
+        "conclusao": "Seu Bento: Típico, ilícito e culpável. A ressaca não muda a conta: é crime."
+      },
+      "desfecho": "Raul responde por lesão corporal. Só isentaria de pena a embriaguez completa vinda de caso fortuito ou força maior, e não foi o caso: ele bebeu por conta própria."
+    },
+    "conceitos": ["embriaguez", "menoridade-penal"],
+    "recompensa": { "pontos": 100 }
+  }
+]
