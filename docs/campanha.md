@@ -85,12 +85,14 @@ de cada um, está em [casos-dourados.md](casos-dourados.md).
 
 | Nº | Missão | Sala | Tipo | O jogador decide |
 |---|---|---|---|---|
-| 1.1 | Chegada à delegacia | Recepção → cartório → oitiva → investigação → arquivo → departamentos → gabinete | Conversa | — |
-| 1.2 | A dívida do vizinho | Recepção → cartório → gabinete | Caso | Há fato típico? (não: ilícito civil) |
-| 2.1 | A bicicleta | Cartório | Caso | Fato típico; consumado |
-| 2.2 | A mão na bolsa | Sala de oitiva | Caso | Tentado |
-| 2.3 | O vaso da vizinha | Recepção | Caso | Atípico: dano culposo não existe |
-| 2.4 | A bolsa na praça | Sala de oitiva | Caso | Roubo consumado, mesmo com a prisão em seguida |
+| 1.1 | Chegada à delegacia | Recepção → cartório → investigação → gabinete | Conversa | — |
+| 1.2 | A dívida do vizinho | Recepção → cartório | Caso | Há fato típico? (não: ilícito civil) |
+| 1.3 | O som do vizinho | Recepção → cartório | Conversa | Crime ou contravenção? |
+| 2.1 | O soco no campinho | Recepção → cartório | Caso | Lesão corporal: as três perguntas do crime |
+| 2.2 | A bicicleta | Recepção → investigação | Caso | Furto: os elementos do tipo |
+| 2.3 | A faca na oficina | Oitiva → cartório | Caso | Homicídio tentado |
+| 2.4 | O vaso da vizinha | Recepção | Caso | Atípico: dano culposo não existe |
+| 2.5 | A bolsa na praça | Sala de oitiva | Caso | Roubo consumado, mesmo com a prisão em seguida |
 | 3.1 | A briga na feira | Sala de oitiva | Caso | Legítima defesa |
 | 3.2 | O carro no sol | Recepção | Caso | Estado de necessidade |
 | 3.3 | A revanche | Cartório | Caso | Não há excludente: a agressão já tinha acabado |
@@ -109,11 +111,8 @@ Os fatos e as respostas esperadas estão em [casos-dourados.md](casos-dourados.m
   no cartão é o que aconteceu.
 - O desfecho fala do caso, não da pena: penas e processo entram nas Partes II e IV.
 
-## Reestruturação em curso
+## Modelo dos casos
 
-O capítulo 1 já segue o modelo novo: o jogador chega pela recepção, a Dona Cida
-apresenta os ambientes, a Dra. Helena conversa (sem aula expositiva) e o primeiro caso
-passa por três salas. Os capítulos 2 a 10 e as rondas ainda estão no formato anterior
-(conversa curta, aula em balões e caso numa sala só) e serão reescritos no mesmo
-modelo, um capítulo por vez. As rondas dos crimes contra a pessoa e contra o patrimônio
-já acontecem nos respectivos departamentos.
+Todos os capítulos seguem o mesmo modelo: o caso passa por uma ou mais salas, quem está
+na sala o apresenta, o delegado lembra o que estudou e a ficha pergunta sobre os fatos
+daquele caso (GDD, seções 6 e 7).

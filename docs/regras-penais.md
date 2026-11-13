@@ -35,6 +35,11 @@ Siglas: CP = Código Penal (Decreto-Lei 2.848/1940); CPP = Código de Processo P
 - **R-LEG-02** — O descumprimento de obrigação civil (dívida, contrato) não é crime por
   si só: é ilícito civil. Não há prisão civil por dívida, salvo a do devedor de
   alimentos (CF, art. 5º, LXVII).
+- **R-LEG-03** — **Infração penal** é o gênero; **crime** (ou delito) e **contravenção
+  penal** são as espécies. Crime: a lei comina reclusão ou detenção. Contravenção: prisão
+  simples ou multa (LICP, art. 1º). A tentativa de contravenção não é punível (LCP,
+  art. 4º). 📘 O motor só analisa crimes; a contravenção aparece na teoria e numa
+  conversa do capítulo 1.
 - **R-CRIME-01** — ⚖️ Conceito analítico: crime é o fato **típico, ilícito e culpável**
   (teoria tripartida, majoritária). Há quem adote a bipartida (fato típico e ilícito, com
   a culpabilidade como pressuposto da pena). O jogo adota a tripartida.

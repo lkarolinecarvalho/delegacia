@@ -46,10 +46,13 @@ Projeto irmão do `cidade-contabil` (mesma estrutura de ensino; ver ADR-0006).
   caminhos da planta (`apps/game/src/mundo/planta.ts`). A interface é toda React (ADR-0001).
 
 ### Linguagem e ensino
-- Frases curtas e naturais; nada de texto de apostila. Negrito só nas palavras-chave.
-- A teoria aparece porque o caso exige: sem aula inteira antes de resolver.
-- Um conceito novo por vez, explicado dentro da conversa, com exemplo do caso.
-- Os casos andam pela delegacia: cada ambiente tem uma função (GDD, seção 6).
+- Frases curtas e naturais; nada de texto de apostila. Negrito nos conceitos e termos-chave.
+- Os personagens apresentam o caso; **ninguém dá aula**. O conceito vem do delegado, que
+  lembra o que estudou (`aulas`), com esquema e um exemplo diferente do caso.
+- Em cada sala só fala quem trabalha nela ou quem está de passagem (validado no conteúdo).
+- Toda etapa da ficha tem pergunta escrita para o caso e explicação no acerto e no erro.
+- Os casos andam pela delegacia: seis ambientes, cada um com uma função (GDD, seção 6).
+- Afirmativa precisa: sem ressalva que confunda. Na dúvida, simplifique o enunciado.
 
 ### Tom (ADR-0005)
 - Foco no raciocínio jurídico e no procedimento. Sem detalhe gráfico de violência.

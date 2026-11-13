@@ -19,8 +19,8 @@ motor (ADR-0002).
 
 ```jsonc
 {
-  "id": "m202-mao-na-bolsa",
-  "titulo": "A mão na bolsa",
+  "id": "m202-golpe-de-faca",
+  "titulo": "A faca na oficina",
   "capitulo": 2,
   "nivel": 1,
   "sala": "oitiva",
@@ -110,3 +110,31 @@ conceito usado em missão tem pelo menos 3 afirmativas.
 - **Negrito**: trechos entre `**` saem em negrito nas falas, nas aulas, no fato, nos
   comentários e no desfecho. Só nas palavras-chave.
 - A sala tem `nome` (completo) e `placa` (curto, para o mapa).
+
+## Quem fala onde, perguntas do caso, desfecho e esquemas
+
+- **`npcs.json`**: quem trabalha na delegacia tem `sala`. Quem está de passagem (vítima,
+  testemunha, conduzido, morador, advogado) não tem. `voce` é o próprio delegado, para
+  as perguntas curtas que ele faz nas conversas. **Em cada cena só fala quem é da sala
+  ou quem está de passagem**: o carregamento do conteúdo recusa o resto.
+- **`caso.perguntas`**: a pergunta de cada etapa de `pede`, escrita para o caso e sem
+  entregar a resposta. Todo caso da campanha tem uma por etapa.
+- **`caso.comentarios`**: a explicação de cada etapa de `pede`, mostrada depois da
+  conferência, no acerto e no erro. Voz neutra, sem "Seu Bento:" na frente.
+- **`caso.desfecho`**: o que acontece com o caso e com as pessoas. Missão sem caso tem
+  `desfecho` no nível da missão.
+- **`aulas`**: os temas que o delegado **lembra** depois da conversa. Os personagens não
+  explicam conceito: apresentam o caso.
+- **`tema.exemplo`**: fácil e diferente do caso da missão em que o tema aparece.
+- **`tema.esquema`** (opcional): o desenho do conceito, em um de quatro formatos:
+
+```jsonc
+{ "tipo": "etapas", "itens": ["Cogitação", "Preparação", "Execução", "Consumação"] }
+{ "tipo": "soma", "partes": ["Fato típico", "Ilícito", "Culpável"], "resultado": "Crime" }
+{ "tipo": "comparacao", "colunas": [{ "titulo": "Dolo", "itens": ["Quis o resultado"] }, { "titulo": "Culpa", "itens": ["Descuido"] }] }
+{ "tipo": "requisitos", "centro": "Furto", "itens": ["Subtrair", "Coisa móvel", "Coisa alheia"] }
+```
+
+Na ficha, o jogo desenha sozinho o conceito com os fatos do caso (elementos do tipo
+presentes, até onde a execução chegou, requisitos da excludente): isso sai da análise
+do motor, não do conteúdo.

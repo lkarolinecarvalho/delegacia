@@ -11,7 +11,8 @@ a ser analisada (R-GER-03).
 |---|---|---|---|---|---|---|---|---|
 | m104-divida-do-vizinho | Vizinho pegou R$ 800 emprestados e não pagou no prazo | não | — | — | — | — | fato atípico | R-LEG-01, R-LEG-02 |
 | m201-bicicleta | Adulto levou a bicicleta alheia da calçada e foi para casa com ela | sim | furto | consumado | nenhuma | culpável | crime | R-PAT-01, R-ITER-01 |
-| m202-mao-na-bolsa | Adulto enfiou a mão na bolsa da vítima no ponto de ônibus e foi segurado antes de tirar a carteira | sim | furto | tentado | nenhuma | culpável | crime | R-ITER-02 |
+| m200-soco-no-campinho | Adulto deu um soco de propósito no rosto do adversário e quebrou o nariz dele | sim | lesão corporal | consumado | nenhuma | culpável | crime | R-PES-01, R-ITER-01 |
+| m202-golpe-de-faca | Adulto golpeou o peito do colega com uma faca para matá-lo, foi contido e a vítima sobreviveu | sim | homicídio | tentado | nenhuma | culpável | crime | R-PES-07, R-ITER-02 |
 | m203-vaso-da-vizinha | Ao manobrar o carro, por descuido, derrubou e quebrou o vaso da vizinha | não | (dano) | — | — | — | fato atípico | R-CULPA-02, R-PAT-03 |
 | m204-bolsa-na-praca | Com ameaça de faca, tomou a bolsa; correu com ela e foi preso duas quadras depois | sim | roubo | consumado | nenhuma | culpável | crime | R-PAT-02, R-TIP-02, R-ITER-05 |
 | m301-briga-na-feira | Feirante, atacado a socos, empurrou o agressor, que caiu e se feriu | sim | lesão corporal | consumado | legítima defesa | — | fato lícito | R-LD-01, R-ILI-01 |

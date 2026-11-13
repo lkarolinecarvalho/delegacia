@@ -49,60 +49,62 @@ lei, e vê a consequência jurídica da decisão.
 
 ## 6. A delegacia
 
-| Ambiente | Onde fica | Função no jogo |
+Um prédio térreo, visto em corte, com seis ambientes. Cada um tem uma função e alguém
+que trabalha ali (a sala de oitiva recebe quem vem de fora).
+
+| Ambiente | Quem está lá | Função no jogo |
 |---|---|---|
-| Recepção | Prédio principal, na frente, à direita: é por onde se entra | Recebimento e triagem do que chega |
-| Cartório | Prédio principal, na frente, ao lado da recepção | Registro das ocorrências, autos, termos; o quadro de presos e de prazos |
-| Sala de oitiva | Prédio principal, na frente, à esquerda | Oitiva de vítimas e testemunhas; interrogatório do investigado |
-| Gabinete da delegada | Prédio principal, no fundo | Análise dos casos e decisões da autoridade policial |
-| Sala de investigação | Prédio principal, no fundo | Diligências, coleta de informações e análise do que foi reunido |
-| Arquivo | Prédio principal, no fundo | Consulta aos casos concluídos; o plantão livre sai daqui |
-| Departamento de crimes contra a pessoa | Prédio próprio, na calçada da frente | Os casos da ronda dos crimes contra a pessoa |
-| Departamento de crimes contra o patrimônio | Prédio próprio, na calçada da frente | Os casos da ronda dos crimes contra o patrimônio |
-| Departamento de legislação especial | Prédio próprio, na calçada da frente | As leis penais especiais (ainda sem casos) |
+| Recepção | Dona Cida | Recebimento e triagem do que chega; é por onde se entra |
+| Cartório | Seu Bento, escrivão | Registro das ocorrências, autos e termos; o quadro de presos e de prazos |
+| Sala de oitiva | Vítimas, testemunhas, conduzidos | Onde as pessoas contam o que aconteceu |
+| Sala de investigação | Agente Rocha | Diligências e o que foi encontrado |
+| Gabinete | Dra. Helena, delegada titular | Decisões de autoridade e as dúvidas maiores |
+| Arquivo | — | Os casos concluídos, **por assunto**; dali se revê ou se refaz um caso |
 
-Os departamentos são prédios pequenos à parte, ligados ao principal por uma calçada: o
-mapa cabe na tela em retrato sem apertar as salas. A sala em que o caso espera fica com
-o piso aceso, além do aviso na placa.
+Não há departamentos por tipo de crime: essa divisão é feita no Arquivo.
 
-Nenhum ambiente é só decoração: cada um tem quem atende e algo a fazer. A Biblioteca é
-um atalho da barra de baixo.
+**Em cada sala só fala quem trabalha nela**, ou quem está de passagem pela delegacia
+(a vítima, a testemunha, o advogado). O conteúdo é validado assim.
 
-O avatar chega pela **porta da frente** e a primeira pessoa com quem fala é a
-recepcionista. Do outro lado da rua está o **Fórum**, por enquanto só cenário.
+**Chegou, começou.** Quando o avatar chega à sala em que o caso espera, a conversa
+abre na hora, sem botão intermediário. Quando a parada termina, a tela volta sozinha
+ao mapa, com a próxima sala acesa. O avatar anda virado para onde vai: de frente
+quando vem para a frente da cena, de costas quando vai para o fundo.
 
-**De dentro da sala.** Ao chegar a uma sala, a tela se aproxima dela e mostra o cartão
-da sala, com a missão que espera ali (se houver) e o botão para voltar ao mapa.
+O quadro de presos e de prazos só aparece no cartório quando há alguém preso ou algum
+inquérito correndo.
 
 ### O caso anda pela delegacia
 
-O jogador não resolve tudo numa sala só. Uma missão pode ter várias **cenas**, cada uma
-num ambiente: a demanda chega à recepção, o escrivão pergunta como registrar, a
-delegada ajuda a pensar, a equipe sai em diligência, alguém é ouvido. Ao fim de cada
-cena, o aviso de destino aponta a sala seguinte, e o jogador vai até lá.
+Uma missão pode ter várias **paradas**, cada uma numa sala: a demanda chega à recepção,
+alguém é ouvido na oitiva, o Agente Rocha traz a diligência, o Seu Bento pergunta como
+registrar. A última parada é a da decisão.
 
 ### Linguagem (vale para todo o jogo)
 
 - Frases curtas e naturais, como numa conversa entre colegas. Nada de apostila.
-- Um conceito novo só quando a situação pede, e nunca vários de uma vez.
-- O termo técnico é explicado dentro da conversa, com exemplo do caso em curso.
-- **Negrito** só nas palavras-chave: conceitos, princípios e classificações.
-- O jogador não recebe uma aula inteira antes de resolver o caso: a teoria aparece
-  porque o caso exige.
+- **Negrito** nos conceitos e nos termos que importam, de forma pontual.
+- Um conceito novo só quando o caso pede, e nunca vários de uma vez.
+- Os casos do começo são fáceis e variados (lesão corporal, furto, homicídio tentado,
+  dano, roubo); cada um serve para ensinar um pedaço da teoria geral.
 
 ## 7. Ciclo de um caso
 
-1. **Ir até a sala** indicada pelo aviso de próximo destino. A tela mostra a sala por
-   dentro, e o cartão dela traz o botão para começar.
-2. **Aula** (só na primeira vez de um conceito): a Dra. Helena fala em balões, uma ideia
-   por vez, e o jogador vai passando. Sem texto corrido.
-   Em seguida vem a **fixação**: as perguntas de Certo ou Errado da aula, uma por vez.
-3. **Ouvir:** até três falas curtas.
-4. **O fato apurado:** o cartão do caso, com o que ficou provado.
-5. **A ficha de análise:** o jogador responde só as etapas já ensinadas; as demais vêm
-   preenchidas pelo mentor (seção 9).
-6. **Afirmativas:** de 0 a 2, sobre os conceitos do caso.
-7. **Desfecho:** o que aconteceu com o caso, pontos e avanço do plantão.
+1. **Conversa.** Quem está na sala apresenta o caso e faz a pergunta prática ("como eu
+   registro isso?"). **Ninguém dá aula.**
+2. **Lembrando.** O delegado lembra o que estudou sobre o assunto: uma ideia por balão,
+   um **desenho** que esquematiza o conceito e um exemplo fácil, **diferente do caso**.
+3. **Fixação.** Perguntas de Certo ou Errado sobre o que foi lembrado.
+4. **O fato.** O que ficou apurado.
+5. **Análise.** A ficha, com perguntas **escritas para o caso** ("Ele correu duas quadras
+   com a bolsa e foi preso. O roubo se consumou?"). O tipo penal em análise aparece com
+   os seus **elementos**. Depois da conferência, cada etapa mostra a **explicação**, no
+   acerto e no erro, e o conceito desenhado com os fatos do caso (os elementos do tipo
+   presentes, até onde a execução chegou, os requisitos da excludente).
+6. **Afirmativas**, no estilo de banca.
+7. **Desfecho.** O que acontece com o caso e com as pessoas, a análise registrada e a
+   cópia que vai para o Arquivo. O botão é "Concluir": termina aquela etapa do caso,
+   não o plantão.
 
 ## 8. A ficha de análise
 
