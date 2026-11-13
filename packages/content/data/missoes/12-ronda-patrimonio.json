@@ -4,18 +4,54 @@
     "titulo": "A janela do segundo andar",
     "capitulo": 12,
     "nivel": 12,
-    "sala": "patrimonio",
+    "sala": "investigacao",
     "npc": "rocha-agente",
     "requisitos": ["r1104-a-reuniao"],
     "aulas": ["furto-qualificado"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), esta senhora mora no sobrado da Rua Sete. Chegou em casa e deu falta das joias."
+          },
+          {
+            "npc": "moradora-a",
+            "texto": "Não tinha **ninguém em casa**. Quando voltei, a janela do meu quarto, no segundo andar, estava aberta, e as joias tinham sumido."
+          },
+          {
+            "npc": "voce",
+            "texto": "A senhora ou algum vizinho viu alguém entrar ou sair?"
+          },
+          {
+            "npc": "moradora-a",
+            "texto": "Ninguém viu nada, doutor(a). Mas a **calha** da parede está toda amassada."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O Agente Rocha acabou de voltar da rua. Parece que tem novidade."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "rocha-agente",
-        "texto": "Doutor(a), furto num sobrado. O homem subiu pela calha até a janela do segundo andar."
+        "texto": "Achamos, doutor(a). Um homem de 30 anos, na rua de trás, **meia hora depois**, com as joias da moradora no bolso."
       },
       {
         "npc": "rocha-agente",
-        "texto": "Achamos ele na rua de trás, meia hora depois, com as joias da moradora no bolso."
+        "texto": "Ele contou como fez: **subiu pela calha** até a janela do segundo andar, pegou as joias no quarto e saiu pelo mesmo caminho."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Ninguém viu ele entrar nem correu atrás dele. Que é crime e que se consumou, já sei."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Preciso do **enquadramento** e de saber se dá flagrante. E, se der, quem decide a fiança?"
       }
     ],
     "caso": {
@@ -48,13 +84,19 @@
       "informa": ["forma", "conclusao"],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Seu Bento: Sem ninguém em casa, não houve violência nem ameaça a pessoa. É subtração simples no verbo.",
-        "figura": "Seu Bento: Subir pela calha até o segundo andar é escalada, doutor(a). E a escalada qualifica o furto.",
-        "flagrante": "Seu Bento: Ninguém viu nem perseguiu, mas ele foi achado logo depois com as joias: presumido.",
-        "fianca": "Seu Bento: No furto qualificado a pena máxima é de oito anos. Aí a fiança já não é do(a) senhor(a)."
+      "perguntas": {
+        "tipo": "Ele entrou no sobrado vazio e saiu com as joias da moradora. Que crime é esse?",
+        "figura": "Para chegar ao quarto, ele subiu pela calha até a janela do segundo andar. O crime é simples ou qualificado?",
+        "flagrante": "Ninguém viu nem perseguiu, mas ele foi achado meia hora depois com as joias no bolso. Há flagrante? De que espécie?",
+        "fianca": "Pelo enquadramento que você deu, quem pode decidir sobre a fiança dele?"
       },
-      "desfecho": "Furto qualificado pela escalada, em flagrante presumido. A qualificadora dobra a pena máxima e tira a fiança das suas mãos."
+      "comentarios": {
+        "tipo": "Não havia ninguém em casa: sem violência nem ameaça a pessoa, ele apenas **subtraiu** coisa alheia móvel. É **furto**.",
+        "figura": "Subir pela calha até o segundo andar é **escalada**, e a escalada **qualifica** o furto.",
+        "flagrante": "Ninguém o viu nem o perseguiu, mas ele foi **encontrado logo depois** com as joias, o que faz presumir a autoria: flagrante **presumido**.",
+        "fianca": "No furto qualificado, a pena máxima é de oito anos, acima dos quatro que o delegado alcança. A fiança é do **juiz**."
+      },
+      "desfecho": "O Seu Bento lavra o auto de prisão em flagrante por **furto qualificado** pela escalada. As joias são apreendidas, conferidas e devolvidas à moradora, e a perícia vai fotografar a calha. O preso aguarda o juiz, que é quem decide a **fiança**."
     },
     "conceitos": ["furto-qualificado", "flagrante"],
     "recompensa": {
@@ -66,18 +108,59 @@
     "titulo": "A caseira",
     "capitulo": 12,
     "nivel": 12,
-    "sala": "patrimonio",
+    "sala": "cartorio",
     "npc": "bento-escrivao",
     "requisitos": ["r1201-a-janela-do-segundo-andar"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-a",
+            "texto": "A caseira tinha toda a minha confiança, doutor(a). Eu deixava a **chave da casa** com ela."
+          },
+          {
+            "npc": "voce",
+            "texto": "Ela cuidava das joias da senhora? Ficava com elas?"
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Nunca. As joias ficavam no **cofre do meu quarto**. Ela não cuidava delas nem ficava com elas."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Viajei e, quando voltei, faltava um colar. O cofre tinha ficado destrancado."
+          }
+        ]
+      },
+      {
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Achei o colar, doutor(a). A caseira, de 49 anos, **vendeu** numa joalheria da cidade vizinha."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Não houve arrombamento, e só ela entrava na casa. Durante a viagem da patroa, ela **abriu o cofre** e levou o colar."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "bento-escrivao",
-        "texto": "Doutor(a), a Dona Amélia confiava na caseira havia quinze anos. Deixava a chave da casa com ela."
+        "texto": "Que é crime e que se consumou, já está no papel, doutor(a). Falta o nome."
+      },
+      {
+        "npc": "advogado",
+        "texto": "Represento a Dona Amélia. Ela confiou a casa à caseira, e a caseira ficou com o colar. Para mim, é **apropriação indébita**."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "O advogado da patroa fala em apropriação indébita. Leia com atenção onde estavam as joias."
+        "texto": "Fiquei na dúvida, doutor(a). Como eu **registro**? E essa confiança toda pesa em alguma coisa?"
       }
     ],
     "caso": {
@@ -106,11 +189,15 @@
       "informa": ["forma", "conclusao"],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Seu Bento: Ela tinha a chave da casa, não a posse do colar. Para pegá-lo, teve de tirá-lo do cofre: subtraiu.",
-        "figura": "Seu Bento: Ela se aproveitou da confiança que a patroa tinha nela: abuso de confiança qualifica o furto."
+      "perguntas": {
+        "tipo": "A caseira tinha a chave da casa, mas não cuidava das joias: tirou o colar do cofre. Que crime é esse?",
+        "figura": "A patroa confiava na caseira a ponto de lhe entregar a chave da casa. O crime é simples ou qualificado?"
       },
-      "desfecho": "Furto qualificado pelo abuso de confiança, e não apropriação indébita: a caseira nunca teve a posse do colar."
+      "comentarios": {
+        "tipo": "Ela tinha a chave da casa, não a **posse do colar**. Para ficar com ele, teve de tirá-lo do cofre: subtraiu. É **furto**, e não apropriação indébita.",
+        "figura": "Ela se aproveitou da confiança que a patroa depositava nela para chegar ao cofre. O **abuso de confiança** qualifica o furto."
+      },
+      "desfecho": "O Seu Bento registra **furto qualificado** pelo abuso de confiança, e o advogado refaz as anotações dele. O colar é apreendido na joalheria e será devolvido à patroa. A caseira e o joalheiro serão ouvidos na sala de oitiva."
     },
     "conceitos": ["furto-qualificado", "apropriacao-indebita"],
     "recompensa": {
@@ -122,18 +209,54 @@
     "titulo": "As fotos",
     "capitulo": 12,
     "nivel": 12,
-    "sala": "patrimonio",
-    "npc": "cida-recepcao",
+    "sala": "investigacao",
+    "npc": "rocha-agente",
     "requisitos": ["r1202-a-caseira"],
     "aulas": ["extorsao"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), o rapaz que está no balcão quase não consegue falar, de tanta vergonha."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Um ex-colega tem **fotos íntimas** minhas, doutor(a). Ele me mandou esta mensagem."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "\"Ou você me transfere **R$ 3.000,00** hoje, ou mando suas fotos para a sua família.\""
+          },
+          {
+            "npc": "voce",
+            "texto": "E o que você fez?"
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Fiquei com medo e **fiz a transferência**. Guardei todas as mensagens."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O Agente Rocha já falou com o banco, doutor(a)."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "cida-recepcao",
-        "texto": "Doutor(a), o rapaz que está no balcão quase não consegue falar de vergonha."
+        "npc": "rocha-agente",
+        "texto": "O banco desconfiou da operação e **bloqueou** a transferência, doutor(a). O dinheiro não chegou ao autor."
       },
       {
-        "npc": "cida-recepcao",
-        "texto": "Um ex-colega tem fotos íntimas dele e exigiu dinheiro para não espalhar."
+        "npc": "rocha-agente",
+        "texto": "Ele tem 28 anos e está identificado pelas mensagens."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Só que ele não recebeu um centavo. Dá para falar em crime? **Qual**, e em que pé ele ficou?"
       }
     ],
     "caso": {
@@ -165,11 +288,17 @@
       "informa": [],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: Ele não tirou nada da vítima: constrangeu-a, com grave ameaça, a fazer uma transferência. Isso é extorsão.",
-        "forma": "Dra. Helena: A vítima cedeu e fez a transferência. Pela Súmula 96 do STJ, a extorsão se consuma mesmo sem a vantagem chegar ao autor."
+      "perguntas": {
+        "tipo": "Ele ameaçou espalhar as fotos, e a própria vítima fez a transferência, por medo. Que crime é esse?",
+        "forma": "A vítima transferiu, mas o banco bloqueou a operação, e o dinheiro não chegou ao autor. O crime se consumou?",
+        "conclusao": "O autor tem 28 anos e não recebeu nada. O que você conclui?"
       },
-      "desfecho": "Extorsão consumada: a vítima fez o que o autor exigia, e o crime não depende de o dinheiro ter chegado. Você orienta o rapaz e pede a preservação das mensagens."
+      "comentarios": {
+        "tipo": "Ele não tirou nada da vítima: **constrangeu-a**, com grave ameaça, a fazer uma transferência, para obter vantagem econômica. Isso é **extorsão**.",
+        "forma": "A vítima cedeu e fez a transferência. Pela **Súmula 96 do STJ**, a extorsão se consuma mesmo que a vantagem não chegue ao autor: **consumado**.",
+        "conclusao": "Fato típico, sem nada que o justifique, praticado por adulto capaz: é **crime**. O bloqueio do banco não apaga a extorsão."
+      },
+      "desfecho": "O Seu Bento registra **extorsão consumada** e junta as mensagens, que você manda preservar. O dinheiro bloqueado volta para a conta do rapaz, e o ex-colega será intimado. Você orienta a vítima a não responder a novas mensagens e a avisar a delegacia se ele insistir."
     },
     "conceitos": ["extorsao", "furto-e-roubo"],
     "recompensa": {
@@ -181,18 +310,50 @@
     "titulo": "O celular barato",
     "capitulo": 12,
     "nivel": 12,
-    "sala": "patrimonio",
-    "npc": "rocha-agente",
+    "sala": "oitiva",
+    "npc": "conduzido-a",
     "requisitos": ["r1203-as-fotos"],
     "aulas": ["receptacao"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Doutor(a), lembra do celular roubado na saída do mercado? **Achamos o aparelho**."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Estava com um rapaz de 23 anos, que vinha usando o celular. Ele não participou do roubo: comprou depois, na feira do rolo."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Ele está na sala de oitiva. Vale a pena ouvir como foi essa compra."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "rocha-agente",
-        "texto": "Doutor(a), lembra do celular roubado na saída do mercado? Achamos o aparelho."
+        "npc": "conduzido-a",
+        "texto": "Eu não roubei ninguém, doutor(a). Comprei o celular na feira do rolo e paguei **R$ 300,00**."
       },
       {
-        "npc": "rocha-agente",
-        "texto": "Está com um rapaz que o comprou por um quinto do preço. Ele não roubou ninguém, mas..."
+        "npc": "voce",
+        "texto": "Um aparelho novo, que vale R$ 1.500,00. O vendedor disse de onde ele vinha?"
+      },
+      {
+        "npc": "conduzido-a",
+        "texto": "Disse... Falou assim: \"**É de assalto**, não liga ele perto da delegacia\"."
+      },
+      {
+        "npc": "voce",
+        "texto": "E mesmo assim você ficou com ele?"
+      },
+      {
+        "npc": "conduzido-a",
+        "texto": "Fiquei, e estava usando. Mas eu não fiz nada contra a dona! Isso é crime, doutor(a)?"
       }
     ],
     "caso": {
@@ -220,11 +381,17 @@
       "informa": [],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Seu Bento: Ele não subtraiu nada nem ajudou no roubo. Comprou coisa que sabia ser produto de crime.",
-        "forma": "Seu Bento: Comprou e ficou com o aparelho: consumado."
+      "perguntas": {
+        "tipo": "Ele não participou do roubo, mas comprou o celular sabendo que era \"de assalto\". Que crime é esse?",
+        "forma": "Ele pagou, levou o aparelho e passou a usá-lo. O crime se consumou?",
+        "conclusao": "O comprador tem 23 anos e foi avisado da origem do celular. O que você conclui?"
       },
-      "desfecho": "Receptação: adquirir coisa que se sabe ser produto de crime. O celular, enfim, volta para a dona."
+      "comentarios": {
+        "tipo": "Ele não subtraiu nada nem ajudou no roubo. Adquiriu coisa que **sabia ser produto de crime**: é **receptação**.",
+        "forma": "Ele comprou o aparelho e ficou com ele: a aquisição se completou. **Consumado**.",
+        "conclusao": "Fato típico, sem nada que o justifique, praticado por adulto capaz: é **crime**. O preço baixo não o desculpa, ainda mais depois do aviso do vendedor."
+      },
+      "desfecho": "O Seu Bento registra **receptação**, e o celular é apreendido e devolvido à dona. O rapaz ainda será ouvido sobre o **vendedor da feira do rolo**, que o Agente Rocha quer identificar. A investigação do roubo ganha mais uma peça."
     },
     "conceitos": ["receptacao", "concurso-de-pessoas"],
     "recompensa": {

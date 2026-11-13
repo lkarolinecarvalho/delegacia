@@ -4,18 +4,54 @@
     "titulo": "O garoto do mercado",
     "capitulo": 4,
     "nivel": 4,
-    "sala": "oitiva",
+    "sala": "gabinete",
     "npc": "helena-delegada",
     "requisitos": ["m303-revanche"],
     "aulas": ["culpabilidade", "menoridade"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), o segurança do Mercado Bom Preço trouxe um rapaz. E trouxe o fone de ouvido também."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Ele pôs o fone no bolso do casaco, passou pelo caixa **sem pagar** e saiu. Alcancei no estacionamento, com o fone no bolso."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "É um fone de **R$ 120,00**. Está aqui."
+          },
+          {
+            "npc": "voce",
+            "texto": "Como você se chama? Quantos anos você tem?"
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Davi. Eu faço 18 daqui a quatro meses... Minha mãe já está vindo com a minha certidão."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Assim que a certidão chegar, eu mando para o gabinete. A Dra. Helena quer ver este caso com o(a) senhor(a)."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "helena-delegada",
-        "texto": "Fato típico, ilícito... falta a terceira pergunta: o agente é culpável?"
+        "texto": "A certidão de nascimento chegou e confirma: o Davi tem **17 anos**. Completa 18 daqui a quatro meses."
       },
       {
         "npc": "helena-delegada",
-        "texto": "O segurança do mercado trouxe um rapaz. Antes de qualquer coisa, olhe o documento dele."
+        "texto": "O fato em si não tem mistério. É a descrição do **furto**: subtrair, para si ou para outrem, coisa alheia móvel. E ele saiu do mercado com o fone."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "O segurança quer saber se vamos lavrar o flagrante. Antes de eu assinar qualquer coisa, quero a sua análise sobre o Davi."
       }
     ],
     "caso": {
@@ -29,22 +65,33 @@
       "fato": {
         "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 17, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 17,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["culpabilidade", "conclusao"],
       "informa": ["tipico", "forma", "excludente"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "culpabilidade": "Dra. Helena: Dezessete anos na data do fato. Não importa que falte pouco: menor de 18 é inimputável.",
-        "conclusao": "Dra. Helena: Adolescente não comete crime: a conduta descrita como crime, praticada por ele, é ato infracional."
+      "perguntas": {
+        "culpabilidade": "Davi tinha 17 anos quando saiu do mercado com o fone, e completa 18 daqui a quatro meses. Ele é culpável?",
+        "conclusao": "O fato se ajusta ao furto e nada o autorizava. Sendo Davi quem é, como você classifica o que ele fez?"
       },
-      "desfecho": "Davi praticou ato infracional análogo ao furto. Ele não é autuado em flagrante como um adulto: o caso segue o Estatuto da Criança e do Adolescente, e os pais são chamados à delegacia."
+      "comentarios": {
+        "culpabilidade": "Vale a idade **na data do fato**: 17 anos. Não importa que faltem só quatro meses: o menor de 18 anos é **inimputável**, e sem imputabilidade não há culpabilidade.",
+        "conclusao": "O fato é típico e ilícito, mas adolescente não comete crime nem recebe pena. A conduta descrita como crime, praticada por ele, é **ato infracional**, aqui análogo ao furto."
+      },
+      "desfecho": "Davi não é autuado em flagrante como um adulto seria: o caso segue o **Estatuto da Criança e do Adolescente**. O Seu Bento registra a ocorrência de **ato infracional** análogo ao furto, e o fone volta para o mercado. Davi é entregue à mãe, que se compromete a apresentá-lo ao Ministério Público."
     },
     "conceitos": ["menoridade-penal", "conceito-de-crime"],
-    "recompensa": { "pontos": 100 }
+    "recompensa": {
+      "pontos": 100
+    }
   },
   {
     "id": "m402-noite-do-bar",
@@ -55,14 +102,63 @@
     "npc": "bento-escrivao",
     "requisitos": ["m401-garoto-do-mercado"],
     "aulas": ["embriaguez"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Fui ao Bar do Tonho, doutor(a). O Raul, de 35 anos, passou a noite na **cerveja e na cachaça**. Ninguém obrigou: ele pediu e pagou cada dose."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Já muito embriagado, discutiu com outro freguês por causa do futebol e acertou uma **garrafa** nele. Corte no supercílio."
+          },
+          {
+            "npc": "voce",
+            "texto": "O outro freguês fez alguma coisa antes?"
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Nada. Não agrediu nem ameaçou o Raul. Quem estava no bar confirma."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "O Raul acordou agora há pouco. Está na sala de oitiva."
+          }
+        ]
+      },
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "conduzido-a",
+            "texto": "Doutor(a), eu **não lembro de nada**. Lembro do jogo na televisão e, depois, de acordar aqui."
+          },
+          {
+            "npc": "voce",
+            "texto": "O senhor bebeu porque quis?"
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Bebi, ué. Mas, se eu nem sabia o que estava fazendo, como é que vou responder por isso?"
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "bento-escrivao",
-        "texto": "Doutor(a), o conduzido de ontem à noite acordou. Diz que não lembra de nada, de tão bêbado que estava."
+        "texto": "O laudo do supercílio chegou, doutor(a). O tipo é **lesão corporal**: ofender a integridade corporal ou a saúde de outrem."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "E que, se não lembra, não pode responder. O que o(a) senhor(a) acha?"
+        "texto": "O Raul quer que conste que estava **embriagado** e não se lembra de nada. Diz que, assim, não pode responder."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Isso muda o meu registro?"
       }
     ],
     "caso": {
@@ -76,21 +172,32 @@
       "fato": {
         "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 35, "embriaguez": "voluntaria" }
+        "agente": {
+          "idade": 35,
+          "embriaguez": "voluntaria"
+        }
       },
       "pede": ["culpabilidade", "conclusao"],
       "informa": ["tipico", "forma", "excludente"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "culpabilidade": "Seu Bento: Ele bebeu porque quis, doutor(a). Embriaguez voluntária não exclui a imputabilidade, nem quando é completa.",
-        "conclusao": "Seu Bento: Típico, ilícito e culpável. A ressaca não muda a conta: é crime."
+      "perguntas": {
+        "culpabilidade": "Raul bebeu a noite toda porque quis e diz que não se lembra da garrafada. Ele é culpável?",
+        "conclusao": "Raul tem 35 anos e feriu um freguês que não o tinha agredido nem ameaçado. O que você conclui?"
       },
-      "desfecho": "Raul responde por lesão corporal. Só isentaria de pena a embriaguez completa vinda de caso fortuito ou força maior, e não foi o caso: ele bebeu por conta própria."
+      "comentarios": {
+        "culpabilidade": "Raul bebeu por vontade própria: é **embriaguez voluntária**, que não exclui a imputabilidade, nem quando é completa. Só isentaria de pena a embriaguez completa vinda de **caso fortuito ou força maior**. Ele é culpável.",
+        "conclusao": "O fato é típico, nada o autorizava e o agente é culpável. Não se lembrar do que fez não muda a conta: é **crime**."
+      },
+      "desfecho": "O Seu Bento registra a **lesão corporal** e anota a embriaguez como o que ela foi: voluntária. O laudo do supercílio vai para os autos, e a vítima e o dono do bar serão ouvidos. Raul assina o termo, ainda de ressaca, e vai responder pelo que fez."
     },
     "conceitos": ["embriaguez", "menoridade-penal"],
-    "recompensa": { "pontos": 100 }
+    "recompensa": {
+      "pontos": 100
+    }
   }
 ]

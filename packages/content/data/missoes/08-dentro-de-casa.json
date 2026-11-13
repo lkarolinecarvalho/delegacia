@@ -4,10 +4,55 @@
     "titulo": "A vizinha ligou",
     "capitulo": 8,
     "nivel": 8,
-    "sala": "oitiva",
+    "sala": "gabinete",
     "npc": "helena-delegada",
     "requisitos": ["m704-mochila-na-rodoviaria"],
     "aulas": ["maria-da-penha"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), a viatura acabou de chegar da Rua das Palmeiras. Trouxeram um casal, e a vizinha veio junto."
+          },
+          {
+            "npc": "moradora-a",
+            "texto": "Fui eu que liguei. Ouvi a discussão pela parede, e depois ela gritando de dor."
+          },
+          {
+            "npc": "moradora-a",
+            "texto": "A viatura chegou em **poucos minutos**. Ele ainda estava dentro de casa."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Ele tem 42 anos e está com os policiais. A esposa espera o(a) senhor(a) na sala de oitiva."
+          }
+        ]
+      },
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-a",
+            "texto": "Foi no meio da discussão, doutor(a). Ele me agrediu. Olha o meu braço: está cheio de **hematomas**."
+          },
+          {
+            "npc": "voce",
+            "texto": "A senhora quer representar contra ele?"
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Não quero, não. Ele é meu marido... Não quero **prejudicar** ele."
+          },
+          {
+            "npc": "voce",
+            "texto": "Entendo. Espere aqui um instante; eu já volto para conversar com a senhora."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "helena-delegada",
@@ -15,7 +60,15 @@
       },
       {
         "npc": "helena-delegada",
-        "texto": "A vizinha chamou a polícia. A vítima está na outra sala e diz que não quer \"prejudicar\" o marido. Isso muda alguma coisa?"
+        "texto": "O tipo que tenho em mente é a **lesão corporal contra a mulher**: ofender a integridade corporal ou a saúde da mulher, por razões da condição do sexo feminino."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Que é crime e que ele foi pego logo depois da agressão, já está na ficha. Mas a vítima diz que **não quer representar**."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Isso muda alguma coisa? Diga-me como a delegacia procede."
       }
     ],
     "caso": {
@@ -51,13 +104,19 @@
       "informa": ["conclusao", "flagrante"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "acao": "Dra. Helena: Na lesão corporal em violência doméstica contra a mulher, a ação é pública incondicionada: Súmula 542 do STJ.",
-        "instauracao": "Dra. Helena: Sendo incondicionada, a vontade da vítima não impede a sua atuação. Você age.",
-        "rito": "Dra. Helena: A Lei Maria da Penha afasta a Lei 9.099, qualquer que seja a pena. Não existe termo circunstanciado aqui.",
-        "fianca": "Dra. Helena: A pena máxima dessa lesão passa de quatro anos. A fiança não é sua: é do juiz."
+      "perguntas": {
+        "acao": "O marido agrediu a esposa dentro de casa, e ela ficou com hematomas. De quem depende a ação penal neste caso?",
+        "instauracao": "A vítima diz que não quer representar contra o marido. A delegacia pode agir mesmo assim?",
+        "rito": "É uma lesão do marido contra a esposa, dentro de casa. O caso segue por termo circunstanciado ou por inquérito?",
+        "fianca": "O marido foi apresentado em flagrante por essa lesão. Quem pode decidir sobre a fiança dele?"
       },
-      "desfecho": "Auto de prisão em flagrante e inquérito, mesmo sem a representação. Você ouve a vítima com calma, explica as medidas protetivas de urgência e encaminha o pedido dela ao juiz."
+      "comentarios": {
+        "acao": "Na lesão corporal praticada em **violência doméstica contra a mulher**, a ação é **pública incondicionada** (Súmula 542 do STJ). Ela não depende da vontade da vítima.",
+        "instauracao": "Como a ação é incondicionada, a recusa da esposa em representar não impede nada: a delegacia **age de ofício**.",
+        "rito": "A **Lei Maria da Penha** afasta a Lei 9.099, qualquer que seja a pena. Não existe termo circunstanciado aqui: é **inquérito**.",
+        "fianca": "A pena máxima dessa lesão passa de quatro anos, o limite da fiança arbitrada pelo delegado. A fiança é do **juiz**."
+      },
+      "desfecho": "O Seu Bento lavra o **auto de prisão em flagrante**, e o inquérito é instaurado mesmo sem a representação. O marido fica preso, à disposição do juiz. Você volta à sala de oitiva, explica à vítima as **medidas protetivas de urgência** e encaminha ao juiz o pedido que ela decide fazer."
     },
     "conceitos": ["maria-da-penha", "acao-penal"],
     "recompensa": {
@@ -73,14 +132,46 @@
     "npc": "bento-escrivao",
     "requisitos": ["m801-a-vizinha-ligou"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-b",
+            "texto": "Foi no estacionamento do Mercado Bom Preço, doutor(a). A gente discutiu por causa de uma **vaga**."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Ele me deu um **empurrão**. Caí no chão e ralei o cotovelo."
+          },
+          {
+            "npc": "voce",
+            "texto": "O senhor conhecia esse homem?"
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Nunca vi na vida. O segurança separou a gente e chamou a viatura, que nos trouxe para cá."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "E eu quero **representar** contra ele, doutor(a). Pode anotar."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "bento-escrivao",
-        "texto": "Para comparar, doutor(a): chegou outra lesão leve, quase igual à de ontem no papel."
+        "texto": "Chegou outra lesão leve, doutor(a), quase igual à de ontem no papel. Só que agora foi entre dois motoristas que nunca se viram."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "Só que foi entre dois motoristas, no estacionamento do mercado. Veja o que muda."
+        "texto": "O tipo é a **lesão corporal**: ofender a integridade corporal ou a saúde de outrem. O agressor tem 36 anos e veio na viatura."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Que é crime e que ele foi pego na hora, já anotei. A **representação** está assinada, então podemos agir. E o resto, como fica?"
       }
     ],
     "caso": {
@@ -112,12 +203,17 @@
       "informa": ["conclusao", "instauracao", "flagrante"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "acao": "Seu Bento: Fora da violência doméstica, a lesão leve depende de representação.",
-        "rito": "Seu Bento: Pena máxima de um ano: menor potencial ofensivo. Termo circunstanciado.",
-        "fianca": "Seu Bento: No termo circunstanciado, quem se compromete a comparecer ao Juizado não é preso em flagrante nem paga fiança."
+      "perguntas": {
+        "acao": "Foi um empurrão entre dois desconhecidos, com um cotovelo ralado. De quem depende a ação penal nessa lesão?",
+        "rito": "A lesão é leve e aconteceu entre dois motoristas, num estacionamento. O caso segue por termo circunstanciado ou por inquérito?",
+        "fianca": "O agressor veio na viatura logo depois do empurrão. Há fiança a decidir para ele?"
       },
-      "desfecho": "Termo circunstanciado. O agressor assina o compromisso de comparecer ao Juizado e vai para casa. Mesma lesão, outro contexto, outra resposta da lei."
+      "comentarios": {
+        "acao": "Fora da violência doméstica, a lesão corporal leve depende de **representação** da vítima: ação pública condicionada.",
+        "rito": "A pena máxima é de um ano e nada afasta a Lei 9.099: é infração de **menor potencial ofensivo**. O caso segue por **termo circunstanciado**.",
+        "fianca": "No termo circunstanciado, quem assume o **compromisso de comparecer** ao Juizado não é preso em flagrante nem paga fiança: não se aplica."
+      },
+      "desfecho": "O Seu Bento lavra o **termo circunstanciado**, com a representação da vítima. O agressor assina o **compromisso de comparecer** ao Juizado e vai para casa, sem prisão nem fiança. Mesma lesão de ontem, outro contexto, outra resposta da lei."
     },
     "conceitos": ["maria-da-penha", "menor-potencial-ofensivo"],
     "recompensa": {

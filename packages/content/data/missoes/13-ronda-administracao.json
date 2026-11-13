@@ -8,14 +8,59 @@
     "npc": "helena-delegada",
     "requisitos": ["r1204-o-celular-barato"],
     "aulas": ["funcionario-e-peculato"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), esta senhora veio da Secretaria de Obras da prefeitura. Trouxe o **inventário anual**."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Fechamos o inventário, e faltou um notebook. A Secretaria tinha entregado o equipamento a um servidor, para ele usar **no trabalho**."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "O notebook estava com ele por causa do cargo. E sumiu."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O servidor já foi chamado, doutor(a). Está na sala de oitiva."
+          }
+        ]
+      },
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "conduzido-b",
+            "texto": "Tenho 46 anos, doutor(a), e sou servidor da prefeitura. Recebi o notebook da Secretaria, sim."
+          },
+          {
+            "npc": "voce",
+            "texto": "E onde ele está agora?"
+          },
+          {
+            "npc": "conduzido-b",
+            "texto": "Meses depois, levei para casa de vez. E **vendi**. Achei que ninguém ia dar falta."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "helena-delegada",
-        "texto": "A última ronda é a que mais cai em prova de carreira policial: crimes contra a administração."
+        "texto": "A última ronda é a que mais cai em prova de carreira policial: crimes contra a **administração pública**."
       },
       {
         "npc": "helena-delegada",
-        "texto": "O primeiro veio da prefeitura. Leia e me diga: é furto, é apropriação indébita ou é outra coisa?"
+        "texto": "Você ouviu o servidor. O notebook chegou às mãos dele de forma regular, e depois ele vendeu."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Agora me diga: é furto, é apropriação indébita ou é **outra coisa**?"
       }
     ],
     "caso": {
@@ -43,11 +88,17 @@
       "informa": [],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: Parece apropriação indébita, mas o autor é funcionário público e tinha a posse em razão do cargo. Aí o crime muda de nome.",
-        "forma": "Dra. Helena: Ele passou a agir como dono e vendeu: consumado."
+      "perguntas": {
+        "tipo": "O servidor tinha o notebook em razão do cargo, levou para casa em definitivo e vendeu. Que crime é esse?",
+        "forma": "Ele vendeu o notebook da Secretaria. O crime se consumou?",
+        "conclusao": "O servidor tem 46 anos e admite a venda. O que você conclui?"
       },
-      "desfecho": "Peculato: o funcionário público que se apropria de bem de que tem a posse em razão do cargo. A pena é bem mais alta que a da apropriação indébita."
+      "comentarios": {
+        "tipo": "Parece apropriação indébita, mas o autor é funcionário público e tinha a posse do bem **em razão do cargo**. Aí o crime muda de nome: **peculato**.",
+        "forma": "Ao levar o notebook em definitivo e vendê-lo, ele passou a agir como **dono** do bem: **consumado**.",
+        "conclusao": "Fato típico, sem nada que o justifique, praticado por adulto capaz: é **crime**, e contra a administração pública."
+      },
+      "desfecho": "O Seu Bento autua o inquérito por **peculato**, com o inventário da Secretaria. O Agente Rocha vai atrás do comprador, para apreender o notebook e devolvê-lo à prefeitura. A pena é bem mais alta que a da **apropriação indébita**: o cargo pesa."
     },
     "conceitos": ["peculato", "apropriacao-indebita"],
     "recompensa": {
@@ -59,18 +110,54 @@
     "titulo": "Ou paga, ou multa",
     "capitulo": 13,
     "nivel": 13,
-    "sala": "recepcao",
-    "npc": "cida-recepcao",
+    "sala": "investigacao",
+    "npc": "rocha-agente",
     "requisitos": ["r1301-o-notebook-da-reparticao"],
     "aulas": ["concussao-e-corrupcao"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), o dono da padaria veio denunciar um fiscal da prefeitura."
+          },
+          {
+            "npc": "morador-b",
+            "texto": "O fiscal da vigilância sanitária vistoriou a padaria inteira e **não achou nada errado**."
+          },
+          {
+            "npc": "morador-b",
+            "texto": "Mesmo assim, ele me disse: \"Ou você me dá **R$ 2.000,00**, ou eu interdito a casa\"."
+          },
+          {
+            "npc": "voce",
+            "texto": "E o senhor pagou?"
+          },
+          {
+            "npc": "morador-b",
+            "texto": "Nem um centavo! Recusei, **gravei a conversa** e vim direto para cá."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "A gravação já está com o Agente Rocha, doutor(a)."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "cida-recepcao",
-        "texto": "Doutor(a), o dono da padaria veio denunciar um fiscal da prefeitura."
+        "npc": "rocha-agente",
+        "texto": "Ouvi a gravação, doutor(a). É isso mesmo: o fiscal, de 51 anos, fala em interditar a padaria se não receber o dinheiro."
       },
       {
-        "npc": "cida-recepcao",
-        "texto": "Ele gravou a conversa. E não pagou nada: veio direto para cá."
+        "npc": "rocha-agente",
+        "texto": "Ele é servidor da vigilância sanitária, e a vistoria não apontou **nenhuma irregularidade**."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Só que ele **não recebeu nada**. Tem crime mesmo assim? Qual?"
       }
     ],
     "caso": {
@@ -98,11 +185,17 @@
       "informa": [],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: Olhe o verbo: ele não pediu, exigiu, e usou o cargo para intimidar. Funcionário que exige vantagem indevida comete concussão.",
-        "forma": "Dra. Helena: A concussão se consuma com a exigência. Receber o dinheiro é só o desfecho, e nem aconteceu."
+      "perguntas": {
+        "tipo": "O fiscal disse ao dono da padaria: \"Ou você me dá R$ 2.000,00, ou eu interdito a casa\". Que crime é esse?",
+        "forma": "O dono da padaria recusou, e o fiscal não recebeu nada. O crime se consumou?",
+        "conclusao": "O fiscal tem 51 anos e usou o cargo para intimidar o comerciante. O que você conclui?"
       },
-      "desfecho": "Concussão consumada com a simples exigência, ainda que nada tenha sido pago. Se ele tivesse apenas pedido, seria corrupção passiva."
+      "comentarios": {
+        "tipo": "Olhe o verbo: ele não pediu, **exigiu**, e usou o cargo para intimidar. Funcionário público que exige vantagem indevida comete **concussão**.",
+        "forma": "A concussão se consuma com a **exigência**. Receber o dinheiro seria só o desfecho, e nem aconteceu: **consumado**.",
+        "conclusao": "Fato típico, sem nada que o justifique, praticado por adulto capaz: é **crime**. Se ele tivesse apenas pedido, seria corrupção passiva."
+      },
+      "desfecho": "O Seu Bento autua o inquérito por **concussão**, consumada com a simples exigência, ainda que nada tenha sido pago. A **gravação** é juntada aos autos e segue para a perícia, e o fiscal será intimado para depor. A padaria continua aberta."
     },
     "conceitos": ["concussao-e-corrupcao", "consumacao-e-tentativa"],
     "recompensa": {
@@ -114,18 +207,59 @@
     "titulo": "O cafezinho",
     "capitulo": 13,
     "nivel": 13,
-    "sala": "oitiva",
+    "sala": "investigacao",
     "npc": "rocha-agente",
     "requisitos": ["r1302-ou-paga-ou-multa"],
     "aulas": ["crimes-do-particular"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), o Agente Rocha voltou da blitz da Avenida Brasil com um conduzido. E voltou bravo."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O motorista está na sala de oitiva. Diz que foi tudo um **mal-entendido**."
+          }
+        ]
+      },
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "conduzido-a",
+            "texto": "Eu estava **sem habilitação**, doutor(a), reconheço. Só quis facilitar as coisas."
+          },
+          {
+            "npc": "voce",
+            "texto": "Facilitar como?"
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Estendi duas notas de R$ 100,00 ao agente e disse: \"Um **cafezinho** para o senhor esquecer essa multa\"."
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Ele nem pegou o dinheiro! E eu nem sou funcionário público. Que mal eu fiz?"
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "rocha-agente",
-        "texto": "Doutor(a), este aconteceu comigo, na blitz de ontem."
+        "texto": "Este aconteceu comigo, doutor(a). O motorista tem 35 anos."
       },
       {
         "npc": "rocha-agente",
-        "texto": "O motorista estava sem habilitação e quis resolver \"de outro jeito\". Eu não aceitei, é claro."
+        "texto": "Eu **recusei** as notas, é claro, e dei voz de prisão."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Ele diz que, como eu não aceitei, não aconteceu nada. Aconteceu ou não? Como fica o **registro**?"
       }
     ],
     "caso": {
@@ -153,11 +287,17 @@
       "informa": [],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: Quem ofereceu foi o particular, para o funcionário deixar de praticar um ato de ofício. É a corrupção do lado de fora do balcão.",
-        "forma": "Dra. Helena: A corrupção ativa se consuma com a oferta. Não importa que o Rocha tenha recusado."
+      "perguntas": {
+        "tipo": "O motorista estendeu R$ 200,00 ao agente para ele \"esquecer essa multa\". Que crime é esse?",
+        "forma": "O Agente Rocha recusou as notas. O crime se consumou?",
+        "conclusao": "O motorista tem 35 anos e diz que era \"só um cafezinho\". O que você conclui?"
       },
-      "desfecho": "Corrupção ativa, consumada com a oferta. Como o Agente Rocha recusou, não há corrupção passiva: um crime não depende do outro."
+      "comentarios": {
+        "tipo": "Quem ofereceu foi o **particular**, para o funcionário deixar de praticar um ato de ofício. É a corrupção do lado de fora do balcão: **corrupção ativa**.",
+        "forma": "A corrupção ativa se consuma com a **oferta**. Não importa que o Agente Rocha tenha recusado: **consumado**.",
+        "conclusao": "Fato típico, sem nada que o justifique, praticado por adulto capaz: é **crime**. Como o agente recusou, não há corrupção passiva: um crime não depende do outro."
+      },
+      "desfecho": "O Seu Bento registra **corrupção ativa**, consumada com a oferta, e as duas notas de R$ 100,00 ficam apreendidas. O Agente Rocha presta depoimento sobre a abordagem, e o motorista será interrogado em seguida. Como o agente recusou, não há **corrupção passiva**: um crime não depende do outro."
     },
     "conceitos": ["crimes-do-particular", "concussao-e-corrupcao"],
     "recompensa": {
@@ -173,14 +313,59 @@
     "npc": "bento-escrivao",
     "requisitos": ["r1303-o-cafezinho"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "testemunha-b",
+            "texto": "Eu estava na Praça da Matriz, doutor(a). O Agente Rocha, fardado, pediu a um homem que abaixasse o som do carro."
+          },
+          {
+            "npc": "testemunha-b",
+            "texto": "O homem respondeu aos gritos, na frente de todo mundo: \"Quem você pensa que é, seu **policialzinho de quinta**?\""
+          },
+          {
+            "npc": "voce",
+            "texto": "Ele partiu para cima do agente? Recusou-se a abaixar o som?"
+          },
+          {
+            "npc": "testemunha-b",
+            "texto": "Não. Depois de ofender, **abaixou o som** e não resistiu à abordagem."
+          }
+        ]
+      },
+      {
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Foi comigo de novo, doutor(a). Eu estava **em serviço**."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "O homem tem 43 anos. Trouxe ele para cá em seguida, sem resistência nenhuma."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Já respirei fundo. O Seu Bento está esperando para registrar."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "bento-escrivao",
-        "texto": "Para encerrar as rondas, doutor(a), um clássico de plantão de sexta-feira."
+        "texto": "Para fechar as rondas, doutor(a), um clássico de plantão de sexta-feira. E com o Rocha de novo: esse homem atrai."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "Foi com o Rocha de novo. Esse homem atrai."
+        "texto": "Que é crime consumado e que ele veio em flagrante, eu já anotei."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Mas que crime eu ponho? E qual é o **papel** que eu preparo para este senhor?"
       }
     ],
     "caso": {
@@ -212,12 +397,17 @@
       "informa": ["forma", "conclusao", "flagrante"],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Seu Bento: Ele não resistiu nem desobedeceu: abaixou o som. O que fez foi humilhar o funcionário em serviço: desacato.",
-        "rito": "Seu Bento: A pena máxima do desacato é de dois anos. Não passa de dois: termo circunstanciado.",
-        "fianca": "Seu Bento: No termo circunstanciado, com o compromisso de comparecer, não há prisão em flagrante nem fiança."
+      "perguntas": {
+        "tipo": "Ele humilhou o agente em serviço, diante de todos, mas depois abaixou o som e não resistiu. Que crime é esse?",
+        "rito": "Pense na pena máxima do crime que você apontou. O caso segue por termo circunstanciado ou por inquérito?",
+        "fianca": "Ele foi conduzido à delegacia logo depois da ofensa. Há fiança a decidir?"
       },
-      "desfecho": "Desacato, por termo circunstanciado. O Rocha respira fundo, o homem assina o compromisso, e as rondas terminam. O Código está aberto: agora é plantão livre."
+      "comentarios": {
+        "tipo": "Ele não resistiu nem desobedeceu: abaixou o som. O que fez foi humilhar o funcionário público **no exercício da função**: é **desacato**.",
+        "rito": "A pena máxima do desacato é de dois anos, dentro do limite do **menor potencial ofensivo**: **termo circunstanciado**.",
+        "fianca": "No termo circunstanciado, quem assume o **compromisso de comparecer** ao Juizado não é preso em flagrante nem paga fiança: não se aplica."
+      },
+      "desfecho": "O Seu Bento lavra o **termo circunstanciado** por desacato. O homem assina o compromisso de comparecer ao Juizado e vai para casa, e a testemunha da praça fica arrolada. O Agente Rocha respira fundo, e as rondas terminam: o Código está aberto, e agora o **plantão é livre**."
     },
     "conceitos": ["crimes-do-particular", "menor-potencial-ofensivo"],
     "recompensa": {

@@ -4,18 +4,71 @@
     "titulo": "O celular emprestado",
     "capitulo": 5,
     "nivel": 5,
-    "sala": "recepcao",
-    "npc": "helena-delegada",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m402-noite-do-bar"],
     "aulas": ["dar-nome-ao-crime", "apropriacao-indebita"],
-    "dialogo": [
+    "revela": [],
+    "antes": [
       {
-        "npc": "helena-delegada",
-        "texto": "Você já faz a análise inteira. Chegou a hora de dar nome ao crime por conta própria."
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), a Paula veio registrar o que ela chama de **roubo** do celular. Mas a história é mais comprida."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Emprestei meu celular ao Igor, colega de trabalho, por **uma semana**. O dele estava no conserto."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "A semana passou e nada. Pedi o aparelho de volta e ele disse que **não ia devolver**."
+          },
+          {
+            "npc": "voce",
+            "texto": "Ele ameaçou você, ou inventou alguma história para conseguir o aparelho?"
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Não. Ele pediu emprestado e eu emprestei, de boa vontade."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O Agente Rocha já foi atrás do Igor e do aparelho, doutor(a)."
+          }
+        ]
       },
       {
-        "npc": "helena-delegada",
-        "texto": "O Seu Bento não vai mais adiantar o tipo. Leia o fato, ache o verbo e escolha."
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Achei os dois, doutor(a). O celular estava numa **loja de usados**: o Igor vendeu lá."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Ele tem 26 anos e não nega. Diz que, quando pegou o aparelho, pretendia **devolver**, como combinado."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Dias depois, sem dinheiro, resolveu ficar com o celular e vendeu como se fosse dele."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Deixei o relatório com o Seu Bento."
+          }
+        ]
+      }
+    ],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "A moça diz **roubo**, doutor(a), mas quem escolhe a palavra certa para o registro é o(a) senhor(a)."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "O Igor recebeu o celular das mãos dela e, dias depois, vendeu. Que **nome** eu dou a isso?"
       }
     ],
     "caso": {
@@ -29,41 +82,102 @@
       "fato": {
         "elementos": ["coisa_alheia_movel", "posse_previa_licita", "apropriacao"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 26, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 26,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["tipo", "forma", "conclusao"],
       "informa": ["excludente", "culpabilidade"],
       "tipoInformado": false,
       "opcoesDeTipo": ["furto", "apropriacao_indebita", "estelionato"],
-      "comentarios": {
-        "tipo": "Dra. Helena: Igor tirou o celular da Paula? Não: ela entregou, e sem ser enganada. Ele já tinha a posse e depois agiu como dono.",
-        "forma": "Dra. Helena: Ao vender o aparelho como se fosse seu, ele se apropriou: consumado.",
-        "conclusao": "Dra. Helena: Típico, ilícito e culpável."
+      "perguntas": {
+        "tipo": "Igor recebeu o celular emprestado e, dias depois, resolveu ficar com ele e o vendeu. Que crime é esse?",
+        "forma": "Igor vendeu o celular na loja de usados e disse a Paula que não o devolveria. O crime chegou ao fim?",
+        "conclusao": "Igor tem 26 anos e nada justificava ficar com o celular da colega. O que você conclui?"
       },
-      "desfecho": "Apropriação indébita. Igor recebeu o celular de forma lícita e só depois resolveu agir como dono. O aparelho é localizado na loja de usados."
+      "comentarios": {
+        "tipo": "Igor não **subtraiu** nada: Paula entregou o celular, e sem ser enganada. Ele já tinha a **posse lícita** do aparelho e só depois passou a agir como dono. Isso é **apropriação indébita**.",
+        "forma": "A apropriação se consuma quando o agente passa a **agir como dono** da coisa. Ao vender o aparelho e se recusar a devolvê-lo, Igor fez exatamente isso: **consumado**.",
+        "conclusao": "Fato típico, sem excludente de ilicitude, praticado por adulto capaz: é **crime**. O empréstimo era lícito; ficar com a coisa, não."
+      },
+      "desfecho": "O Seu Bento registra **apropriação indébita** consumada. O Agente Rocha apreende o celular na loja de usados, e Paula o recebe de volta depois de reconhecê-lo. O dono da loja será ouvido sobre a compra, e Igor, interrogado na sala de oitiva."
     },
     "conceitos": ["apropriacao-indebita", "furto-e-roubo"],
-    "recompensa": { "pontos": 120 }
+    "recompensa": {
+      "pontos": 120
+    }
   },
   {
     "id": "m502-bilhete-premiado",
     "titulo": "O bilhete premiado",
     "capitulo": 5,
     "nivel": 5,
-    "sala": "recepcao",
-    "npc": "cida-recepcao",
+    "sala": "investigacao",
+    "npc": "rocha-agente",
     "requisitos": ["m501-celular-emprestado"],
     "aulas": ["estelionato"],
-    "dialogo": [
+    "revela": [],
+    "antes": [
       {
-        "npc": "cida-recepcao",
-        "texto": "Doutor(a), a Dona Olga está no balcão, muito envergonhada. Caiu num golpe na porta do banco."
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), a Dona Olga está no balcão, muito envergonhada. Diz que foi **furtada** na porta do banco."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Levaram dois mil reais meus, doutor(a). Dois mil! Ai, que vergonha..."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Leve a Dona Olga para a sala de oitiva, doutor(a). Lá ela conta com calma."
+          }
+        ]
       },
       {
-        "npc": "cida-recepcao",
-        "texto": "Ela diz que foi furtada. Mas foi ela mesma quem entregou o dinheiro..."
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-a",
+            "texto": "Um homem me parou na porta do banco com um **bilhete de loteria**. Disse que estava premiado, mas que ele não podia sacar o prêmio."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Ofereceu o bilhete por **R$ 2.000,00**. Um outro moço passou, olhou e confirmou que era premiado mesmo."
+          },
+          {
+            "npc": "voce",
+            "texto": "E como o dinheiro foi parar com ele?"
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Eu mesma entrei no banco, saquei e **entreguei na mão dele**, em troca do bilhete. Ele foi embora."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Depois me disseram na lotérica que o bilhete não vale nada."
+          }
+        ]
+      }
+    ],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Peguei as câmeras do banco, doutor(a). O homem do bilhete tem 44 anos. E o moço que \"confirmou\" o prêmio chegou **junto com ele**."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Os dois sumiram com o dinheiro. Vou atrás, mas preciso saber o que estou investigando."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "A Dona Olga fala em furto. Que **crime** eu ponho no relatório?"
       }
     ],
     "caso": {
@@ -77,41 +191,81 @@
       "fato": {
         "elementos": ["fraude", "busca_de_vantagem_ilicita", "vitima_em_erro", "vantagem_obtida"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 44, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 44,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["tipo", "forma", "conclusao"],
       "informa": ["excludente", "culpabilidade"],
       "tipoInformado": false,
       "opcoesDeTipo": ["furto", "apropriacao_indebita", "estelionato"],
-      "comentarios": {
-        "tipo": "Dra. Helena: Ninguém tirou o dinheiro da Dona Olga: ela entregou, porque foi enganada. Vantagem obtida mediante fraude é estelionato.",
-        "forma": "Dra. Helena: Ele obteve a vantagem e ela ficou no prejuízo: consumado.",
-        "conclusao": "Dra. Helena: Típico, ilícito e culpável."
+      "perguntas": {
+        "tipo": "Dona Olga sacou o dinheiro e o entregou ao homem, acreditando que o bilhete era premiado. Que crime é esse?",
+        "forma": "O homem recebeu os R$ 2.000,00 e sumiu; Dona Olga ficou com um bilhete sem valor. O crime chegou ao fim?",
+        "conclusao": "O homem do bilhete tem 44 anos e nada justifica o que fez. O que você conclui?"
       },
-      "desfecho": "Estelionato. Você tranquiliza a Dona Olga: esse golpe é antigo e engana muita gente. As câmeras do banco vão ajudar a identificar a dupla."
+      "comentarios": {
+        "tipo": "Ninguém tirou o dinheiro de Dona Olga: ela mesma o entregou, porque foi **enganada** pela história do bilhete e pelo comparsa. Vantagem ilícita obtida mediante **fraude** é **estelionato**.",
+        "forma": "O estelionato se consuma quando o agente **obtém a vantagem** e a vítima fica no prejuízo. Ele saiu com os R$ 2.000,00: **consumado**.",
+        "conclusao": "Fato típico, sem nada que o justifique, praticado por adulto capaz: é **crime**. Ter entregado o dinheiro com as próprias mãos não tira de Dona Olga a condição de vítima."
+      },
+      "desfecho": "O Agente Rocha passa a investigar um **estelionato**, com as imagens do banco e o bilhete falso, que fica apreendido. Você tranquiliza Dona Olga: o golpe é antigo e engana muita gente. Ela sai menos envergonhada, e a equipe segue atrás da dupla."
     },
     "conceitos": ["estelionato", "apropriacao-indebita"],
-    "recompensa": { "pontos": 120 }
+    "recompensa": {
+      "pontos": 120
+    }
   },
   {
     "id": "m503-saida-do-mercado",
     "titulo": "A saída do mercado",
     "capitulo": 5,
     "nivel": 5,
-    "sala": "oitiva",
-    "npc": "rocha-agente",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m502-bilhete-premiado"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-a",
+            "texto": "Eu saía do Mercado Bom Preço quando um homem parou na minha frente e mostrou uma **faca**."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Só disse: \"O celular. Agora\". Fiquei com tanto medo que entreguei na hora."
+          },
+          {
+            "npc": "voce",
+            "texto": "E depois que a senhora entregou?"
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Ele guardou o celular e foi embora de **moto**."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "rocha-agente",
-        "texto": "Doutor(a), mais um. A vítima está abalada, mas inteira. Levaram o celular dela na saída do mercado."
+        "npc": "bento-escrivao",
+        "texto": "O Agente Rocha deixou o relatório, doutor(a). As câmeras identificaram o homem no dia seguinte: 30 anos. Já estava **sem o aparelho**."
       },
       {
-        "npc": "rocha-agente",
-        "texto": "O Seu Bento mandou dizer que desta vez não fala nada. Só que as opções aumentaram."
+        "npc": "advogado",
+        "texto": "Ninguém arrancou nada de ninguém, doutor(a). A moça **entregou** o celular com as próprias mãos."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "E então, doutor(a)? Que **crime** vai no registro?"
       }
     ],
     "caso": {
@@ -130,22 +284,34 @@
           "inversao_da_posse"
         ],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 30, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 30,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["tipo", "forma", "conclusao"],
       "informa": ["excludente", "culpabilidade"],
       "tipoInformado": false,
       "opcoesDeTipo": ["furto", "roubo", "apropriacao_indebita", "estelionato"],
-      "comentarios": {
-        "tipo": "Seu Bento: Ela entregou, mas não porque foi enganada: entregou por medo da faca. Subtração com grave ameaça é roubo.",
-        "forma": "Seu Bento: O celular passou para ele e ele foi embora. Posse invertida: consumado.",
-        "conclusao": "Seu Bento: Típico, ilícito e culpável."
+      "perguntas": {
+        "tipo": "Ela entregou o celular por medo da faca. Que crime é esse?",
+        "forma": "Ele guardou o celular, foi embora de moto e só foi identificado no dia seguinte, já sem o aparelho. O crime se consumou?",
+        "conclusao": "O autor tem 30 anos e nada justifica o que fez. O que você conclui?"
       },
-      "desfecho": "Roubo consumado. Você fecha o capítulo dando nome ao crime sem ajuda. A Dra. Helena avisa: na próxima etapa, o Código inteiro vai estar aberto."
+      "comentarios": {
+        "tipo": "Ela entregou, mas não por engano: entregou por **medo da faca**. Quando a coisa sai da vítima mediante **grave ameaça**, a entrega forçada é subtração, e o crime é **roubo**.",
+        "forma": "O celular saiu da vítima e passou a ele, que foi embora de moto. Houve **inversão da posse**: **consumado**.",
+        "conclusao": "Fato típico, ilícito e praticado por adulto capaz: é **crime**. Dizer que a vítima \"entregou\" o celular não muda nada."
+      },
+      "desfecho": "O Seu Bento registra **roubo consumado**, e o advogado sai sem o que queria. A vítima reconhece o autor pelas imagens do mercado, e ele será interrogado. O celular, que já não estava com ele, continua sendo procurado pelo Agente Rocha."
     },
     "conceitos": ["furto-e-roubo", "estelionato", "consumacao-do-furto-e-do-roubo"],
-    "recompensa": { "pontos": 140 }
+    "recompensa": {
+      "pontos": 140
+    }
   }
 ]

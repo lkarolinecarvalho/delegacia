@@ -4,18 +4,67 @@
     "titulo": "A briga na feira",
     "capitulo": 3,
     "nivel": 3,
-    "sala": "oitiva",
+    "sala": "gabinete",
     "npc": "helena-delegada",
     "requisitos": ["m204-bolsa-na-praca"],
     "aulas": ["ilicitude", "legitima-defesa"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), a viatura trouxe dois homens da feira livre. Um deles está com o **braço enfaixado**."
+          },
+          {
+            "npc": "conduzido-b",
+            "texto": "Ele me jogou em cima dos caixotes! Olha o corte. Quero ver esse feirante preso."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O feirante já está na sala de oitiva. Uma freguesa que viu tudo veio junto."
+          }
+        ]
+      },
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "conduzido-a",
+            "texto": "Jonas, 38 anos, doutor(a). Tenho banca de verdura há dez anos e nunca briguei com ninguém."
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Ele reclamou do preço e veio para cima de mim **a socos**. Eu não tinha feito nada, nem tinha por onde sair de trás da banca."
+          },
+          {
+            "npc": "voce",
+            "texto": "E o que o senhor fez?"
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Enquanto apanhava, **empurrei** ele com as mãos. Uma vez só, para tirar de cima de mim."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Foi assim mesmo. O freguês caiu sobre os caixotes e cortou o braço. O Jonas **parou na hora**."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "helena-delegada",
-        "texto": "Você já sabe ver se o fato é típico. Agora vem a segunda pergunta: ele é ilícito?"
+        "texto": "Li os termos e o laudo. O corte no braço do freguês existe, e o empurrão do Jonas foi de propósito."
       },
       {
         "npc": "helena-delegada",
-        "texto": "Trouxeram dois homens da feira, um deles com o braço enfaixado. Ouça o que ficou apurado."
+        "texto": "O tipo em análise é a **lesão corporal**: ofender a integridade corporal ou a saúde de outrem."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "O freguês quer o feirante preso. O feirante diz que não teve escolha. Antes de eu decidir, quero a sua análise."
       }
     ],
     "caso": {
@@ -29,7 +78,9 @@
       "fato": {
         "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": {
           "tipo": "legitima_defesa",
           "agressaoInjusta": true,
@@ -38,20 +89,29 @@
           "meiosNecessarios": true,
           "usoModerado": true
         },
-        "agente": { "idade": 38, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 38,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["excludente", "conclusao"],
       "informa": ["tipico", "forma"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "excludente": "Dra. Helena: Confira os requisitos: agressão injusta, acontecendo naquele momento, e um empurrão só para se livrar. É legítima defesa.",
-        "conclusao": "Dra. Helena: O fato é típico, mas a lei diz que não há crime quando há legítima defesa: fato lícito."
+      "perguntas": {
+        "excludente": "Jonas apanhava, sem ter como sair de trás da banca, e deu um único empurrão. Alguma excludente de ilicitude ampara o que ele fez?",
+        "conclusao": "O empurrão de Jonas cortou o braço do freguês. Depois do que você respondeu sobre a ilicitude, o que conclui sobre a conduta dele?"
       },
-      "desfecho": "A conduta de Jonas é lesão corporal, mas praticada em legítima defesa: não há crime. O freguês é quem vai responder pela agressão que começou."
+      "comentarios": {
+        "excludente": "Jonas sofria uma **agressão injusta** e **atual**: apanhava naquele momento. Reagiu com um único empurrão e parou quando o freguês caiu, ou seja, usou com moderação o meio necessário. É **legítima defesa**.",
+        "conclusao": "O fato é típico (lesão corporal), mas a lei diz que **não há crime** quando o agente age em legítima defesa. Sem ilicitude, a análise termina aqui: **fato lícito**."
+      },
+      "desfecho": "A Dra. Helena não autua Jonas, que é liberado e volta para a banca. O Seu Bento registra a ocorrência com o laudo e os depoimentos, apontando a **legítima defesa**. Quem passa a ser investigado é o freguês, pelos socos que deu primeiro."
     },
     "conceitos": ["legitima-defesa", "conceito-de-crime"],
-    "recompensa": { "pontos": 90 }
+    "recompensa": {
+      "pontos": 90
+    }
   },
   {
     "id": "m302-carro-no-sol",
@@ -62,14 +122,40 @@
     "npc": "cida-recepcao",
     "requisitos": ["m301-briga-na-feira"],
     "aulas": ["estado-de-necessidade"],
+    "revela": [],
+    "antes": [],
     "dialogo": [
       {
         "npc": "cida-recepcao",
-        "texto": "Doutor(a), tem um senhor no balcão querendo registrar que quebraram o vidro do carro dele."
+        "texto": "Doutor(a), este senhor quer registrar que quebraram o vidro do carro dele. E a moça que quebrou veio junto!"
+      },
+      {
+        "npc": "morador-b",
+        "texto": "Deixei o carro no estacionamento do mercado. Quando voltei, o vidro de trás estava estilhaçado. Foi ela, com uma pedra!"
+      },
+      {
+        "npc": "moradora-a",
+        "texto": "Quebrei mesmo, e quebraria de novo. Tinha um **bebê trancado** lá dentro, no sol do meio-dia, chorando e muito vermelho."
+      },
+      {
+        "npc": "voce",
+        "texto": "A senhora tentou achar o dono do carro antes?"
+      },
+      {
+        "npc": "moradora-a",
+        "texto": "Eu e o segurança procuramos pelo estacionamento e chamamos no som do mercado. Ninguém respondeu, e as portas estavam travadas."
+      },
+      {
+        "npc": "moradora-a",
+        "texto": "Quebrei o vidro traseiro, longe do bebê, e tirei ele de lá. O pai só apareceu **vinte minutos depois**."
       },
       {
         "npc": "cida-recepcao",
-        "texto": "E a moça que quebrou veio junto! Disse que quebrou mesmo, e que quebraria de novo."
+        "texto": "O que ele pede é o registro de **dano**: destruir, inutilizar ou deteriorar coisa alheia. E o vidro ela quebrou de propósito."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "O que eu digo aos dois, doutor(a)?"
       }
     ],
     "caso": {
@@ -83,7 +169,9 @@
       "fato": {
         "elementos": ["dano_a_coisa_alheia", "coisa_danificada"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": {
           "tipo": "estado_de_necessidade",
           "perigoAtual": true,
@@ -93,20 +181,29 @@
           "sacrificioInexigivel": true,
           "deverLegalDeEnfrentar": false
         },
-        "agente": { "idade": 29, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 29,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["excludente", "conclusao"],
       "informa": ["tipico", "forma"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "excludente": "Dra. Helena: Ninguém agrediu a Lívia: havia um perigo. Perigo atual, que ela não criou e não podia afastar de outro jeito. É estado de necessidade.",
-        "conclusao": "Dra. Helena: Quebrar o vidro é dano, fato típico. Mas, em estado de necessidade, não há crime."
+      "perguntas": {
+        "excludente": "Lívia quebrou o vidro para tirar o bebê do carro fechado, depois de procurar o dono sem sucesso. Alguma excludente de ilicitude ampara o que ela fez?",
+        "conclusao": "O vidro foi quebrado de propósito, e o dono do carro quer o registro. O que você conclui sobre a conduta de Lívia?"
       },
-      "desfecho": "Lívia quebrou o vidro de propósito, e isso é o tipo do dano. Mas agiu em estado de necessidade, para salvar a vida do bebê: fato lícito. Quem vai ter de se explicar é o pai."
+      "comentarios": {
+        "excludente": "Ninguém agrediu Lívia: havia um **perigo atual** para o bebê, que ela não criou e não podia afastar de outro modo, pois procurou o dono e as portas estavam travadas. Sacrificar um vidro para salvar uma vida é **estado de necessidade**.",
+        "conclusao": "Quebrar de propósito o vidro alheio se ajusta ao tipo do dano. Mas quem age em estado de necessidade não comete crime: **fato lícito**."
+      },
+      "desfecho": "Você explica ao dono do carro que não há crime de dano a registrar contra Lívia: ela agiu em **estado de necessidade**. Dona Cida anota o atendimento, com os dados de Lívia e do segurança como testemunhas, e confirma que o bebê foi atendido e passa bem. Quem será ouvido agora é o pai, sobre ter deixado a criança trancada no carro."
     },
     "conceitos": ["estado-de-necessidade", "legitima-defesa"],
-    "recompensa": { "pontos": 90 }
+    "recompensa": {
+      "pontos": 90
+    }
   },
   {
     "id": "m303-revanche",
@@ -117,14 +214,54 @@
     "npc": "bento-escrivao",
     "requisitos": ["m302-carro-no-sol"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-b",
+            "texto": "Eu jantava com a minha família quando o Caio me chamou ao portão. Fui ver o que ele queria."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Ele me acertou o ombro com um **pedaço de madeira**. Eu não fiz nada, não ameacei, nem levantei a mão."
+          },
+          {
+            "npc": "voce",
+            "texto": "Vocês tinham brigado antes?"
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "No bar, às 18h. Eu dei um soco nele, sim. Separaram a gente e cada um foi para a sua casa."
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Foi **legítima defesa**, doutor(a)! Quem bateu primeiro foi ele."
+          },
+          {
+            "npc": "voce",
+            "texto": "A que horas o senhor foi até a casa dele?"
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Umas 19h. Eu não ia deixar aquilo barato."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "bento-escrivao",
-        "texto": "Doutor(a), lembra da briga na feira? Tem outra, mas esta é diferente."
+        "texto": "Mais uma briga, doutor(a), mas não é igual à da feira. Ombro ferido, com laudo: **lesão corporal**, ofender a integridade corporal ou a saúde de outrem."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "O conduzido jura que foi legítima defesa, porque quem bateu primeiro foi o outro. Veja a hora de cada coisa."
+        "texto": "O Caio insiste que só se defendeu, porque apanhou primeiro. Soco às **18h**, no bar. Madeira às **19h**, no portão."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Ponho a legítima defesa no registro ou não, doutor(a)?"
       }
     ],
     "caso": {
@@ -138,7 +275,9 @@
       "fato": {
         "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": {
           "tipo": "legitima_defesa",
           "agressaoInjusta": true,
@@ -147,19 +286,28 @@
           "meiosNecessarios": false,
           "usoModerado": false
         },
-        "agente": { "idade": 27, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 27,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["excludente", "conclusao"],
       "informa": ["tipico", "forma"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "excludente": "Seu Bento: O soco foi às 18h, doutor(a). Às 19h não havia agressão nenhuma para repelir. Isso é vingança.",
-        "conclusao": "Seu Bento: Sem excludente, o fato típico é também ilícito. Caio é adulto: é crime."
+      "perguntas": {
+        "excludente": "Caio levou um soco às 18h e feriu o conhecido às 19h, no portão da casa dele. Alguma excludente de ilicitude ampara o que Caio fez?",
+        "conclusao": "Caio tem 27 anos e atingiu o ombro do conhecido de propósito. O que você conclui?"
       },
-      "desfecho": "A agressão que Caio sofreu já tinha acabado. Sem agressão atual ou iminente não há legítima defesa: ele responde por lesão corporal. O conhecido também responde pelo soco das 18h."
+      "comentarios": {
+        "excludente": "A legítima defesa exige agressão **atual ou iminente**. O soco das 18h já tinha acabado; às 19h, no portão, o conhecido não fazia nem ameaçava fazer nada. Reagir depois é **vingança**: não há excludente.",
+        "conclusao": "Sem excludente, o fato típico é também **ilícito**. Caio é adulto e capaz, portanto culpável: é **crime** de lesão corporal."
+      },
+      "desfecho": "O Seu Bento registra a **lesão corporal** praticada por Caio, sem excludente, e junta o laudo do ombro. A família do conhecido, que estava em casa na hora, será ouvida. O soco das 18h não fica esquecido: vai para um registro próprio, e o conhecido também terá de se explicar."
     },
     "conceitos": ["legitima-defesa", "estado-de-necessidade"],
-    "recompensa": { "pontos": 100 }
+    "recompensa": {
+      "pontos": 100
+    }
   }
 ]

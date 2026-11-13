@@ -4,18 +4,54 @@
     "titulo": "A ameaça do ex-sócio",
     "capitulo": 6,
     "nivel": 6,
-    "sala": "recepcao",
-    "npc": "cida-recepcao",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m503-saida-do-mercado"],
     "aulas": ["acao-penal", "termo-circunstanciado"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), o Seu Edmar chegou apavorado. Recebeu um **áudio** do ex-sócio."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Escuta só, doutor(a): \"Você me paga. Sei onde você mora e **vou te pegar**\". É a voz dele, sem dúvida."
+          },
+          {
+            "npc": "voce",
+            "texto": "Quando o senhor ouviu isso?"
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Ontem. Não dormi a noite inteira e hoje vim direto para cá."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Já escrevi e assinei aqui com a Dona Cida: eu **quero ver esse homem processado**."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O ex-sócio tem 48 anos. A viatura passou na casa dele e não o encontrou. A declaração do Seu Edmar já foi para o cartório."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "cida-recepcao",
-        "texto": "Doutor(a), o Seu Edmar recebeu um áudio do ex-sócio dizendo que vai acabar com ele. Está apavorado."
+        "npc": "bento-escrivao",
+        "texto": "Ouvi o áudio, doutor(a). O tipo é **ameaça**: ameaçar alguém de causar-lhe mal injusto e grave."
       },
       {
-        "npc": "helena-delegada",
-        "texto": "Até aqui você decidiu se havia crime. Agora vem a pergunta seguinte: o que a delegacia pode fazer com ele?"
+        "npc": "bento-escrivao",
+        "texto": "A pena é detenção de **um a seis meses**, ou multa. E o artigo termina assim: \"somente se procede mediante **representação**\"."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Estou com a declaração assinada do Seu Edmar. Posso tocar isso para a frente? E abro o quê: inquérito ou termo circunstanciado?"
       }
     ],
     "caso": {
@@ -47,12 +83,17 @@
       "informa": ["forma", "conclusao"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "acao": "Dra. Helena: Na ameaça, a lei diz que só se procede mediante representação. É pública, mas condicionada.",
-        "instauracao": "Dra. Helena: Ele veio e pediu, por escrito, que o ex-sócio seja processado. Isso é a representação: você pode agir.",
-        "rito": "Dra. Helena: Olhe a pena máxima da ameaça: seis meses. Não passa de dois anos, então é termo circunstanciado."
+      "perguntas": {
+        "acao": "O Código diz que, na ameaça, \"somente se procede mediante representação\". Que ação penal é essa?",
+        "instauracao": "Edmar declarou por escrito que quer ver o ex-sócio processado. A delegacia já pode agir?",
+        "rito": "A pena máxima da ameaça é de seis meses. O Seu Bento abre inquérito ou lavra termo circunstanciado?"
       },
-      "desfecho": "Com a representação de Edmar, você lavra o termo circunstanciado e o envia ao Juizado Especial Criminal. O áudio vai junto."
+      "comentarios": {
+        "acao": "A ação continua sendo do Ministério Público, mas depende de um \"sim\" da vítima: a **representação**. É a ação penal **pública condicionada**.",
+        "instauracao": "A representação não exige fórmula: basta a vítima deixar claro que quer ver o autor processado. Edmar fez isso **por escrito**, um dia depois de ouvir o áudio. A delegacia **pode agir**.",
+        "rito": "A pena máxima da ameaça, seis meses, não passa de **dois anos**: é infração de **menor potencial ofensivo**. Em vez de inquérito, lavra-se **termo circunstanciado**."
+      },
+      "desfecho": "O Seu Bento lavra o **termo circunstanciado** de ameaça, com a representação de Edmar e o áudio gravado em mídia. O ex-sócio será intimado, e o termo segue para o **Juizado Especial Criminal**. Edmar leva a cópia do registro e a orientação de avisar a delegacia se houver nova ameaça."
     },
     "conceitos": ["acao-penal", "menor-potencial-ofensivo"],
     "recompensa": {
@@ -68,14 +109,32 @@
     "npc": "cida-recepcao",
     "requisitos": ["m601-ameaca-do-ex-socio"],
     "aulas": ["acao-privada"],
+    "revela": [],
+    "antes": [],
     "dialogo": [
       {
         "npc": "cida-recepcao",
         "texto": "Doutor(a), a Dona Ivone foi xingada na fila do banco e quer que a polícia \"dê um jeito\" na mulher."
       },
       {
+        "npc": "vitima-a",
+        "texto": "Ela me chamou de **\"velha burra e imprestável\"**, na minha cara! Sei muito bem quem é: tem 39 anos e mora na minha rua."
+      },
+      {
         "npc": "cida-recepcao",
-        "texto": "Só que ela não quer assinar nada. Diz que isso é serviço nosso."
+        "texto": "Xingamento assim é **injúria**: ofender a dignidade ou o decoro de alguém. E o Código avisa que, nesse crime, \"somente se procede mediante **queixa**\"."
+      },
+      {
+        "npc": "voce",
+        "texto": "A senhora quer requerer a abertura de um procedimento contra ela?"
+      },
+      {
+        "npc": "vitima-a",
+        "texto": "Eu? **Não assino nada**. Já contei o que houve. Agora é serviço de vocês."
+      },
+      {
+        "npc": "cida-recepcao",
+        "texto": "Ela não requer nada, mas quer providência. O que a gente faz, doutor(a)?"
       }
     ],
     "caso": {
@@ -107,11 +166,15 @@
       "informa": ["forma", "conclusao", "rito"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "acao": "Dra. Helena: Na injúria, em regra, só se procede mediante queixa. A ação é privada: quem move é a própria vítima.",
-        "instauracao": "Dra. Helena: Em crime de ação privada, você só instaura a requerimento de quem pode mover a ação. Ela não requereu."
+      "perguntas": {
+        "acao": "Na injúria, o Código diz que \"somente se procede mediante queixa\". Que ação penal é essa?",
+        "instauracao": "Dona Ivone contou o caso no balcão, mas se recusa a requerer qualquer procedimento. A delegacia pode agir?"
       },
-      "desfecho": "Você explica à Dona Ivone que, na injúria, a iniciativa é dela, e que ela tem seis meses para decidir. Ela promete pensar."
+      "comentarios": {
+        "acao": "**Queixa** é a peça com que a própria vítima move a ação penal. Se o crime só se processa mediante queixa, a ação penal é **privada**.",
+        "instauracao": "Em crime de ação privada, a autoridade policial só instaura procedimento **a requerimento** de quem pode mover a ação. Dona Ivone não requereu: a delegacia **aguarda a vítima**."
+      },
+      "desfecho": "Dona Cida anota o atendimento, mas nenhum procedimento é aberto. Você explica a Dona Ivone que, na **injúria**, a iniciativa é dela: basta voltar e requerer, dentro do prazo de **seis meses**. Ela sai dizendo que vai pensar."
     },
     "conceitos": ["acao-penal", "representacao-e-decadencia"],
     "recompensa": {
@@ -127,14 +190,40 @@
     "npc": "bento-escrivao",
     "requisitos": ["m602-xingamento-na-fila"],
     "aulas": ["decadencia"],
+    "revela": [],
+    "antes": [],
     "dialogo": [
       {
         "npc": "bento-escrivao",
-        "texto": "Doutor(a), lembra da briga no bar do Tonho? Não a do Raul, outra, mais antiga. A vítima apareceu hoje."
+        "texto": "Doutor(a), este senhor veio por causa de uma briga antiga no Bar do Tonho. Não é a do Raul: é a **ocorrência 009**."
+      },
+      {
+        "npc": "vitima-b",
+        "texto": "O Lauro me deu um soco e cortou meu lábio. Na época deixei para lá. Agora eu quero **representar** contra ele."
+      },
+      {
+        "npc": "voce",
+        "texto": "Quando foi isso? E o senhor sabia quem era ele?"
+      },
+      {
+        "npc": "vitima-b",
+        "texto": "Faz **sete meses**. Soube no mesmo dia: o bar inteiro conhece o Lauro."
+      },
+      {
+        "npc": "voce",
+        "texto": "Nesse tempo, o senhor procurou a delegacia ou o fórum?"
+      },
+      {
+        "npc": "vitima-b",
+        "texto": "Não, doutor(a). Hoje é a primeira vez."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "Disse que agora quer representar. Antes de eu pegar o papel, olhe a data do fato."
+        "texto": "Corte leve no lábio é **lesão corporal** leve: ofender a integridade corporal ou a saúde de outrem. E, pela Lei 9.099, a ação \"dependerá de **representação**\"."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Pego o papel para ele assinar, doutor(a)?"
       }
     ],
     "caso": {
@@ -166,11 +255,15 @@
       "informa": ["forma", "conclusao", "rito"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "acao": "Seu Bento: Lesão corporal leve depende de representação, doutor(a). Está na Lei 9.099.",
-        "instauracao": "Seu Bento: Seis meses, contados do dia em que ela soube quem foi. Já se passaram sete: decaiu."
+      "perguntas": {
+        "acao": "A Lei 9.099 diz que, na lesão corporal leve, a ação penal \"dependerá de representação\". Que ação penal é essa?",
+        "instauracao": "A vítima sabe há sete meses quem é Lauro e só hoje quer representar. A delegacia pode agir?"
       },
-      "desfecho": "O direito de representar se perdeu pela decadência, e a punibilidade de Lauro está extinta. O Seu Bento guarda a caneta."
+      "comentarios": {
+        "acao": "Quando a lei exige a representação da vítima, a ação é **pública condicionada**. É o caso da lesão corporal leve, por força da Lei 9.099/95.",
+        "instauracao": "A vítima tem **seis meses** para representar, contados do dia em que soube quem era o autor. Ela soube no mesmo dia e esperou sete meses: houve **decadência**, e a delegacia não pode mais agir."
+      },
+      "desfecho": "O Seu Bento não colhe a representação: o direito se perdeu pela **decadência**, que extingue a punibilidade de Lauro. Ele anota o comparecimento na ocorrência 009, e você explica à vítima que, na esfera criminal, o prazo passou. Ela sai contrariada, mas sabendo o motivo."
     },
     "conceitos": ["representacao-e-decadencia", "acao-penal"],
     "recompensa": {
@@ -182,18 +275,50 @@
     "titulo": "O notebook da biblioteca",
     "capitulo": 6,
     "nivel": 6,
-    "sala": "cartorio",
-    "npc": "bento-escrivao",
+    "sala": "investigacao",
+    "npc": "rocha-agente",
     "requisitos": ["m603-sete-meses-depois"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), chegou um **e-mail** de um estudante. Levaram o notebook dele ontem, na biblioteca municipal."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Ele conta que deixou o notebook sobre a mesa e, quando voltou, não estava mais lá."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "E avisa que **não tem tempo** para vir à delegacia."
+          },
+          {
+            "npc": "voce",
+            "texto": "A biblioteca tem câmeras?"
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Tem. O Agente Rocha já foi buscar as imagens."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "bento-escrivao",
-        "texto": "Para fechar o balcão, um caso em que a vítima nem veio, doutor(a). Mandou só um e-mail."
+        "npc": "rocha-agente",
+        "texto": "As câmeras gravaram tudo, doutor(a). Um homem de 27 anos **pega o notebook** de cima da mesa e sai com ele."
       },
       {
-        "npc": "bento-escrivao",
-        "texto": "Será que a gente precisa dela para começar?"
+        "npc": "rocha-agente",
+        "texto": "Já sei quem é, mas ainda **não o localizei**."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Minha dúvida é outra: o estudante não vem. Eu posso continuar **sem ele**? E isso vira inquérito ou termo circunstanciado?"
       }
     ],
     "caso": {
@@ -225,13 +350,19 @@
       "informa": ["forma", "conclusao"],
       "tipoInformado": false,
       "opcoesDeTipo": ["furto", "roubo", "apropriacao_indebita"],
-      "comentarios": {
-        "tipo": "Seu Bento: Ele tirou o notebook de quem o tinha, sem violência e sem ameaça.",
-        "acao": "Seu Bento: A regra é a ação pública incondicionada. O furto segue a regra.",
-        "instauracao": "Seu Bento: Sendo incondicionada, a delegacia age de ofício, com ou sem a vítima.",
-        "rito": "Seu Bento: A pena máxima do furto é de quatro anos. Passou de dois, é inquérito."
+      "perguntas": {
+        "tipo": "O homem pegou o notebook que o estudante tinha deixado sobre a mesa e saiu com ele. Que crime é esse?",
+        "acao": "Para esse crime, o Código não fala em representação nem em queixa. Qual é a ação penal?",
+        "instauracao": "O estudante só mandou um e-mail e avisou que não vem à delegacia. A delegacia pode agir sem ele?",
+        "rito": "A pena máxima prevista para o que o homem fez é de quatro anos. Termo circunstanciado ou inquérito?"
       },
-      "desfecho": "Furto: ação pública incondicionada. Você instaura o inquérito de ofício, e as imagens das câmeras vão para os autos."
+      "comentarios": {
+        "tipo": "Ele **subtraiu** coisa alheia móvel: tirou o notebook de quem o tinha, sem violência, sem ameaça e sem ter recebido a coisa antes. É **furto**.",
+        "acao": "No **silêncio da lei**, vale a regra: ação penal **pública incondicionada**. O furto segue a regra.",
+        "instauracao": "Sendo a ação incondicionada, a delegacia age **de ofício**, com ou sem a vontade da vítima. O e-mail do estudante vale como notícia do crime: **pode agir**.",
+        "rito": "Termo circunstanciado é só para pena máxima de até **dois anos**. A do furto chega a quatro: o caminho é o **inquérito policial**."
+      },
+      "desfecho": "Você instaura o **inquérito policial** de ofício, e as imagens da biblioteca vão para os autos. O Agente Rocha segue atrás do homem e do notebook. O estudante será intimado a depor: aqui, a apuração **não depende da vontade dele**."
     },
     "conceitos": ["acao-penal", "menor-potencial-ofensivo", "furto-e-roubo"],
     "recompensa": {

@@ -33,24 +33,6 @@
     "id": "arquivo",
     "nome": "Arquivo",
     "placa": "Arquivo",
-    "descricao": "Consulta aos procedimentos já concluídos."
-  },
-  {
-    "id": "pessoa",
-    "nome": "Departamento de crimes contra a pessoa",
-    "placa": "Pessoa",
-    "descricao": "Crimes contra a vida, a integridade física, a honra e a liberdade."
-  },
-  {
-    "id": "patrimonio",
-    "nome": "Departamento de crimes contra o patrimônio",
-    "placa": "Patrimônio",
-    "descricao": "Furto, roubo, estelionato e os demais crimes patrimoniais."
-  },
-  {
-    "id": "especial",
-    "nome": "Departamento de legislação especial",
-    "placa": "Leis especiais",
-    "descricao": "Casos das leis penais especiais. Ainda sem casos nesta versão."
+    "descricao": "Os casos concluídos, separados por assunto. Venha rever um caso ou treinar com um plantão livre."
   }
 ]

@@ -27,7 +27,11 @@
           },
           {
             "npc": "cida-recepcao",
-            "texto": "Vem comigo, eu mostro a casa. Primeira parada: o cartório."
+            "texto": "A casa é pequena: **cartório** aqui ao lado, **sala de oitiva**, **investigação** e **arquivo** no corredor, e o **gabinete** no fundo."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Passa no cartório e na investigação para conhecer o pessoal. Depois, a Dra. Helena espera no gabinete."
           }
         ]
       },
@@ -35,37 +39,20 @@
         "sala": "cartorio",
         "falas": [
           {
-            "npc": "cida-recepcao",
-            "texto": "Este é o Seu Bento, o **escrivão**. Trinta anos de casa."
+            "npc": "bento-escrivao",
+            "texto": "Então é o(a) doutor(a) novo(a)! Bento, **escrivão**. Trinta anos de casa."
           },
           {
             "npc": "bento-escrivao",
-            "texto": "Prazer, doutor(a). Aqui a gente põe no papel o que acontece: registra a ocorrência e organiza os **autos**."
+            "texto": "Aqui a gente põe no papel o que acontece: registra a **ocorrência** e organiza os **autos**."
+          },
+          {
+            "npc": "bento-escrivao",
+            "texto": "Quando alguém é ouvido na sala de oitiva, o que a pessoa diz vira um **termo**, e o termo vem para cá."
           },
           {
             "npc": "bento-escrivao",
             "texto": "O(a) senhor(a) decide. Eu formalizo."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "Agora a sala de oitiva, aqui ao lado."
-          }
-        ]
-      },
-      {
-        "sala": "oitiva",
-        "falas": [
-          {
-            "npc": "cida-recepcao",
-            "texto": "Aqui a gente ouve as pessoas: a vítima, a testemunha e também o investigado."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "Ouvir alguém formalmente se chama **oitiva**. Quando é o investigado, é **interrogatório**."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "O que é dito aqui vira um **termo**, lá no cartório."
           }
         ]
       },
@@ -82,41 +69,7 @@
           },
           {
             "npc": "rocha-agente",
-            "texto": "Depois eu volto e conto o que encontrei."
-          }
-        ]
-      },
-      {
-        "sala": "arquivo",
-        "falas": [
-          {
-            "npc": "cida-recepcao",
-            "texto": "O arquivo. Todo procedimento que passou pela casa está guardado aqui."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "Quando quiser rever um caso antigo, é só vir."
-          }
-        ]
-      },
-      {
-        "sala": "pessoa",
-        "falas": [
-          {
-            "npc": "cida-recepcao",
-            "texto": "Deste lado ficam os três departamentos."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "**Crimes contra a pessoa**, **crimes contra o patrimônio** e **legislação especial**. Cada equipe cuida de um tipo de caso."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "Você vai trabalhar com eles mais adiante."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "Pronto, casa apresentada. A Dra. Helena está à sua espera no gabinete."
+            "texto": "Caso encerrado vai para o **arquivo**, aqui ao lado, separado por assunto. Dá para rever qualquer um quando quiser."
           }
         ]
       }
@@ -152,10 +105,11 @@
       },
       {
         "npc": "helena-delegada",
-        "texto": "Chega de conversa. Volta para a recepção: já deve ter gente à sua espera."
+        "texto": "Você estudou muito para chegar aqui. Agora é lembrar do que aprendeu, caso a caso. A recepção já tem gente esperando."
       }
     ],
     "caso": null,
+    "desfecho": "Você conheceu a casa e a equipe: a **recepção** faz a triagem, o **cartório** formaliza, a **investigação** vai atrás dos fatos e a autoridade policial decide. Agora começa o trabalho de verdade.",
     "conceitos": [],
     "recompensa": {
       "pontos": 60
@@ -166,34 +120,54 @@
     "titulo": "A dívida do vizinho",
     "capitulo": 1,
     "nivel": 1,
-    "sala": "gabinete",
-    "npc": "helena-delegada",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m101-bem-vindo"],
-    "aulas": [],
+    "aulas": ["legalidade"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), seu primeiro atendimento. Este é o Seu Anselmo."
+          },
+          {
+            "npc": "anselmo-cidadao",
+            "texto": "Emprestei **R$ 800,00** ao meu vizinho. Faz três meses e ele não me paga."
+          },
+          {
+            "npc": "anselmo-cidadao",
+            "texto": "Tenho recibo assinado. Quero que a polícia prenda esse sujeito!"
+          },
+          {
+            "npc": "voce",
+            "texto": "Ele ameaçou o senhor? Mentiu para conseguir o dinheiro?"
+          },
+          {
+            "npc": "anselmo-cidadao",
+            "texto": "Não, isso não. Ele só ficou sem dinheiro e foi me enrolando."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Leva o caso ao Seu Bento, doutor(a)? Ele vai querer saber como registrar."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "helena-delegada",
-        "texto": "Primeiro caso e já uma boa pergunta. Vamos pensar juntos."
+        "npc": "bento-escrivao",
+        "texto": "Dívida entre vizinhos... Antes de abrir qualquer coisa, doutor(a), uma pergunta."
       },
       {
-        "npc": "helena-delegada",
-        "texto": "Só existe crime se uma lei, feita **antes** do fato, disser que aquela conduta é crime. É o **princípio da legalidade**."
+        "npc": "bento-escrivao",
+        "texto": "Isso é **crime**? Eu só registro como infração penal o que a **lei** diz que é."
       },
       {
-        "npc": "helena-delegada",
-        "texto": "Então a primeira coisa é procurar: existe um **tipo penal** que descreva o que o vizinho fez?"
-      },
-      {
-        "npc": "helena-delegada",
-        "texto": "Se existir, o fato é **típico**. Se não existir, é **atípico**, por mais errado que pareça."
-      },
-      {
-        "npc": "helena-delegada",
-        "texto": "Depois ainda vêm outras duas perguntas, se o fato é **ilícito** e se o agente é **culpável**. Mas uma de cada vez."
-      },
-      {
-        "npc": "helena-delegada",
-        "texto": "Olha o que ficou apurado e me diz."
+        "npc": "bento-escrivao",
+        "texto": "O Seu Anselmo está esperando a resposta. Com o(a) senhor(a)."
       }
     ],
     "caso": {
@@ -201,7 +175,7 @@
       "linhas": [
         "Seu Anselmo emprestou R$ 800,00 ao vizinho, com um recibo assinado.",
         "O vizinho prometeu pagar em 30 dias. Passaram-se três meses e ele não pagou.",
-        "O vizinho não enganou ninguém para conseguir o empréstimo: simplesmente ficou sem dinheiro.",
+        "O vizinho não mentiu para conseguir o empréstimo: simplesmente ficou sem dinheiro.",
         "Não houve ameaça nem violência de nenhum dos lados."
       ],
       "fato": {
@@ -220,60 +194,81 @@
       "informa": [],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipico": "Dra. Helena: Procure a lei que define isso como crime. Não vai achar. Não pagar dívida é ilícito civil.",
-        "conclusao": "Dra. Helena: Sem tipo penal, a análise para na primeira pergunta: o fato é atípico."
+      "perguntas": {
+        "tipico": "Existe alguma lei penal que descreva o que o vizinho fez: pegar dinheiro emprestado e não pagar?",
+        "conclusao": "Então, o que o Seu Bento registra sobre a dívida do vizinho?"
       },
-      "desfecho": "Você volta à recepção e explica ao Seu Anselmo que a polícia não cobra dívida e que ninguém vai preso por isso. Com o recibo, ele pode cobrar o vizinho no Juizado Especial Cível. Ele sai contrariado, mas orientado."
+      "comentarios": {
+        "tipico": "Nenhuma lei penal descreve \"não pagar uma dívida\". Sem lei que defina a conduta, o fato é **atípico**: é o **princípio da legalidade**. A dívida é um **ilícito civil**.",
+        "conclusao": "Sem tipo penal, a análise para na primeira pergunta: **fato atípico**. A Constituição, aliás, proíbe a prisão por dívida, salvo a de pensão alimentícia."
+      },
+      "desfecho": "O Seu Bento não abre procedimento criminal: não há infração penal a apurar. Você volta ao balcão e explica ao Seu Anselmo que a polícia não cobra dívida. Com o recibo, ele pode cobrar o vizinho no **Juizado Especial Cível**. Ele sai contrariado, mas sabendo o que fazer."
     },
     "conceitos": ["legalidade", "ilicito-civil-e-penal", "policia-judiciaria"],
     "recompensa": {
       "pontos": 60
-    },
-    "revela": ["legalidade", "o-que-e-crime"],
+    }
+  },
+  {
+    "id": "m105-som-do-vizinho",
+    "titulo": "O som do vizinho",
+    "capitulo": 1,
+    "nivel": 1,
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
+    "requisitos": ["m104-divida-do-vizinho"],
+    "aulas": ["crime-e-contravencao"],
+    "revela": [],
     "antes": [
       {
         "sala": "recepcao",
         "falas": [
           {
             "npc": "cida-recepcao",
-            "texto": "Doutor(a), seu primeiro atendimento. Este é o Seu Anselmo."
+            "texto": "Mais uma de vizinho, doutor(a). Mas esta é diferente."
           },
           {
-            "npc": "anselmo-cidadao",
-            "texto": "Emprestei **R$ 800,00** ao meu vizinho. Faz três meses e ele não me paga."
+            "npc": "moradora-a",
+            "texto": "Meu vizinho liga o som no último volume **toda madrugada**. A rua inteira não dorme."
           },
           {
-            "npc": "anselmo-cidadao",
-            "texto": "Tenho recibo assinado. Quero que a polícia prenda esse sujeito!"
+            "npc": "moradora-a",
+            "texto": "Já pedi com educação. Ele ri e aumenta."
+          },
+          {
+            "npc": "voce",
+            "texto": "Faz tempo que isso acontece?"
+          },
+          {
+            "npc": "moradora-a",
+            "texto": "Três semanas, doutor(a). Tenho os vídeos no celular."
           },
           {
             "npc": "cida-recepcao",
-            "texto": "Ninguém foi ameaçado nem enganado, doutor(a). O vizinho só não pagou."
-          },
-          {
-            "npc": "cida-recepcao",
-            "texto": "Leva o caso ao Seu Bento? Ele vai querer saber como registrar."
-          }
-        ]
-      },
-      {
-        "sala": "cartorio",
-        "falas": [
-          {
-            "npc": "bento-escrivao",
-            "texto": "Dívida entre vizinhos... Antes de abrir qualquer coisa, doutor(a), uma pergunta."
-          },
-          {
-            "npc": "bento-escrivao",
-            "texto": "Isso é **crime**? Eu só registro como infração penal o que a lei diz que é."
-          },
-          {
-            "npc": "bento-escrivao",
-            "texto": "A Dra. Helena tem um bom jeito de pensar nisso. Vale passar no gabinete."
+            "texto": "Desta vez acho que é com a gente. O Seu Bento confirma."
           }
         ]
       }
-    ]
+    ],
+    "dialogo": [
+      {
+        "npc": "bento-escrivao",
+        "texto": "Som alto de madrugada? Este eu registro, doutor(a). A lei pune quem perturba o sossego alheio."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Mas repare na pena: **prisão simples** ou **multa**. Não é reclusão nem detenção."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Então me diga: isso é **crime**? Ou é outra coisa?"
+      }
+    ],
+    "caso": null,
+    "desfecho": "Perturbar o sossego alheio com som alto é **contravenção penal**: uma infração penal mais leve que o crime, punida com prisão simples ou multa. O Seu Bento registra a ocorrência com os vídeos da moradora, e o vizinho será chamado à delegacia para ser ouvido.",
+    "conceitos": [],
+    "recompensa": {
+      "pontos": 60
+    }
   }
 ]

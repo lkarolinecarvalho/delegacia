@@ -2,41 +2,80 @@
   {
     "id": "helena-delegada",
     "nome": "Dra. Helena",
-    "papel": "Delegada titular"
+    "papel": "Delegada titular",
+    "sala": "gabinete"
   },
   {
     "id": "bento-escrivao",
     "nome": "Seu Bento",
-    "papel": "Escrivão"
+    "papel": "Escrivão",
+    "sala": "cartorio"
   },
   {
     "id": "rocha-agente",
     "nome": "Agente Rocha",
-    "papel": "Investigação"
+    "papel": "Investigação",
+    "sala": "investigacao"
   },
   {
     "id": "cida-recepcao",
     "nome": "Dona Cida",
-    "papel": "Recepção"
+    "papel": "Recepção",
+    "sala": "recepcao"
   },
   {
-    "id": "lia-investigadora",
-    "nome": "Investigadora Lia",
-    "papel": "Crimes contra a pessoa"
-  },
-  {
-    "id": "tavares-investigador",
-    "nome": "Investigador Tavares",
-    "papel": "Crimes contra o patrimônio"
-  },
-  {
-    "id": "nadia-investigadora",
-    "nome": "Investigadora Nádia",
-    "papel": "Legislação especial"
+    "id": "voce",
+    "nome": "Você",
+    "papel": "Delegado(a)"
   },
   {
     "id": "anselmo-cidadao",
     "nome": "Seu Anselmo",
     "papel": "Comerciante"
+  },
+  {
+    "id": "vitima-a",
+    "nome": "Vítima",
+    "papel": "Vítima"
+  },
+  {
+    "id": "vitima-b",
+    "nome": "Vítima",
+    "papel": "Vítima"
+  },
+  {
+    "id": "testemunha-a",
+    "nome": "Testemunha",
+    "papel": "Testemunha"
+  },
+  {
+    "id": "testemunha-b",
+    "nome": "Testemunha",
+    "papel": "Testemunha"
+  },
+  {
+    "id": "conduzido-a",
+    "nome": "Conduzido",
+    "papel": "Conduzido"
+  },
+  {
+    "id": "conduzido-b",
+    "nome": "Conduzido",
+    "papel": "Conduzido"
+  },
+  {
+    "id": "moradora-a",
+    "nome": "Moradora",
+    "papel": "Moradora"
+  },
+  {
+    "id": "morador-b",
+    "nome": "Morador",
+    "papel": "Morador"
+  },
+  {
+    "id": "advogado",
+    "nome": "Advogado",
+    "papel": "Advogado"
   }
 ]

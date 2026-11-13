@@ -4,18 +4,54 @@
     "titulo": "Pego na porta da loja",
     "capitulo": 7,
     "nivel": 7,
-    "sala": "oitiva",
-    "npc": "rocha-agente",
+    "sala": "gabinete",
+    "npc": "helena-delegada",
     "requisitos": ["m604-notebook-da-biblioteca"],
     "aulas": ["flagrante", "fianca"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), a viatura acabou de chegar com um rapaz da **loja de eletrônicos**. O segurança veio junto."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Ele pegou um **relógio** do mostruário e guardou no bolso. Passou pelo caixa sem pagar e cruzou a porta da loja."
+          },
+          {
+            "npc": "voce",
+            "texto": "Onde o senhor o alcançou?"
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Na **calçada**, segundos depois. Segurei ali mesmo e chamei a viatura. O relógio estava com ele."
+          },
+          {
+            "npc": "conduzido-a",
+            "texto": "Tenho 25 anos, doutor(a). Nunca passei por isso. Eu vou ficar preso?"
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "A Dra. Helena pediu para o(a) senhor(a) passar no gabinete antes de decidir."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "rocha-agente",
-        "texto": "Doutor(a), o segurança da loja de eletrônicos segurou um rapaz na porta, com um relógio no bolso."
+        "npc": "helena-delegada",
+        "texto": "Seu primeiro **conduzido** de verdade. Agora a decisão não é só sobre o crime: é sobre a liberdade de uma pessoa."
       },
       {
         "npc": "helena-delegada",
-        "texto": "Seu primeiro conduzido de verdade. Duas perguntas novas: ele está em flagrante? E quem decide a fiança?"
+        "texto": "Preciso de três respostas suas antes de o Seu Bento lavrar qualquer coisa. A primeira: que **crime** é esse?"
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "A segunda: do jeito que ele foi pego, isso é **flagrante**? A terceira: se for, a **fiança** é com a gente ou com o juiz?"
       }
     ],
     "caso": {
@@ -47,12 +83,17 @@
       "informa": ["forma", "conclusao", "acao", "rito"],
       "tipoInformado": false,
       "opcoesDeTipo": ["furto", "roubo", "estelionato"],
-      "comentarios": {
-        "tipo": "Dra. Helena: Subtração de coisa alheia, sem violência nem ameaça.",
-        "flagrante": "Dra. Helena: Ele foi pego na calçada, segundos depois. Acabava de cometer o furto: flagrante próprio.",
-        "fianca": "Dra. Helena: A pena máxima do furto é de quatro anos. Até aí, quem arbitra a fiança é você."
+      "perguntas": {
+        "tipo": "Ele guardou o relógio no bolso, passou pelo caixa sem pagar e cruzou a porta da loja. Que crime é esse?",
+        "flagrante": "O segurança o segurou na calçada, segundos depois de ele sair da loja com o relógio. Há flagrante? De que espécie?",
+        "fianca": "A pena máxima prevista para o que ele fez é de quatro anos. Quem pode conceder a fiança?"
       },
-      "desfecho": "Auto de prisão em flagrante por furto. Você arbitra a fiança, o rapaz a paga e responde solto. O relógio volta para a loja."
+      "comentarios": {
+        "tipo": "Ele **subtraiu** coisa alheia móvel, sem violência, sem ameaça e sem enganar ninguém para receber o relógio. É **furto**.",
+        "flagrante": "Ele foi seguro na calçada, segundos depois de sair com o relógio: **acabava de cometer** a infração. É o **flagrante próprio**.",
+        "fianca": "A autoridade policial concede fiança quando a pena máxima **não passa de quatro anos**. A do furto é exatamente de quatro: quem arbitra é **o delegado**."
+      },
+      "desfecho": "O Seu Bento lavra o **auto de prisão em flagrante** por furto, e o segurança é ouvido como testemunha. Você arbitra a **fiança**, a família do rapaz a paga, e ele responde em liberdade. O relógio é apreendido, registrado e devolvido à loja."
     },
     "conceitos": ["flagrante", "fianca"],
     "recompensa": {
@@ -64,24 +105,69 @@
     "titulo": "A perseguição",
     "capitulo": 7,
     "nivel": 7,
-    "sala": "oitiva",
-    "npc": "rocha-agente",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m701-pego-na-porta"],
     "aulas": ["depois-da-prisao"],
-    "dialogo": [
+    "revela": [],
+    "antes": [
       {
-        "npc": "rocha-agente",
-        "texto": "Doutor(a), assalto à farmácia. Ele saiu correndo e a gente foi atrás, sem perder de vista, por seis quarteirões."
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-a",
+            "texto": "Eu estava no balcão da Farmácia Central. Ele entrou, apontou uma **faca** para mim e levou o dinheiro do caixa."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Saiu **correndo**. Eu só consegui gritar."
+          },
+          {
+            "npc": "voce",
+            "texto": "A senhora viu para onde ele foi?"
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Vi a viatura passando bem na hora. Os policiais já saíram atrás dele."
+          }
+        ]
       },
       {
-        "npc": "rocha-agente",
-        "texto": "O advogado diz que não é flagrante, porque não pegamos o homem na farmácia."
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Fomos atrás na mesma hora, doutor(a). **Seis quarteirões**, sem perder o homem de vista e sem parar."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Alcançamos, e ele ainda estava com o dinheiro. Tem 29 anos. Trouxemos direto para cá."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "O Seu Bento já está com tudo. E tem um advogado lá no cartório querendo falar com o(a) senhor(a)."
+          }
+        ]
+      }
+    ],
+    "dialogo": [
+      {
+        "npc": "advogado",
+        "texto": "Isso **não é flagrante**, doutor(a). Ninguém prendeu meu cliente dentro da farmácia. E quero a **fiança** arbitrada agora."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "O auto está em branco na minha mesa, doutor(a). Que crime eu ponho? Lavro o flagrante ou não?"
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "E a fiança que o advogado quer: é com o(a) senhor(a)?"
       }
     ],
     "caso": {
       "titulo": "Ocorrência 087 — Farmácia Central",
       "linhas": [
-        "Um homem de 29 anos apontou um revólver para a balconista e levou o dinheiro do caixa.",
+        "Um homem de 29 anos apontou uma faca para a balconista e levou o dinheiro do caixa.",
         "Saiu correndo. A viatura, que passava, partiu atrás dele imediatamente.",
         "A perseguição não foi interrompida. Ele foi alcançado seis quarteirões depois, com o dinheiro.",
         "Foi apresentado na delegacia em seguida."
@@ -112,12 +198,17 @@
       "informa": ["forma", "conclusao", "acao", "rito"],
       "tipoInformado": false,
       "opcoesDeTipo": ["furto", "roubo", "estelionato"],
-      "comentarios": {
-        "tipo": "Seu Bento: Subtração com grave ameaça, doutor(a).",
-        "flagrante": "Seu Bento: Perseguido logo após, sem interrupção, em situação que faz presumir ser ele o autor: é o flagrante impróprio.",
-        "fianca": "Seu Bento: A pena máxima do roubo é de dez anos. Passou de quatro, a fiança é com o juiz."
+      "perguntas": {
+        "tipo": "Ele apontou uma faca para a balconista e levou o dinheiro do caixa. Que crime é esse?",
+        "flagrante": "Ele não foi preso na farmácia: a viatura o perseguiu, sem interrupção, por seis quarteirões. Há flagrante? De que espécie?",
+        "fianca": "A pena prevista para o que ele fez chega a dez anos. Quem pode conceder a fiança?"
       },
-      "desfecho": "Flagrante impróprio. Como a pena máxima do roubo passa de quatro anos, você não arbitra fiança: o homem fica preso e será apresentado ao juiz em até 24 horas."
+      "comentarios": {
+        "tipo": "Houve subtração de coisa alheia mediante **grave ameaça**: a faca apontada para a balconista. É **roubo**.",
+        "flagrante": "Ele foi **perseguido logo após** o crime, sem interrupção, em situação que faz presumir ser ele o autor. Não é preciso prender no local: é o **flagrante impróprio**.",
+        "fianca": "O delegado só concede fiança quando a pena máxima não passa de quatro anos. A do roubo chega a dez: a fiança só pode ser pedida **ao juiz**."
+      },
+      "desfecho": "O Seu Bento lavra o **auto de prisão em flagrante** por roubo, e você não arbitra fiança, apesar da insistência do advogado. A prisão é comunicada de imediato ao juiz, ao Ministério Público e à família; em até 24 horas, o preso recebe a nota de culpa e vai à **audiência de custódia**. O dinheiro volta para a farmácia, e o revólver fica apreendido."
     },
     "conceitos": ["flagrante", "fianca"],
     "recompensa": {
@@ -129,18 +220,32 @@
     "titulo": "Dois dias depois",
     "capitulo": 7,
     "nivel": 7,
-    "sala": "cartorio",
-    "npc": "bento-escrivao",
+    "sala": "investigacao",
+    "npc": "rocha-agente",
     "requisitos": ["m702-a-perseguicao"],
     "aulas": [],
+    "revela": [],
+    "antes": [],
     "dialogo": [
       {
-        "npc": "bento-escrivao",
-        "texto": "Doutor(a), a equipe identificou pelas câmeras o autor do roubo ao posto de gasolina, de anteontem."
+        "npc": "rocha-agente",
+        "texto": "Doutor(a), lembra do posto de gasolina, **há dois dias**? Um homem ameaçou o frentista com uma faca e levou R$ 600,00."
       },
       {
         "npc": "rocha-agente",
-        "texto": "Ele está em casa agora. É só ir lá e trazer preso em flagrante, não é?"
+        "texto": "É **roubo**: subtrair coisa alheia móvel mediante grave ameaça ou violência a pessoa. Ele fugiu, e ninguém foi atrás."
+      },
+      {
+        "npc": "vitima-b",
+        "texto": "Ninguém mais viu esse homem desde aquele dia, doutor(a). Mas é ele na imagem, tenho certeza."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Hoje as câmeras deram a identificação: 34 anos. Ele está **em casa agora**, sem a faca e sem o dinheiro. Mandado contra ele, não há."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "É só ir lá e trazer **preso em flagrante**, não é, doutor(a)? A viatura está pronta."
       }
     ],
     "caso": {
@@ -177,11 +282,15 @@
       "informa": ["conclusao", "acao", "rito"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "flagrante": "Dra. Helena: Dois dias depois, sem perseguição e sem nada com ele: nenhuma hipótese do art. 302. Prisão, agora, só com ordem do juiz.",
-        "fianca": "Dra. Helena: Sem auto de prisão em flagrante, não há fiança a discutir."
+      "perguntas": {
+        "flagrante": "O roubo foi há dois dias, ninguém perseguiu o autor e ele está em casa, sem a faca e sem o dinheiro. Há flagrante? De que espécie?",
+        "fianca": "O Agente Rocha quer trazê-lo preso agora, sem mandado. Nessa situação, quem decide sobre a fiança?"
       },
-      "desfecho": "Não há flagrante. Você segura o Agente Rocha, instaura o inquérito e, se for o caso, representa ao juiz pela prisão. Prender agora seria ilegal."
+      "comentarios": {
+        "flagrante": "Ele não está cometendo o crime, não acabou de cometê-lo, não foi perseguido e não foi encontrado logo depois com nada que o aponte como autor. Nenhuma hipótese do art. 302 do CPP: **não há flagrante**.",
+        "fianca": "Fiança é assunto de quem está preso. Sem **auto de prisão em flagrante**, não há prisão nem fiança a discutir."
+      },
+      "desfecho": "Você segura a viatura: prender agora, sem flagrante e sem **ordem judicial**, seria ilegal. O inquérito é instaurado, o frentista formaliza o reconhecimento, e o autor será intimado a depor. Se a prisão for necessária, você **representa ao juiz** por ela."
     },
     "conceitos": ["flagrante", "fianca"],
     "recompensa": {
@@ -193,18 +302,54 @@
     "titulo": "A mochila na rodoviária",
     "capitulo": 7,
     "nivel": 7,
-    "sala": "oitiva",
-    "npc": "rocha-agente",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m703-dois-dias-depois"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), levaram a mochila deste turista na rodoviária. E o ônibus dele sai daqui a pouco."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Cochilei no banco, com a mochila do lado. Quando acordei, **não estava mais lá**. Passaporte, câmera, tudo dentro."
+          },
+          {
+            "npc": "voce",
+            "texto": "O senhor viu quem pegou? Alguém correu atrás?"
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Ninguém viu nada, doutor(a). Nem eu."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O Agente Rocha estava no terminal ao lado e apresentou um homem aqui. O relatório dele já está com o Seu Bento."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "rocha-agente",
-        "texto": "Doutor(a), levaram a mochila de um turista na rodoviária. Vinte minutos depois, abordamos um homem no terminal ao lado."
+        "npc": "bento-escrivao",
+        "texto": "Veja o que o Rocha escreveu, doutor(a): **vinte minutos depois**, ele abordou um homem de 41 anos no terminal ao lado."
       },
       {
-        "npc": "rocha-agente",
-        "texto": "Estava com a mochila, o passaporte e a câmera do turista. Ninguém o viu pegar, nem o perseguiu."
+        "npc": "bento-escrivao",
+        "texto": "Estava com a **mochila, o passaporte e a câmera** do turista. Ninguém o viu pegar, ninguém o perseguiu."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Para o registro é **furto**: subtrair, para si ou para outrem, coisa alheia móvel. Pena de reclusão, de um a quatro anos."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Mas dá para lavrar **flagrante** de quem ninguém viu pegar? E, se der, a fiança fica com quem?"
       }
     ],
     "caso": {
@@ -236,11 +381,15 @@
       "informa": ["conclusao", "acao", "rito"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "flagrante": "Dra. Helena: Não foi visto nem perseguido, mas foi encontrado logo depois com os objetos da vítima: flagrante presumido.",
-        "fianca": "Dra. Helena: É furto: pena máxima de quatro anos. A fiança é sua."
+      "perguntas": {
+        "flagrante": "Ninguém viu nem perseguiu o homem, mas ele foi abordado vinte minutos depois com a mochila, o passaporte e a câmera do turista. Há flagrante? De que espécie?",
+        "fianca": "O furto tem pena máxima de quatro anos. Quem pode conceder a fiança?"
       },
-      "desfecho": "Flagrante presumido. Você lavra o auto, arbitra a fiança e devolve o passaporte ao turista, que quase perde o ônibus."
+      "comentarios": {
+        "flagrante": "Ele não foi visto nem perseguido, mas foi **encontrado logo depois** com objetos que fazem presumir ser ele o autor. É o **flagrante presumido**.",
+        "fianca": "A pena máxima do furto é de quatro anos, dentro do limite em que a autoridade policial concede fiança: quem arbitra é **o delegado**."
+      },
+      "desfecho": "O Seu Bento lavra o **auto de prisão em flagrante** por furto, e você arbitra a fiança. A mochila, o passaporte e a câmera são apreendidos, conferidos e devolvidos ao turista, que presta depoimento e ainda alcança o ônibus. O homem vai responder ao **inquérito**."
     },
     "conceitos": ["flagrante", "fianca"],
     "recompensa": {

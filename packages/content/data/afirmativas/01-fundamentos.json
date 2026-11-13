@@ -30,7 +30,7 @@
     "id": "af-ilicito-civil-01",
     "conceitoId": "ilicito-civil-e-penal",
     "nivelMin": 1,
-    "enunciado": "Deixar de pagar um empréstimo no prazo combinado, sem ter enganado o credor, é crime.",
+    "enunciado": "Deixar de pagar uma dívida no prazo combinado é crime.",
     "gabarito": "E",
     "explicacao": "É descumprimento de obrigação civil. A cobrança é feita na Justiça cível.",
     "regras": ["R-LEG-02"]

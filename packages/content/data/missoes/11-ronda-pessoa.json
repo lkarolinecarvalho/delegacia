@@ -4,18 +4,63 @@
     "titulo": "A fechada",
     "capitulo": 11,
     "nivel": 11,
-    "sala": "pessoa",
+    "sala": "investigacao",
     "npc": "rocha-agente",
     "requisitos": ["m1003-a-ficha-inteira"],
     "aulas": ["o-codigo-aberto", "homicidio"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "gabinete",
+        "falas": [
+          {
+            "npc": "helena-delegada",
+            "texto": "Começam as **rondas**. Daqui em diante ninguém sugere o crime: você busca no Código."
+          },
+          {
+            "npc": "helena-delegada",
+            "texto": "O Rocha está com o primeiro, e é pesado. Antes, ouça a testemunha que espera na sala de oitiva."
+          }
+        ]
+      },
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "testemunha-a",
+            "texto": "Eu estava na calçada da Avenida Brasil, doutor(a). Um carro levou uma **fechada** de outro."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "O motorista que levou a fechada desceu com um revólver na mão. Disse: \"Você vai aprender a dirigir\"."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "E atirou no outro motorista. O homem **morreu ali mesmo**."
+          },
+          {
+            "npc": "voce",
+            "texto": "Houve mais alguma coisa entre os dois? Alguma briga antes?"
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Nada. Foi **só por causa da fechada**. O pessoal que estava na rua prendeu ele ali mesmo, instantes depois."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "helena-delegada",
-        "texto": "Começam as rondas. Daqui em diante ninguém sugere o crime: você busca no Código."
+        "npc": "rocha-agente",
+        "texto": "Briga de trânsito na Avenida Brasil, doutor(a). Um morto."
       },
       {
         "npc": "rocha-agente",
-        "texto": "Doutor(a), o primeiro é pesado. Briga de trânsito, na avenida. Um morto."
+        "texto": "O atirador tem 37 anos e não nega: diz que **atirou para matar**. O revólver está apreendido."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Que é crime e que ele foi preso em flagrante, já está na ficha. Preciso do **enquadramento** e de saber se ele pode sair pagando fiança."
       }
     ],
     "caso": {
@@ -48,12 +93,19 @@
       "informa": ["conclusao", "flagrante"],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: Ele quis matar e matou. O verbo é \"matar\".",
-        "figura": "Dra. Helena: Matar por causa de uma fechada é motivo fútil, e o motivo fútil qualifica o homicídio.",
-        "fianca": "Dra. Helena: Homicídio qualificado é crime hediondo. Hediondo é inafiançável."
+      "perguntas": {
+        "tipo": "Ele desceu do carro, atirou para matar, e a vítima morreu no local. Que crime é esse?",
+        "figura": "O único motivo do tiro foi uma fechada no trânsito. O crime é simples ou qualificado?",
+        "forma": "A vítima morreu ali mesmo, na avenida. O crime se consumou?",
+        "fianca": "Pelo enquadramento que você deu, o atirador pode pagar fiança para responder solto?"
       },
-      "desfecho": "Homicídio qualificado pelo motivo fútil, crime hediondo e inafiançável. O autor fica preso, e o inquérito tem dez dias."
+      "comentarios": {
+        "tipo": "Ele quis matar e matou. O verbo do tipo é **matar alguém**: é **homicídio**.",
+        "figura": "Matar por causa de uma fechada é **motivo fútil**, e o motivo fútil **qualifica** o homicídio.",
+        "forma": "O homicídio se consuma com a **morte**, e a vítima morreu no local: **consumado**.",
+        "fianca": "Homicídio qualificado é **crime hediondo**, e crime hediondo é **inafiançável**: nem o delegado nem o juiz concedem fiança."
+      },
+      "desfecho": "O Seu Bento lavra o auto de prisão em flagrante por **homicídio qualificado** pelo motivo fútil. O revólver segue para a perícia, e a testemunha da avenida assina o depoimento. Sem fiança possível, o autor fica preso, e o inquérito tem **dez dias**."
     },
     "conceitos": ["homicidio", "fianca"],
     "recompensa": {
@@ -65,18 +117,46 @@
     "titulo": "A facada",
     "capitulo": 11,
     "nivel": 11,
-    "sala": "pessoa",
+    "sala": "investigacao",
     "npc": "rocha-agente",
     "requisitos": ["r1101-a-fechada"],
     "aulas": [],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "testemunha-b",
+            "texto": "Sou vizinho deles, na Vila Nova. Os dois cunhados brigavam por causa de **herança**."
+          },
+          {
+            "npc": "testemunha-b",
+            "texto": "Um deles pegou uma faca de cozinha, gritou \"**hoje eu te mato**\" e deu três golpes no peito do outro."
+          },
+          {
+            "npc": "testemunha-b",
+            "texto": "A gente tomou a faca dele e socorreu o ferido na mesma hora."
+          },
+          {
+            "npc": "conduzido-b",
+            "texto": "Eu perdi a cabeça, doutor(a). Mas ele está vivo! Foi **só uma lesão**."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "rocha-agente",
-        "texto": "Doutor(a), briga entre dois cunhados. Um deles está no hospital, fora de perigo."
+        "texto": "O cunhado está no hospital, fora de perigo, doutor(a). O médico disse que foi o **atendimento rápido** que o salvou."
       },
       {
         "npc": "rocha-agente",
-        "texto": "O outro diz que foi \"só uma lesão\". Leia o que ele gritou antes."
+        "texto": "O agressor tem 45 anos, e a faca está apreendida. Olhei o motivo e o modo da agressão: nada que se enquadre em qualificadora."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Que é crime, é. Mas **qual**? Ele insiste que foi só uma lesão."
       }
     ],
     "caso": {
@@ -105,11 +185,17 @@
       "informa": ["conclusao"],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: O que separa a lesão do homicídio tentado é a intenção. Ele quis matar: disse e agiu para isso.",
-        "forma": "Dra. Helena: Ele só não matou porque foi desarmado e a vítima foi socorrida: tentativa."
+      "perguntas": {
+        "tipo": "Ele gritou \"hoje eu te mato\" e deu três facadas no peito do cunhado, que sobreviveu. Que crime é esse?",
+        "figura": "A briga foi por herança, e nada no motivo ou no modo da agressão é qualificadora. Como fica a figura do crime?",
+        "forma": "Os vizinhos desarmaram o agressor, e a vítima foi salva pelo socorro rápido. O crime se consumou?"
       },
-      "desfecho": "Tentativa de homicídio, não lesão corporal: o que decide é a intenção de matar. A vítima se recupera."
+      "comentarios": {
+        "tipo": "O que separa a lesão do homicídio tentado é a **intenção**. Ele anunciou que ia matar e golpeou o peito três vezes: quis **matar alguém**. É homicídio.",
+        "figura": "O caso informa que nem o motivo nem o modo da agressão se enquadram em qualificadora. Sem qualificadora, o homicídio é **simples**.",
+        "forma": "Ele só não matou porque foi **desarmado pelos vizinhos** e a vítima foi socorrida a tempo, circunstâncias alheias à vontade dele: **tentado**."
+      },
+      "desfecho": "O Seu Bento registra **tentativa de homicídio**, e não lesão corporal: o que decide é a intenção de matar. A faca fica apreendida, os vizinhos assinam os depoimentos, e a vítima será ouvida quando tiver alta do hospital."
     },
     "conceitos": ["homicidio", "consumacao-e-tentativa"],
     "recompensa": {
@@ -121,18 +207,54 @@
     "titulo": "O grupo do condomínio",
     "capitulo": 11,
     "nivel": 11,
-    "sala": "pessoa",
-    "npc": "cida-recepcao",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["r1102-a-facada"],
     "aulas": ["crimes-contra-a-honra"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), o síndico do Edifício Aurora está no balcão com o celular na mão, indignado."
+          },
+          {
+            "npc": "morador-b",
+            "texto": "Olhe o que um morador escreveu no grupo do prédio: \"O síndico **desviou R$ 20.000,00** do fundo de reserva\"."
+          },
+          {
+            "npc": "voce",
+            "texto": "E isso tem algum fundo de verdade?"
+          },
+          {
+            "npc": "morador-b",
+            "texto": "Nenhum! As contas foram aprovadas em assembleia, e ele estava presente. **Sabia que era mentira**."
+          },
+          {
+            "npc": "morador-b",
+            "texto": "Dezenas de moradores leram. Soube quem escreveu no mesmo dia, faz uma semana. Vim requerer **providências**."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O requerimento dele já está com o Seu Bento, doutor(a)."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "cida-recepcao",
-        "texto": "Doutor(a), o síndico do Edifício Aurora está no balcão com o celular na mão, indignado."
+        "npc": "bento-escrivao",
+        "texto": "Li a mensagem do grupo, doutor(a). Quem escreveu foi um morador de 52 anos."
       },
       {
-        "npc": "cida-recepcao",
-        "texto": "Um morador escreveu no grupo do prédio que ele desviou o dinheiro do fundo de reserva."
+        "npc": "bento-escrivao",
+        "texto": "Que é crime e que vai por termo circunstanciado, eu já anotei."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Mas ofensa tem mais de um nome no Código. **Qual** eu ponho aqui? E quem leva isso ao juiz: o Ministério Público ou o próprio síndico?"
       }
     ],
     "caso": {
@@ -164,12 +286,17 @@
       "informa": ["conclusao", "rito"],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: Ele atribuiu ao síndico um fato determinado, falso e definido como crime: desviar dinheiro.",
-        "forma": "Dra. Helena: A calúnia atinge a reputação: consuma-se quando terceiro toma conhecimento. Dezenas leram.",
-        "acao": "Dra. Helena: Crimes contra a honra, em regra, procedem-se mediante queixa: ação privada."
+      "perguntas": {
+        "tipo": "O morador escreveu, sabendo que era mentira, que o síndico desviou dinheiro do fundo de reserva. Que crime é esse?",
+        "forma": "Dezenas de moradores leram a mensagem no grupo do prédio. O crime se consumou?",
+        "acao": "O ofendido é o síndico, que veio requerer providências. De quem depende a ação penal nesse crime?"
       },
-      "desfecho": "Calúnia: imputação falsa de fato definido como crime. Como a pena máxima é de dois anos, o caso segue por termo circunstanciado, e a ação é do síndico."
+      "comentarios": {
+        "tipo": "Ele atribuiu ao síndico um **fato determinado**, falso e definido como crime: desviar dinheiro do condomínio. Imputar falsamente fato definido como crime é **calúnia**.",
+        "forma": "A calúnia atinge a reputação e se consuma quando **terceiro toma conhecimento**. Dezenas de moradores leram: **consumado**.",
+        "acao": "Crimes contra a honra, em regra, procedem-se mediante **queixa** do ofendido: a ação penal é **privada**."
+      },
+      "desfecho": "O Seu Bento lavra o **termo circunstanciado** por calúnia, com as imagens da mensagem, e o encaminha ao Juizado. O morador de 52 anos será chamado a comparecer. A ação é do síndico: cabe a ele oferecer a **queixa**, dentro de seis meses."
     },
     "conceitos": ["crimes-contra-a-honra", "acao-penal"],
     "recompensa": {
@@ -181,18 +308,36 @@
     "titulo": "A reunião",
     "capitulo": 11,
     "nivel": 11,
-    "sala": "pessoa",
+    "sala": "recepcao",
     "npc": "cida-recepcao",
     "requisitos": ["r1103-o-grupo-do-condominio"],
     "aulas": [],
+    "revela": [],
+    "antes": [],
     "dialogo": [
       {
         "npc": "cida-recepcao",
-        "texto": "Doutor(a), agora é uma professora. Foi ofendida por uma mãe de aluno na sala da diretoria."
+        "texto": "Doutor(a), agora é uma professora. Foi ofendida pela mãe de um aluno, na sala da diretoria."
+      },
+      {
+        "npc": "vitima-a",
+        "texto": "Ela olhou para mim e disse: \"Você é uma **incompetente** e uma **preguiçosa**\"."
+      },
+      {
+        "npc": "voce",
+        "texto": "Havia mais alguém na sala? Ela acusou a senhora de ter feito alguma coisa?"
+      },
+      {
+        "npc": "vitima-a",
+        "texto": "Estávamos **a sós**, ninguém mais ouviu. E ela não me acusou de nada: só me xingou."
+      },
+      {
+        "npc": "vitima-a",
+        "texto": "Para mim foi calúnia. A diretora acha que foi difamação. E eu **ainda não decidi** se quero pedir alguma providência."
       },
       {
         "npc": "cida-recepcao",
-        "texto": "Ela diz que foi calúnia. A senhora da diretoria diz que foi difamação. Eu não sei mais nada."
+        "texto": "A mãe do aluno tem 40 anos. O Seu Bento me adiantou: é crime de ação privada, de termo circunstanciado. Mas qual crime, doutor(a)? E eu abro alguma coisa agora?"
       }
     ],
     "caso": {
@@ -224,12 +369,17 @@
       "informa": ["conclusao", "acao", "rito"],
       "tipoInformado": false,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipo": "Dra. Helena: Não há fato atribuído, só qualidades negativas: ofensa à dignidade. É injúria.",
-        "forma": "Dra. Helena: A injúria atinge o que a pessoa pensa de si: consuma-se quando a própria vítima toma conhecimento.",
-        "instauracao": "Dra. Helena: A ação é privada, e ela ainda não requereu nada. A delegacia aguarda."
+      "perguntas": {
+        "tipo": "A mãe do aluno chamou a professora de incompetente e preguiçosa, sem atribuir a ela fato nenhum. Que crime é esse?",
+        "forma": "Ninguém mais ouviu a conversa: só a própria professora. O crime se consumou?",
+        "instauracao": "A professora contou o caso, mas ainda não decidiu se quer requerer providências. A delegacia pode agir?"
       },
-      "desfecho": "Injúria: ofensa à dignidade, sem imputação de fato. Não é calúnia nem difamação. A professora tem seis meses para decidir."
+      "comentarios": {
+        "tipo": "Não há fato atribuído, só qualidades negativas: é ofensa à **dignidade**. Isso é **injúria**, e não calúnia nem difamação.",
+        "forma": "A injúria atinge o que a pessoa pensa de si. Ela se consuma quando a **própria vítima** toma conhecimento, mesmo que ninguém mais ouça: **consumado**.",
+        "instauracao": "A ação é privada, e a professora ainda não requereu nada. Sem o **requerimento** dela, a delegacia **aguarda**."
+      },
+      "desfecho": "A Dona Cida anota o atendimento, mas nenhum procedimento é aberto por enquanto: sem o **requerimento** da professora, a delegacia aguarda. Você explica que ela tem **seis meses**, contados do dia em que soube quem a ofendeu, para decidir. Ela sai com o prazo anotado na agenda."
     },
     "conceitos": ["crimes-contra-a-honra", "representacao-e-decadencia"],
     "recompensa": {

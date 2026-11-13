@@ -1,21 +1,139 @@
 [
   {
-    "id": "m201-bicicleta",
-    "titulo": "A bicicleta",
+    "id": "m200-soco-no-campinho",
+    "titulo": "O soco no campinho",
     "capitulo": 2,
     "nivel": 2,
     "sala": "cartorio",
     "npc": "bento-escrivao",
-    "requisitos": ["m104-divida-do-vizinho"],
-    "aulas": ["fato-tipico", "furto"],
+    "requisitos": ["m105-som-do-vizinho"],
+    "aulas": ["o-que-e-crime"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Primeiro plantão de verdade, doutor(a). Este rapaz veio direto do hospital."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Foi no futebol de domingo. Fiz uma falta nele, coisa de jogo."
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Ele veio para cima e me deu um **soco no rosto**. Quebrou meu nariz."
+          },
+          {
+            "npc": "voce",
+            "texto": "Você bateu nele antes? Tentou revidar?"
+          },
+          {
+            "npc": "vitima-b",
+            "texto": "Não, doutor(a). Nem vi de onde veio. O time inteiro viu."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O laudo do hospital já está com o Seu Bento."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "bento-escrivao",
-        "texto": "Primeiro plantão, doutor(a)! Chegou um caso simples, bom para começar."
+        "texto": "Nariz quebrado, com laudo. O crime que eu tenho em mente é a **lesão corporal**, doutor(a)."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "Por enquanto eu digo qual é o crime. O seu trabalho é conferir se o fato se ajusta a ele."
+        "texto": "A lei descreve assim: **ofender a integridade corporal ou a saúde de outrem**."
+      },
+      {
+        "npc": "bento-escrivao",
+        "texto": "Confere comigo se o que aconteceu no campinho se ajusta a essa descrição."
+      }
+    ],
+    "caso": {
+      "titulo": "Ocorrência 010 — campo do bairro",
+      "linhas": [
+        "No futebol de domingo, um jogador de 27 anos sofreu uma falta comum de jogo.",
+        "Com raiva, ele foi até o adversário e deu um soco no rosto dele, de propósito.",
+        "O soco quebrou o nariz da vítima, que foi atendida no hospital. Há laudo.",
+        "A vítima não tinha agredido ninguém. Vários jogadores viram tudo."
+      ],
+      "fato": {
+        "elementos": ["ofensa_a_integridade_corporal", "lesao_produzida"],
+        "elementoSubjetivo": "dolo",
+        "execucao": {
+          "iniciada": true
+        },
+        "justificante": null,
+        "agente": {
+          "idade": 27,
+          "embriaguez": "nenhuma"
+        }
+      },
+      "pede": ["tipico", "conclusao"],
+      "informa": [],
+      "tipoInformado": true,
+      "opcoesDeTipo": [],
+      "perguntas": {
+        "tipico": "O soco que quebrou o nariz do rapaz se ajusta à descrição da lesão corporal?",
+        "conclusao": "O jogador é adulto e ninguém o atacou antes. O que você conclui sobre o soco?"
+      },
+      "comentarios": {
+        "tipico": "A lei descreve **ofender a integridade corporal** de outrem. Um soco que quebra o nariz é exatamente isso, e foi dado de propósito: o fato é **típico**.",
+        "conclusao": "As três perguntas tiveram resposta positiva: o fato é **típico**, nada o autorizava (**ilícito**) e o autor é adulto e capaz (**culpável**). É **crime**."
+      },
+      "desfecho": "O Seu Bento registra a ocorrência de **lesão corporal** e junta o laudo do hospital. Os jogadores que viram o soco serão ouvidos como testemunhas, e o agressor será chamado para dar a versão dele."
+    },
+    "conceitos": ["conceito-de-crime", "fato-tipico"],
+    "recompensa": {
+      "pontos": 70
+    }
+  },
+  {
+    "id": "m201-bicicleta",
+    "titulo": "A bicicleta",
+    "capitulo": 2,
+    "nivel": 2,
+    "sala": "investigacao",
+    "npc": "rocha-agente",
+    "requisitos": ["m200-soco-no-campinho"],
+    "aulas": ["fato-tipico", "furto"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "moradora-a",
+            "texto": "Encostei a bicicleta na calçada e entrei na padaria. Dois minutos!"
+          },
+          {
+            "npc": "moradora-a",
+            "texto": "Quando saí, cadê a bicicleta? Sem cadeado, eu sei. Mas era **minha**."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O Agente Rocha já saiu atrás das câmeras da rua, doutor(a). Ele deve ter novidade."
+          }
+        ]
+      }
+    ],
+    "dialogo": [
+      {
+        "npc": "rocha-agente",
+        "texto": "Achamos, doutor(a). A câmera da padaria pegou um rapaz de 24 anos montando na bicicleta e indo embora."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "A bicicleta estava na casa dele. Ele disse que pegou **para ficar com ela**."
+      },
+      {
+        "npc": "rocha-agente",
+        "texto": "Para mim é **furto**: subtrair, para si ou para outrem, **coisa alheia móvel**. Confere os elementos?"
       }
     ],
     "caso": {
@@ -29,70 +147,126 @@
       "fato": {
         "elementos": ["subtracao", "coisa_alheia_movel", "inversao_da_posse"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 24, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 24,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["tipico", "forma", "conclusao"],
       "informa": [],
       "tipoInformado": true,
       "opcoesDeTipo": [],
       "comentarios": {
-        "tipico": "Seu Bento: Confira os elementos do furto: ele subtraiu? A coisa é móvel? É alheia? Tudo presente.",
-        "forma": "Seu Bento: Ele levou a bicicleta para casa. Todos os elementos do furto se reuniram: consumado.",
-        "conclusao": "Seu Bento: Fato típico, e nada no caso afasta a ilicitude ou a culpabilidade. É crime."
+        "tipico": "Confira elemento por elemento: ele **subtraiu** (tirou sem a dona consentir), a coisa é **móvel** e é **alheia**. Tudo presente: o fato é **típico**.",
+        "forma": "A bicicleta saiu da dona e passou a ele, que a levou para casa. Todos os elementos do furto se reuniram: **consumado**.",
+        "conclusao": "Fato típico, e nada no caso afasta a ilicitude nem a culpabilidade: é **crime**."
       },
-      "desfecho": "O Seu Bento registra a ocorrência de furto. A bicicleta é apreendida e devolvida à dona, e o caso segue para apuração."
+      "desfecho": "O Agente Rocha apreende a bicicleta, e a dona vem buscá-la no mesmo dia. O Seu Bento registra a ocorrência de **furto consumado**, e o rapaz será ouvido na sala de oitiva.",
+      "perguntas": {
+        "tipico": "Montar na bicicleta da moradora e levá-la para casa se ajusta ao furto?",
+        "forma": "A bicicleta foi parar na casa do rapaz. O furto chegou ao fim?",
+        "conclusao": "O rapaz tem 24 anos e nada autorizava o que fez. O que você conclui?"
+      }
     },
     "conceitos": ["fato-tipico", "conceito-de-crime", "consumacao-e-tentativa"],
-    "recompensa": { "pontos": 70 }
+    "recompensa": {
+      "pontos": 70
+    }
   },
   {
-    "id": "m202-mao-na-bolsa",
-    "titulo": "A mão na bolsa",
+    "id": "m202-golpe-de-faca",
+    "titulo": "A faca na oficina",
     "capitulo": 2,
     "nivel": 2,
-    "sala": "oitiva",
-    "npc": "rocha-agente",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m201-bicicleta"],
     "aulas": ["consumacao-e-tentativa"],
+    "revela": [],
+    "antes": [
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "testemunha-a",
+            "texto": "Eu trabalho na oficina, doutor(a). Vi tudo de perto."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Os dois discutiram por causa de dinheiro. Aí um deles pegou uma faca na bancada."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Deu um golpe no peito do outro, gritando: **\"Eu vou te matar!\"**"
+          },
+          {
+            "npc": "voce",
+            "texto": "E por que ele parou?"
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "Não parou: ia dar o segundo golpe. A gente segurou o braço dele e tomou a faca."
+          },
+          {
+            "npc": "testemunha-a",
+            "texto": "O ferido foi para o hospital. Graças a Deus, **sobreviveu**."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
-        "npc": "rocha-agente",
-        "texto": "Doutor(a), trouxe um conduzido do ponto de ônibus. Os próprios passageiros seguraram o homem."
+        "npc": "bento-escrivao",
+        "texto": "Já tenho o termo da testemunha, doutor(a). Ele quis matar: o tipo é **homicídio**, **matar alguém**."
       },
       {
-        "npc": "rocha-agente",
-        "texto": "O Seu Bento já adiantou: o tipo é furto. Falta dizer se chegou ao fim ou não."
+        "npc": "bento-escrivao",
+        "texto": "Só que a vítima está viva. Eu registro o quê?"
       }
     ],
     "caso": {
-      "titulo": "Ocorrência 012 — ponto de ônibus",
+      "titulo": "Ocorrência 012 — oficina mecânica",
       "linhas": [
-        "Um homem de 31 anos se aproximou de uma passageira no ponto de ônibus.",
-        "Ele abriu o zíper da bolsa dela e enfiou a mão para pegar a carteira, que estava lá dentro.",
-        "Outro passageiro percebeu e segurou o braço dele antes que tirasse a carteira.",
-        "A carteira não chegou a sair da bolsa."
+        "Dois colegas de oficina discutiram por causa de uma dívida.",
+        "Um deles, de 33 anos, pegou uma faca e golpeou o peito do outro, dizendo que ia matá-lo.",
+        "Ia dar o segundo golpe, mas os outros mecânicos o seguraram e tomaram a faca.",
+        "A vítima foi socorrida e sobreviveu."
       ],
       "fato": {
-        "elementos": ["subtracao", "coisa_alheia_movel"],
+        "elementos": ["matar_alguem"],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true, "interrompidaPor": "circunstancias_alheias" },
+        "execucao": {
+          "iniciada": true,
+          "interrompidaPor": "circunstancias_alheias"
+        },
         "justificante": null,
-        "agente": { "idade": 31, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 33,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["forma", "conclusao"],
       "informa": ["tipico"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "forma": "Dra. Helena: Ele começou a executar, mas a carteira nunca saiu da bolsa. E só não saiu porque o seguraram: tentativa.",
-        "conclusao": "Dra. Helena: Crime tentado também é crime. A tentativa só diminui a pena."
+      "perguntas": {
+        "forma": "Ele golpeou para matar, mas a vítima sobreviveu. O homicídio se consumou?",
+        "conclusao": "A vítima está viva. Ainda assim, o que o mecânico fez é crime?"
       },
-      "desfecho": "Furto tentado. A passageira agradece ao rapaz que segurou o braço do homem, e o caso segue para o cartório."
+      "comentarios": {
+        "forma": "O homicídio só se consuma com a **morte**. Ele começou a executar e só não terminou porque foi **segurado pelos colegas**, uma circunstância alheia à vontade dele: **tentado**.",
+        "conclusao": "**Crime tentado também é crime.** A tentativa só diminui a pena, de um a dois terços. Aqui há homicídio tentado."
+      },
+      "desfecho": "O Seu Bento registra **tentativa de homicídio**. A faca é apreendida, os mecânicos são ouvidos e a vítima prestará depoimento quando sair do hospital. O autor responde pelo que quis fazer, ainda que não tenha conseguido."
     },
     "conceitos": ["consumacao-e-tentativa", "fato-tipico"],
-    "recompensa": { "pontos": 70 }
+    "recompensa": {
+      "pontos": 70
+    }
   },
   {
     "id": "m203-vaso-da-vizinha",
@@ -101,67 +275,133 @@
     "nivel": 2,
     "sala": "recepcao",
     "npc": "cida-recepcao",
-    "requisitos": ["m202-mao-na-bolsa"],
+    "requisitos": ["m202-golpe-de-faca"],
     "aulas": ["dolo-e-culpa"],
+    "revela": [],
+    "antes": [],
     "dialogo": [
       {
         "npc": "cida-recepcao",
-        "texto": "Doutor(a), a Dona Marlene está no balcão, uma fera. O vizinho quebrou o vaso de estimação dela."
+        "texto": "Doutor(a), a Dona Marlene está uma fera. O vizinho quebrou o vaso de estimação dela."
+      },
+      {
+        "npc": "moradora-a",
+        "texto": "Era da minha mãe! Quero registrar o crime de **dano**. Destruir coisa alheia é crime, eu pesquisei."
+      },
+      {
+        "npc": "voce",
+        "texto": "Como foi que o vaso quebrou, Dona Marlene?"
+      },
+      {
+        "npc": "moradora-a",
+        "texto": "Ele lavava a calçada e puxou a mangueira com força. Ela enroscou no vaso, que foi ao chão."
+      },
+      {
+        "npc": "moradora-a",
+        "texto": "Pediu desculpa e quis pagar. Mas eu quero é o **registro**!"
       },
       {
         "npc": "cida-recepcao",
-        "texto": "Ela quer registrar o crime de dano. O Seu Bento pediu para o(a) senhor(a) olhar com calma."
+        "texto": "Ele não fez de propósito, doutor(a). Isso muda alguma coisa?"
       }
     ],
     "caso": {
       "titulo": "Atendimento 014 — balcão",
       "linhas": [
-        "O vizinho da Dona Marlene, de 45 anos, manobrava o carro para sair da garagem.",
-        "Distraído com o celular, encostou o para-choque no muro baixo que divide as casas.",
-        "Um vaso de cerâmica da Dona Marlene, que ficava sobre o muro, caiu e se quebrou.",
-        "Ele não queria quebrar o vaso: foi descuido. Pediu desculpas na hora."
+        "O vizinho da Dona Marlene, de 45 anos, lavava a calçada em frente às duas casas.",
+        "Ao puxar a mangueira com força, ela enroscou num vaso de cerâmica da Dona Marlene.",
+        "O vaso caiu do muro e se quebrou.",
+        "Ele não queria quebrar o vaso: foi descuido. Pediu desculpas e se ofereceu para pagar."
       ],
       "fato": {
         "elementos": ["dano_a_coisa_alheia", "coisa_danificada"],
         "elementoSubjetivo": "culpa",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 45, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 45,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["tipico", "conclusao"],
       "informa": [],
       "tipoInformado": true,
       "opcoesDeTipo": [],
-      "comentarios": {
-        "tipico": "Dra. Helena: Ele quis quebrar o vaso? Não: foi culpa. E o crime de dano não tem forma culposa.",
-        "conclusao": "Dra. Helena: Sem dolo, e sem previsão de dano culposo, o fato é atípico. O prejuízo se cobra na esfera cível."
+      "perguntas": {
+        "tipico": "O vizinho quebrou o vaso por descuido, sem querer. Isso se ajusta ao crime de dano?",
+        "conclusao": "Então, o que você diz à Dona Marlene sobre o vaso quebrado?"
       },
-      "desfecho": "Você explica à Dona Marlene que não há crime, porque o dano só é punido quando praticado de propósito. Ela pode pedir a indenização do vaso ao vizinho, que já se ofereceu para pagar."
+      "comentarios": {
+        "tipico": "O vizinho agiu com **culpa**, não com **dolo**: não quis quebrar o vaso. E só existe crime culposo quando a lei o prevê. O **dano** não tem forma culposa: o fato é **atípico**.",
+        "conclusao": "Sem dolo, e sem previsão de dano culposo, é **fato atípico**. O prejuízo existe, mas é assunto **cível**: indenização, não registro criminal."
+      },
+      "desfecho": "Você explica à Dona Marlene que o dano só é crime quando praticado **de propósito**. Não há ocorrência criminal a registrar, mas ela tem direito à indenização, e o vizinho já se ofereceu para pagar. Ela sai resmungando, com o valor do vaso anotado num papel."
     },
     "conceitos": ["dolo-e-culpa", "fato-tipico", "ilicito-civil-e-penal"],
-    "recompensa": { "pontos": 80 }
+    "recompensa": {
+      "pontos": 80
+    }
   },
   {
     "id": "m204-bolsa-na-praca",
     "titulo": "A bolsa na praça",
     "capitulo": 2,
     "nivel": 2,
-    "sala": "oitiva",
-    "npc": "rocha-agente",
+    "sala": "cartorio",
+    "npc": "bento-escrivao",
     "requisitos": ["m203-vaso-da-vizinha"],
     "aulas": ["roubo-e-consumacao"],
-    "dialogo": [
+    "revela": [],
+    "antes": [
       {
-        "npc": "rocha-agente",
-        "texto": "Doutor(a), assalto na praça. Pegamos o sujeito duas quadras depois, ainda com a bolsa da vítima."
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "vitima-a",
+            "texto": "Eu atravessava a praça quando ele parou na minha frente e mostrou uma **faca**."
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Disse: \"Passa a bolsa ou vai ser pior\". Eu entreguei, doutor(a). Fiquei com medo."
+          },
+          {
+            "npc": "voce",
+            "texto": "E depois que a senhora entregou?"
+          },
+          {
+            "npc": "vitima-a",
+            "texto": "Ele saiu correndo com a bolsa. Eu gritei, e uma viatura que passava foi atrás."
+          }
+        ]
       },
       {
-        "npc": "rocha-agente",
-        "texto": "O advogado dele já está dizendo que foi só tentativa, porque ele não chegou a aproveitar nada."
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Alcançamos o sujeito **duas quadras depois**, doutor(a). Ainda com a bolsa na mão."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Tem 22 anos. Não deu tempo de abrir a bolsa: a vítima recebeu tudo de volta."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "O advogado dele já está no cartório, reclamando com o Seu Bento."
+          }
+        ]
+      }
+    ],
+    "dialogo": [
+      {
+        "npc": "advogado",
+        "texto": "Foi só **tentativa**, doutor(a)! Meu cliente não aproveitou nada: foi preso em seguida, e a bolsa voltou inteira."
       },
       {
         "npc": "bento-escrivao",
-        "texto": "Como teve ameaça, o tipo é roubo, doutor(a). A dúvida do advogado é com o(a) senhor(a)."
+        "texto": "Teve faca e ameaça, então o tipo é **roubo**. Mas consumado ou tentado, doutor(a)? Preciso disso para o registro."
       }
     ],
     "caso": {
@@ -180,21 +420,32 @@
           "inversao_da_posse"
         ],
         "elementoSubjetivo": "dolo",
-        "execucao": { "iniciada": true },
+        "execucao": {
+          "iniciada": true
+        },
         "justificante": null,
-        "agente": { "idade": 22, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 22,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["forma", "conclusao"],
       "informa": ["tipico"],
       "tipoInformado": true,
       "opcoesDeTipo": [],
       "comentarios": {
-        "forma": "Dra. Helena: A bolsa saiu da vítima e ficou com ele, ainda que por duas quadras. Para o STJ, isso basta: Súmula 582.",
-        "conclusao": "Dra. Helena: Roubo consumado, adulto, sem nada que justifique. É crime."
+        "forma": "A bolsa **saiu da vítima e passou a ele**, ainda que por duas quadras. Para o STJ, essa **inversão da posse** basta, mesmo com perseguição e com a coisa recuperada (**Súmula 582**): **consumado**.",
+        "conclusao": "Roubo consumado, praticado por adulto, sem nada que o justifique: é **crime**. Recuperar a bolsa não desfaz o que já aconteceu."
       },
-      "desfecho": "Roubo consumado. A vítima recebe a bolsa de volta com tudo dentro, e o advogado sai resmungando contra a Súmula 582."
+      "desfecho": "O Seu Bento registra **roubo consumado**, e o advogado sai resmungando contra a Súmula 582. A vítima recebe a bolsa de volta, com tudo dentro, e a faca fica apreendida.",
+      "perguntas": {
+        "forma": "Ele correu duas quadras com a bolsa e foi preso; a vítima recuperou tudo. O roubo se consumou?",
+        "conclusao": "O autor tem 22 anos e nada justifica o que fez. O que você conclui?"
+      }
     },
     "conceitos": ["consumacao-do-furto-e-do-roubo", "furto-e-roubo", "consumacao-e-tentativa"],
-    "recompensa": { "pontos": 80 }
+    "recompensa": {
+      "pontos": 80
+    }
   }
 ]
