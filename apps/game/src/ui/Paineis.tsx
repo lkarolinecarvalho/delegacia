@@ -1,7 +1,15 @@
-import { conteudo, type Tema } from "@delegacia/content";
-import { existeRegra, NOMES_DOS_TITULOS, regra, TIPOS_PENAIS, TITULOS } from "@delegacia/motor";
+import { conteudo, type Missao, type Tema } from "@delegacia/content";
+import {
+  existeRegra,
+  NOMES_DOS_TITULOS,
+  regra,
+  TIPOS_PENAIS,
+  TITULOS,
+  tipoPenal,
+} from "@delegacia/motor";
 import { useState } from "react";
 import { selecionarParaRevisao } from "../orquestrador/afirmativas";
+import { nomeDoCrime } from "../orquestrador/ficha";
 import { casosDoArquivo } from "../orquestrador/plantaoLivre";
 import { definirSom } from "../som/sons";
 import { CAIXA_MAXIMA, diasAteARevisao } from "../state/estudo";
@@ -65,6 +73,80 @@ export function PainelDeCasos({ aoPlantaoLivre }: { aoPlantaoLivre: () => void }
                   </li>
                 );
               })}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Assunto que não é crime: fatos atípicos, lícitos e os demais desfechos. */
+const SEM_CRIME = "Não houve crime";
+
+/**
+ * O arquivo: os casos concluídos, separados por assunto (o título do Código em que o
+ * crime está). Daqui o delegado revê a análise de um caso ou o refaz sem ajuda.
+ */
+export function PainelDoArquivo({ aoRever }: { aoRever: (missao: Missao) => void }) {
+  const jogo = useStore((s) => s.jogo);
+  const [aberto, setAberto] = useState<string | null>(null);
+  const casos = casosDoArquivo(jogo, conteudo).flatMap((missao) => {
+    const registro = jogo.registro.find((r) => r.missao === missao.id);
+    if (!registro) return [];
+    const { analise } = registro;
+    const assunto =
+      analise.conclusao === "crime" && analise.tipo
+        ? NOMES_DOS_TITULOS[tipoPenal(analise.tipo).titulo]
+        : SEM_CRIME;
+    return [{ missao, registro, assunto }];
+  });
+  const assuntos = [...TITULOS.map((t) => NOMES_DOS_TITULOS[t]), SEM_CRIME];
+  if (casos.length === 0) {
+    return (
+      <div className="casos">
+        <p className="suave">
+          O arquivo ainda está vazio. Todo caso que você concluir vem para cá, separado por assunto.
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className="casos">
+      <p className="suave">
+        Os casos que você concluiu, por assunto. Abra um para rever a análise ou refaça-o sem ajuda.
+      </p>
+      {assuntos.map((assunto) => {
+        const doAssunto = casos.filter((c) => c.assunto === assunto);
+        if (doAssunto.length === 0) return null;
+        return (
+          <section key={assunto} className="capitulo">
+            <h3>{assunto}</h3>
+            <ul>
+              {doAssunto.map(({ missao, registro }) => (
+                <li key={missao.id} className="feita">
+                  <button
+                    type="button"
+                    onClick={() => setAberto(aberto === missao.id ? null : missao.id)}
+                  >
+                    <span className="marcador">✓</span>
+                    {missao.titulo}
+                    <span className="suave"> · {nomeDoCrime(registro.analise) ?? "sem crime"}</span>
+                  </button>
+                  {aberto === missao.id && (
+                    <>
+                      <Trilha analise={registro.analise} procedimento={registro.procedimento} />
+                      <button
+                        type="button"
+                        className="botao botao-discreto"
+                        onClick={() => aoRever(missao)}
+                      >
+                        Refazer este caso sem ajuda
+                      </button>
+                    </>
+                  )}
+                </li>
+              ))}
             </ul>
           </section>
         );

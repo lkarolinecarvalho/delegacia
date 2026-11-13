@@ -107,6 +107,11 @@ function conferirCaso(missao: Missao, problemas: string[]): void {
       problemas.push(`${onde}: comentário para a etapa "${campo}", que o jogador não responde`);
     }
   }
+  for (const campo of Object.keys(caso.perguntas)) {
+    if (!(caso.pede as readonly string[]).includes(campo)) {
+      problemas.push(`${onde}: pergunta para a etapa "${campo}", que o jogador não responde`);
+    }
+  }
   const pedeTipo = caso.pede.includes("tipo");
   if (pedeTipo && caso.tipoInformado) {
     problemas.push(`${onde}: pede o tipo penal e também o informa`);
@@ -157,6 +162,12 @@ export function carregarConteudo(bruto: ConteudoBruto): Conteudo {
 
   const salas = new Set(ids(conteudo.salas));
   const npcs = new Set(ids(conteudo.npcs));
+  const salaDe = new Map(conteudo.npcs.map((n) => [n.id, n.sala]));
+  for (const npc of conteudo.npcs) {
+    if (npc.sala && !salas.has(npc.sala)) {
+      problemas.push(`npc ${npc.id}: sala desconhecida "${npc.sala}"`);
+    }
+  }
   const conceitos = new Set(ids(conteudo.conceitos));
   const temas = new Set(ids(conteudo.teoria));
   const capitulos = new Set(conteudo.capitulos.map((c) => c.numero));
@@ -176,8 +187,27 @@ export function carregarConteudo(bruto: ConteudoBruto): Conteudo {
     for (const tema of missao.revela) {
       if (!temas.has(tema)) problemas.push(`${onde}: tema desconhecido "${tema}"`);
     }
-    for (const fala of [...missao.antes.flatMap((c) => c.falas), ...missao.dialogo]) {
-      if (!npcs.has(fala.npc)) problemas.push(`${onde}: fala de npc desconhecido "${fala.npc}"`);
+    // Em cada sala só fala quem trabalha nela, ou quem está de passagem pela delegacia.
+    const cenas = [...missao.antes, { sala: missao.sala, falas: missao.dialogo }];
+    for (const cena of cenas) {
+      for (const fala of cena.falas) {
+        if (!npcs.has(fala.npc)) {
+          problemas.push(`${onde}: fala de npc desconhecido "${fala.npc}"`);
+          continue;
+        }
+        const salaDoNpc = salaDe.get(fala.npc);
+        if (salaDoNpc && salaDoNpc !== cena.sala) {
+          problemas.push(
+            `${onde}: "${fala.npc}" fala em "${cena.sala}", mas fica em "${salaDoNpc}"`,
+          );
+        }
+      }
+    }
+    if (missao.caso === null && missao.desfecho === undefined) {
+      problemas.push(`${onde}: missão sem caso precisa de desfecho`);
+    }
+    if (missao.caso !== null && missao.desfecho !== undefined) {
+      problemas.push(`${onde}: o desfecho de missão com caso fica no caso`);
     }
     for (const aula of missao.aulas) {
       if (!temas.has(aula)) problemas.push(`${onde}: aula desconhecida "${aula}"`);

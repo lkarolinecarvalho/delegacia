@@ -12,7 +12,14 @@ import {
   responderAfirmativa,
 } from "./jogo";
 
-export type Painel = "missao" | "casos" | "biblioteca" | "progresso" | "config" | "quadro";
+export type Painel =
+  | "missao"
+  | "casos"
+  | "arquivo"
+  | "biblioteca"
+  | "progresso"
+  | "config"
+  | "quadro";
 
 interface Store {
   readonly jogo: EstadoDoJogo;

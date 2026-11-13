@@ -2,7 +2,6 @@ import { conteudo } from "@delegacia/content";
 import { describe, expect, it } from "vitest";
 import { CENA, desenharCena, focoDaSala, lugarDaSala, naTela } from "../arte/delegacia";
 import {
-  ANEXOS,
   avancar,
   type NaGrade,
   NO_INICIAL,
@@ -31,21 +30,17 @@ function cruza(a: NaGrade, b: NaGrade, parede: (typeof PAREDES)[number]): boolea
 }
 
 describe("planta da delegacia", () => {
-  it("toda sala do conteúdo e de toda missão está na planta", () => {
+  it("toda sala do conteúdo e de toda missão está na planta, dentro do prédio", () => {
     for (const id of salas) {
       const sala = SALAS[id];
       expect(sala, id).toBeDefined();
       if (!sala) continue;
+      expect(sala.x0).toBeGreaterThanOrEqual(0);
+      expect(sala.y0).toBeGreaterThanOrEqual(0);
+      expect(sala.x1).toBeLessThanOrEqual(PREDIO.x);
+      expect(sala.y1).toBeLessThanOrEqual(PREDIO.y);
       expect(NOS[sala.no], id).toBeDefined();
-      const noPredio = sala.x0 >= 0 && sala.y0 >= 0 && sala.x1 <= PREDIO.x && sala.y1 <= PREDIO.y;
-      // Os departamentos ficam em prédios à parte, na frente do principal.
-      if (sala.anexo) expect(sala.y0, id).toBeGreaterThan(PREDIO.y);
-      else expect(noPredio, id).toBe(true);
     }
-  });
-
-  it("os três departamentos são prédios à parte", () => {
-    expect(ANEXOS.map(([id]) => id).sort()).toEqual(["especial", "patrimonio", "pessoa"]);
   });
 
   it("as salas não se sobrepõem", () => {
@@ -76,8 +71,8 @@ describe("planta da delegacia", () => {
     }
   });
 
-  it("o mapa tem os nove ambientes, e só eles", () => {
-    expect(Object.keys(SALAS)).toHaveLength(9);
+  it("o mapa tem os seis ambientes, e só eles", () => {
+    expect(Object.keys(SALAS)).toHaveLength(6);
     expect(conteudo.salas.map((x) => x.id).sort()).toEqual(Object.keys(SALAS).sort());
   });
 });
@@ -91,13 +86,6 @@ describe("rotas", () => {
         else expect(caminho.at(-1)).toEqual(NOS[noDaSala(para)]);
       }
     }
-  });
-
-  it("da calçada a um departamento, não entra no prédio principal", () => {
-    const caminho = rota(NO_INICIAL, "patrimonio");
-    expect(caminho[0]).toEqual(NOS.rua);
-    expect(caminho).not.toContainEqual(NOS.entrada);
-    expect(caminho.at(-1)).toEqual(NOS.patrimonio);
   });
 
   it("da calçada ao gabinete, entra pela porta da frente e cruza a recepção até o fundo", () => {

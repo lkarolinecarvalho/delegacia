@@ -107,12 +107,21 @@ export function Texto({ children }: { children: string }) {
   );
 }
 
-export function Fala({ npc, children }: { npc: string; children: ReactNode }) {
+export function Fala({
+  npc,
+  pensando = false,
+  children,
+}: {
+  npc: string;
+  /** O personagem não fala: lembra. O balão vira um pensamento. */
+  pensando?: boolean;
+  children: ReactNode;
+}) {
   return (
-    <div className="fala">
+    <div className={pensando ? "fala fala-pensando" : "fala"}>
       <Retrato id={npc} grande />
       <div className="balao">
-        <span className="balao-nome">{nomeDoNpc(npc)}</span>
+        {!pensando && <span className="balao-nome">{nomeDoNpc(npc)}</span>}
         <p>{children}</p>
       </div>
     </div>

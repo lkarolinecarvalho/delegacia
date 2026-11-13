@@ -1,7 +1,8 @@
 import type { Pergunta, Tema } from "@delegacia/content";
 import { useState } from "react";
 import { tocar } from "../som/sons";
-import { Retrato, Texto } from "./comum";
+import { Texto } from "./comum";
+import { Esquema } from "./Esquema";
 
 function PerguntaDaAula({ pergunta }: { pergunta: Pergunta }) {
   const [resposta, setResposta] = useState<"C" | "E" | null>(null);
@@ -37,19 +38,18 @@ function PerguntaDaAula({ pergunta }: { pergunta: Pergunta }) {
 
 interface Props {
   readonly tema: Tema;
-  /** Texto do botão final. Sem `aoContinuar`, a aula é só leitura. */
+  /** Texto do botão final. Sem `aoContinuar`, o tema é só leitura. */
   readonly rotulo?: string;
   readonly aoContinuar?: () => void;
 }
 
-/** Uma aula curta da Dra. Helena: pontos, um exemplo e perguntas rápidas. */
+/** Um tema da Biblioteca, inteiro: os pontos, o desenho, um exemplo e as perguntas. */
 export function Aula({ tema, rotulo = "Entendi", aoContinuar }: Props) {
   return (
     <article className="aula">
       <header className="aula-cabecalho">
-        <Retrato id="helena-delegada" grande />
         <div>
-          <span className="etiqueta">Aula da Dra. Helena</span>
+          <span className="etiqueta">Teoria</span>
           <h3>{tema.titulo}</h3>
           <p className="suave">{tema.resumo}</p>
         </div>
@@ -61,6 +61,7 @@ export function Aula({ tema, rotulo = "Entendi", aoContinuar }: Props) {
           </li>
         ))}
       </ul>
+      {tema.esquema && <Esquema esquema={tema.esquema} />}
       <div className="aula-exemplo">
         <span className="etiqueta">Exemplo</span>
         <p>

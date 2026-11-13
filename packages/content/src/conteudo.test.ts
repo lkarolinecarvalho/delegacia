@@ -24,9 +24,9 @@ function problemasDe(bruto: Parameters<typeof carregarConteudo>[0]): readonly st
 
 describe("conteúdo do jogo", () => {
   it("todo o conteúdo valida", () => {
-    expect(conteudo.missoes.length).toBe(42);
+    expect(conteudo.missoes.length).toBe(44);
     expect(conteudo.afirmativas.length).toBeGreaterThanOrEqual(110);
-    expect(conteudo.salas).toHaveLength(9);
+    expect(conteudo.salas).toHaveLength(6);
   });
 
   it("toda missão tem todos os requisitos antes dela e a campanha é uma fila única", () => {
@@ -77,7 +77,7 @@ describe("validação", () => {
 
   it("recusa fato que o motor não cobre", () => {
     const problemas = problemasDe(
-      comMissao("m202-mao-na-bolsa", (m) => {
+      comMissao("m202-golpe-de-faca", (m) => {
         if (m.caso) m.caso.fato.execucao.interrompidaPor = "vontade_propria";
         return m;
       }),
@@ -117,22 +117,37 @@ describe("validação", () => {
 });
 
 describe("missões em várias salas", () => {
-  it("o jogo começa pela recepção, e a chegada passa por todos os ambientes", () => {
+  it("o jogo começa pela recepção, e a chegada termina no gabinete", () => {
     const [chegada] = conteudo.missoes;
     if (!chegada) throw new Error("sem missões");
     expect(chegada.antes[0]?.sala).toBe("recepcao");
-    const visitadas = new Set([...chegada.antes.map((c) => c.sala), chegada.sala]);
-    // Os três departamentos são apresentados juntos, numa parada só.
-    for (const sala of conteudo.salas) {
-      if (sala.id === "patrimonio" || sala.id === "especial") continue;
-      expect(visitadas.has(sala.id), sala.id).toBe(true);
-    }
+    expect(chegada.sala).toBe("gabinete");
   });
 
-  it("o primeiro caso chega pela recepção, passa pelo cartório e é decidido no gabinete", () => {
+  it("o primeiro caso chega pela recepção e é registrado no cartório", () => {
     const caso = conteudo.missoes.find((m) => m.id === "m104-divida-do-vizinho");
-    expect(caso?.antes.map((c) => c.sala)).toEqual(["recepcao", "cartorio"]);
-    expect(caso?.sala).toBe("gabinete");
+    expect(caso?.antes.map((c) => c.sala)).toEqual(["recepcao"]);
+    expect(caso?.sala).toBe("cartorio");
+  });
+
+  it("em cada sala só fala quem trabalha nela ou quem está de passagem", () => {
+    const problemas = problemasDe(
+      comMissao("m104-divida-do-vizinho", (m) => {
+        m.dialogo[0] = { npc: "helena-delegada", texto: "Eu não deveria estar no cartório." };
+        return m;
+      }),
+    );
+    expect(problemas.join("\n")).toContain('"helena-delegada" fala em "cartorio"');
+  });
+
+  it("todo caso tem pergunta e explicação próprias em cada etapa que o jogador responde", () => {
+    for (const missao of conteudo.missoes) {
+      if (!missao.caso) continue;
+      for (const campo of missao.caso.pede) {
+        expect(missao.caso.perguntas[campo], `${missao.id}: pergunta de ${campo}`).toBeTruthy();
+        expect(missao.caso.comentarios[campo], `${missao.id}: explicação de ${campo}`).toBeTruthy();
+      }
+    }
   });
 
   it("as falas são curtas e o negrito está bem formado", () => {

@@ -3,9 +3,10 @@ import { useMemo, useState } from "react";
 import { baloesDaAula } from "../orquestrador/aula";
 import { tocar } from "../som/sons";
 import { Fala, Texto } from "./comum";
+import { Esquema } from "./Esquema";
 
-/** Quem dá as aulas. */
-const PROFESSORA = "helena-delegada";
+/** Quem lembra: o próprio delegado. */
+const DELEGADO = "voce";
 
 interface PropsDaAula {
   readonly temas: readonly Tema[];
@@ -15,8 +16,9 @@ interface PropsDaAula {
 }
 
 /**
- * A aula em balões: a Dra. Helena fala uma ideia por vez, e o jogador vai passando.
- * Nada de texto corrido; as perguntas vêm depois, na fixação.
+ * O delegado lembra o que estudou sobre o assunto do caso, uma ideia por balão, e o
+ * jogador vai passando. Ninguém dá aula: os colegas apresentam o caso, e o conceito
+ * vem da memória de quem estudou para o concurso.
  */
 export function AulaEmBaloes({ temas, aoVerTema, aoTerminar }: PropsDaAula) {
   const baloes = useMemo(() => baloesDaAula(temas), [temas]);
@@ -39,7 +41,7 @@ export function AulaEmBaloes({ temas, aoVerTema, aoTerminar }: PropsDaAula) {
   return (
     <div className="aula-em-baloes">
       <header className="aula-titulo">
-        <span className="etiqueta">Aula da Dra. Helena</span>
+        <span className="etiqueta">Você se lembra do que estudou</span>
         <h3>{balao.titulo}</h3>
         <ol className="aula-progresso" aria-label={`Balão ${posicao + 1} de ${doTema.length}`}>
           {doTema.map((b, i) => (
@@ -50,10 +52,11 @@ export function AulaEmBaloes({ temas, aoVerTema, aoTerminar }: PropsDaAula) {
           ))}
         </ol>
       </header>
-      <Fala key={indice} npc={PROFESSORA}>
-        {balao.tipo === "exemplo" && <span className="etiqueta balao-etiqueta">Exemplo</span>}
+      <Fala key={indice} npc={DELEGADO} pensando>
+        {balao.tipo === "exemplo" && <span className="etiqueta balao-etiqueta">Um exemplo</span>}
         <Texto>{balao.texto}</Texto>
       </Fala>
+      {balao.esquema && <Esquema esquema={balao.esquema} />}
       {balao.fonte && <p className="aula-fonte">Fonte: {balao.fonte}</p>}
       <button type="button" className="botao botao-principal" onClick={continuar}>
         Continuar
@@ -67,7 +70,7 @@ interface PropsDaFixacao {
   readonly aoTerminar: () => void;
 }
 
-/** Fixação: as perguntas de Certo ou Errado da aula, uma por vez, depois dela. */
+/** Fixação: perguntas de Certo ou Errado sobre o que foi lembrado, uma por vez. */
 export function Fixacao({ perguntas, aoTerminar }: PropsDaFixacao) {
   const [indice, setIndice] = useState(0);
   const [resposta, setResposta] = useState<"C" | "E" | null>(null);

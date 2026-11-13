@@ -11,6 +11,8 @@ import {
 import { useMemo, useState } from "react";
 import {
   type EtapaDaFicha,
+  elementosDoTipo,
+  esquemaDoCampo,
   fichaDasRespostas,
   montarFicha,
   type Opcao,
@@ -19,6 +21,7 @@ import {
 } from "../orquestrador/ficha";
 import { tocar } from "../som/sons";
 import { Regras, Texto } from "./comum";
+import { Esquema } from "./Esquema";
 
 /** Depois de quantas conferências erradas o jogo oferece a resposta. */
 const TENTATIVAS_ATE_A_AJUDA = 2;
@@ -30,11 +33,12 @@ const semAcento = (texto: string) => texto.normalize("NFD").replace(/[̀-ͯ]/g, 
 interface PropsDasOpcoes {
   readonly etapa: EtapaDaFicha;
   readonly marcada: ValorDaFicha | undefined;
+  readonly travada: boolean;
   readonly aoEscolher: (valor: ValorDaFicha) => void;
 }
 
 /** As opções de uma etapa. Na lista longa (o Código inteiro), com busca e por título. */
-function Opcoes({ etapa, marcada, aoEscolher }: PropsDasOpcoes) {
+function Opcoes({ etapa, marcada, travada, aoEscolher }: PropsDasOpcoes) {
   const [busca, setBusca] = useState("");
   const termo = semAcento(busca.trim());
   const visiveis = etapa.comBusca
@@ -54,7 +58,8 @@ function Opcoes({ etapa, marcada, aoEscolher }: PropsDasOpcoes) {
         type="button"
         className={escolhida ? "opcao opcao-marcada" : "opcao"}
         aria-pressed={escolhida}
-        onClick={() => aoEscolher(opcao.valor)}
+        disabled={travada && !escolhida}
+        onClick={() => !travada && aoEscolher(opcao.valor)}
       >
         <strong>{opcao.rotulo}</strong>
         {opcao.detalhe && <span>{opcao.detalhe}</span>}
@@ -63,7 +68,7 @@ function Opcoes({ etapa, marcada, aoEscolher }: PropsDasOpcoes) {
   };
   return (
     <div className={etapa.comBusca ? "opcoes opcoes-do-codigo" : "opcoes"}>
-      {etapa.comBusca && (
+      {etapa.comBusca && !travada && (
         <input
           type="search"
           className="busca"
@@ -97,7 +102,8 @@ interface Props {
 /**
  * A ficha de análise do caso: o "lançamento" deste jogo. O jogador responde as etapas
  * que a missão pede; a ficha é comparada com a análise do motor e nunca é gravada
- * (ADR-0002).
+ * (ADR-0002). Depois da conferência, cada etapa mostra a explicação, com acerto ou
+ * com erro, e o conceito desenhado com os fatos do caso.
  */
 export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcertar }: Props) {
   const etapas = useMemo(
@@ -111,6 +117,7 @@ export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcerta
   const perguntas = etapas.filter((e) => e.modo === "pergunta");
   const completa = perguntas.every((e) => respostas[e.campo] !== undefined);
   const tipo = caso.tipoInformado && analise.tipo ? tipoPenal(analise.tipo) : null;
+  const acertou = resultado?.correta === true;
 
   const escolher = (campo: CampoDaFicha, valor: ValorDaFicha) => {
     tocar("toque");
@@ -123,13 +130,8 @@ export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcerta
 
   const conferir = () => {
     const comparacao = compararFicha(analise, fichaDasRespostas(respostas), procedimento);
-    if (comparacao.correta) {
-      tocar("acerto");
-      aoAcertar(erros);
-      return;
-    }
-    tocar("erro");
-    setErros(erros + 1);
+    tocar(comparacao.correta ? "acerto" : "erro");
+    if (!comparacao.correta) setErros(erros + 1);
     setResultado(comparacao);
   };
 
@@ -154,6 +156,11 @@ export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcerta
             {tipo.nome} <span className="suave">({tipo.artigo})</span>
           </strong>
           <p>{tipo.texto}</p>
+          <ul className="ficha-elementos" aria-label="Elementos do tipo">
+            {elementosDoTipo(tipo).map((elemento) => (
+              <li key={elemento}>{elemento}</li>
+            ))}
+          </ul>
         </div>
       )}
       <ol className="ficha-etapas">
@@ -169,20 +176,48 @@ export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcerta
           }
           const retorno = resultado?.campos.find((c) => c.campo === etapa.campo);
           const errada = retorno !== undefined && !retorno.correto;
+          const certa = retorno?.correto === true;
           const previa = errada
             ? previaDoErro(etapa.campo, respostas[etapa.campo], procedimento)
             : null;
+          const comentario = caso.comentarios[etapa.campo];
+          // O conceito desenhado com os fatos do caso só aparece na resposta certa.
+          const desenho = certa ? esquemaDoCampo(etapa.campo, caso, analise, procedimento) : null;
           return (
-            <li key={etapa.campo} className={errada ? "etapa etapa-errada" : "etapa"}>
+            <li
+              key={etapa.campo}
+              className={errada ? "etapa etapa-errada" : certa ? "etapa etapa-certa" : "etapa"}
+            >
               <span className="etapa-titulo">{etapa.titulo}</span>
-              <p className="etapa-pergunta">{etapa.pergunta}</p>
+              <p className="etapa-pergunta">
+                <Texto>{caso.perguntas[etapa.campo] ?? etapa.pergunta}</Texto>
+              </p>
               <Opcoes
                 etapa={etapa}
                 marcada={respostas[etapa.campo]}
+                travada={acertou}
                 aoEscolher={(valor) => escolher(etapa.campo, valor)}
               />
+              {certa && (
+                <div className="retorno retorno-acerto">
+                  <strong>Certo.</strong>
+                  {comentario && (
+                    <p>
+                      <Texto>{comentario}</Texto>
+                    </p>
+                  )}
+                  {desenho && (
+                    <Esquema
+                      esquema={desenho.esquema}
+                      marcas={desenho.marcas}
+                      ativo={desenho.ativo}
+                    />
+                  )}
+                </div>
+              )}
               {errada && (
                 <div className="retorno retorno-erro">
+                  <strong>Não é bem assim.</strong>
                   {previa && (
                     <p className="previa">
                       <strong>Se fosse assim: </strong>
@@ -190,9 +225,7 @@ export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcerta
                     </p>
                   )}
                   <p>
-                    <Texto>
-                      {caso.comentarios[etapa.campo] ?? "Releia o fato e a regra desta etapa."}
-                    </Texto>
+                    <Texto>{comentario ?? "Releia o fato e a regra desta etapa."}</Texto>
                   </p>
                   <Regras ids={retorno.regras} />
                 </div>
@@ -201,15 +234,21 @@ export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcerta
           );
         })}
       </ol>
-      <button
-        type="button"
-        className="botao botao-principal"
-        disabled={!completa}
-        onClick={conferir}
-      >
-        Conferir a análise
-      </button>
-      {erros >= TENTATIVAS_ATE_A_AJUDA && resultado && (
+      {acertou ? (
+        <button type="button" className="botao botao-principal" onClick={() => aoAcertar(erros)}>
+          Continuar
+        </button>
+      ) : (
+        <button
+          type="button"
+          className="botao botao-principal"
+          disabled={!completa}
+          onClick={conferir}
+        >
+          Conferir a análise
+        </button>
+      )}
+      {!acertou && erros >= TENTATIVAS_ATE_A_AJUDA && resultado && (
         <button type="button" className="botao botao-discreto" onClick={mostrarResposta}>
           Mostrar a resposta
         </button>

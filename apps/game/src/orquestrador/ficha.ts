@@ -1,4 +1,4 @@
-import type { Caso } from "@delegacia/content";
+import type { Caso, Esquema } from "@delegacia/content";
 import {
   type Analise,
   type CampoDaFicha,
@@ -435,4 +435,152 @@ export function trilhaDaAnalise(
     linhas.push({ etapa: "Prazo", texto: `Inquérito em ${rotulo("prazo", procedimento.prazo)}` });
   }
   return linhas;
+}
+
+/** Nome de cada elemento do fato, como aparece na ficha e nos desenhos. */
+const NOMES_DOS_ELEMENTOS: Readonly<Record<string, string>> = {
+  subtracao: "Subtrair",
+  coisa_alheia_movel: "Coisa alheia móvel",
+  violencia_ou_grave_ameaca: "Violência ou grave ameaça",
+  inversao_da_posse: "Inversão da posse",
+  dano_a_coisa_alheia: "Destruir ou danificar coisa alheia",
+  coisa_danificada: "Coisa danificada",
+  ofensa_a_integridade_corporal: "Ofender a integridade corporal ou a saúde",
+  lesao_produzida: "Lesão produzida",
+  posse_previa_licita: "Posse anterior lícita da coisa",
+  apropriacao: "Apropriar-se da coisa",
+  fraude: "Fraude (artifício ou ardil)",
+  busca_de_vantagem_ilicita: "Busca de vantagem ilícita",
+  vitima_em_erro: "Vítima induzida ou mantida em erro",
+  vantagem_obtida: "Vantagem obtida",
+  ameaca_de_mal_injusto_e_grave: "Ameaça de mal injusto e grave",
+  ofensa_a_dignidade: "Ofensa à dignidade ou ao decoro",
+  imputacao_falsa_de_crime: "Imputação falsa de crime",
+  imputacao_de_fato_desonroso: "Imputação de fato ofensivo à reputação",
+  vitima_tomou_conhecimento: "A vítima tomou conhecimento",
+  terceiro_tomou_conhecimento: "Terceiro tomou conhecimento",
+  contexto_domestico_contra_mulher: "Violência doméstica contra a mulher",
+  matar_alguem: "Matar alguém",
+  morte: "Morte da vítima",
+  constrangimento_mediante_violencia_ou_ameaca: "Constranger com violência ou grave ameaça",
+  busca_de_vantagem_economica: "Busca de vantagem econômica indevida",
+  vitima_cedeu: "A vítima fez, tolerou ou deixou de fazer algo",
+  recebe_coisa_produto_de_crime: "Receber coisa que é produto de crime",
+  sabe_da_origem_criminosa: "Saber da origem criminosa",
+  funcionario_publico: "Funcionário público",
+  apropria_bem_em_razao_do_cargo: "Apropriar-se de bem que tem em razão do cargo",
+  exige_vantagem_indevida: "Exigir vantagem indevida",
+  solicita_ou_recebe_vantagem_indevida: "Solicitar ou receber vantagem indevida",
+  oferece_vantagem_indevida_a_funcionario: "Oferecer vantagem indevida a funcionário",
+  retarda_ato_de_oficio_por_interesse_pessoal: "Retardar ato de ofício por interesse pessoal",
+  desacata_funcionario_no_exercicio_da_funcao: "Desacatar funcionário no exercício da função",
+  opoe_se_a_ato_legal_com_violencia_ou_ameaca: "Opor-se a ato legal com violência ou ameaça",
+  desobedece_ordem_legal_de_funcionario: "Desobedecer ordem legal de funcionário",
+};
+
+const nomeDoElemento = (id: string): string => NOMES_DOS_ELEMENTOS[id] ?? id;
+
+/** Os elementos que o tipo exige, por extenso: é o que o jogador confere no fato. */
+export function elementosDoTipo(tipo: TipoPenal): string[] {
+  return [...tipo.exige.map(nomeDoElemento), tipo.admiteCulpa ? "Dolo ou culpa" : "Dolo"];
+}
+
+/** O desenho de um conceito já com os fatos do caso: o que ele tem e o que não tem. */
+export interface DesenhoDoCampo {
+  readonly esquema: Esquema;
+  readonly marcas?: readonly (boolean | null)[];
+  readonly ativo?: number;
+}
+
+const REQUISITOS_DA_LEGITIMA_DEFESA = [
+  ["agressaoInjusta", "Agressão injusta"],
+  ["atualOuIminente", "Atual ou iminente"],
+  ["direitoProprioOuAlheio", "A direito seu ou de outrem"],
+  ["meiosNecessarios", "Meios necessários"],
+  ["usoModerado", "Uso moderado"],
+] as const;
+
+const REQUISITOS_DO_ESTADO_DE_NECESSIDADE = [
+  ["perigoAtual", "Perigo atual"],
+  ["naoProvocadoPorVontade", "Não provocado por vontade do agente"],
+  ["inevitavelDeOutroModo", "Inevitável de outro modo"],
+  ["direitoProprioOuAlheio", "Direito próprio ou alheio"],
+  ["sacrificioInexigivel", "Sacrifício que não se podia exigir"],
+] as const;
+
+/**
+ * O conceito da etapa, desenhado com os fatos do caso: os elementos do tipo que o fato
+ * tem, até onde a execução chegou, os requisitos da excludente, as três perguntas do
+ * crime. Tudo sai da análise do motor; nada é escrito à mão.
+ */
+export function esquemaDoCampo(
+  campo: CampoDaFicha,
+  caso: Caso,
+  analise: Analise,
+  procedimento: Procedimento | null = null,
+): DesenhoDoCampo | null {
+  const { fato } = caso;
+  const esperado = (c: CampoDaFicha) => esperadoNoCampo(analise, c, procedimento);
+  if ((campo === "tipico" || campo === "tipo") && analise.tipo) {
+    const tipo = tipoPenal(analise.tipo);
+    const subjetivo =
+      fato.elementoSubjetivo === "dolo" || (fato.elementoSubjetivo === "culpa" && tipo.admiteCulpa);
+    return {
+      esquema: { tipo: "requisitos", centro: tipo.nome, itens: elementosDoTipo(tipo) },
+      marcas: [...tipo.exige.map((e) => fato.elementos.includes(e)), subjetivo],
+    };
+  }
+  if (campo === "forma") {
+    const forma = esperado("forma");
+    if (forma !== "consumado" && forma !== "tentado") return null;
+    return {
+      esquema: { tipo: "etapas", itens: ["Cogitação", "Preparação", "Execução", "Consumação"] },
+      ativo: forma === "consumado" ? 3 : 2,
+    };
+  }
+  if (campo === "excludente" && fato.justificante) {
+    const j = fato.justificante;
+    if (j.tipo === "legitima_defesa") {
+      return {
+        esquema: {
+          tipo: "requisitos",
+          centro: "Legítima defesa",
+          itens: REQUISITOS_DA_LEGITIMA_DEFESA.map(([, nome]) => nome),
+        },
+        marcas: REQUISITOS_DA_LEGITIMA_DEFESA.map(([chave]) => j[chave]),
+      };
+    }
+    return {
+      esquema: {
+        tipo: "requisitos",
+        centro: "Estado de necessidade",
+        itens: [
+          ...REQUISITOS_DO_ESTADO_DE_NECESSIDADE.map(([, nome]) => nome),
+          "Sem dever legal de enfrentar o perigo",
+        ],
+      },
+      marcas: [
+        ...REQUISITOS_DO_ESTADO_DE_NECESSIDADE.map(([chave]) => j[chave]),
+        !j.deverLegalDeEnfrentar,
+      ],
+    };
+  }
+  if (campo === "conclusao") {
+    const tipico = esperado("tipico");
+    const excludente = esperado("excludente");
+    const culpabilidade = esperado("culpabilidade");
+    return {
+      esquema: {
+        tipo: "requisitos",
+        centro: "Crime",
+        itens: ["Fato típico", "Ilícito", "Culpável"],
+      },
+      marcas: [
+        typeof tipico === "boolean" ? tipico : null,
+        excludente === null ? null : excludente === "nenhuma",
+        culpabilidade === null ? null : culpabilidade === "culpavel",
+      ],
+    };
+  }
+  return null;
 }

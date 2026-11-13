@@ -58,7 +58,21 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
   const desenho = useMemo(() => {
     const cena = desenharCena();
     const objetos = cena.objetos.map((o) => `<g data-p="${o.p}">${o.svg}</g>`).join("");
-    const avatar = `<g data-avatar><ellipse class="avatar-anel" cx="0" cy="1" rx="12" ry="6"/><g data-lado="direita">${desenharAvatar("direita")}</g><g data-lado="esquerda" display="none">${desenharAvatar("esquerda")}</g><path class="avatar-seta" d="M-6 -44 H6 L0 -35Z"/></g>`;
+    // Quatro poses: de frente para os dois lados e de costas, quando anda para o fundo.
+    const poses = (
+      [
+        ["frente-direita", "direita", false],
+        ["frente-esquerda", "esquerda", false],
+        ["costas-esquerda", "direita", true],
+        ["costas-direita", "esquerda", true],
+      ] as const
+    )
+      .map(
+        ([pose, lado, costas], i) =>
+          `<g data-pose="${pose}"${i === 0 ? "" : ' display="none"'}>${desenharAvatar(lado, costas)}</g>`,
+      )
+      .join("");
+    const avatar = `<g data-avatar><ellipse class="avatar-anel" cx="0" cy="1" rx="12" ry="6"/><g data-corpo>${poses}</g><path class="avatar-seta" d="M-6 -44 H6 L0 -35Z"/></g>`;
     return `${cena.fundo}<g data-objetos>${objetos}${avatar}</g>`;
   }, []);
   const salas = useMemo(() => conteudo.salas.map((s) => ({ ...s, lugar: lugarDaSala(s.id) })), []);
@@ -76,9 +90,19 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
     if (!camada || !avatar) return;
     const objetos = [...camada.querySelectorAll<SVGGElement>(":scope > [data-p]")];
     const profundidades = objetos.map((o) => Number(o.dataset.p));
-    const lados = {
-      direita: avatar.querySelector<SVGGElement>('[data-lado="direita"]'),
-      esquerda: avatar.querySelector<SVGGElement>('[data-lado="esquerda"]'),
+    const corpo = avatar.querySelector<SVGGElement>("[data-corpo]");
+    const poses = [...avatar.querySelectorAll<SVGGElement>("[data-pose]")];
+    /** Vira o avatar para onde ele anda: na grade, cada direção tem a sua pose. */
+    const virar = (dx: number, dy: number) => {
+      const pose =
+        Math.abs(dx) >= Math.abs(dy)
+          ? dx > 0
+            ? "frente-direita"
+            : "costas-esquerda"
+          : dy > 0
+            ? "frente-esquerda"
+            : "costas-direita";
+      for (const p of poses) p.setAttribute("display", p.dataset.pose === pose ? "inline" : "none");
     };
 
     let no = noDaSala(inicio.current);
@@ -102,7 +126,9 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
           Math.abs(placa.x - tela.x) < 50 && placa.y > tela.y - 62 && placa.y < tela.y + 26;
         placa.el.classList.toggle("placa-encoberta", encoberta);
       }
-      avatar.setAttribute("transform", `translate(${tela.x} ${tela.y}) rotate(${balanco})`);
+      avatar.setAttribute("transform", `translate(${tela.x} ${tela.y})`);
+      // O passo é um pulinho, não um balanço de lado.
+      corpo?.setAttribute("transform", `translate(0 ${-balanco})`);
       // O avatar fica logo atrás do primeiro objeto mais à frente que ele.
       const p = profundidade(posicao);
       let indice = profundidades.findIndex((outra) => outra > p);
@@ -130,20 +156,17 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
     const andar = (agora: number) => {
       const delta = Math.min(Math.max(agora - anterior, 0), 50) / 1000;
       anterior = agora;
-      const de = naTela(posicao).x;
+      const [x0, y0] = posicao;
       const passo = avancar(posicao, caminho, VELOCIDADE * delta);
       posicao = passo.posicao;
       caminho = passo.rota;
-      const dx = naTela(posicao).x - de;
-      if (Math.abs(dx) > 0.01) {
-        lados.direita?.setAttribute("display", dx > 0 ? "inline" : "none");
-        lados.esquerda?.setAttribute("display", dx > 0 ? "none" : "inline");
-      }
+      const [dx, dy] = [posicao[0] - x0, posicao[1] - y0];
+      if (Math.abs(dx) + Math.abs(dy) > 0.001) virar(dx, dy);
       if (caminho.length === 0) {
         chegar();
         return;
       }
-      desenhar(Math.sin(agora / 70) * 4);
+      desenhar(Math.abs(Math.sin(agora / 90)) * 2.4);
       quadro = requestAnimationFrame(andar);
     };
 

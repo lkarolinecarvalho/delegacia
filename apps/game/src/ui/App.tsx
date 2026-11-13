@@ -1,9 +1,9 @@
 import { conteudo, type Missao } from "@delegacia/content";
 import { useCallback, useState } from "react";
 import { cenaDaVez, cenasDaMissao, salaDaVez } from "../orquestrador/cenas";
-import { casosDoArquivo, missaoDoPlantaoLivre } from "../orquestrador/plantaoLivre";
+import { casosDoArquivo, missaoDoPlantaoLivre, reverCaso } from "../orquestrador/plantaoLivre";
 import { tocar } from "../som/sons";
-import { capituloAtual, inqueritos, proximaMissao } from "../state/jogo";
+import { capituloAtual, inqueritos, presosHoje, proximaMissao } from "../state/jogo";
 import { type Painel, useStore } from "../state/store";
 import { Cena } from "./Cena";
 import { Folha, nomeDoCapitulo, Retrato } from "./comum";
@@ -17,20 +17,27 @@ import {
   IconeLivro,
   IconePasta,
 } from "./icones";
-import { PainelDaBiblioteca, PainelDeCasos, PainelDeConfig, PainelDeProgresso } from "./Paineis";
+import {
+  PainelDaBiblioteca,
+  PainelDeCasos,
+  PainelDeConfig,
+  PainelDeProgresso,
+  PainelDoArquivo,
+} from "./Paineis";
 import { PainelDoQuadro } from "./Quadro";
 
 /** Com este tanto de plantões ou menos, o inquérito vira aviso na placa do cartório. */
 const PRAZO_CURTO = 3;
 
 const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva", "investigacao"]);
-/** A sala que guarda os procedimentos concluídos: a entrada do plantão livre. */
+/** A sala que guarda os casos concluídos, por assunto. */
 const SALA_DO_ARQUIVO = "arquivo";
 /** A sala em que fica o quadro de presos e de prazos. */
 const SALA_DO_QUADRO = "cartorio";
 
 const TITULOS: Readonly<Record<Exclude<Painel, "missao">, string>> = {
   casos: "Casos",
+  arquivo: "Arquivo",
   biblioteca: "Biblioteca",
   progresso: "Progresso",
   config: "Configurações",
@@ -45,12 +52,12 @@ function Abertura({ aoComecar }: { aoComecar: () => void }) {
           <IconeDistintivo />
         </span>
         <h1>Delegacia</h1>
-        <p className="abertura-lema">Direito Penal, um plantão de cada vez.</p>
+        <p className="abertura-lema">Direito Penal, um caso de cada vez.</p>
         <p>
-          Você passou no concurso e acaba de tomar posse como delegado(a) em Vila Serena. A Dra.
-          Helena e o Seu Bento vão ensinar tudo, do zero.
+          Você passou no concurso e acaba de tomar posse como delegado(a) em Vila Serena. A equipe
+          traz os casos; você lembra o que estudou e decide.
         </p>
-        <p>Os casos chegam. Você analisa o fato, decide e responde como na prova.</p>
+        <p>Analise o fato, responda como na prova e veja o que acontece com cada caso.</p>
         <button type="button" className="botao botao-principal" onClick={aoComecar}>
           Assumir o plantão
         </button>
@@ -83,25 +90,21 @@ export function App() {
   const cenas = proxima ? cenasDaMissao(proxima).length : 1;
   const cena = proxima ? cenaDaVez(jogo, proxima) + 1 : 1;
 
+  /** Fecha o painel. Ao sair de uma conversa ou de um caso, a tela volta ao mapa. */
   const fechar = useCallback(() => {
+    if (useStore.getState().painel === "missao") setDentro(null);
     fecharPainel();
     setMissaoAberta(null);
     setLivre(false);
   }, [fecharPainel]);
 
-  const prazosCurtos = inqueritos(jogo).filter(
-    (i) => !i.relatado && i.restam <= PRAZO_CURTO,
-  ).length;
+  const noQuadro = inqueritos(jogo);
+  const prazosCurtos = noQuadro.filter((i) => !i.relatado && i.restam <= PRAZO_CURTO).length;
+  // O quadro só aparece quando há alguém preso ou algum inquérito correndo.
+  const temQuadro = noQuadro.length > 0 || presosHoje(jogo).length > 0;
   // Recomeçar o jogo volta ao mapa.
   const foco = aberturaVista ? dentro : null;
   const salaEmFoco = conteudo.salas.find((x) => x.id === foco);
-  const missaoDaSala = proxima && destino === foco ? proxima : null;
-
-  /** O avatar chegou: a tela passa a mostrar a sala por dentro. */
-  const aoChegarNaSala = (id: string) => {
-    irPara(id);
-    setDentro(id);
-  };
 
   const comecarMissao = (missao: Missao) => {
     tocar("avanca");
@@ -109,14 +112,23 @@ export function App() {
     abrir("missao");
   };
 
-  /** Sorteia um caso do arquivo e o abre sem ajuda. */
-  const iniciarPlantaoLivre = () => {
-    const sorteado = missaoDoPlantaoLivre(jogo, conteudo, Math.random());
-    if (!sorteado) return;
-    setMissaoAberta(sorteado);
+  /** O avatar chegou. Se o caso espera nesta sala, a conversa começa na hora. */
+  const aoChegarNaSala = (id: string) => {
+    irPara(id);
+    setDentro(id);
+    if (proxima && destino === id) comecarMissao(proxima);
+  };
+
+  const abrirDoArquivo = (missao: Missao | null) => {
+    if (!missao) return;
+    setMissaoAberta(missao);
     setLivre(true);
     abrir("missao");
   };
+
+  /** Sorteia um caso do arquivo e o abre sem ajuda. */
+  const iniciarPlantaoLivre = () =>
+    abrirDoArquivo(missaoDoPlantaoLivre(jogo, conteudo, Math.random()));
 
   return (
     <>
@@ -163,7 +175,7 @@ export function App() {
             </span>
           ) : (
             <span>
-              Campanha em dia. Abra <strong>Casos</strong> e sorteie um plantão livre.
+              Campanha em dia. Vá ao <strong>Arquivo</strong> para rever os casos.
             </span>
           )}
         </div>
@@ -173,39 +185,35 @@ export function App() {
         <section className="cartao-da-sala" aria-label={salaEmFoco.nome}>
           <h2>{salaEmFoco.nome}</h2>
           <p className="suave">{salaEmFoco.descricao}</p>
-          {missaoDaSala ? (
-            <button
-              type="button"
-              className="botao botao-principal"
-              onClick={() => comecarMissao(missaoDaSala)}
-            >
-              {cena > 1 ? "Continuar" : missaoDaSala.caso ? "Atender" : "Conversar"}:{" "}
-              {missaoDaSala.titulo}
-            </button>
-          ) : (
-            <p className="cartao-da-sala-nada">Nada à sua espera aqui agora.</p>
-          )}
           {salaEmFoco.id === SALA_DO_ARQUIVO && (
             <>
+              <button
+                type="button"
+                className="botao botao-principal"
+                onClick={() => abrir("arquivo")}
+              >
+                Consultar os casos por assunto
+              </button>
               <button
                 type="button"
                 className="botao botao-discreto"
                 disabled={casosDoArquivo(jogo, conteudo).length === 0}
                 onClick={iniciarPlantaoLivre}
               >
-                Plantão livre: sortear um caso do arquivo
-              </button>
-              <button type="button" className="botao botao-discreto" onClick={() => abrir("casos")}>
-                Consultar os casos
+                Plantão livre: sortear um caso
               </button>
             </>
           )}
-          {salaEmFoco.id === SALA_DO_QUADRO && (
+          {salaEmFoco.id === SALA_DO_QUADRO && temQuadro && (
             <button type="button" className="botao botao-discreto" onClick={() => abrir("quadro")}>
               Quadro de presos e prazos
               {prazosCurtos > 0 && <span className="placa-conta">{prazosCurtos}</span>}
             </button>
           )}
+          {salaEmFoco.id !== SALA_DO_ARQUIVO &&
+            !(salaEmFoco.id === SALA_DO_QUADRO && temQuadro) && (
+              <p className="cartao-da-sala-nada">Nada à sua espera aqui agora.</p>
+            )}
           <button
             type="button"
             className="botao botao-discreto"
@@ -236,7 +244,7 @@ export function App() {
 
       {painel === "missao" && missaoAberta && (
         <Folha
-          titulo={livre ? `Plantão livre: ${missaoAberta.titulo}` : missaoAberta.titulo}
+          titulo={livre ? `Do arquivo: ${missaoAberta.titulo}` : missaoAberta.titulo}
           icone={<IconeDistintivo />}
           aoFechar={fechar}
         >
@@ -251,6 +259,9 @@ export function App() {
       {painel && painel !== "missao" && (
         <Folha titulo={TITULOS[painel]} aoFechar={fechar}>
           {painel === "casos" && <PainelDeCasos aoPlantaoLivre={iniciarPlantaoLivre} />}
+          {painel === "arquivo" && (
+            <PainelDoArquivo aoRever={(missao) => abrirDoArquivo(reverCaso(missao))} />
+          )}
           {painel === "quadro" && <PainelDoQuadro />}
           {painel === "biblioteca" && <PainelDaBiblioteca />}
           {painel === "progresso" && <PainelDeProgresso />}

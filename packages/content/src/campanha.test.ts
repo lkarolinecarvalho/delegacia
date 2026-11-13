@@ -20,7 +20,15 @@ const caso = (
 const DOURADOS: Readonly<Record<string, Esperado>> = {
   "m104-divida-do-vizinho": caso(false, null, null, null, null, "fato_atipico"),
   "m201-bicicleta": caso(true, "furto", "consumado", "nenhuma", "culpavel", "crime"),
-  "m202-mao-na-bolsa": caso(true, "furto", "tentado", "nenhuma", "culpavel", "crime"),
+  "m200-soco-no-campinho": caso(
+    true,
+    "lesao_corporal",
+    "consumado",
+    "nenhuma",
+    "culpavel",
+    "crime",
+  ),
+  "m202-golpe-de-faca": caso(true, "homicidio", "tentado", "nenhuma", "culpavel", "crime"),
   "m203-vaso-da-vizinha": caso(false, "dano", null, null, null, "fato_atipico"),
   "m204-bolsa-na-praca": caso(true, "roubo", "consumado", "nenhuma", "culpavel", "crime"),
   "m301-briga-na-feira": caso(

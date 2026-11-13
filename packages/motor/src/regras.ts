@@ -56,6 +56,13 @@ export const REGRAS: readonly Regra[] = [
     "Não pagar uma dívida é ilícito civil, não crime. Não há prisão civil por dívida, salvo a do devedor de alimentos.",
   ),
   r(
+    "R-LEG-03",
+    "Crime e contravenção penal",
+    "LICP, art. 1º; LCP, art. 4º",
+    "Infração penal é o gênero; crime e contravenção são as espécies. Crime: reclusão ou detenção. Contravenção: prisão simples ou multa, e a tentativa não é punível.",
+    { simplificacao: true },
+  ),
+  r(
     "R-CRIME-01",
     "Conceito analítico de crime",
     "Doutrina majoritária",

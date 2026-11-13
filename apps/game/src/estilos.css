@@ -1349,3 +1349,225 @@ ol {
     animation: none;
   }
 }
+
+/* Esquemas: o conceito desenhado em vetor. */
+.esquema {
+  margin: 10px 0 4px;
+  padding: 10px;
+  border: 2px dashed var(--borda);
+  border-radius: 14px;
+  background: var(--cartao);
+  font-size: 12.5px;
+  line-height: 1.25;
+}
+
+.esquema-etapas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.esquema-caixa {
+  padding: 6px 9px;
+  border: 2px solid var(--contorno);
+  border-radius: 10px;
+  background: var(--marinho-claro);
+  color: var(--marinho-escuro);
+  font-weight: 800;
+  text-align: center;
+}
+
+.esquema-caixa-atual {
+  background: var(--ouro);
+  color: var(--texto);
+}
+
+.esquema-caixa-feita {
+  background: var(--verde-claro);
+}
+
+.esquema-caixa-apagada {
+  border-style: dashed;
+  background: transparent;
+  color: var(--texto-suave);
+}
+
+.esquema-sinal {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--contorno);
+}
+
+.esquema-colunas {
+  display: grid;
+  gap: 8px;
+}
+
+.esquema-coluna {
+  overflow: hidden;
+  border: 2px solid var(--contorno);
+  border-radius: 10px;
+  background: var(--cartao);
+}
+
+.esquema-coluna > strong {
+  display: block;
+  padding: 5px 8px;
+  background: var(--marinho);
+  color: #fff;
+  text-align: center;
+}
+
+.esquema-coluna:nth-child(2) > strong {
+  background: var(--verde);
+}
+
+.esquema-coluna:nth-child(3) > strong {
+  background: var(--vermelho);
+}
+
+.esquema-coluna ul {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 7px 8px 8px 22px;
+}
+
+.esquema-requisitos {
+  display: grid;
+  justify-items: center;
+}
+
+.esquema-centro {
+  padding: 5px 14px;
+  border: 2px solid var(--contorno);
+  border-radius: 999px;
+  background: var(--ouro);
+}
+
+.esquema-chave {
+  width: 86%;
+  height: 14px;
+  color: var(--contorno);
+}
+
+.esquema-requisitos ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.esquema-requisitos li {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 7px;
+  border: 2px solid var(--borda);
+  border-radius: 10px;
+  background: var(--papel);
+  font-weight: 700;
+}
+
+.esquema-marca {
+  flex: none;
+  width: 15px;
+  height: 15px;
+  color: var(--marinho);
+}
+
+.esquema-marca-sim {
+  color: var(--verde);
+}
+
+.esquema-marca-nao {
+  color: var(--vermelho);
+}
+
+.esquema-marca-neutra {
+  color: var(--texto-suave);
+}
+
+.retorno .esquema {
+  background: rgb(255 255 255 / 55%);
+}
+
+/* A ficha: os elementos do tipo e a etapa certa. */
+.ficha-elementos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ficha-elementos li {
+  padding: 2px 8px;
+  border: 1.5px solid var(--marinho);
+  border-radius: 999px;
+  background: var(--cartao);
+  color: var(--marinho-escuro);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.etapa-certa {
+  border-color: var(--verde);
+}
+
+.retorno > strong {
+  display: block;
+}
+
+.retorno p {
+  margin: 4px 0 0;
+}
+
+/* Parada intermediária e desfecho. */
+.fluxo-parada {
+  margin: 0 0 8px;
+  color: var(--texto-suave);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.desfecho .etiqueta {
+  display: block;
+  margin-top: 10px;
+}
+
+.desfecho-arquivo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: var(--cartao-2);
+  font-size: 13px;
+}
+
+.desfecho-arquivo svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+}
+
+/* O delegado lembrando: o balão vira pensamento. */
+.fala-pensando .balao {
+  border-style: dashed;
+  background: var(--marinho-claro);
+}
+
+.capitulo li > .botao {
+  margin: 6px 0 4px;
+}

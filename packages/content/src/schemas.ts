@@ -20,7 +20,13 @@ export const salaSchema = z.strictObject({
   descricao: texto,
 });
 
-export const npcSchema = z.strictObject({ id, nome: texto, papel: texto });
+export const npcSchema = z.strictObject({
+  id,
+  nome: texto,
+  papel: texto,
+  /** Sala em que o personagem trabalha. Sem ela, é alguém de passagem (vítima, morador). */
+  sala: id.optional(),
+});
 
 export const capituloSchema = z.strictObject({
   numero: z.int().positive(),
@@ -40,6 +46,32 @@ export const conceitoSchema = z.strictObject({
 
 const perguntaSchema = z.strictObject({ enunciado: texto, gabarito, explicacao: texto });
 
+/** Desenho que esquematiza o tema: o jogo o monta em vetor, a partir destes dados. */
+export const esquemaSchema = z.discriminatedUnion("tipo", [
+  /** Passos em sequência, ligados por setas. */
+  z.strictObject({ tipo: z.literal("etapas"), itens: z.array(texto).min(2).max(5) }),
+  /** Partes que, somadas, dão o resultado. */
+  z.strictObject({
+    tipo: z.literal("soma"),
+    partes: z.array(texto).min(2).max(4),
+    resultado: texto,
+  }),
+  /** Duas ou três colunas lado a lado. */
+  z.strictObject({
+    tipo: z.literal("comparacao"),
+    colunas: z
+      .array(z.strictObject({ titulo: texto, itens: z.array(texto).min(1).max(4) }))
+      .min(2)
+      .max(3),
+  }),
+  /** Um conceito no centro e os requisitos dele em volta. */
+  z.strictObject({
+    tipo: z.literal("requisitos"),
+    centro: texto,
+    itens: z.array(texto).min(2).max(6),
+  }),
+]);
+
 export const temaSchema = z.strictObject({
   id,
   titulo: texto,
@@ -48,6 +80,7 @@ export const temaSchema = z.strictObject({
   exemplo: texto,
   /** Fonte legal do tema, mostrada no rodapé da aula. */
   fonte: texto.optional(),
+  esquema: esquemaSchema.optional(),
   perguntas: z.array(perguntaSchema).max(3),
 });
 
@@ -129,7 +162,9 @@ export const casoSchema = z.strictObject({
   tipoInformado: z.boolean(),
   /** Com "tipo" em `pede`: os tipos sugeridos. Vazio = Código inteiro (livre). */
   opcoesDeTipo: z.array(z.enum(TIPOS_PENAIS_IDS)),
-  /** Fala do mentor quando a etapa sai errada. */
+  /** A pergunta da etapa, escrita para este caso. Sem ela, vale a pergunta padrão. */
+  perguntas: z.partialRecord(campo, texto).default({}),
+  /** Explicação da etapa, mostrada depois da conferência, com acerto ou com erro. */
   comentarios: z.partialRecord(campo, texto),
   desfecho: texto,
 });
@@ -159,6 +194,8 @@ export const missaoSchema = z.strictObject({
   /** A conversa da cena final. Frases curtas; o negrito marca os termos que importam. */
   dialogo: z.array(falaSchema).min(1).max(8),
   caso: casoSchema.nullable(),
+  /** Como termina uma missão sem caso. Com caso, o desfecho é o dele. */
+  desfecho: texto.optional(),
   conceitos: z.array(id),
   recompensa: z.strictObject({ pontos: z.int().positive() }),
 });
@@ -168,6 +205,7 @@ export type Npc = z.infer<typeof npcSchema>;
 export type Capitulo = z.infer<typeof capituloSchema>;
 export type Conceito = z.infer<typeof conceitoSchema>;
 export type Tema = z.infer<typeof temaSchema>;
+export type Esquema = z.infer<typeof esquemaSchema>;
 export type Pergunta = z.infer<typeof perguntaSchema>;
 export type Afirmativa = z.infer<typeof afirmativaSchema>;
 export type Caso = z.infer<typeof casoSchema>;

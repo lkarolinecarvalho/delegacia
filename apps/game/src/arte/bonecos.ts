@@ -10,8 +10,11 @@ const UNIDADE_NO_MAPA = 4.2;
 const UNIDADE_NO_RETRATO = 9.6;
 const OLHO = "#3a2a2a";
 
-/** Tronco, braços e cabeça em blocos, com o rosto na face X. */
-function busto(i: Iso, a: Aparencia, detalhado: boolean): string {
+/**
+ * Tronco, braços e cabeça em blocos, com o rosto na face X. `deCostas` troca o rosto
+ * pela nuca: é o personagem andando para o fundo da cena.
+ */
+function busto(i: Iso, a: Aparencia, detalhado: boolean, deCostas = false): string {
   const braco = (y: number) =>
     i.caixa(0.25, y, 2.1, 0.9, 0.6, 0.55, a.pele) + i.caixa(0.25, y, 2.65, 0.9, 0.6, 1.5, a.roupa);
   const olho = (y: number) =>
@@ -21,22 +24,23 @@ function busto(i: Iso, a: Aparencia, detalhado: boolean): string {
     braco(-0.6),
     i.caixa(0, 0, 1.9, 1.4, 2.4, 2.3, a.roupa),
     a.avental ? i.faceX(1.4, 0.4, 1.9, 1.6, 1.9, a.avental) : "",
-    a.gravata ? i.faceX(1.4, 1, 2.9, 0.4, 1.3, a.gravata) : "",
+    a.gravata && !deCostas ? i.faceX(1.4, 1, 2.9, 0.4, 1.3, a.gravata) : "",
     braco(2.4),
     // Cabeça.
     i.caixa(-0.4, -0.15, 4.2, 2.2, 2.7, 2.2, a.pele),
-    olho(0.35),
-    olho(1.65),
-    detalhado
+    deCostas ? "" : olho(0.35) + olho(1.65),
+    detalhado && !deCostas
       ? i.faceX(1.8, 0.02, 4.72, 0.42, 0.26, "#f29a8e") +
         i.faceX(1.8, 1.96, 4.72, 0.42, 0.26, "#f29a8e") +
         i.faceX(1.8, 0.95, 4.62, 0.5, 0.16, escurecer(a.pele, 0.45))
       : "",
-    a.oculos ? i.faceX(1.8, 0.2, 5.55, 2, 0.12, OLHO) : "",
-    a.barba ? i.faceX(1.8, -0.15, 4.2, 2.7, 0.7, escurecer(a.cabelo, 0.1)) : "",
+    a.oculos && !deCostas ? i.faceX(1.8, 0.2, 5.55, 2, 0.12, OLHO) : "",
+    a.barba && !deCostas ? i.faceX(1.8, -0.15, 4.2, 2.7, 0.7, escurecer(a.cabelo, 0.1)) : "",
     // Cabelo: nas laterais, na franja e por cima.
     i.faceY(2.55, -0.4, 5.3, 1.3, 1.1, a.cabelo),
-    i.faceX(1.8, -0.15, 5.95, 2.7, 0.45, a.cabelo),
+    deCostas
+      ? i.faceX(1.8, -0.15, 4.75, 2.7, 1.65, a.cabelo)
+      : i.faceX(1.8, -0.15, 5.95, 2.7, 0.45, a.cabelo),
     a.bone
       ? i.caixa(-0.5, -0.25, 6.3, 2.4, 2.9, 0.6, a.bone) +
         i.caixa(1.9, 0.2, 6.3, 0.9, 2, 0.2, clarear(a.bone, 0.1))
@@ -49,7 +53,11 @@ function busto(i: Iso, a: Aparencia, detalhado: boolean): string {
  * Personagem em blocos, para o mapa. `olhando` diz para que lado da tela o rosto fica
  * virado.
  */
-export function desenharBoneco(id: string, olhando: "direita" | "esquerda" = "direita"): string {
+export function desenharBoneco(
+  id: string,
+  olhando: "direita" | "esquerda" = "direita",
+  deCostas = false,
+): string {
   const a = aparenciaDe(id);
   const u = UNIDADE_NO_MAPA;
   const i = criarIso({
@@ -68,7 +76,7 @@ export function desenharBoneco(id: string, olhando: "direita" | "esquerda" = "di
       i.caixa(0.2, 0.1, 0.4, 1, 1, 1.5, a.calca),
       i.caixa(0.2, 1.3, 0, 1.1, 1, 0.4, "#4a3a3a"),
       i.caixa(0.2, 1.3, 0.4, 1, 1, 1.5, a.calca),
-      busto(i, a, false),
+      busto(i, a, false, deCostas),
     ].join(""),
   );
 }

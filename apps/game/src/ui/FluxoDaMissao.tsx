@@ -17,27 +17,18 @@ import { Afirmativas } from "./Afirmativas";
 import { AulaEmBaloes, Fixacao } from "./AulaEmBaloes";
 import { Fala, Regras, Texto } from "./comum";
 import { FichaDeAnalise } from "./FichaDeAnalise";
-import { IconeEstrela } from "./icones";
+import { IconeEstrela, IconePasta } from "./icones";
 
-type Passo =
-  | "conversa"
-  | "aulas"
-  | "fixacao"
-  | "fato"
-  | "ficha"
-  | "afirmativas"
-  | "desfecho"
-  | "seguir";
+type Passo = "conversa" | "aulas" | "fixacao" | "fato" | "ficha" | "afirmativas" | "desfecho";
 
 const NOMES_DOS_PASSOS: Readonly<Record<Passo, string>> = {
   conversa: "Conversa",
-  aulas: "Aula",
+  aulas: "Lembrando",
   fixacao: "Fixação",
   fato: "O fato",
   ficha: "Análise",
   afirmativas: "Afirmativas",
   desfecho: "Desfecho",
-  seguir: "Próxima sala",
 };
 
 export function CartaoDoFato({ caso }: { caso: Caso }) {
@@ -78,15 +69,15 @@ export function Trilha({
 
 interface Props {
   readonly missao: Missao;
-  /** Caso do plantão livre: dá pontos e encerra o plantão, sem avançar a campanha. */
+  /** Caso revisto no arquivo: dá pontos, sem avançar a campanha. */
   readonly livre?: boolean;
   readonly aoFechar: () => void;
 }
 
 /**
- * O ciclo de uma missão (GDD, seção 7): conversa → aulas → fato → ficha → afirmativas →
- * desfecho. A missão é concluída ao chegar ao desfecho; fechar antes disso a deixa
- * para depois.
+ * O ciclo de uma missão (GDD, seção 7). Numa parada intermediária, só a conversa: ao
+ * fim dela o caso segue para a próxima sala. Na última: conversa → o delegado lembra o
+ * que estudou → fixação → fato → análise → afirmativas → desfecho.
  */
 export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   const verTema = useStore((s) => s.verTema);
@@ -97,10 +88,10 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   const [cena] = useState(() => {
     const cenas = cenasDaMissao(missao);
     const indice = livre ? cenas.length - 1 : cenaDaVez(useStore.getState().jogo, missao);
-    return { atual: cenas[indice] ?? cenas[cenas.length - 1], proxima: cenas[indice + 1] ?? null };
+    return { atual: cenas[indice] ?? cenas[cenas.length - 1], total: cenas.length, indice };
   });
   const ultimaCena = cena.atual?.final ?? true;
-  // Fotografia do estado ao abrir a missão: as aulas e as afirmativas não mudam no meio.
+  // Fotografia do estado ao abrir a missão: os temas e as afirmativas não mudam no meio.
   const [aulas] = useState(() =>
     aulasPendentes(useStore.getState().jogo, missao).flatMap(
       (id) => conteudo.teoria.find((t) => t.id === id) ?? [],
@@ -127,7 +118,7 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
     () =>
       // Fora da última cena, a parada é só a conversa: o caso segue para outra sala.
       !ultimaCena
-        ? ["conversa", "seguir"]
+        ? ["conversa"]
         : [
             "conversa",
             ...(aulas.length > 0 ? (["aulas"] as const) : []),
@@ -145,6 +136,13 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
 
   const avancar = (erros = errosNaFicha) => {
     const proximo = passos[indice + 1];
+    if (proximo === undefined) {
+      // Fim da parada: o caso segue, e o mapa mostra a próxima sala.
+      seguir(missao);
+      tocar("avanca");
+      aoFechar();
+      return;
+    }
     if (proximo === "desfecho") {
       if (livre) concluirLivre();
       else concluir(missao, analise, erros, procedimento);
@@ -157,20 +155,27 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
 
   const falasDaCena = cena.atual?.falas ?? missao.dialogo;
   const falaAtual = falasDaCena[fala];
+  const ultimaFala = fala + 1 >= falasDaCena.length;
 
   return (
     <div className="fluxo">
-      <ol className="fluxo-passos" aria-label="Etapas da missão">
-        {passos.map((p, i) => (
-          <li
-            key={p}
-            className={i === indice ? "atual" : i < indice ? "feito" : undefined}
-            aria-current={i === indice ? "step" : undefined}
-          >
-            {NOMES_DOS_PASSOS[p]}
-          </li>
-        ))}
-      </ol>
+      {ultimaCena ? (
+        <ol className="fluxo-passos" aria-label="Etapas do caso">
+          {passos.map((p, i) => (
+            <li
+              key={p}
+              className={i === indice ? "atual" : i < indice ? "feito" : undefined}
+              aria-current={i === indice ? "step" : undefined}
+            >
+              {NOMES_DOS_PASSOS[p]}
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p className="fluxo-parada">
+          Parada {cena.indice + 1} de {cena.total}
+        </p>
+      )}
 
       {passo === "conversa" && falaAtual && (
         <>
@@ -181,7 +186,7 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
             type="button"
             className="botao botao-principal"
             onClick={() => {
-              if (fala + 1 < falasDaCena.length) {
+              if (!ultimaFala) {
                 tocar("toque");
                 setFala(fala + 1);
               } else {
@@ -189,28 +194,9 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
               }
             }}
           >
-            Continuar
+            {ultimaFala && !ultimaCena ? "Seguir com o caso" : "Continuar"}
           </button>
         </>
-      )}
-
-      {passo === "seguir" && cena.proxima && (
-        <div className="desfecho">
-          <p className="desfecho-texto">
-            O caso segue. Próxima parada:{" "}
-            <strong>{conteudo.salas.find((x) => x.id === cena.proxima?.sala)?.nome}</strong>.
-          </p>
-          <button
-            type="button"
-            className="botao botao-principal"
-            onClick={() => {
-              seguir(missao);
-              aoFechar();
-            }}
-          >
-            Seguir
-          </button>
-        </div>
       )}
 
       {passo === "aulas" && (
@@ -223,7 +209,7 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
         <>
           <CartaoDoFato caso={missao.caso} />
           <p className="dica">
-            O que está no cartão é o que aconteceu. Agora, a análise é com você.
+            O que está no cartão é o que ficou apurado. Agora, a análise é com você.
           </p>
           <button type="button" className="botao botao-principal" onClick={() => avancar()}>
             Analisar o caso
@@ -262,8 +248,7 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
         <div className="desfecho">
           {missao.caso && analise ? (
             <>
-              <span className="etiqueta">Registrado no plantão</span>
-              <Trilha analise={analise} procedimento={procedimento} />
+              <span className="etiqueta">O que aconteceu com o caso</span>
               <p className="desfecho-texto">
                 <Texto>{missao.caso.desfecho}</Texto>
               </p>
@@ -274,17 +259,24 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
               )}
               {procedimento && procedimento.prazo !== "nao_se_aplica" && !livre && (
                 <p className="dica">
-                  O inquérito entrou no quadro da delegacia, com o prazo correndo.
+                  O inquérito continua aberto, com o prazo correndo. Acompanhe no quadro do
+                  cartório.
                 </p>
               )}
+              <span className="etiqueta">A sua análise, registrada</span>
+              <Trilha analise={analise} procedimento={procedimento} />
               <details className="rever-o-fato">
                 <summary>Regras aplicadas</summary>
                 <Regras ids={analise.regras} />
               </details>
+              <p className="desfecho-arquivo">
+                <IconePasta /> Uma cópia vai para o <strong>Arquivo</strong>. Você pode rever o caso
+                lá quando quiser.
+              </p>
             </>
           ) : (
             <p className="desfecho-texto">
-              Conversa concluída. As aulas ficam guardadas na Biblioteca, em Teoria.
+              <Texto>{missao.desfecho ?? "Conversa concluída."}</Texto>
             </p>
           )}
           <p className="recompensa">
@@ -292,7 +284,7 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
             {missao.caso && errosNaFicha === 0 && <span> · análise certa de primeira</span>}
           </p>
           <button type="button" className="botao botao-principal" onClick={aoFechar}>
-            {missao.caso ? "Encerrar o plantão" : "Concluir"}
+            Concluir
           </button>
         </div>
       )}

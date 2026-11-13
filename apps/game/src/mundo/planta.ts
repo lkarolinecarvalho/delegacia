@@ -1,10 +1,9 @@
 /**
  * Planta da delegacia, sem desenho: salas, paredes, pontos de caminhada e rotas.
  *
- * Tudo fica numa grade (`gx` desce para a direita da tela, `gy` desce para a esquerda).
- * O prédio principal é térreo: no fundo, o gabinete, a investigação e o arquivo; na
- * frente, a sala de oitiva, o cartório e a recepção, por onde se entra. Os três
- * departamentos são prédios pequenos à parte, numa calçada em frente ao principal.
+ * O prédio é térreo e fica numa grade (`gx` desce para a direita da tela, `gy` desce
+ * para a esquerda). No fundo, o gabinete, a investigação e o arquivo; na frente, a sala
+ * de oitiva, o cartório e a recepção, por onde se entra.
  */
 
 export type NaGrade = readonly [gx: number, gy: number];
@@ -19,8 +18,6 @@ export interface SalaNaPlanta {
   readonly y1: number;
   /** Nó do grafo em que o avatar para nesta sala. */
   readonly no: string;
-  /** Prédio à parte, fora do principal (os departamentos). */
-  readonly anexo?: true;
 }
 
 /** Corredor do fundo, entre as salas de trás e as da frente. */
@@ -28,22 +25,10 @@ export const CORREDOR = { x0: 0, y0: 7, x1: 20, y1: 8.6 } as const;
 
 /** Linha (gx) da porta da frente: o avatar entra e cruza a recepção por ela. */
 export const EIXO_DA_ENTRADA = 17;
-/** Linha (gy) da calçada dos departamentos, em frente ao prédio principal. */
-export const RUA_DOS_DEPARTAMENTOS = 28.5;
 /** Linha (gy) por onde o avatar anda no corredor do fundo. */
 const FUNDO = 7.8;
 /** Linha (gy) da porta entre a recepção e o cartório. */
 const PORTA_DO_CARTORIO = 13.5;
-
-/** Um departamento: prédio de 6 × 6 que começa em `x0`, com a porta na frente. */
-const anexo = (x0: number, no: string): SalaNaPlanta => ({
-  x0,
-  y0: 21,
-  x1: x0 + 6,
-  y1: 27,
-  no,
-  anexo: true,
-});
 
 /** O retângulo de cada sala, pelo id de `packages/content/data/salas.json`. */
 export const SALAS: Readonly<Record<string, SalaNaPlanta>> = {
@@ -53,21 +38,6 @@ export const SALAS: Readonly<Record<string, SalaNaPlanta>> = {
   oitiva: { x0: 0, y0: 8.6, x1: 7, y1: 17, no: "oitiva" },
   cartorio: { x0: 7, y0: 8.6, x1: 14, y1: 17, no: "cartorio" },
   recepcao: { x0: 14, y0: 8.6, x1: 20, y1: 17, no: "recepcao" },
-  pessoa: anexo(9.5, "pessoa"),
-  patrimonio: anexo(20.5, "patrimonio"),
-  especial: anexo(28, "especial"),
-};
-
-/** Os departamentos, na ordem em que aparecem na calçada. */
-export const ANEXOS: readonly (readonly [string, SalaNaPlanta])[] = Object.entries(SALAS).filter(
-  ([, s]) => s.anexo,
-);
-
-/** Meio da frente de um anexo: onde fica a porta dele. */
-const portaDoAnexo = (id: string): number => {
-  const s = SALAS[id];
-  if (!s) throw new Error(`Sala fora da planta: ${id}`);
-  return (s.x0 + s.x1) / 2;
 };
 
 /** Onde fica o vão de cada porta, no eixo livre da parede em que ela está. */
@@ -76,9 +46,6 @@ const PORTAS = {
   oitiva: 4.5,
   investigacao: 10.5,
   arquivo: EIXO_DA_ENTRADA,
-  pessoa: portaDoAnexo("pessoa"),
-  patrimonio: portaDoAnexo("patrimonio"),
-  especial: portaDoAnexo("especial"),
 } as const;
 /** Meia largura do vão de uma porta. */
 export const MEIO_VAO = 0.8;
@@ -102,14 +69,6 @@ export const NOS: Readonly<Record<string, NaGrade>> = {
   oitiva: [PORTAS.oitiva, 13.2],
   "frente-do-gabinete": [PORTAS.gabinete, FUNDO],
   gabinete: [PORTAS.gabinete, 5.2],
-  // Lá fora: a calçada dos departamentos.
-  rua: [EIXO_DA_ENTRADA, RUA_DOS_DEPARTAMENTOS],
-  "frente-da-pessoa": [PORTAS.pessoa, RUA_DOS_DEPARTAMENTOS],
-  pessoa: [PORTAS.pessoa, 25.2],
-  "frente-do-patrimonio": [PORTAS.patrimonio, RUA_DOS_DEPARTAMENTOS],
-  patrimonio: [PORTAS.patrimonio, 25.2],
-  "frente-da-especial": [PORTAS.especial, RUA_DOS_DEPARTAMENTOS],
-  especial: [PORTAS.especial, 25.2],
 };
 
 const TRECHOS: readonly (readonly [string, string])[] = [
@@ -125,13 +84,6 @@ const TRECHOS: readonly (readonly [string, string])[] = [
   ["frente-da-oitiva", "oitiva"],
   ["frente-da-oitiva", "frente-do-gabinete"],
   ["frente-do-gabinete", "gabinete"],
-  ["patio", "rua"],
-  ["rua", "frente-da-pessoa"],
-  ["frente-da-pessoa", "pessoa"],
-  ["rua", "frente-do-patrimonio"],
-  ["frente-do-patrimonio", "patrimonio"],
-  ["frente-do-patrimonio", "frente-da-especial"],
-  ["frente-da-especial", "especial"],
 ];
 
 export const TRECHOS_NA_GRADE: readonly (readonly [NaGrade, NaGrade])[] = TRECHOS.map(([a, b]) => [
@@ -247,8 +199,8 @@ function comPortas(
 }
 
 /**
- * Paredes baixas (os prédios são vistos em corte), já com os vãos das portas. As paredes
- * altas do fundo de cada prédio são desenhadas à parte.
+ * Paredes baixas (o prédio é visto em corte), já com os vãos das portas. As duas
+ * paredes altas do fundo são desenhadas à parte.
  */
 export const PAREDES: readonly Parede[] = [
   // Entre as salas do fundo, e a frente delas, com as três portas.
@@ -263,11 +215,6 @@ export const PAREDES: readonly Parede[] = [
   // Fachadas, com a porta da frente.
   ...comPortas("y", PREDIO.y, 0, PREDIO.x, [EIXO_DA_ENTRADA], DE_FORA),
   p("x", PREDIO.x, 0, PREDIO.y, DE_FORA),
-  // Os departamentos: a frente, com a porta, e o lado direito.
-  ...ANEXOS.flatMap(([, s]) => [
-    ...comPortas("y", s.y1, s.x0, s.x1, [(s.x0 + s.x1) / 2], DE_FORA),
-    p("x", s.x1, s.y0, s.y1, DE_FORA),
-  ]),
 ];
 
 /** Sala em que o ponto da grade cai, se houver. */
