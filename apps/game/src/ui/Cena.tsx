@@ -195,7 +195,7 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
           <button
             key={s.id}
             type="button"
-            className="sala-area"
+            className={s.id === destino ? "sala-area sala-destino" : "sala-area"}
             style={recorte(s.lugar.area)}
             aria-label={`Ir para: ${s.nome}`}
             onClick={() => {

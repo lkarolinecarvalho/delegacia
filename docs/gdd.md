@@ -51,15 +51,19 @@ lei, e vê a consequência jurídica da decisão.
 
 | Ambiente | Onde fica | Função no jogo |
 |---|---|---|
-| Recepção | Saguão, da porta da frente ao fundo | Recebimento e triagem do que chega |
-| Cartório | Esquerda, na frente | Registro das ocorrências, autos, termos; o quadro de presos e de prazos |
-| Sala de oitiva | Esquerda | Oitiva de vítimas e testemunhas; interrogatório do investigado |
-| Gabinete da delegada | Fundo | Análise dos casos e decisões da autoridade policial |
-| Sala de investigação | Fundo | Diligências, coleta de informações e análise do que foi reunido |
-| Arquivo | Fundo | Consulta aos casos concluídos; o plantão livre sai daqui |
-| Departamento de crimes contra a pessoa | Direita | Os casos da ronda dos crimes contra a pessoa |
-| Departamento de crimes contra o patrimônio | Direita | Os casos da ronda dos crimes contra o patrimônio |
-| Departamento de legislação especial | Direita | As leis penais especiais (ainda sem casos) |
+| Recepção | Prédio principal, na frente, à direita: é por onde se entra | Recebimento e triagem do que chega |
+| Cartório | Prédio principal, na frente, ao lado da recepção | Registro das ocorrências, autos, termos; o quadro de presos e de prazos |
+| Sala de oitiva | Prédio principal, na frente, à esquerda | Oitiva de vítimas e testemunhas; interrogatório do investigado |
+| Gabinete da delegada | Prédio principal, no fundo | Análise dos casos e decisões da autoridade policial |
+| Sala de investigação | Prédio principal, no fundo | Diligências, coleta de informações e análise do que foi reunido |
+| Arquivo | Prédio principal, no fundo | Consulta aos casos concluídos; o plantão livre sai daqui |
+| Departamento de crimes contra a pessoa | Prédio próprio, na calçada da frente | Os casos da ronda dos crimes contra a pessoa |
+| Departamento de crimes contra o patrimônio | Prédio próprio, na calçada da frente | Os casos da ronda dos crimes contra o patrimônio |
+| Departamento de legislação especial | Prédio próprio, na calçada da frente | As leis penais especiais (ainda sem casos) |
+
+Os departamentos são prédios pequenos à parte, ligados ao principal por uma calçada: o
+mapa cabe na tela em retrato sem apertar as salas. A sala em que o caso espera fica com
+o piso aceso, além do aviso na placa.
 
 Nenhum ambiente é só decoração: cada um tem quem atende e algo a fazer. A Biblioteca é
 um atalho da barra de baixo.

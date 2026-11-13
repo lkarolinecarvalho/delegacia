@@ -154,6 +154,27 @@ ol {
   outline: none;
 }
 
+/* O piso da sala em que o caso espera fica aceso, para não haver dúvida de qual é. */
+.sala-destino {
+  background: rgb(255 208 74 / 38%);
+  animation: piscar-destino 1.4s ease-in-out infinite alternate;
+}
+
+@keyframes piscar-destino {
+  from {
+    background: rgb(255 208 74 / 22%);
+  }
+  to {
+    background: rgb(255 208 74 / 50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sala-destino {
+    animation: none;
+  }
+}
+
 .placa {
   position: absolute;
   transition: opacity 250ms;

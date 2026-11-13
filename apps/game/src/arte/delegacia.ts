@@ -1,9 +1,11 @@
 import {
+  ANEXOS,
   CORREDOR,
+  EIXO_DA_ENTRADA,
   type NaGrade,
   PAREDES,
-  PORTAS,
   PREDIO,
+  RUA_DOS_DEPARTAMENTOS,
   SALAS,
   TRECHOS_NA_GRADE,
 } from "../mundo/planta";
@@ -11,19 +13,22 @@ import { BONECO, desenharBoneco } from "./bonecos";
 import { clarear, criarIso, DEFS_DO_ISO, escurecer, type PontoDeTela } from "./iso";
 
 /**
- * A delegacia vista de cima, em blocos isométricos: um prédio térreo, em corte, no meio
- * do terreno, com o pátio das viaturas e a rua na frente. Módulo puro: devolve o SVG do
- * chão, os objetos com a profundidade de cada um e as posições que a interface usa.
+ * A delegacia vista de cima, em blocos isométricos: o prédio principal, térreo e em
+ * corte, o pátio das viaturas ao lado e, na frente, os três departamentos, cada um no
+ * seu prédio. Módulo puro: devolve o SVG do chão, os objetos com a profundidade de cada
+ * um e as posições que a interface usa.
  */
 
 /** A cena ocupa o palco inteiro, por baixo do HUD (390×844, o viewport de referência). */
 export const CENA = { largura: 390, altura: 844 } as const;
 
-/** Meia largura de um ladrilho, em pixels: o prédio ocupa a largura toda da tela. */
-const UNIDADE = 8.4;
-const ORIGEM: PontoDeTela = { x: 211, y: 312 };
-const ESCALA_DO_BONECO = 0.82;
+/** Meia largura de um ladrilho, em pixels: o prédio principal ocupa a largura da tela. */
+const UNIDADE = 10.1;
+const ORIGEM: PontoDeTela = { x: 182, y: 268 };
+const ESCALA_DO_BONECO = 0.95;
 const PAREDE_ALTA = 5;
+/** Altura das paredes do fundo dos departamentos: mais baixas, para não cobrir o principal. */
+const PAREDE_DO_ANEXO = 3.2;
 const ESPESSURA = 0.4;
 
 const iso = criarIso({ unidade: UNIDADE, origem: ORIGEM });
@@ -67,6 +72,13 @@ const PISOS: Readonly<Record<string, string>> = {
   pessoa: "#d9c3c0",
   patrimonio: "#cfd3b4",
   especial: "#c6cbdc",
+};
+
+/** Cor da faixa na parede de cada departamento. */
+const FAIXAS: Readonly<Record<string, string>> = {
+  pessoa: "#b5553f",
+  patrimonio: "#5d8a52",
+  especial: "#4c6a9a",
 };
 
 export interface Objeto {
@@ -239,20 +251,26 @@ const retangulo = (x0: number, y0: number, x1: number, y1: number, cor: string):
     cor,
   );
 
-/** O terreno: gramado, calçada, o pátio das viaturas e a rua com a faixa de pedestres. */
+/** O terreno: gramado, calçadas, o pátio das viaturas e a rua com a faixa de pedestres. */
 function desenharTerreno(): string {
   const { x: X, y: Y } = PREDIO;
+  const rua = RUA_DOS_DEPARTAMENTOS;
+  const caminho = "#c9c1ae";
   const partes: string[] = [
     `<rect x="-600" y="-600" width="1600" height="2100" fill="${COR.grama}"/>`,
     // Manchas mais escuras no gramado, para ele não ficar chapado.
     retangulo(-22, -6, -8, 6, COR.gramaEscura),
-    retangulo(-6, 30, 8, 46, COR.gramaEscura),
+    retangulo(-8, 30, 8, 46, COR.gramaEscura),
     retangulo(46, 8, 62, 30, COR.gramaEscura),
     retangulo(-10, -24, 12, -10, COR.gramaEscura),
-    // Calçada em volta do prédio, o caminho da porta da frente e o pátio das viaturas.
+    retangulo(12, 32, 30, 44, COR.gramaEscura),
+    // Calçada em volta do prédio e o pátio das viaturas, ao lado.
     retangulo(-1.5, -1.5, X + 1.5, Y + 1.5, COR.piso),
-    retangulo(PORTAS.entrada - 1.6, Y + 1.5, PORTAS.entrada + 1.6, 44, "#c9c1ae"),
-    retangulo(X + 1.5, -1.5, 35, 36, COR.piso),
+    retangulo(X + 1.5, -1.5, 35, 19, COR.piso),
+    // Da porta da frente à calçada dos departamentos, que vai até a rua.
+    retangulo(EIXO_DA_ENTRADA - 1.4, Y + 1.5, EIXO_DA_ENTRADA + 1.4, rua + 1.4, caminho),
+    retangulo(8.5, rua - 1.3, 35, rua + 1.4, caminho),
+    ...ANEXOS.map(([, a]) => retangulo(a.x0 - 0.9, a.y0 - 0.9, a.x1 + 0.9, rua - 1.3, COR.piso)),
     // A rua, ao longo de gy, com o meio-fio dos dois lados.
     retangulo(35, -80, 36, 120, "#b9b3a6"),
     retangulo(36, -80, 43, 120, COR.asfalto),
@@ -261,21 +279,21 @@ function desenharTerreno(): string {
   ];
   // Linha tracejada no meio da rua.
   for (let y = -80; y < 120; y += 4) {
-    if (y > 15 && y < 24) continue;
+    if (y > 24 && y < 33) continue;
     partes.push(retangulo(39.35, y, 39.65, y + 2, COR.faixa));
   }
-  // Faixa de pedestres.
-  for (let y = 16.5; y < 22.5; y += 1.2) {
+  // Faixa de pedestres, na ponta da calçada dos departamentos.
+  for (let y = rua - 3; y < rua + 3; y += 1.2) {
     partes.push(retangulo(36.6, y, 42.4, y + 0.6, COR.faixa));
   }
   // Vagas das viaturas.
-  for (const y of [7, 11.5, 16, 20.5, 25]) {
-    partes.push(retangulo(24.5, y, 32.5, y + 0.2, COR.faixa));
+  for (const y of [10, 14.3, 18.6]) {
+    partes.push(retangulo(22.6, y, 30.2, y + 0.2, COR.faixa));
   }
   return partes.join("");
 }
 
-/** O piso do prédio e as duas paredes altas do fundo, com janelas e quadros. */
+/** O piso do prédio principal e as duas paredes altas do fundo, com janelas e quadros. */
 function desenharPredio(): string {
   const { x: X, y: Y } = PREDIO;
   const h = PAREDE_ALTA;
@@ -286,13 +304,13 @@ function desenharPredio(): string {
     retangulo(CORREDOR.x0, CORREDOR.y0, CORREDOR.x1, CORREDOR.y1, "#d6c7a4"),
   ];
   for (const [id, s] of Object.entries(SALAS)) {
-    partes.push(retangulo(s.x0, s.y0, s.x1, s.y1, PISOS[id] ?? COR.piso));
+    if (!s.anexo) partes.push(retangulo(s.x0, s.y0, s.x1, s.y1, PISOS[id] ?? COR.piso));
   }
-  // Tapete do gabinete e a passadeira do saguão, da porta ao corredor do fundo.
-  partes.push(retangulo(1.4, 2.2, 6.2, 6.4, "#34495f"), retangulo(1.7, 2.5, 5.9, 6.1, "#3f5873"));
+  // Tapete do gabinete e a passadeira da recepção, da porta ao corredor do fundo.
+  partes.push(retangulo(1.1, 2.2, 5.9, 6.4, "#34495f"), retangulo(1.4, 2.5, 5.6, 6.1, "#3f5873"));
   partes.push(
-    retangulo(PORTAS.entrada - 0.9, 9.6, PORTAS.entrada + 0.9, 24.6, "#9c5a4a"),
-    retangulo(PORTAS.entrada - 0.6, 9.9, PORTAS.entrada + 0.6, 24.3, "#b76e5c"),
+    retangulo(EIXO_DA_ENTRADA - 0.9, 9.2, EIXO_DA_ENTRADA + 0.9, 16.6, "#9c5a4a"),
+    retangulo(EIXO_DA_ENTRADA - 0.6, 9.5, EIXO_DA_ENTRADA + 0.6, 16.3, "#b76e5c"),
   );
 
   const claro = clarear(COR.parede, 0.25);
@@ -308,18 +326,41 @@ function desenharPredio(): string {
     iso.faceX(0, 0, 0, Y, 0.35, COR.rodape),
     // Gabinete: janela. Investigação: o quadro do caso, com fotos e anotações.
     iso.faceX(0, 2, 2, 3, 2.2, COR.vidro),
-    iso.faceY(0, 8.4, 1.9, 3.4, 2.5, "#b98f5a"),
-    iso.faceY(0, 8.7, 3.2, 0.8, 0.9, COR.papel),
-    iso.faceY(0, 9.8, 2.9, 0.8, 0.9, "#c9d6de"),
-    iso.faceY(0, 10.8, 3.3, 0.7, 0.8, "#f1d98a"),
-    iso.faceY(0, 9.2, 2.1, 0.8, 0.6, "#e7a79b"),
-    // Sala de oitiva: janela. Cartório: quadro de avisos.
-    iso.faceX(0, 10.6, 2, 3.4, 2.2, COR.vidro),
-    iso.faceX(0, 22.4, 2, 2, 1.7, "#b98f5a"),
-    iso.faceX(0, 22.6, 2.4, 0.7, 1, COR.papel),
-    iso.faceX(0, 23.5, 2.6, 0.6, 0.9, "#f1d98a"),
+    iso.faceY(0, 7.6, 1.9, 3.4, 2.5, "#b98f5a"),
+    iso.faceY(0, 7.9, 3.2, 0.8, 0.9, COR.papel),
+    iso.faceY(0, 9, 2.9, 0.8, 0.9, "#c9d6de"),
+    iso.faceY(0, 10, 3.3, 0.7, 0.8, "#f1d98a"),
+    iso.faceY(0, 8.4, 2.1, 0.8, 0.6, "#e7a79b"),
+    // Sala de oitiva: janela.
+    iso.faceX(0, 10.8, 2, 3.4, 2.2, COR.vidro),
   );
   return partes.join("");
+}
+
+/** Um departamento: o piso e as duas paredes do fundo, com a faixa da cor dele. */
+function desenharAnexo(id: string): string {
+  const s = SALAS[id];
+  if (!s) throw new Error(`Sala fora da planta: ${id}`);
+  const h = PAREDE_DO_ANEXO;
+  const [a, b] = [s.x1 - s.x0, s.y1 - s.y0];
+  const alto = clarear(COR.parede, 0.4);
+  const faixa = FAIXAS[id] ?? COR.marinho;
+  return [
+    iso.sombra(s.x0 + 1, s.y0 + 1, a + 1, b + 1, 0.22),
+    retangulo(s.x0 - 0.4, s.y0 - 0.4, s.x1 + 0.15, s.y1 + 0.15, "#8d7a66"),
+    retangulo(s.x0, s.y0, s.x1, s.y1, PISOS[id] ?? COR.piso),
+    iso.faceY(s.y0, s.x0, 0, a, h, COR.parede),
+    iso.faceX(s.x0, s.y0, 0, b, h, clarear(COR.parede, 0.25)),
+    iso.topo(s.x0 - 0.4, s.y0 - 0.4, h, a + 0.4, 0.4, alto),
+    iso.topo(s.x0 - 0.4, s.y0, h, 0.4, b, alto),
+    iso.faceX(s.x1, s.y0 - 0.4, 0, 0.4, h, COR.parede),
+    iso.faceY(s.y1, s.x0 - 0.4, 0, 0.4, h, COR.parede),
+    iso.faceY(s.y0, s.x0, 0, a, 0.35, COR.rodape),
+    iso.faceX(s.x0, s.y0, 0, b, 0.35, COR.rodape),
+    iso.faceY(s.y0, s.x0, h - 0.7, a, 0.7, faixa),
+    iso.faceX(s.x0, s.y0, h - 0.7, b, 0.7, clarear(faixa, 0.12)),
+    iso.faceX(s.x0, s.y0 + 1.8, 0.9, 2.4, 1.3, COR.vidro),
+  ].join("");
 }
 
 /** O que fica atrás do prédio: desenhado antes das paredes altas. */
@@ -353,103 +394,109 @@ function moveis(): Objeto[] {
       COR.metal,
       [0.5, 1.4, 2.3].map((z) => iso.faceY(y + 1, x + 0.35, z, 0.6, 0.15, "#5b6470")).join(""),
     );
-  /** Um departamento: a mesa da equipe, quem atende e um arquivo, na sala que começa em y0. */
-  const departamento = (y0: number, quem: string, cor: string): Objeto[] => [
-    arquivo(19.4, y0 + 0.3),
-    mesa(17.6, y0 + 1.2, 1.7, 3, cor, papeis(17.9, y0 + 1.6) + computador(17.9, y0 + 2.9)),
-    pessoa(quem, 19.9, y0 + 2.9, "esquerda"),
-  ];
+  /** Um departamento: quem atende atrás da mesa, um arquivo e uma planta. */
+  const departamento = (id: string, quem: string, cor: string): Objeto[] => {
+    const s = SALAS[id];
+    if (!s) throw new Error(`Sala fora da planta: ${id}`);
+    const [x, y] = [s.x0, s.y0];
+    return [
+      arquivo(x + 4.4, y + 0.2),
+      pessoa(quem, x + 2.4, y + 1.2, "esquerda"),
+      mesa(x + 0.9, y + 2, 3, 1.4, cor, papeis(x + 1.2, y + 2.3) + computador(x + 2.7, y + 2.3)),
+      planta(x + 0.5, y + 4.4),
+    ];
+  };
   return [
     // Gabinete: estante, bandeira, a Dra. Helena à mesa e as cadeiras de quem é atendido.
     estante(0.4, 2.6, COR.madeiraEscura),
     {
-      p: 7.2,
+      p: 6.9,
       svg:
-        iso.caixa(6.5, 0.5, 0, 0.25, 0.25, 4.6, COR.metal) +
-        iso.faceY(0.62, 5.1, 3, 1.4, 1.4, "#3f8f55") +
-        iso.faceY(0.62, 5.5, 3.4, 0.6, 0.6, "#f2c531"),
+        iso.caixa(6.2, 0.5, 0, 0.25, 0.25, 4.6, COR.metal) +
+        iso.faceY(0.62, 4.8, 3, 1.4, 1.4, "#3f8f55") +
+        iso.faceY(0.62, 5.2, 3.4, 0.6, 0.6, "#f2c531"),
     },
-    pessoa("helena-delegada", 3.75, 1.9, "esquerda"),
-    mesa(2, 2.7, 3.5, 1.6, COR.madeiraEscura, papeis(2.4, 3.1) + computador(4.2, 3)),
-    cadeira(1.6, 4.6, "#8a5a3c"),
-    cadeira(5, 4.6, "#8a5a3c"),
+    pessoa("helena-delegada", 3.5, 1.9, "esquerda"),
+    mesa(1.75, 2.7, 3.5, 1.6, COR.madeiraEscura, papeis(2.15, 3.1) + computador(3.95, 3)),
+    cadeira(1.3, 4.6, "#8a5a3c"),
+    cadeira(4.75, 4.6, "#8a5a3c"),
 
     // Investigação: o Agente Rocha, a mesa da equipe e um arquivo.
-    pessoa("rocha-agente", 10.75, 1.9, "esquerda"),
-    mesa(9, 2.7, 3.5, 1.6, COR.madeira, papeis(9.4, 3.1, "#e7c97a") + computador(11.2, 3)),
-    arquivo(12.5, 0.2),
+    pessoa("rocha-agente", 10.5, 1.9, "esquerda"),
+    mesa(8.75, 2.7, 3.5, 1.6, COR.madeira, papeis(9.15, 3.1, "#e7c97a") + computador(10.95, 3)),
+    arquivo(12.4, 0.2),
 
     // Arquivo: fileiras de armários e as caixas de procedimentos antigos.
-    arquivo(14.4, 0.2),
-    arquivo(15.8, 0.2),
-    arquivo(17.2, 0.2),
-    arquivo(18.6, 0.2),
-    bloco(19.7, 2.4, 1.1, 1.1, 0.9, "#c9a56a", iso.caixa(19.8, 2.5, 0.9, 0.9, 0.9, 0.8, "#d9b97c")),
+    arquivo(14.3, 0.2),
+    arquivo(15.7, 0.2),
+    arquivo(17.1, 0.2),
+    arquivo(18.5, 0.2),
+    bloco(18.6, 2.6, 1.1, 1.1, 0.9, "#c9a56a", iso.caixa(18.7, 2.7, 0.9, 0.9, 0.9, 0.8, "#d9b97c")),
     bloco(14.4, 3.2, 1.1, 1.1, 0.9, "#c9a56a"),
 
     // Sala de oitiva: a mesa com o gravador e as cadeiras.
-    cadeira(0.9, 12.4, COR.marinho),
+    cadeira(0.6, 13, COR.marinho),
     mesa(
-      2.4,
-      11.4,
+      2,
+      12,
       1.8,
       3.2,
       COR.madeira,
-      iso.caixa(3, 12.7, 1.65, 0.5, 0.45, 0.2, "#2a2a2e") + papeis(2.8, 11.8),
+      iso.caixa(2.6, 13.3, 1.65, 0.5, 0.45, 0.2, "#2a2a2e") + papeis(2.4, 12.4),
     ),
     planta(0.5, 15.4),
 
     // Cartório: o Seu Bento, a mesa dele e os arquivos dos autos.
-    arquivo(6.3, 17.3),
-    arquivo(4.9, 17.3),
-    pessoa("bento-escrivao", 1.3, 21, "direita"),
+    arquivo(7.4, 8.9),
+    arquivo(8.8, 8.9),
+    arquivo(12.3, 8.9),
+    pessoa("bento-escrivao", 8.2, 13.5, "direita"),
     mesa(
-      2.2,
-      19.4,
+      8.9,
+      11.9,
       1.8,
       3.4,
       COR.madeira,
-      papeis(2.6, 19.8) + papeis(2.6, 20.9, "#e7c97a") + computador(2.6, 21.9),
+      papeis(9.3, 12.3) + papeis(9.3, 13.4, "#e7c97a") + computador(9.3, 14.4),
     ),
 
-    // Recepção: a Dona Cida atrás do balcão, no meio do saguão, e o banco de espera.
-    pessoa("cida-recepcao", 8.9, 16.6, "direita"),
+    // Recepção: a Dona Cida atrás do balcão, de frente para quem entra, e o banco de espera.
+    pessoa("cida-recepcao", 14.7, 11, "direita"),
     {
-      p: 10.1 + 16.6,
+      p: 15.95 + 11,
       svg:
-        iso.caixa(9.6, 14.6, 0, 1, 4, 1.9, COR.marinho) +
-        iso.caixa(9.45, 14.45, 1.9, 1.3, 4.3, 0.25, COR.madeira) +
-        iso.caixa(9.7, 15.4, 2.15, 0.7, 0.9, 0.2, COR.papel),
+        iso.caixa(15.6, 9.4, 0, 0.7, 3.2, 1.3, COR.marinho) +
+        iso.caixa(15.45, 9.25, 1.3, 1, 3.5, 0.25, COR.madeira) +
+        iso.caixa(15.6, 9.8, 1.55, 0.6, 0.9, 0.2, COR.papel),
     },
-    bloco(12.4, 22.4, 1, 2.2, 0.9, COR.madeira),
-    planta(8.5, 23.4),
+    bloco(18.8, 13, 1, 2.2, 0.9, COR.madeira),
+    planta(18.6, 9.1),
 
-    // Os três departamentos, do fundo para a frente.
-    ...departamento(9, "lia-investigadora", COR.madeira),
-    ...departamento(14.3, "tavares-investigador", COR.madeiraEscura),
-    ...departamento(19.7, "nadia-investigadora", COR.madeira),
+    // Os três departamentos, cada um no seu prédio.
+    ...departamento("pessoa", "lia-investigadora", COR.madeira),
+    ...departamento("patrimonio", "tavares-investigador", COR.madeiraEscura),
+    ...departamento("especial", "nadia-investigadora", COR.madeira),
   ];
 }
 
 function terrenoDaFrente(): Objeto[] {
   return [
-    viatura(25.6, 8),
-    viatura(25.6, 12.5),
-    viatura(25.6, 21.5),
+    viatura(23.6, 10.9),
+    viatura(23.6, 15.2),
     // Mastro com a bandeira, no pátio.
     {
-      p: 33 + 16,
+      p: 33 + 17,
       svg:
-        iso.caixa(32.7, 15.7, 0, 0.9, 0.9, 0.4, "#b9b3a6") +
-        iso.caixa(33, 16, 0.4, 0.25, 0.25, 7.5, COR.metal) +
-        iso.faceY(16.12, 33.25, 6.1, 2.2, 1.6, "#3f8f55") +
-        iso.faceY(16.12, 33.9, 6.5, 0.9, 0.8, "#f2c531"),
+        iso.caixa(32.7, 16.7, 0, 0.9, 0.9, 0.4, "#b9b3a6") +
+        iso.caixa(33, 17, 0.4, 0.25, 0.25, 7.5, COR.metal) +
+        iso.faceY(17.12, 33.25, 6.1, 2.2, 1.6, "#3f8f55") +
+        iso.faceY(17.12, 33.9, 6.5, 0.9, 0.8, "#f2c531"),
     },
-    arvore(3, 31, 1.1),
-    arvore(25, 33),
-    arvore(7, 40, 1.2),
-    arvore(28, 39),
-    arvore(33.5, 2),
+    arvore(4, 31),
+    arvore(10, 37, 1.1),
+    arvore(20, 41),
+    arvore(30, 40, 1.1),
+    arvore(33.5, 0.5),
     // O outro lado da rua: o Fórum e a vizinhança.
     {
       p: 50 + 45 + 8,
@@ -496,6 +543,7 @@ export function desenharCena(): DesenhoDaCena {
       desenharTerreno(),
       atras.map((o) => o.svg).join(""),
       desenharPredio(),
+      ...ANEXOS.map(([id]) => desenharAnexo(id)),
     ].join(""),
     objetos,
   };
@@ -522,18 +570,19 @@ const MARGEM_DA_PLACA = 44;
 export function lugarDaSala(sala: string): LugarDaSala {
   const s = SALAS[sala];
   if (!s) throw new Error(`Sala fora da planta: ${sala}`);
-  // As salas do fundo e as da esquerda têm a placa no alto da parede alta; os
-  // departamentos, sobre a fachada da direita; a recepção, sobre o balcão.
+  // A placa fica no alto da parede do fundo da sala. As duas salas sem parede alta
+  // são exceção: a recepção tem a placa na fachada, e o cartório, sobre os arquivos.
   const meioX = (s.x0 + s.x1) / 2;
   const meioY = (s.y0 + s.y1) / 2;
-  const meio =
-    sala === "recepcao"
-      ? iso.ponto(9.4, 16.6, 4.4)
-      : s.y0 === 0
-        ? iso.ponto(meioX, 0, PAREDE_ALTA + 0.5)
-        : s.x0 === 0
-          ? iso.ponto(0, meioY, PAREDE_ALTA + 0.5)
-          : iso.ponto(PREDIO.x + 0.3, meioY, 1.6);
+  const meio = s.anexo
+    ? iso.ponto(meioX, s.y0, PAREDE_DO_ANEXO + 0.6)
+    : sala === "recepcao"
+      ? iso.ponto(PREDIO.x + 0.3, meioY, 1.6)
+      : sala === "cartorio"
+        ? iso.ponto(meioX + 1.2, s.y0 + 0.5, 3.6)
+        : s.y0 === 0
+          ? iso.ponto(meioX, 0, PAREDE_ALTA + 0.5)
+          : iso.ponto(0, meioY, PAREDE_ALTA + 0.5);
   return {
     placa: {
       x: Math.min(Math.max(meio.x, MARGEM_DA_PLACA), CENA.largura - MARGEM_DA_PLACA),
@@ -559,10 +608,11 @@ export interface FocoDaSala {
 export function focoDaSala(sala: string): FocoDaSala {
   const s = SALAS[sala];
   if (!s) throw new Error(`Sala fora da planta: ${sala}`);
+  const alto = s.anexo ? PAREDE_DO_ANEXO : PAREDE_ALTA;
   const cantos = [
-    iso.ponto(s.x0, s.y0, PAREDE_ALTA),
-    iso.ponto(s.x1, s.y0, PAREDE_ALTA),
-    iso.ponto(s.x0, s.y1, PAREDE_ALTA),
+    iso.ponto(s.x0, s.y0, alto),
+    iso.ponto(s.x1, s.y0, alto),
+    iso.ponto(s.x0, s.y1, alto),
     iso.ponto(s.x1, s.y0, 0),
     iso.ponto(s.x0, s.y1, 0),
     iso.ponto(s.x1, s.y1, 0),

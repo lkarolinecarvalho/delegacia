@@ -2,6 +2,7 @@ import { conteudo } from "@delegacia/content";
 import { describe, expect, it } from "vitest";
 import { CENA, desenharCena, focoDaSala, lugarDaSala, naTela } from "../arte/delegacia";
 import {
+  ANEXOS,
   avancar,
   type NaGrade,
   NO_INICIAL,
@@ -30,17 +31,21 @@ function cruza(a: NaGrade, b: NaGrade, parede: (typeof PAREDES)[number]): boolea
 }
 
 describe("planta da delegacia", () => {
-  it("toda sala do conteúdo e de toda missão está na planta, dentro do prédio", () => {
+  it("toda sala do conteúdo e de toda missão está na planta", () => {
     for (const id of salas) {
       const sala = SALAS[id];
       expect(sala, id).toBeDefined();
       if (!sala) continue;
-      expect(sala.x0).toBeGreaterThanOrEqual(0);
-      expect(sala.y0).toBeGreaterThanOrEqual(0);
-      expect(sala.x1).toBeLessThanOrEqual(PREDIO.x);
-      expect(sala.y1).toBeLessThanOrEqual(PREDIO.y);
       expect(NOS[sala.no], id).toBeDefined();
+      const noPredio = sala.x0 >= 0 && sala.y0 >= 0 && sala.x1 <= PREDIO.x && sala.y1 <= PREDIO.y;
+      // Os departamentos ficam em prédios à parte, na frente do principal.
+      if (sala.anexo) expect(sala.y0, id).toBeGreaterThan(PREDIO.y);
+      else expect(noPredio, id).toBe(true);
     }
+  });
+
+  it("os três departamentos são prédios à parte", () => {
+    expect(ANEXOS.map(([id]) => id).sort()).toEqual(["especial", "patrimonio", "pessoa"]);
   });
 
   it("as salas não se sobrepõem", () => {
@@ -88,7 +93,14 @@ describe("rotas", () => {
     }
   });
 
-  it("da calçada ao gabinete, entra pela porta da frente e cruza o saguão até o fundo", () => {
+  it("da calçada a um departamento, não entra no prédio principal", () => {
+    const caminho = rota(NO_INICIAL, "patrimonio");
+    expect(caminho[0]).toEqual(NOS.rua);
+    expect(caminho).not.toContainEqual(NOS.entrada);
+    expect(caminho.at(-1)).toEqual(NOS.patrimonio);
+  });
+
+  it("da calçada ao gabinete, entra pela porta da frente e cruza a recepção até o fundo", () => {
     const caminho = rota(NO_INICIAL, "gabinete");
     expect(caminho[0]).toEqual(NOS.entrada);
     expect(caminho).toContainEqual(NOS.recepcao);
@@ -104,8 +116,8 @@ describe("rotas", () => {
   it("avança pela rota sem passar do último ponto", () => {
     const caminho = rota(NO_INICIAL, "recepcao");
     const meio = avancar(NOS.patio ?? [0, 0], caminho, 3);
-    expect(meio.posicao[0]).toBe(11.5);
-    expect(meio.posicao[1]).toBeCloseTo(25.4);
+    expect(meio.posicao[0]).toBe(17);
+    expect(meio.posicao[1]).toBeCloseTo(17.5);
     expect(meio.rota).toHaveLength(caminho.length);
     const fim = avancar(meio.posicao, meio.rota, 1000);
     expect(fim.posicao).toEqual(NOS.recepcao);
