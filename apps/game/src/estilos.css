@@ -122,6 +122,10 @@ ol {
   transition: transform 520ms ease-in-out;
 }
 
+.placa-encoberta {
+  opacity: 0.2;
+}
+
 /* De dentro da sala, somem as placas e as salas deixam de ser tocáveis. */
 .cena-de-dentro .placa,
 .cena-de-dentro .sala-area {

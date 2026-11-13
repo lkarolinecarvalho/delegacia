@@ -49,22 +49,42 @@ lei, e vê a consequência jurídica da decisão.
 
 ## 6. A delegacia
 
-| Sala | Onde fica | Função no jogo |
+| Ambiente | Onde fica | Função no jogo |
 |---|---|---|
-| Recepção | Saguão, logo na entrada | Registro de ocorrência; quem chega pelo balcão |
-| Sala de oitiva | Ao lado do saguão | Ouvir vítima, testemunha e conduzido |
-| Gabinete | Fundo | Dra. Helena; conversas de teoria e decisões |
-| Cartório | Fundo | Seu Bento; casos do plantão e o quadro de presos e de prazos |
+| Recepção | Saguão, da porta da frente ao fundo | Recebimento e triagem do que chega |
+| Cartório | Esquerda, na frente | Registro das ocorrências, autos, termos; o quadro de presos e de prazos |
+| Sala de oitiva | Esquerda | Oitiva de vítimas e testemunhas; interrogatório do investigado |
+| Gabinete da delegada | Fundo | Análise dos casos e decisões da autoridade policial |
+| Sala de investigação | Fundo | Diligências, coleta de informações e análise do que foi reunido |
+| Arquivo | Fundo | Consulta aos casos concluídos; o plantão livre sai daqui |
+| Departamento de crimes contra a pessoa | Direita | Os casos da ronda dos crimes contra a pessoa |
+| Departamento de crimes contra o patrimônio | Direita | Os casos da ronda dos crimes contra o patrimônio |
+| Departamento de legislação especial | Direita | As leis penais especiais (ainda sem casos) |
 
-São só essas quatro salas no mapa. A Biblioteca é um atalho da barra de baixo, e não há
-carceragem: os presos do dia aparecem no quadro do cartório.
+Nenhum ambiente é só decoração: cada um tem quem atende e algo a fazer. A Biblioteca é
+um atalho da barra de baixo.
 
-O avatar chega pelo **pátio**, onde ficam as viaturas. Do outro lado da rua está o
-**Fórum**, por enquanto só cenário (Parte IV). O IML e o Ministério Público aparecem só
-na narrativa.
+O avatar chega pela **porta da frente** e a primeira pessoa com quem fala é a
+recepcionista. Do outro lado da rua está o **Fórum**, por enquanto só cenário.
 
 **De dentro da sala.** Ao chegar a uma sala, a tela se aproxima dela e mostra o cartão
 da sala, com a missão que espera ali (se houver) e o botão para voltar ao mapa.
+
+### O caso anda pela delegacia
+
+O jogador não resolve tudo numa sala só. Uma missão pode ter várias **cenas**, cada uma
+num ambiente: a demanda chega à recepção, o escrivão pergunta como registrar, a
+delegada ajuda a pensar, a equipe sai em diligência, alguém é ouvido. Ao fim de cada
+cena, o aviso de destino aponta a sala seguinte, e o jogador vai até lá.
+
+### Linguagem (vale para todo o jogo)
+
+- Frases curtas e naturais, como numa conversa entre colegas. Nada de apostila.
+- Um conceito novo só quando a situação pede, e nunca vários de uma vez.
+- O termo técnico é explicado dentro da conversa, com exemplo do caso em curso.
+- **Negrito** só nas palavras-chave: conceitos, princípios e classificações.
+- O jogador não recebe uma aula inteira antes de resolver o caso: a teoria aparece
+  porque o caso exige.
 
 ## 7. Ciclo de um caso
 

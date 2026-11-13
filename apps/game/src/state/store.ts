@@ -2,6 +2,7 @@ import type { Afirmativa, Missao } from "@delegacia/content";
 import type { Analise, Procedimento } from "@delegacia/motor";
 import { create } from "zustand";
 import {
+  avancarCena,
   concluirMissao,
   concluirPlantaoLivre,
   type EstadoDoJogo,
@@ -33,6 +34,7 @@ interface Store {
     procedimento: Procedimento | null,
   ): void;
   concluirLivre(): void;
+  seguir(missao: Missao): void;
   relatar(missao: string): void;
   definirModoBanca(ligado: boolean): void;
   definirSom(ligado: boolean): void;
@@ -58,6 +60,7 @@ export const useStore = create<Store>((set) => ({
       jogo: concluirMissao(s.jogo, missao, analise, tentativasErradas, procedimento),
     })),
   concluirLivre: () => set((s) => ({ jogo: concluirPlantaoLivre(s.jogo) })),
+  seguir: (missao) => set((s) => ({ jogo: avancarCena(s.jogo, missao) })),
   relatar: (missao) => set((s) => ({ jogo: relatarInquerito(s.jogo, missao) })),
   definirModoBanca: (ligado) => set((s) => ({ jogo: { ...s.jogo, modoBanca: ligado } })),
   definirSom: (ligado) => set({ som: ligado }),

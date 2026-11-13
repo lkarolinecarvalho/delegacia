@@ -8,17 +8,26 @@ import {
 import { useMemo, useState } from "react";
 import { selecionarAfirmativas } from "../orquestrador/afirmativas";
 import { perguntasDeFixacao } from "../orquestrador/aula";
+import { cenaDaVez, cenasDaMissao } from "../orquestrador/cenas";
 import { trilhaDaAnalise } from "../orquestrador/ficha";
 import { tocar } from "../som/sons";
 import { aulasPendentes } from "../state/jogo";
 import { useStore } from "../state/store";
 import { Afirmativas } from "./Afirmativas";
 import { AulaEmBaloes, Fixacao } from "./AulaEmBaloes";
-import { Fala, Regras } from "./comum";
+import { Fala, Regras, Texto } from "./comum";
 import { FichaDeAnalise } from "./FichaDeAnalise";
 import { IconeEstrela } from "./icones";
 
-type Passo = "conversa" | "aulas" | "fixacao" | "fato" | "ficha" | "afirmativas" | "desfecho";
+type Passo =
+  | "conversa"
+  | "aulas"
+  | "fixacao"
+  | "fato"
+  | "ficha"
+  | "afirmativas"
+  | "desfecho"
+  | "seguir";
 
 const NOMES_DOS_PASSOS: Readonly<Record<Passo, string>> = {
   conversa: "Conversa",
@@ -28,6 +37,7 @@ const NOMES_DOS_PASSOS: Readonly<Record<Passo, string>> = {
   ficha: "Análise",
   afirmativas: "Afirmativas",
   desfecho: "Desfecho",
+  seguir: "Próxima sala",
 };
 
 export function CartaoDoFato({ caso }: { caso: Caso }) {
@@ -37,7 +47,9 @@ export function CartaoDoFato({ caso }: { caso: Caso }) {
       <h3>{caso.titulo}</h3>
       <ul>
         {caso.linhas.map((linha) => (
-          <li key={linha}>{linha}</li>
+          <li key={linha}>
+            <Texto>{linha}</Texto>
+          </li>
         ))}
       </ul>
     </div>
@@ -80,6 +92,14 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   const verTema = useStore((s) => s.verTema);
   const concluir = useStore((s) => s.concluir);
   const concluirLivre = useStore((s) => s.concluirLivre);
+  const seguir = useStore((s) => s.seguir);
+  // A cena em que a missão está ao abrir o painel: a conversa é a desta sala.
+  const [cena] = useState(() => {
+    const cenas = cenasDaMissao(missao);
+    const indice = livre ? cenas.length - 1 : cenaDaVez(useStore.getState().jogo, missao);
+    return { atual: cenas[indice] ?? cenas[cenas.length - 1], proxima: cenas[indice + 1] ?? null };
+  });
+  const ultimaCena = cena.atual?.final ?? true;
   // Fotografia do estado ao abrir a missão: as aulas e as afirmativas não mudam no meio.
   const [aulas] = useState(() =>
     aulasPendentes(useStore.getState().jogo, missao).flatMap(
@@ -89,7 +109,13 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   const [afirmativas] = useState(() =>
     selecionarAfirmativas(missao, conteudo.afirmativas, useStore.getState().jogo),
   );
-  const fixacao = useMemo(() => perguntasDeFixacao(aulas), [aulas]);
+  const [revelados] = useState(() => {
+    const vistos = useStore.getState().jogo.temasVistos;
+    return missao.revela
+      .filter((id) => !vistos.includes(id))
+      .flatMap((id) => conteudo.teoria.find((t) => t.id === id) ?? []);
+  });
+  const fixacao = useMemo(() => perguntasDeFixacao([...aulas, ...revelados]), [aulas, revelados]);
   const analise = useMemo(() => (missao.caso ? analisarFato(missao.caso.fato) : null), [missao]);
   const procedimento = useMemo(
     () =>
@@ -98,15 +124,19 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
   );
 
   const passos = useMemo<Passo[]>(
-    () => [
-      "conversa",
-      ...(aulas.length > 0 ? (["aulas"] as const) : []),
-      ...(fixacao.length > 0 ? (["fixacao"] as const) : []),
-      ...(missao.caso ? (["fato", "ficha"] as const) : []),
-      ...(missao.caso && afirmativas.length > 0 ? (["afirmativas"] as const) : []),
-      "desfecho",
-    ],
-    [aulas, fixacao, afirmativas, missao],
+    () =>
+      // Fora da última cena, a parada é só a conversa: o caso segue para outra sala.
+      !ultimaCena
+        ? ["conversa", "seguir"]
+        : [
+            "conversa",
+            ...(aulas.length > 0 ? (["aulas"] as const) : []),
+            ...(fixacao.length > 0 ? (["fixacao"] as const) : []),
+            ...(missao.caso ? (["fato", "ficha"] as const) : []),
+            ...(missao.caso && afirmativas.length > 0 ? (["afirmativas"] as const) : []),
+            "desfecho",
+          ],
+    [aulas, fixacao, afirmativas, missao, ultimaCena],
   );
   const [indice, setIndice] = useState(0);
   const [fala, setFala] = useState(0);
@@ -125,7 +155,8 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
     setIndice(indice + 1);
   };
 
-  const falaAtual = missao.dialogo[fala];
+  const falasDaCena = cena.atual?.falas ?? missao.dialogo;
+  const falaAtual = falasDaCena[fala];
 
   return (
     <div className="fluxo">
@@ -143,12 +174,14 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
 
       {passo === "conversa" && falaAtual && (
         <>
-          <Fala npc={falaAtual.npc}>{falaAtual.texto}</Fala>
+          <Fala key={fala} npc={falaAtual.npc}>
+            <Texto>{falaAtual.texto}</Texto>
+          </Fala>
           <button
             type="button"
             className="botao botao-principal"
             onClick={() => {
-              if (fala + 1 < missao.dialogo.length) {
+              if (fala + 1 < falasDaCena.length) {
                 tocar("toque");
                 setFala(fala + 1);
               } else {
@@ -159,6 +192,25 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
             Continuar
           </button>
         </>
+      )}
+
+      {passo === "seguir" && cena.proxima && (
+        <div className="desfecho">
+          <p className="desfecho-texto">
+            O caso segue. Próxima parada:{" "}
+            <strong>{conteudo.salas.find((x) => x.id === cena.proxima?.sala)?.nome}</strong>.
+          </p>
+          <button
+            type="button"
+            className="botao botao-principal"
+            onClick={() => {
+              seguir(missao);
+              aoFechar();
+            }}
+          >
+            Seguir
+          </button>
+        </div>
       )}
 
       {passo === "aulas" && (
@@ -212,7 +264,9 @@ export function FluxoDaMissao({ missao, livre = false, aoFechar }: Props) {
             <>
               <span className="etiqueta">Registrado no plantão</span>
               <Trilha analise={analise} procedimento={procedimento} />
-              <p className="desfecho-texto">{missao.caso.desfecho}</p>
+              <p className="desfecho-texto">
+                <Texto>{missao.caso.desfecho}</Texto>
+              </p>
               {procedimento?.preso && (
                 <p className="dica">
                   O autor fica preso até a audiência de custódia, em até 24 horas.

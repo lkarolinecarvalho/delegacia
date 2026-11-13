@@ -45,6 +45,12 @@ Projeto irmão do `cidade-contabil` (mesma estrutura de ensino; ver ADR-0006).
 - A delegacia é um prédio térreo, desenhado em SVG, em código; o avatar anda pelos
   caminhos da planta (`apps/game/src/mundo/planta.ts`). A interface é toda React (ADR-0001).
 
+### Linguagem e ensino
+- Frases curtas e naturais; nada de texto de apostila. Negrito só nas palavras-chave.
+- A teoria aparece porque o caso exige: sem aula inteira antes de resolver.
+- Um conceito novo por vez, explicado dentro da conversa, com exemplo do caso.
+- Os casos andam pela delegacia: cada ambiente tem uma função (GDD, seção 6).
+
 ### Tom (ADR-0005)
 - Foco no raciocínio jurídico e no procedimento. Sem detalhe gráfico de violência.
 - Vítimas tratadas com respeito. Sem casos, nomes ou pessoas reais.

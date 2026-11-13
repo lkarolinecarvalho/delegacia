@@ -1,9 +1,11 @@
 import { conteudo } from "@delegacia/content";
 import { analisarFato, analisarProcedimento } from "@delegacia/motor";
 import { describe, expect, it } from "vitest";
+import { cenaDaVez, cenasDaMissao, salaDaVez } from "../orquestrador/cenas";
 import { atualizarEstudo, conceitoVencido } from "./estudo";
 import {
   aulasPendentes,
+  avancarCena,
   capituloAtual,
   concluirMissao,
   concluirPlantaoLivre,
@@ -86,7 +88,7 @@ describe("campanha", () => {
   });
 
   it("as aulas pendentes somem depois de vistas", () => {
-    const [primeira] = conteudo.missoes;
+    const primeira = conteudo.missoes.find((m) => m.aulas.length > 0);
     if (!primeira) throw new Error("conteúdo incompleto");
     let estado = estadoInicial();
     expect(aulasPendentes(estado, primeira)).toEqual(primeira.aulas);
@@ -203,5 +205,46 @@ describe("quadro da delegacia", () => {
       plantoesLivres: 1,
     });
     expect(depois.concluidas).toEqual(estado.concluidas);
+  });
+});
+
+describe("missão em várias salas", () => {
+  const [chegada] = conteudo.missoes;
+  if (!chegada) throw new Error("sem missões");
+
+  it("começa na recepção e segue de sala em sala até a cena final", () => {
+    let estado = estadoInicial();
+    const cenas = cenasDaMissao(chegada);
+    expect(cenas.at(-1)).toMatchObject({ sala: chegada.sala, final: true });
+    const percurso: string[] = [];
+    for (let i = 0; i < cenas.length - 1; i += 1) {
+      percurso.push(salaDaVez(estado, chegada));
+      expect(cenaDaVez(estado, chegada)).toBe(i);
+      estado = avancarCena(estado, chegada);
+    }
+    percurso.push(salaDaVez(estado, chegada));
+    expect(percurso).toEqual(cenas.map((c) => c.sala));
+    expect(percurso[0]).toBe("recepcao");
+    // Na última cena não há mais para onde seguir.
+    expect(() => avancarCena(estado, chegada)).toThrow(/última cena/);
+  });
+
+  it("concluir a missão zera o andamento e guarda o que a conversa ensinou", () => {
+    let estado = estadoInicial();
+    for (const _ of chegada.antes) estado = avancarCena(estado, chegada);
+    estado = concluirMissao(estado, chegada, null);
+    expect(estado.andamento).toBeNull();
+    expect(estado.temasVistos).toEqual(expect.arrayContaining(chegada.revela));
+    // A missão seguinte começa da primeira cena dela.
+    const proxima = proximaMissao(estado, conteudo);
+    if (!proxima) throw new Error("sem próxima");
+    expect(cenaDaVez(estado, proxima)).toBe(0);
+    expect(salaDaVez(estado, proxima)).toBe(cenasDaMissao(proxima)[0]?.sala);
+  });
+
+  it("não segue numa missão que não é a da vez", () => {
+    const outra = conteudo.missoes[1];
+    if (!outra) throw new Error("sem missões");
+    expect(() => avancarCena(estadoInicial(), outra)).toThrow(/não está disponível/);
   });
 });

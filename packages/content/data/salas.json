@@ -2,21 +2,55 @@
   {
     "id": "recepcao",
     "nome": "Recepção",
-    "descricao": "O balcão onde a população registra ocorrência."
+    "placa": "Recepção",
+    "descricao": "Recebimento e triagem do que chega à delegacia."
   },
   {
     "id": "cartorio",
     "nome": "Cartório",
-    "descricao": "A mesa do escrivão: autos, termos e o quadro de presos e de prazos."
+    "placa": "Cartório",
+    "descricao": "Registro das ocorrências, autos, termos e o quadro de presos e de prazos."
   },
   {
     "id": "gabinete",
-    "nome": "Gabinete",
-    "descricao": "A sala da delegada titular."
+    "nome": "Gabinete da delegada",
+    "placa": "Gabinete",
+    "descricao": "Análise dos casos e decisões da autoridade policial."
+  },
+  {
+    "id": "investigacao",
+    "nome": "Sala de investigação",
+    "placa": "Investigação",
+    "descricao": "Diligências, coleta de informações e análise do que foi reunido."
   },
   {
     "id": "oitiva",
     "nome": "Sala de oitiva",
-    "descricao": "Onde se ouvem vítimas, testemunhas e conduzidos."
+    "placa": "Oitiva",
+    "descricao": "Oitiva de vítimas e testemunhas, e interrogatório do investigado."
+  },
+  {
+    "id": "arquivo",
+    "nome": "Arquivo",
+    "placa": "Arquivo",
+    "descricao": "Consulta aos procedimentos já concluídos."
+  },
+  {
+    "id": "pessoa",
+    "nome": "Departamento de crimes contra a pessoa",
+    "placa": "Pessoa",
+    "descricao": "Crimes contra a vida, a integridade física, a honra e a liberdade."
+  },
+  {
+    "id": "patrimonio",
+    "nome": "Departamento de crimes contra o patrimônio",
+    "placa": "Patrimônio",
+    "descricao": "Furto, roubo, estelionato e os demais crimes patrimoniais."
+  },
+  {
+    "id": "especial",
+    "nome": "Departamento de legislação especial",
+    "placa": "Leis especiais",
+    "descricao": "Casos das leis penais especiais. Ainda sem casos nesta versão."
   }
 ]

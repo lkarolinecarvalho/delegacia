@@ -87,3 +87,26 @@ conceito usado em missão tem pelo menos 3 afirmativas.
   "regras": ["R-ITER-02"]
 }
 ```
+
+## Cenas em várias salas, temas revelados e negrito
+
+```jsonc
+{
+  "sala": "gabinete",                    // onde a missão se resolve (a cena final)
+  "dialogo": [ /* até 8 falas curtas */ ],
+  "antes": [                             // paradas anteriores, na ordem; só conversa
+    { "sala": "recepcao", "falas": [{ "npc": "cida-recepcao", "texto": "…" }] },
+    { "sala": "cartorio", "falas": [ /* … */ ] }
+  ],
+  "revela": ["legalidade"]               // temas que a conversa ensina
+}
+```
+
+- **`antes`**: o jogador vai de sala em sala; ao fim de cada parada, o destino passa a
+  ser a sala seguinte. A fixação, o caso e o desfecho ficam na cena final.
+- **`revela`**: temas ensinados dentro da conversa, sem aula. As perguntas deles viram a
+  fixação, e os temas ficam guardados na Biblioteca. Um tema aparece uma única vez na
+  campanha, em `aulas` ou em `revela`.
+- **Negrito**: trechos entre `**` saem em negrito nas falas, nas aulas, no fato, nos
+  comentários e no desfecho. Só nas palavras-chave.
+- A sala tem `nome` (completo) e `placa` (curto, para o mapa).

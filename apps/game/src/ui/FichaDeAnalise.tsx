@@ -18,7 +18,7 @@ import {
   type ValorDaFicha,
 } from "../orquestrador/ficha";
 import { tocar } from "../som/sons";
-import { Regras } from "./comum";
+import { Regras, Texto } from "./comum";
 
 /** Depois de quantas conferências erradas o jogo oferece a resposta. */
 const TENTATIVAS_ATE_A_AJUDA = 2;
@@ -189,7 +189,11 @@ export function FichaDeAnalise({ caso, analise, procedimento, capitulo, aoAcerta
                       {previa}
                     </p>
                   )}
-                  <p>{caso.comentarios[etapa.campo] ?? "Releia o fato e a regra desta etapa."}</p>
+                  <p>
+                    <Texto>
+                      {caso.comentarios[etapa.campo] ?? "Releia o fato e a regra desta etapa."}
+                    </Texto>
+                  </p>
                   <Regras ids={retorno.regras} />
                 </div>
               )}

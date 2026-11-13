@@ -2,14 +2,15 @@
  * Planta da delegacia, sem desenho: salas, paredes, pontos de caminhada e rotas.
  *
  * O prédio é térreo e fica numa grade (`gx` desce para a direita da tela, `gy` desce
- * para a esquerda). As salas do fundo encostam nas duas paredes altas; o saguão da
- * recepção liga todas elas e dá para o pátio, por onde o avatar chega.
+ * para a esquerda). No fundo ficam o gabinete, a investigação e o arquivo; à esquerda, a
+ * sala de oitiva e o cartório; à direita, os três departamentos. O saguão da recepção
+ * corta o prédio pelo meio, da porta da frente até o corredor do fundo.
  */
 
 export type NaGrade = readonly [gx: number, gy: number];
 
 /** Tamanho do prédio, em ladrilhos. */
-export const PREDIO = { x: 19, y: 22 } as const;
+export const PREDIO = { x: 21, y: 25 } as const;
 
 export interface SalaNaPlanta {
   readonly x0: number;
@@ -22,57 +23,84 @@ export interface SalaNaPlanta {
 
 /** O retângulo de cada sala, pelo id de `packages/content/data/salas.json`. */
 export const SALAS: Readonly<Record<string, SalaNaPlanta>> = {
-  gabinete: { x0: 0, y0: 0, x1: 10, y1: 9, no: "gabinete" },
-  cartorio: { x0: 10, y0: 0, x1: 19, y1: 9, no: "cartorio" },
-  oitiva: { x0: 0, y0: 11, x1: 8, y1: 22, no: "oitiva" },
-  recepcao: { x0: 8, y0: 11, x1: 19, y1: 22, no: "recepcao" },
+  gabinete: { x0: 0, y0: 0, x1: 7.5, y1: 7, no: "gabinete" },
+  investigacao: { x0: 7.5, y0: 0, x1: 14, y1: 7, no: "investigacao" },
+  arquivo: { x0: 14, y0: 0, x1: 21, y1: 7, no: "arquivo" },
+  oitiva: { x0: 0, y0: 9, x1: 8, y1: 17, no: "oitiva" },
+  cartorio: { x0: 0, y0: 17, x1: 8, y1: 25, no: "cartorio" },
+  recepcao: { x0: 8, y0: 9, x1: 14, y1: 25, no: "recepcao" },
+  pessoa: { x0: 14, y0: 9, x1: 21, y1: 14.3, no: "pessoa" },
+  patrimonio: { x0: 14, y0: 14.3, x1: 21, y1: 19.7, no: "patrimonio" },
+  especial: { x0: 14, y0: 19.7, x1: 21, y1: 25, no: "especial" },
 };
 
-/** Faixa de circulação entre as salas do fundo e as da frente: faz parte do saguão. */
-export const CORREDOR = { x0: 0, y0: 9, x1: 19, y1: 11 } as const;
+/** Corredor do fundo, entre as salas de trás e as da frente. */
+export const CORREDOR = { x0: 0, y0: 7, x1: 21, y1: 9 } as const;
 
-/** Eixos por onde o avatar anda. */
-const EIXO_DO_CORREDOR = 10;
-const EIXO_DO_SAGUAO = 9.5;
-const EIXO_DA_ENTRADA = 17.5;
+/** Eixos por onde o avatar anda: o saguão (ao longo de gy) e o corredor do fundo. */
+const SAGUAO = 11.5;
+const FUNDO = 8;
+/** Onde fica o vão de cada porta, no eixo livre da parede em que ela está. */
 export const PORTAS = {
-  gabinete: 5,
-  cartorio: 14.5,
-  oitiva: EIXO_DA_ENTRADA,
-  entrada: EIXO_DA_ENTRADA,
+  entrada: SAGUAO,
+  gabinete: 3.75,
+  investigacao: 10.75,
+  arquivo: 17.5,
+  oitiva: 13,
+  cartorio: 21,
+  pessoa: 11.7,
+  patrimonio: 16.6,
+  especial: 22.3,
 } as const;
 /** Meia largura do vão de uma porta. */
 export const MEIO_VAO = 0.8;
 
-/** Nó em que o avatar começa: no pátio, em frente à entrada. */
+/** Nó em que o avatar começa: na calçada, em frente à porta. */
 export const NO_INICIAL = "patio";
 
 /** Pontos por onde o avatar passa. Todo trecho entre dois nós segue a grade. */
 export const NOS: Readonly<Record<string, NaGrade>> = {
-  patio: [24, EIXO_DA_ENTRADA],
-  entrada: [18.4, EIXO_DA_ENTRADA],
-  balcao: [15.6, EIXO_DA_ENTRADA],
-  recepcao: [15.6, 14.2],
-  saguao: [EIXO_DO_SAGUAO, EIXO_DA_ENTRADA],
-  oitiva: [5.4, PORTAS.oitiva],
-  corredor: [EIXO_DO_SAGUAO, EIXO_DO_CORREDOR],
-  "frente-do-gabinete": [PORTAS.gabinete, EIXO_DO_CORREDOR],
-  gabinete: [PORTAS.gabinete, 6.9],
-  "frente-do-cartorio": [PORTAS.cartorio, EIXO_DO_CORREDOR],
-  cartorio: [PORTAS.cartorio, 6.9],
+  patio: [SAGUAO, 28.4],
+  entrada: [SAGUAO, 24.2],
+  "frente-da-especial": [SAGUAO, PORTAS.especial],
+  especial: [16.3, PORTAS.especial],
+  "frente-do-cartorio": [SAGUAO, PORTAS.cartorio],
+  cartorio: [5.2, PORTAS.cartorio],
+  // O balcão fica no meio do saguão, em frente à porta do patrimônio.
+  recepcao: [SAGUAO, PORTAS.patrimonio],
+  patrimonio: [16.3, PORTAS.patrimonio],
+  "frente-da-oitiva": [SAGUAO, PORTAS.oitiva],
+  oitiva: [5.2, PORTAS.oitiva],
+  "frente-da-pessoa": [SAGUAO, PORTAS.pessoa],
+  pessoa: [16.3, PORTAS.pessoa],
+  corredor: [SAGUAO, FUNDO],
+  "frente-do-gabinete": [PORTAS.gabinete, FUNDO],
+  gabinete: [PORTAS.gabinete, 5.2],
+  "frente-da-investigacao": [PORTAS.investigacao, FUNDO],
+  investigacao: [PORTAS.investigacao, 5.2],
+  "frente-do-arquivo": [PORTAS.arquivo, FUNDO],
+  arquivo: [PORTAS.arquivo, 5.2],
 };
 
 const TRECHOS: readonly (readonly [string, string])[] = [
   ["patio", "entrada"],
-  ["entrada", "balcao"],
-  ["balcao", "recepcao"],
-  ["balcao", "saguao"],
-  ["saguao", "oitiva"],
-  ["saguao", "corredor"],
-  ["corredor", "frente-do-gabinete"],
-  ["frente-do-gabinete", "gabinete"],
-  ["corredor", "frente-do-cartorio"],
+  ["entrada", "frente-da-especial"],
+  ["frente-da-especial", "especial"],
+  ["frente-da-especial", "frente-do-cartorio"],
   ["frente-do-cartorio", "cartorio"],
+  ["frente-do-cartorio", "recepcao"],
+  ["recepcao", "patrimonio"],
+  ["recepcao", "frente-da-oitiva"],
+  ["frente-da-oitiva", "oitiva"],
+  ["frente-da-oitiva", "frente-da-pessoa"],
+  ["frente-da-pessoa", "pessoa"],
+  ["frente-da-pessoa", "corredor"],
+  ["corredor", "frente-da-investigacao"],
+  ["frente-da-investigacao", "investigacao"],
+  ["frente-da-investigacao", "frente-do-gabinete"],
+  ["frente-do-gabinete", "gabinete"],
+  ["corredor", "frente-do-arquivo"],
+  ["frente-do-arquivo", "arquivo"],
 ];
 
 export const TRECHOS_NA_GRADE: readonly (readonly [NaGrade, NaGrade])[] = TRECHOS.map(([a, b]) => [
@@ -86,7 +114,7 @@ function ponto(no: string): NaGrade {
   return p;
 }
 
-/** Nó em que o avatar fica numa sala; `null` é o pátio. */
+/** Nó em que o avatar fica numa sala; `null` é a calçada. */
 export function noDaSala(sala: string | null): string {
   if (sala === null) return NO_INICIAL;
   const naPlanta = SALAS[sala];
@@ -167,25 +195,47 @@ const p = (eixo: "x" | "y", em: number, de: number, ate: number, altura = BAIXA)
   altura,
 });
 
+/** Uma parede com vãos de porta: devolve os trechos entre eles. */
+function comPortas(
+  eixo: "x" | "y",
+  em: number,
+  de: number,
+  ate: number,
+  portas: readonly number[],
+  altura = BAIXA,
+): Parede[] {
+  const cortes = [...portas].sort((a, b) => a - b);
+  const trechos: Parede[] = [];
+  let inicio = de;
+  for (const porta of cortes) {
+    trechos.push(p(eixo, em, inicio, porta - MEIO_VAO, altura));
+    inicio = porta + MEIO_VAO;
+  }
+  trechos.push(p(eixo, em, inicio, ate, altura));
+  return trechos;
+}
+
 /**
  * Paredes baixas (o prédio é visto em corte), já com os vãos das portas. As duas
  * paredes altas do fundo são desenhadas à parte.
  */
 export const PAREDES: readonly Parede[] = [
-  // Entre o gabinete e o cartório.
-  p("x", 10, 0, 9),
-  // Frente das salas do fundo, com as duas portas.
-  p("y", 9, 0, PORTAS.gabinete - MEIO_VAO),
-  p("y", 9, PORTAS.gabinete + MEIO_VAO, PORTAS.cartorio - MEIO_VAO),
-  p("y", 9, PORTAS.cartorio + MEIO_VAO, 19),
-  // Sala de oitiva.
-  p("y", 11, 0, 8),
-  p("x", 8, 11, PORTAS.oitiva - MEIO_VAO),
-  p("x", 8, PORTAS.oitiva + MEIO_VAO, 22),
-  // Fachadas da frente, com a entrada para o pátio.
-  p("y", 22, 0, 19, DE_FORA),
-  p("x", 19, 0, PORTAS.entrada - MEIO_VAO, DE_FORA),
-  p("x", 19, PORTAS.entrada + MEIO_VAO, 22, DE_FORA),
+  // Entre as salas do fundo, e a frente delas, com as três portas.
+  p("x", 7.5, 0, 7),
+  p("x", 14, 0, 7),
+  ...comPortas("y", 7, 0, 21, [PORTAS.gabinete, PORTAS.investigacao, PORTAS.arquivo]),
+  // Lado esquerdo: sala de oitiva e cartório.
+  p("y", 9, 0, 8),
+  p("y", 17, 0, 8),
+  ...comPortas("x", 8, 9, 25, [PORTAS.oitiva, PORTAS.cartorio]),
+  // Lado direito: os três departamentos.
+  p("y", 9, 14, 21),
+  p("y", 14.3, 14, 21),
+  p("y", 19.7, 14, 21),
+  ...comPortas("x", 14, 9, 25, [PORTAS.pessoa, PORTAS.patrimonio, PORTAS.especial]),
+  // Fachadas, com a porta da frente.
+  ...comPortas("y", 25, 0, 21, [PORTAS.entrada], DE_FORA),
+  p("x", 21, 0, 25, DE_FORA),
 ];
 
 /** Sala em que o ponto da grade cai, se houver. */

@@ -2,7 +2,7 @@ import type { Pergunta, Tema } from "@delegacia/content";
 import { useMemo, useState } from "react";
 import { baloesDaAula } from "../orquestrador/aula";
 import { tocar } from "../som/sons";
-import { Fala } from "./comum";
+import { Fala, Texto } from "./comum";
 
 /** Quem dá as aulas. */
 const PROFESSORA = "helena-delegada";
@@ -52,7 +52,7 @@ export function AulaEmBaloes({ temas, aoVerTema, aoTerminar }: PropsDaAula) {
       </header>
       <Fala key={indice} npc={PROFESSORA}>
         {balao.tipo === "exemplo" && <span className="etiqueta balao-etiqueta">Exemplo</span>}
-        {balao.texto}
+        <Texto>{balao.texto}</Texto>
       </Fala>
       {balao.fonte && <p className="aula-fonte">Fonte: {balao.fonte}</p>}
       <button type="button" className="botao botao-principal" onClick={continuar}>
@@ -93,7 +93,9 @@ export function Fixacao({ perguntas, aoTerminar }: PropsDaFixacao) {
       <p className="etiqueta">
         Fixação {perguntas.length > 1 && `(${indice + 1} de ${perguntas.length})`}
       </p>
-      <p className="enunciado">{pergunta.enunciado}</p>
+      <p className="enunciado">
+        <Texto>{pergunta.enunciado}</Texto>
+      </p>
       {resposta === null ? (
         <div className="certo-errado">
           <button type="button" className="botao botao-certo" onClick={() => responder("C")}>
@@ -110,7 +112,9 @@ export function Fixacao({ perguntas, aoTerminar }: PropsDaFixacao) {
               {acertou ? "Isso!" : "Não é bem assim."} Gabarito:{" "}
               {pergunta.gabarito === "C" ? "Certo" : "Errado"}.
             </strong>
-            <p>{pergunta.explicacao}</p>
+            <p>
+              <Texto>{pergunta.explicacao}</Texto>
+            </p>
           </div>
           <button type="button" className="botao botao-principal" onClick={continuar}>
             Continuar

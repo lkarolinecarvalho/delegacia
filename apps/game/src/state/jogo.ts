@@ -29,6 +29,8 @@ export interface EstadoDoJogo {
   readonly pontos: number;
   readonly concluidas: readonly string[];
   readonly registro: readonly RegistroDoCaso[];
+  /** A missão em curso e quantas cenas dela já foram feitas (missões com várias salas). */
+  readonly andamento: { readonly missao: string; readonly cena: number } | null;
   /** Missões cujo inquérito já foi relatado e remetido. */
   readonly relatados: readonly string[];
   /** Casos resolvidos no plantão livre. */
@@ -48,6 +50,7 @@ export function estadoInicial(): EstadoDoJogo {
     pontos: 0,
     concluidas: [],
     registro: [],
+    andamento: null,
     relatados: [],
     plantoesLivres: 0,
     estudo: {},
@@ -68,6 +71,18 @@ export function missaoDisponivel(estado: EstadoDoJogo, missao: Missao): boolean 
 /** A próxima missão da campanha, ou `null` quando tudo o que existe foi concluído. */
 export function proximaMissao(estado: EstadoDoJogo, conteudo: Conteudo): Missao | null {
   return conteudo.missoes.find((missao) => missaoDisponivel(estado, missao)) ?? null;
+}
+
+/** Fecha uma cena da missão em curso: a próxima acontece em outra sala. */
+export function avancarCena(estado: EstadoDoJogo, missao: Missao): EstadoDoJogo {
+  if (!missaoDisponivel(estado, missao)) {
+    throw new Error(`A missão ${missao.id} não está disponível.`);
+  }
+  const feitas = estado.andamento?.missao === missao.id ? estado.andamento.cena : 0;
+  if (feitas >= missao.antes.length) {
+    throw new Error(`A missão ${missao.id} já está na última cena.`);
+  }
+  return { ...estado, andamento: { missao: missao.id, cena: feitas + 1 } };
 }
 
 /** Aulas da missão que o jogador ainda não viu. */
@@ -101,6 +116,9 @@ export function concluirMissao(
     ...estado,
     pontos: estado.pontos + missao.recompensa.pontos,
     concluidas: [...estado.concluidas, missao.id],
+    andamento: null,
+    // O que a conversa da missão ensinou fica guardado na Biblioteca.
+    temasVistos: [...new Set([...estado.temasVistos, ...missao.revela])],
     registro: analise
       ? [
           ...estado.registro,

@@ -1,6 +1,7 @@
 import { conteudo, type Missao } from "@delegacia/content";
 import { useCallback, useState } from "react";
-import { missaoDoPlantaoLivre } from "../orquestrador/plantaoLivre";
+import { cenaDaVez, cenasDaMissao, salaDaVez } from "../orquestrador/cenas";
+import { casosDoArquivo, missaoDoPlantaoLivre } from "../orquestrador/plantaoLivre";
 import { tocar } from "../som/sons";
 import { capituloAtual, inqueritos, proximaMissao } from "../state/jogo";
 import { type Painel, useStore } from "../state/store";
@@ -22,7 +23,9 @@ import { PainelDoQuadro } from "./Quadro";
 /** Com este tanto de plantões ou menos, o inquérito vira aviso na placa do cartório. */
 const PRAZO_CURTO = 3;
 
-const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva"]);
+const SALAS_NO_FEMININO = new Set(["recepcao", "oitiva", "investigacao"]);
+/** A sala que guarda os procedimentos concluídos: a entrada do plantão livre. */
+const SALA_DO_ARQUIVO = "arquivo";
 /** A sala em que fica o quadro de presos e de prazos. */
 const SALA_DO_QUADRO = "cartorio";
 
@@ -74,7 +77,11 @@ export function App() {
 
   const proxima = proximaMissao(jogo, conteudo);
   const capitulo = capituloAtual(jogo, conteudo);
-  const salaDoDestino = conteudo.salas.find((s) => s.id === proxima?.sala);
+  // A missão pode passar por várias salas: o destino é a sala da cena da vez.
+  const destino = proxima ? salaDaVez(jogo, proxima) : null;
+  const salaDoDestino = conteudo.salas.find((s) => s.id === destino);
+  const cenas = proxima ? cenasDaMissao(proxima).length : 1;
+  const cena = proxima ? cenaDaVez(jogo, proxima) + 1 : 1;
 
   const fechar = useCallback(() => {
     fecharPainel();
@@ -88,7 +95,7 @@ export function App() {
   // Recomeçar o jogo volta ao mapa.
   const foco = aberturaVista ? dentro : null;
   const salaEmFoco = conteudo.salas.find((x) => x.id === foco);
-  const missaoDaSala = proxima && proxima.sala === foco ? proxima : null;
+  const missaoDaSala = proxima && destino === foco ? proxima : null;
 
   /** O avatar chegou: a tela passa a mostrar a sala por dentro. */
   const aoChegarNaSala = (id: string) => {
@@ -117,7 +124,7 @@ export function App() {
         // Recomeçar o jogo remonta a cena, com o avatar de volta ao pátio.
         key={aberturaVista ? "jogo" : "abertura"}
         salaInicial={sala}
-        destino={proxima?.sala ?? null}
+        destino={destino}
         foco={foco}
         prazosCurtos={prazosCurtos}
         aoTocar={() => tocar("toque")}
@@ -152,6 +159,7 @@ export function App() {
             <span>
               Vá {SALAS_NO_FEMININO.has(salaDoDestino.id) ? "à" : "ao"}{" "}
               <strong>{salaDoDestino.nome}</strong>: {proxima.titulo}
+              {cenas > 1 && ` (${cena} de ${cenas})`}
             </span>
           ) : (
             <span>
@@ -171,10 +179,26 @@ export function App() {
               className="botao botao-principal"
               onClick={() => comecarMissao(missaoDaSala)}
             >
-              {missaoDaSala.caso ? "Atender" : "Conversar"}: {missaoDaSala.titulo}
+              {cena > 1 ? "Continuar" : missaoDaSala.caso ? "Atender" : "Conversar"}:{" "}
+              {missaoDaSala.titulo}
             </button>
           ) : (
             <p className="cartao-da-sala-nada">Nada à sua espera aqui agora.</p>
+          )}
+          {salaEmFoco.id === SALA_DO_ARQUIVO && (
+            <>
+              <button
+                type="button"
+                className="botao botao-discreto"
+                disabled={casosDoArquivo(jogo, conteudo).length === 0}
+                onClick={iniciarPlantaoLivre}
+              >
+                Plantão livre: sortear um caso do arquivo
+              </button>
+              <button type="button" className="botao botao-discreto" onClick={() => abrir("casos")}>
+                Consultar os casos
+              </button>
+            </>
           )}
           {salaEmFoco.id === SALA_DO_QUADRO && (
             <button type="button" className="botao botao-discreto" onClick={() => abrir("quadro")}>

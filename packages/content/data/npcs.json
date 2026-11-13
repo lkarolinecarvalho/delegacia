@@ -1,6 +1,42 @@
 [
-  { "id": "helena-delegada", "nome": "Dra. Helena", "papel": "Delegada titular" },
-  { "id": "bento-escrivao", "nome": "Seu Bento", "papel": "Escrivão" },
-  { "id": "rocha-agente", "nome": "Agente Rocha", "papel": "Agente de polícia" },
-  { "id": "cida-recepcao", "nome": "Dona Cida", "papel": "Recepção" }
+  {
+    "id": "helena-delegada",
+    "nome": "Dra. Helena",
+    "papel": "Delegada titular"
+  },
+  {
+    "id": "bento-escrivao",
+    "nome": "Seu Bento",
+    "papel": "Escrivão"
+  },
+  {
+    "id": "rocha-agente",
+    "nome": "Agente Rocha",
+    "papel": "Investigação"
+  },
+  {
+    "id": "cida-recepcao",
+    "nome": "Dona Cida",
+    "papel": "Recepção"
+  },
+  {
+    "id": "lia-investigadora",
+    "nome": "Investigadora Lia",
+    "papel": "Crimes contra a pessoa"
+  },
+  {
+    "id": "tavares-investigador",
+    "nome": "Investigador Tavares",
+    "papel": "Crimes contra o patrimônio"
+  },
+  {
+    "id": "nadia-investigadora",
+    "nome": "Investigadora Nádia",
+    "papel": "Legislação especial"
+  },
+  {
+    "id": "anselmo-cidadao",
+    "nome": "Seu Anselmo",
+    "papel": "Comerciante"
+  }
 ]

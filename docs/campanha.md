@@ -85,10 +85,8 @@ de cada um, está em [casos-dourados.md](casos-dourados.md).
 
 | Nº | Missão | Sala | Tipo | O jogador decide |
 |---|---|---|---|---|
-| 1.1 | Bem-vindo(a) à delegacia | Gabinete | Conversa | — |
-| 1.2 | O que é crime | Gabinete | Conversa | — |
-| 1.3 | O que a delegacia faz | Cartório | Conversa | — |
-| 1.4 | A dívida do vizinho | Recepção | Caso | Há fato típico? (não: ilícito civil) |
+| 1.1 | Chegada à delegacia | Recepção → cartório → oitiva → investigação → arquivo → departamentos → gabinete | Conversa | — |
+| 1.2 | A dívida do vizinho | Recepção → cartório → gabinete | Caso | Há fato típico? (não: ilícito civil) |
 | 2.1 | A bicicleta | Cartório | Caso | Fato típico; consumado |
 | 2.2 | A mão na bolsa | Sala de oitiva | Caso | Tentado |
 | 2.3 | O vaso da vizinha | Recepção | Caso | Atípico: dano culposo não existe |
@@ -110,3 +108,12 @@ Os fatos e as respostas esperadas estão em [casos-dourados.md](casos-dourados.m
 - O que ficou apurado fica no **cartão do fato**. O motor não valora prova: o que está
   no cartão é o que aconteceu.
 - O desfecho fala do caso, não da pena: penas e processo entram nas Partes II e IV.
+
+## Reestruturação em curso
+
+O capítulo 1 já segue o modelo novo: o jogador chega pela recepção, a Dona Cida
+apresenta os ambientes, a Dra. Helena conversa (sem aula expositiva) e o primeiro caso
+passa por três salas. Os capítulos 2 a 10 e as rondas ainda estão no formato anterior
+(conversa curta, aula em balões e caso numa sala só) e serão reescritos no mesmo
+modelo, um capítulo por vez. As rondas dos crimes contra a pessoa e contra o patrimônio
+já acontecem nos respectivos departamentos.

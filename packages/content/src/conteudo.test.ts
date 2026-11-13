@@ -24,9 +24,9 @@ function problemasDe(bruto: Parameters<typeof carregarConteudo>[0]): readonly st
 
 describe("conteúdo do jogo", () => {
   it("todo o conteúdo valida", () => {
-    expect(conteudo.missoes.length).toBe(44);
+    expect(conteudo.missoes.length).toBe(42);
     expect(conteudo.afirmativas.length).toBeGreaterThanOrEqual(110);
-    expect(conteudo.salas).toHaveLength(4);
+    expect(conteudo.salas).toHaveLength(9);
   });
 
   it("toda missão tem todos os requisitos antes dela e a campanha é uma fila única", () => {
@@ -37,7 +37,8 @@ describe("conteúdo do jogo", () => {
   });
 
   it("toda aula é dada uma única vez na campanha", () => {
-    const aulas = conteudo.missoes.flatMap((m) => m.aulas);
+    // Um tema é ensinado como aula ou dentro da conversa da missão, nunca duas vezes.
+    const aulas = conteudo.missoes.flatMap((m) => [...m.aulas, ...m.revela]);
     expect(new Set(aulas).size).toBe(aulas.length);
     // E todo tema de teoria é usado por alguma missão.
     expect(conteudo.teoria.map((t) => t.id).filter((id) => !aulas.includes(id))).toEqual([]);
@@ -112,5 +113,45 @@ describe("validação", () => {
     );
     const problemas = problemasDe({ ...dadosBrutos, afirmativas });
     expect(problemas.join("\n")).toContain("conceito estelionato: 1 afirmativas");
+  });
+});
+
+describe("missões em várias salas", () => {
+  it("o jogo começa pela recepção, e a chegada passa por todos os ambientes", () => {
+    const [chegada] = conteudo.missoes;
+    if (!chegada) throw new Error("sem missões");
+    expect(chegada.antes[0]?.sala).toBe("recepcao");
+    const visitadas = new Set([...chegada.antes.map((c) => c.sala), chegada.sala]);
+    // Os três departamentos são apresentados juntos, numa parada só.
+    for (const sala of conteudo.salas) {
+      if (sala.id === "patrimonio" || sala.id === "especial") continue;
+      expect(visitadas.has(sala.id), sala.id).toBe(true);
+    }
+  });
+
+  it("o primeiro caso chega pela recepção, passa pelo cartório e é decidido no gabinete", () => {
+    const caso = conteudo.missoes.find((m) => m.id === "m104-divida-do-vizinho");
+    expect(caso?.antes.map((c) => c.sala)).toEqual(["recepcao", "cartorio"]);
+    expect(caso?.sala).toBe("gabinete");
+  });
+
+  it("as falas são curtas e o negrito está bem formado", () => {
+    for (const missao of conteudo.missoes) {
+      for (const fala of [...missao.antes.flatMap((c) => c.falas), ...missao.dialogo]) {
+        expect(fala.texto.length, `${missao.id}: ${fala.texto}`).toBeLessThanOrEqual(240);
+        // Marcadores de negrito sempre em pares.
+        expect((fala.texto.split("**").length - 1) % 2, fala.texto).toBe(0);
+      }
+    }
+  });
+
+  it("recusa parada em sala que não existe", () => {
+    const problemas = problemasDe(
+      comMissao("m104-divida-do-vizinho", (m) => {
+        m.antes[0] = { sala: "porao", falas: m.dialogo };
+        return m;
+      }),
+    );
+    expect(problemas.join("\n")).toContain('sala desconhecida "porao"');
   });
 });

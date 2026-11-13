@@ -90,8 +90,18 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
     let anterior = 0;
     let naFrenteDe = -1;
 
+    // As placas por onde o avatar passa ficam translúcidas, para não escondê-lo.
+    const placas = [
+      ...(svg.current?.parentElement?.querySelectorAll<HTMLElement>(".placa[data-x]") ?? []),
+    ].map((el) => ({ el, x: Number(el.dataset.x), y: Number(el.dataset.y) }));
+
     const desenhar = (balanco: number) => {
       const tela = naTela(posicao);
+      for (const placa of placas) {
+        const encoberta =
+          Math.abs(placa.x - tela.x) < 50 && placa.y > tela.y - 62 && placa.y < tela.y + 26;
+        placa.el.classList.toggle("placa-encoberta", encoberta);
+      }
       avatar.setAttribute("transform", `translate(${tela.x} ${tela.y}) rotate(${balanco})`);
       // O avatar fica logo atrás do primeiro objeto mais à frente que ele.
       const p = profundidade(posicao);
@@ -198,13 +208,15 @@ export function Cena({ salaInicial, destino, foco, prazosCurtos, aoTocar, aoCheg
           <span
             key={s.id}
             className={s.id === destino ? "placa placa-destino" : "placa"}
+            data-x={s.lugar.placa.x}
+            data-y={s.lugar.placa.y}
             style={{
               left: pct(s.lugar.placa.x, CENA.largura),
               top: pct(s.lugar.placa.y, CENA.altura),
             }}
           >
             {s.id === destino && <span className="placa-aviso">!</span>}
-            {s.nome}
+            {s.placa}
             {s.id === "cartorio" && prazosCurtos > 0 && (
               <span className="placa-conta">{prazosCurtos}</span>
             )}

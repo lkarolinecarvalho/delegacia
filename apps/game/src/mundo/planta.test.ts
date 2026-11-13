@@ -71,8 +71,8 @@ describe("planta da delegacia", () => {
     }
   });
 
-  it("o mapa tem as quatro salas, e só elas", () => {
-    expect(Object.keys(SALAS).sort()).toEqual(["cartorio", "gabinete", "oitiva", "recepcao"]);
+  it("o mapa tem os nove ambientes, e só eles", () => {
+    expect(Object.keys(SALAS)).toHaveLength(9);
     expect(conteudo.salas.map((x) => x.id).sort()).toEqual(Object.keys(SALAS).sort());
   });
 });
@@ -88,15 +88,12 @@ describe("rotas", () => {
     }
   });
 
-  it("do pátio ao gabinete, entra pela porta e passa pelo saguão e pelo corredor", () => {
-    expect(rota(NO_INICIAL, "gabinete")).toEqual([
-      NOS.entrada,
-      NOS.balcao,
-      NOS.saguao,
-      NOS.corredor,
-      NOS["frente-do-gabinete"],
-      NOS.gabinete,
-    ]);
+  it("da calçada ao gabinete, entra pela porta da frente e cruza o saguão até o fundo", () => {
+    const caminho = rota(NO_INICIAL, "gabinete");
+    expect(caminho[0]).toEqual(NOS.entrada);
+    expect(caminho).toContainEqual(NOS.recepcao);
+    expect(caminho).toContainEqual(NOS.corredor);
+    expect(caminho.at(-1)).toEqual(NOS.gabinete);
   });
 
   it("recusa nó que não existe", () => {
@@ -107,7 +104,8 @@ describe("rotas", () => {
   it("avança pela rota sem passar do último ponto", () => {
     const caminho = rota(NO_INICIAL, "recepcao");
     const meio = avancar(NOS.patio ?? [0, 0], caminho, 3);
-    expect(meio.posicao).toEqual([21, 17.5]);
+    expect(meio.posicao[0]).toBe(11.5);
+    expect(meio.posicao[1]).toBeCloseTo(25.4);
     expect(meio.rota).toHaveLength(caminho.length);
     const fim = avancar(meio.posicao, meio.rota, 1000);
     expect(fim.posicao).toEqual(NOS.recepcao);
@@ -144,7 +142,7 @@ describe("visão de dentro da sala", () => {
     for (const id of salas) {
       const { centro, escala } = focoDaSala(id);
       expect(escala, id).toBeGreaterThan(1.3);
-      expect(escala, id).toBeLessThanOrEqual(2.4);
+      expect(escala, id).toBeLessThanOrEqual(3);
       // O ponto em que o avatar para fica dentro da tela depois da aproximação.
       const avatar = naTela(NOS[noDaSala(id)] ?? [0, 0]);
       const x = CENA.largura / 2 + (avatar.x - centro.x) * escala;

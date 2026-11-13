@@ -1,7 +1,7 @@
 import type { Pergunta, Tema } from "@delegacia/content";
 import { useState } from "react";
 import { tocar } from "../som/sons";
-import { Retrato } from "./comum";
+import { Retrato, Texto } from "./comum";
 
 function PerguntaDaAula({ pergunta }: { pergunta: Pergunta }) {
   const [resposta, setResposta] = useState<"C" | "E" | null>(null);
@@ -56,12 +56,16 @@ export function Aula({ tema, rotulo = "Entendi", aoContinuar }: Props) {
       </header>
       <ul className="aula-pontos">
         {tema.pontos.map((ponto) => (
-          <li key={ponto}>{ponto}</li>
+          <li key={ponto}>
+            <Texto>{ponto}</Texto>
+          </li>
         ))}
       </ul>
       <div className="aula-exemplo">
         <span className="etiqueta">Exemplo</span>
-        <p>{tema.exemplo}</p>
+        <p>
+          <Texto>{tema.exemplo}</Texto>
+        </p>
       </div>
       {tema.fonte && <p className="aula-fonte">Fonte: {tema.fonte}</p>}
       {tema.perguntas.map((pergunta) => (

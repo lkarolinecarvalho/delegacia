@@ -1,19 +1,19 @@
 [
   {
     "id": "o-direito-penal",
-    "titulo": "O que é Direito Penal?",
-    "resumo": "Começando do zero: para que ele serve.",
+    "titulo": "Direito Penal e Processo Penal",
+    "resumo": "Os dois ramos que a delegacia usa o tempo todo.",
     "pontos": [
-      "Direito Penal é o conjunto de leis que diz quais condutas são crimes e quais penas cabem a quem as pratica.",
-      "Ele protege os bens mais importantes da vida em sociedade: a vida, a integridade física, a liberdade, o patrimônio.",
-      "É a resposta mais dura do Estado. Por isso só entra em cena quando os outros ramos do direito não bastam."
+      "O **Direito Penal** diz quais condutas são infrações penais e o que pode acontecer com quem as pratica.",
+      "O **Processo Penal** diz como investigar e apurar essas infrações, respeitando os direitos e as garantias de todos.",
+      "Um define o que é crime; o outro, o caminho para apurá-lo."
     ],
-    "exemplo": "Quem bate o carro por descuido e amassa o portão do vizinho resolve o prejuízo na esfera cível. Quem ameaça o vizinho com uma faca para levar o carro responde na esfera penal.",
+    "exemplo": "Dizer que subtrair coisa alheia é furto é Direito Penal. Dizer como se ouve uma testemunha ou em quanto tempo o inquérito termina é Processo Penal.",
     "perguntas": [
       {
-        "enunciado": "Toda conduta contrária ao direito é crime.",
+        "enunciado": "É o Processo Penal que define quais condutas são infrações penais.",
         "gabarito": "E",
-        "explicacao": "Só é crime o que a lei penal define como crime. Muitas condutas ilícitas se resolvem em outros ramos, como o direito civil."
+        "explicacao": "Quem define as infrações penais é o Direito Penal. O Processo Penal trata de como investigá-las e apurá-las."
       }
     ]
   },
@@ -61,20 +61,20 @@
   {
     "id": "a-delegacia",
     "titulo": "O que a delegacia faz?",
-    "resumo": "Polícia judiciária e inquérito, em poucas palavras.",
+    "resumo": "Investigar bem, para que os outros possam acusar e julgar.",
     "pontos": [
-      "A Polícia Civil, dirigida por delegados de carreira, exerce a polícia judiciária: apura as infrações penais e descobre quem as praticou.",
-      "Essa apuração é feita no inquérito policial, presidido pelo delegado.",
-      "O delegado não julga nem condena. Ele reúne os elementos e os envia ao Ministério Público e ao juiz.",
+      "A delegacia apura o que aconteceu e quem fez: é a **polícia judiciária**.",
+      "Essa apuração é feita no **inquérito policial**, presidido pelo delegado.",
+      "O delegado não acusa nem julga: quem acusa é o **Ministério Público**, e quem julga é o juiz.",
       "O delegado também não pode mandar arquivar o inquérito."
     ],
     "exemplo": "Chega a notícia de um furto. A delegacia registra a ocorrência, ouve as pessoas, junta as provas e relata o que apurou. Quem acusa é o Ministério Público; quem julga é o juiz.",
     "fonte": "CF, art. 144, § 4º; CPP, arts. 4º e 17",
     "perguntas": [
       {
-        "enunciado": "Concluída a apuração, o delegado pode arquivar o inquérito se entender que não houve crime.",
+        "enunciado": "Cabe à delegacia acusar e julgar quem praticou a infração penal.",
         "gabarito": "E",
-        "explicacao": "A autoridade policial não pode mandar arquivar autos de inquérito (CPP, art. 17)."
+        "explicacao": "A delegacia investiga. Quem acusa é o Ministério Público, e quem julga é o juiz."
       }
     ]
   },

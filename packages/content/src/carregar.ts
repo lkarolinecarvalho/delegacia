@@ -170,7 +170,13 @@ export function carregarConteudo(bruto: ConteudoBruto): Conteudo {
     if (!capitulos.has(missao.capitulo)) problemas.push(`${onde}: capítulo ${missao.capitulo}?`);
     if (missao.capitulo < capituloAnterior) problemas.push(`${onde}: fora da ordem dos capítulos`);
     capituloAnterior = missao.capitulo;
-    for (const fala of missao.dialogo) {
+    for (const cena of missao.antes) {
+      if (!salas.has(cena.sala)) problemas.push(`${onde}: sala desconhecida "${cena.sala}"`);
+    }
+    for (const tema of missao.revela) {
+      if (!temas.has(tema)) problemas.push(`${onde}: tema desconhecido "${tema}"`);
+    }
+    for (const fala of [...missao.antes.flatMap((c) => c.falas), ...missao.dialogo]) {
       if (!npcs.has(fala.npc)) problemas.push(`${onde}: fala de npc desconhecido "${fala.npc}"`);
     }
     for (const aula of missao.aulas) {
@@ -186,8 +192,10 @@ export function carregarConteudo(bruto: ConteudoBruto): Conteudo {
       if (!conceitos.has(conceito)) problemas.push(`${onde}: conceito desconhecido "${conceito}"`);
     }
     if (!missao.caso) {
-      // Missão de conversa: só aulas, sem conceito cobrado.
-      if (missao.aulas.length === 0) problemas.push(`${onde}: conversa sem aulas`);
+      // Missão de conversa: ensina algum tema e não cobra conceito.
+      if (missao.aulas.length + missao.revela.length === 0) {
+        problemas.push(`${onde}: conversa sem aulas`);
+      }
       if (missao.conceitos.length > 0) problemas.push(`${onde}: conversa não cobra conceitos`);
     }
     conferirCaso(missao, problemas);

@@ -94,6 +94,19 @@ export function Regras({ ids }: { ids: readonly string[] }) {
   );
 }
 
+/** Texto do conteúdo, com os trechos entre ** em negrito: os termos que importam. */
+export function Texto({ children }: { children: string }) {
+  const partes = children.split("**");
+  return (
+    <>
+      {partes.map((parte, i) =>
+        // Os pedaços ímpares estão entre os marcadores.
+        i % 2 === 1 ? <strong key={i}>{parte}</strong> : parte,
+      )}
+    </>
+  );
+}
+
 export function Fala({ npc, children }: { npc: string; children: ReactNode }) {
   return (
     <div className="fala">

@@ -1,93 +1,200 @@
 [
   {
     "id": "m101-bem-vindo",
-    "titulo": "Bem-vindo(a) à delegacia",
+    "titulo": "Chegada à delegacia",
     "capitulo": 1,
     "nivel": 1,
     "sala": "gabinete",
     "npc": "helena-delegada",
     "requisitos": [],
-    "aulas": ["o-direito-penal", "legalidade"],
+    "aulas": [],
+    "revela": ["o-direito-penal", "a-delegacia"],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Bom dia! Você é o(a) novo(a) delegado(a)? Seja bem-vindo(a) a Vila Serena."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Eu sou a Cida. Tudo o que chega a esta delegacia passa primeiro por este balcão."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Aqui a gente faz a **triagem**: ouve a pessoa e vê para onde o caso vai."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Vem comigo, eu mostro a casa. Primeira parada: o cartório."
+          }
+        ]
+      },
+      {
+        "sala": "cartorio",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Este é o Seu Bento, o **escrivão**. Trinta anos de casa."
+          },
+          {
+            "npc": "bento-escrivao",
+            "texto": "Prazer, doutor(a). Aqui a gente põe no papel o que acontece: registra a ocorrência e organiza os **autos**."
+          },
+          {
+            "npc": "bento-escrivao",
+            "texto": "O(a) senhor(a) decide. Eu formalizo."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Agora a sala de oitiva, aqui ao lado."
+          }
+        ]
+      },
+      {
+        "sala": "oitiva",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Aqui a gente ouve as pessoas: a vítima, a testemunha e também o investigado."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Ouvir alguém formalmente se chama **oitiva**. Quando é o investigado, é **interrogatório**."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "O que é dito aqui vira um **termo**, lá no cartório."
+          }
+        ]
+      },
+      {
+        "sala": "investigacao",
+        "falas": [
+          {
+            "npc": "rocha-agente",
+            "texto": "Agente Rocha, doutor(a). Esta é a sala de investigação."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Quando o(a) senhor(a) determina uma **diligência**, é daqui que a equipe sai: buscar imagens, achar testemunhas, conferir versões."
+          },
+          {
+            "npc": "rocha-agente",
+            "texto": "Depois eu volto e conto o que encontrei."
+          }
+        ]
+      },
+      {
+        "sala": "arquivo",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "O arquivo. Todo procedimento que passou pela casa está guardado aqui."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Quando quiser rever um caso antigo, é só vir."
+          }
+        ]
+      },
+      {
+        "sala": "pessoa",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Deste lado ficam os três departamentos."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "**Crimes contra a pessoa**, **crimes contra o patrimônio** e **legislação especial**. Cada equipe cuida de um tipo de caso."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Você vai trabalhar com eles mais adiante."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Pronto, casa apresentada. A Dra. Helena está à sua espera no gabinete."
+          }
+        ]
+      }
+    ],
     "dialogo": [
       {
         "npc": "helena-delegada",
-        "texto": "Então você é o reforço que eu pedi! Sou a Helena, delegada titular. Bem-vindo(a) a Vila Serena."
+        "texto": "Então é você! Helena, delegada titular. Senta, vamos conversar."
       },
       {
         "npc": "helena-delegada",
-        "texto": "Passar no concurso foi a primeira parte. Agora vem o plantão, e eu vou com você."
+        "texto": "Muita gente acha que delegacia só registra queixa e prende. É bem mais que isso."
       },
       {
         "npc": "helena-delegada",
-        "texto": "Vamos do começo, sem pressa. Primeiro: para que serve o Direito Penal?"
+        "texto": "Nosso trabalho é entender **o que aconteceu**. Com calma, com prova e com responsabilidade."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Para isso a gente usa dois ramos do direito, o tempo todo."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "O **Direito Penal** diz quais condutas são infrações penais e o que pode acontecer com quem as pratica."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "O **Processo Penal** diz como investigar e apurar, respeitando os direitos de todos, inclusive do investigado."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "A gente não acusa nem julga: isso é com o **Ministério Público** e com o juiz. Nossa parte é entregar a eles uma investigação bem-feita."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Chega de conversa. Volta para a recepção: já deve ter gente à sua espera."
       }
     ],
     "caso": null,
     "conceitos": [],
-    "recompensa": { "pontos": 30 }
-  },
-  {
-    "id": "m102-o-que-e-crime",
-    "titulo": "O que é crime",
-    "capitulo": 1,
-    "nivel": 1,
-    "sala": "gabinete",
-    "npc": "helena-delegada",
-    "requisitos": ["m101-bem-vindo"],
-    "aulas": ["o-que-e-crime"],
-    "dialogo": [
-      {
-        "npc": "helena-delegada",
-        "texto": "Todo caso que chega aqui passa por três perguntas, sempre na mesma ordem."
-      },
-      { "npc": "helena-delegada", "texto": "Guarde as três. Você vai usá-las até se aposentar." }
-    ],
-    "caso": null,
-    "conceitos": [],
-    "recompensa": { "pontos": 30 }
-  },
-  {
-    "id": "m103-a-delegacia",
-    "titulo": "O que a delegacia faz",
-    "capitulo": 1,
-    "nivel": 1,
-    "sala": "cartorio",
-    "npc": "bento-escrivao",
-    "requisitos": ["m102-o-que-e-crime"],
-    "aulas": ["a-delegacia"],
-    "dialogo": [
-      {
-        "npc": "bento-escrivao",
-        "texto": "Doutor(a)! Bento, escrivão, trinta anos de cartório. Tudo o que acontece nesta casa passa por esta mesa."
-      },
-      {
-        "npc": "bento-escrivao",
-        "texto": "A Dra. Helena cuida da teoria. Eu mostro como a casa funciona."
-      }
-    ],
-    "caso": null,
-    "conceitos": [],
-    "recompensa": { "pontos": 30 }
+    "recompensa": {
+      "pontos": 60
+    }
   },
   {
     "id": "m104-divida-do-vizinho",
     "titulo": "A dívida do vizinho",
     "capitulo": 1,
     "nivel": 1,
-    "sala": "recepcao",
-    "npc": "cida-recepcao",
-    "requisitos": ["m103-a-delegacia"],
+    "sala": "gabinete",
+    "npc": "helena-delegada",
+    "requisitos": ["m101-bem-vindo"],
     "aulas": [],
     "dialogo": [
       {
-        "npc": "cida-recepcao",
-        "texto": "Doutor(a), o seu primeiro atendimento! O Seu Anselmo quer registrar ocorrência contra o vizinho."
+        "npc": "helena-delegada",
+        "texto": "Primeiro caso e já uma boa pergunta. Vamos pensar juntos."
       },
       {
-        "npc": "cida-recepcao",
-        "texto": "Ele emprestou dinheiro, o vizinho não pagou, e ele quer que a polícia prenda o homem."
+        "npc": "helena-delegada",
+        "texto": "Só existe crime se uma lei, feita **antes** do fato, disser que aquela conduta é crime. É o **princípio da legalidade**."
       },
-      { "npc": "cida-recepcao", "texto": "O que eu digo a ele? Tem crime aí?" }
+      {
+        "npc": "helena-delegada",
+        "texto": "Então a primeira coisa é procurar: existe um **tipo penal** que descreva o que o vizinho fez?"
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Se existir, o fato é **típico**. Se não existir, é **atípico**, por mais errado que pareça."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Depois ainda vêm outras duas perguntas, se o fato é **ilícito** e se o agente é **culpável**. Mas uma de cada vez."
+      },
+      {
+        "npc": "helena-delegada",
+        "texto": "Olha o que ficou apurado e me diz."
+      }
     ],
     "caso": {
       "titulo": "Atendimento 001 — balcão",
@@ -100,9 +207,14 @@
       "fato": {
         "elementos": [],
         "elementoSubjetivo": "nenhum",
-        "execucao": { "iniciada": false },
+        "execucao": {
+          "iniciada": false
+        },
         "justificante": null,
-        "agente": { "idade": 52, "embriaguez": "nenhuma" }
+        "agente": {
+          "idade": 52,
+          "embriaguez": "nenhuma"
+        }
       },
       "pede": ["tipico", "conclusao"],
       "informa": [],
@@ -112,9 +224,56 @@
         "tipico": "Dra. Helena: Procure a lei que define isso como crime. Não vai achar. Não pagar dívida é ilícito civil.",
         "conclusao": "Dra. Helena: Sem tipo penal, a análise para na primeira pergunta: o fato é atípico."
       },
-      "desfecho": "Você explica ao Seu Anselmo que a polícia não cobra dívida e que ninguém vai preso por isso. Com o recibo, ele pode cobrar o vizinho no Juizado Especial Cível. Ele sai contrariado, mas orientado."
+      "desfecho": "Você volta à recepção e explica ao Seu Anselmo que a polícia não cobra dívida e que ninguém vai preso por isso. Com o recibo, ele pode cobrar o vizinho no Juizado Especial Cível. Ele sai contrariado, mas orientado."
     },
     "conceitos": ["legalidade", "ilicito-civil-e-penal", "policia-judiciaria"],
-    "recompensa": { "pontos": 60 }
+    "recompensa": {
+      "pontos": 60
+    },
+    "revela": ["legalidade", "o-que-e-crime"],
+    "antes": [
+      {
+        "sala": "recepcao",
+        "falas": [
+          {
+            "npc": "cida-recepcao",
+            "texto": "Doutor(a), seu primeiro atendimento. Este é o Seu Anselmo."
+          },
+          {
+            "npc": "anselmo-cidadao",
+            "texto": "Emprestei **R$ 800,00** ao meu vizinho. Faz três meses e ele não me paga."
+          },
+          {
+            "npc": "anselmo-cidadao",
+            "texto": "Tenho recibo assinado. Quero que a polícia prenda esse sujeito!"
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Ninguém foi ameaçado nem enganado, doutor(a). O vizinho só não pagou."
+          },
+          {
+            "npc": "cida-recepcao",
+            "texto": "Leva o caso ao Seu Bento? Ele vai querer saber como registrar."
+          }
+        ]
+      },
+      {
+        "sala": "cartorio",
+        "falas": [
+          {
+            "npc": "bento-escrivao",
+            "texto": "Dívida entre vizinhos... Antes de abrir qualquer coisa, doutor(a), uma pergunta."
+          },
+          {
+            "npc": "bento-escrivao",
+            "texto": "Isso é **crime**? Eu só registro como infração penal o que a lei diz que é."
+          },
+          {
+            "npc": "bento-escrivao",
+            "texto": "A Dra. Helena tem um bom jeito de pensar nisso. Vale passar no gabinete."
+          }
+        ]
+      }
+    ]
   }
 ]

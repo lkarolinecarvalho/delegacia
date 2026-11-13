@@ -15,6 +15,8 @@ const gabarito = z.enum(["C", "E"]);
 export const salaSchema = z.strictObject({
   id,
   nome: texto,
+  /** Nome curto, para a placa no mapa. */
+  placa: texto,
   descricao: texto,
 });
 
@@ -132,6 +134,14 @@ export const casoSchema = z.strictObject({
   desfecho: texto,
 });
 
+const falaSchema = z.strictObject({ npc: id, texto: texto.max(240) });
+
+/** Uma parada da missão em outra sala, antes da cena final: só conversa. */
+export const cenaSchema = z.strictObject({
+  sala: id,
+  falas: z.array(falaSchema).min(1).max(8),
+});
+
 export const missaoSchema = z.strictObject({
   id,
   titulo: texto,
@@ -140,11 +150,14 @@ export const missaoSchema = z.strictObject({
   sala: id,
   npc: id,
   requisitos: z.array(id),
+  /** Temas dados como aula, em balões, antes do caso. */
   aulas: z.array(id),
-  dialogo: z
-    .array(z.strictObject({ npc: id, texto: texto.max(240) }))
-    .min(1)
-    .max(3),
+  /** Temas que a conversa da missão ensina: entram na fixação e na Biblioteca. */
+  revela: z.array(id).default([]),
+  /** Paradas em outras salas, na ordem, antes da cena final em `sala`. */
+  antes: z.array(cenaSchema).default([]),
+  /** A conversa da cena final. Frases curtas; o negrito marca os termos que importam. */
+  dialogo: z.array(falaSchema).min(1).max(8),
   caso: casoSchema.nullable(),
   conceitos: z.array(id),
   recompensa: z.strictObject({ pontos: z.int().positive() }),
@@ -159,6 +172,7 @@ export type Pergunta = z.infer<typeof perguntaSchema>;
 export type Afirmativa = z.infer<typeof afirmativaSchema>;
 export type Caso = z.infer<typeof casoSchema>;
 export type Missao = z.infer<typeof missaoSchema>;
+export type Cena = z.infer<typeof cenaSchema>;
 
 // O fato validado pelo schema precisa servir de entrada para o motor.
 const _fatoDoSchemaServeAoMotor = (fato: z.infer<typeof fatoSchema>): Fato => fato;
